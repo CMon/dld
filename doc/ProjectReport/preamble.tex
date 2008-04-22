@@ -1,0 +1,50 @@
+%%% Basic Packages %%%
+% \documentclass[a4paper,pointlessnumbers,12pt]{article}
+\documentclass[a4paper,pointlessnumbers,12pt]{scrreprt}
+\usepackage{graphicx}
+\usepackage{simonSpecial}
+\usepackage[latin1]{inputenc}
+\usepackage[greek,english]{babel}
+%% if i dont want any links then this should be disabled, if not links are in strange colors
+\usepackage[pdftex,colorlinks=true,urlcolor=blue,linkcolor=black,citecolor=black]{hyperref}
+
+\usepackage{url}
+%% Define a new 'leo' style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\makeatother
+%% Now actually use the newly defined style.
+\urlstyle{leostyle}
+%%
+
+\usepackage[left=4cm,top=2.5cm,right=2cm,bottom=3cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage{multirow}
+
+%figure stuff
+\usepackage{floatflt}
+\usepackage{picins}
+
+% using special drawing stuff:
+\usepackage{tikz}
+
+% header and footer
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\renewcommand*{\chaptermarkformat}{}
+\renewcommand*{\sectionmarkformat}{}
+\clearscrheadfoot
+\ofoot[\pagemark]{\pagemark}
+\ohead{\headmark}
+\automark{chapter}
+
+%referencing
+\usepackage{natbib}
+\bibpunct{(}{)}{,}{a}{,}{,}
+
+\usepackage{lscape}

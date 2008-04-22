@@ -1,0 +1,141 @@
+ /*
+  * dldExchangeServer.cpp  - domestic location detection - Exchange Server
+  *
+  * Copyright (c) by Simon Schäfer <Simon.Schaefer@koeln.de>
+  *
+  * *************************************************************************
+  * *                                                                       *
+  * * This program is free software; you can redistribute it and/or modify  *
+  * * it under the terms of the GNU General Public License as published by  *
+  * * the Free Software Foundation; either version 2 of the License, or     *
+  * * (at your option) any later version.                                   *
+  * *                                                                       *
+  * *************************************************************************
+ */
+/** @class DLDExchangeServer dldExchangeServer.h
+ *
+ * @author Simon Schaefer
+ *
+ * @date 18.02.2008
+ *
+ * @version 1.0
+ * <br> Class for the DLD server exchange strategies (controler)
+ */
+#include "dldExchangeServer.h"
+#include "dldExchangeServerSSL.h"
+#include "dldExchangeServerDBusStrength.h"
+#include "dldExchangeServerDBusPosition.h"
+#include "dldExchangeServerStrategy.h"
+#include "dldLog.h"
+
+#include <QString>
+#include <QList>
+#include <QVariant>
+/**
+ * @brief constructor for DLDDataExchange class
+ * @param logAddress is the pointer of the parents log class
+ * @return
+ *      void
+ */
+DLDDataExchangeServer::DLDDataExchangeServer (DLDLog * pLog)
+{
+	log = pLog;
+}
+/**
+ * @brief destructor for DLDDataExchange class
+ * @return
+ *      void
+ */
+DLDDataExchangeServer::~DLDDataExchangeServer ()
+{
+	for (int i = 0; i < exchangeStrategies.size(); ++i)
+	{
+		if (exchangeStrategies.at(i))
+			delete (exchangeStrategies.at(i));
+	}
+}
+/**
+ * @brief adds another Exchange Method to the List
+ * @param type Either TYPE_SSL or TYPE_DBUS, one is adding a new SSL method and the other is adding a D-Bus method
+ * @param basePath The base path on SSL its the host + port, on D-Bus its the URI
+ * @param subPath the sub path (used for the dBus strategy
+ * @return
+ *      void
+ */
+void DLDDataExchangeServer::addExchangeMethod (int type, QString basePath, QString subPath, int dBusType)
+{
+	DLDExchangeServerStrategy *	newMethod;
+	switch (type)
+	{
+		case TYPE_SSL:
+			newMethod = new DLDExchangeServerSSL (log, basePath);
+			break;
+		case TYPE_DBUS:
+			switch (dBusType)
+			{
+				case DBUS_POSITION:
+					newMethod = new DLDExchangeServerDBusPosition (log, basePath, subPath);
+					break;
+				default: // is strength
+					newMethod = new DLDExchangeServerDBusStrength (log, basePath, subPath);
+			}
+			break;
+		default:
+			// do nothing if the programmer chosed the wrong type.
+			return;
+	}
+	exchangeStrategies.append (newMethod);
+}
+/**
+ * @brief slot: informs all strategies about the new node data
+ * @param id	id of the node
+ * @param x	x position of the node
+ * @param y	y position of the node
+ * @param z	z position of the node
+ * @return
+ *      void
+ */
+void DLDDataExchangeServer::updateNodeOnStrategies (int id, double x, double y, double z)
+{
+	for (int i = 0; i < exchangeStrategies.size(); i++)
+		exchangeStrategies.at(i)->updateNode (id, x, y, z);
+}
+/**
+ * @brief slot: informs all strategies about the new position data
+ * @param tagId		id of the tag
+ * @param timeStamp	timestamp of the position arrival
+ * @param x		x position of the tag
+ * @param y		y position of the tag
+ * @param z		z position of the tag
+ * @return
+ *      void
+ */
+void DLDDataExchangeServer::updatePositionOnStrategies (int tagId, int timestamp, double x, double y, double z)
+{
+	for (int i = 0; i < exchangeStrategies.size(); i++)
+		exchangeStrategies.at(i)->updatePosition (tagId, timestamp, x, y, z);
+}
+/**
+ * @brief slot: informs all strategies about the new strength data
+ * @param deviceId	id of the node
+ * @param tagId		id of the tag
+ * @param strength	strength of the tag
+ * @return
+ *      void
+ */
+void DLDDataExchangeServer::updateStrengthOnStrategies (int deviceId, int tagId, double strength)
+{
+	for (int i = 0; i < exchangeStrategies.size(); i++)
+		exchangeStrategies.at(i)->updateStrength (deviceId, tagId, strength);
+}
+/**
+ * @brief informs all strategies about the maximum axis value
+ * @param maximumAxisValue	maximum axis value
+ * @return
+ *      void
+ */
+void DLDDataExchangeServer::setMaximumAxisValue (double maximumAxisValue)
+{
+	for (int i = 0; i < exchangeStrategies.size(); i++)
+		exchangeStrategies.at(i)->setMaximumAxisValue (maximumAxisValue);
+}

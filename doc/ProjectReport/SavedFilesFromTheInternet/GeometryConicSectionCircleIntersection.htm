@@ -1,0 +1,195 @@
+<html><head>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document"><title>Circle Intersection</title>
+<meta name="Microsoft Theme" content="topo 111, default">
+<meta name="Microsoft Border" content="tb, default"></head><body alink="#996600" background="GeometryConicSectionCircleIntersection-Dateien/toptxtr.jpg" bgcolor="#cccccc" link="#006666" text="#000000" vlink="#990000"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+
+<p align="center"><font size="6"><strong><img src="GeometryConicSectionCircleIntersection-Dateien/GeometryConicSectionCircleIntersection.gif" alt="Circle Intersection" border="0" height="60" width="600"></strong></font><br>
+ <a href="http://mcraefamily.com/MathHelp/"> <img src="GeometryConicSectionCircleIntersection-Dateien/MathHelpHomeLogo.gif" alt="Click here for the Math Help Home page." border="0" height="43" width="135"></a></p>
+
+<!--mstheme--></font></td></tr><!--msnavigation--></tbody></table><!--msnavigation--><table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><!--msnavigation--><td valign="top"><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+</font><h2><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><font color="#006666">The Intersection of Two Circles<!--mstheme--></font></font></h2>
+<p><font face="Trebuchet MS, Arial, Helvetica">Two circles in a plane intersect in zero, one, two, or infinitely many
+points.&nbsp; The latter case occurs only in the case of two identical
+circles.&nbsp; The first case (zero points of intersection) occurs whenever the
+distance between the centers of the circles is greater than the sum of the radii
+or the distance between the center is less than the absolute value of the
+difference in their radii.</font></p>
+<h3><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><font color="#990000">
+Problem: Give the general solution to this question:<!--mstheme--></font></font></h3>
+<blockquote>
+<p><font face="Trebuchet MS, Arial, Helvetica">Find the coordinates of the two (possibly equal) points of intersection of two non-concentric circles, A, and
+B, whose centers are (x<sub>A</sub>,y<sub>A</sub>) and (x<sub>B</sub>,y<sub>B</sub>)
+and whose radii are r<sub>A</sub> and r<sub>B</sub>.&nbsp; You may assume there
+is at least one point of intersection.&nbsp; In other words, you may assume the
+distance between the
+centers of the circles lies between the absolute value of the
+difference of their radii and the sum of their radii, inclusive.
+</font></p></blockquote>
+<h3><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><font color="#990000">
+Solution:<!--mstheme--></font></font></h3>
+<p>
+<font face="Trebuchet MS, Arial, Helvetica">In this diagram, I have used the example in which circle A is red, centered at
+(-9,1) with a radius of 7, and circle B is green, centered at (5,-5) with a
+radius of 18.&nbsp; C is the midpoint of A and B.&nbsp; E and F are the
+intersections of the two circles, and D is the midpoint of E and F.
+</font></p><p>
+<font face="Trebuchet MS, Arial, Helvetica"><img src="GeometryConicSectionCircleIntersection-Dateien/GeometryConicSectionCircleIntersectionOfTwoCircles.gif" align="right" border="0" height="432" width="480">Let d be the
+distance between A and B, the centers of the two circles.
+</font></p><blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica">d = sqrt((x<sub>B</sub>-x<sub>A</sub>)<sup>2</sup>+(y<sub>B</sub>-y<sub>A</sub>)<sup>2</sup>)
+</font></p></blockquote>
+<p><font face="Trebuchet MS, Arial, Helvetica">Let K be the area of the triangle ABE.&nbsp; The lengths of the sides of this
+triangle are d, r<sub>A</sub>, and r<sub>B</sub>.&nbsp; <a href="http://mcraefamily.com/MathHelp/GeometryTriangleAreaHeronsFormula.htm">Heron's Formula</a>
+ tells us
+</font></p><blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica">K = (1/4)sqrt((d+r<sub>A</sub>+r<sub>B</sub>)(-d+r<sub>A</sub>+r<sub>B</sub>)(d-r<sub>A</sub>+r<sub>B</sub>)(d+r<sub>A</sub>-r<sub>B</sub>))
+</font></p></blockquote>
+<p>
+<font face="Trebuchet MS, Arial, Helvetica">By regrouping the four factors inside the square root, we get the area of the
+triangle in terms of d<sup>2</sup> rather than in terms of d, and this is
+computationally easier:
+</font></p><blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica">K = (1/4)sqrt(((r<sub>A</sub>+r<sub>B</sub>)<sup>2</sup>-d<sup>2</sup>)(d<sup>2</sup>-(r<sub>A</sub>-r<sub>B</sub>)<sup>2</sup>))
+</font></p></blockquote>
+<p><font face="Trebuchet MS, Arial, Helvetica">C ((x<sub>B</sub>+x<sub>A</sub>)/2, (y<sub>B</sub>+y<sub>A</sub>)/2) is the
+midpoint between the centers of the circles.
+</font></p><p>
+<font face="Trebuchet MS, Arial, Helvetica">D is the midpoint between the two points of intersection of the circles.</font></p><p><font face="Trebuchet MS, Arial, Helvetica">We
+will consider AB the "base" of triangle ABE, and DE the
+"height" of the triangle.&nbsp; Point D divides the base into two
+segments, AD, and DB, whose signed lengths will be d<sub>A</sub> and d<sub>B</sub>,
+where d<sub>A</sub>+d<sub>B</sub>=d.&nbsp; (The context in which I use signed
+distances is very narrow.&nbsp; By "signed" I mean only that distances
+measured along line AB from A to B are considered "positive" and
+distances in the other direction are considered "negative".)</font></p><p><font face="Trebuchet MS, Arial, Helvetica">Note
+the following facts, where all distances are signed:
+</font></p><blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica">CA+CB = 0, because C is the midpoint of A and B<br>
+  d<sub>A</sub>-d<sub>B</sub> = AD-DB = AD+BD = (CA+AD)+(CB+BD) = CD+CD, so<br>
+  CD = (1/2)(d<sub>A</sub>-d<sub>B</sub>)
+</font></p></blockquote>
+<p>
+<font face="Trebuchet MS, Arial, Helvetica">By Pythagoras, we have r<sub>A</sub><sup>2</sup>-d<sub>A</sub><sup>2</sup> = r<sub>B</sub><sup>2</sup>-d<sub>B</sub><sup>2</sup>,
+so
+</font></p><blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica">r<sub>A</sub><sup>2</sup>-r<sub>B</sub><sup>2</sup> = d<sub>A</sub><sup>2</sup>-d<sub>B</sub><sup>2</sup>
+  = (d<sub>A</sub>+d<sub>B</sub>)(d<sub>A</sub>-d<sub>B</sub>) = d(d<sub>A</sub>-d<sub>B</sub>)
+  = 2d(CD)
+</font></p></blockquote>
+<p><font face="Trebuchet MS, Arial, Helvetica">This way, the signed length, CD, which is negative in the diagram, is given
+by
+</font></p><blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica">CD = (1/2)(r<sub>A</sub><sup>2</sup>-r<sub>B</sub><sup>2</sup>)/d
+</font></p></blockquote>
+<p><font face="Trebuchet MS, Arial, Helvetica">The ratio of change in the x-coordinate to signed distance along line AB is (x<sub>B</sub>-x<sub>A</sub>)/d,
+and the ratio of change in the y-coordinate to signed distance along this line
+is (y<sub>B</sub>-y<sub>A</sub>)/d.&nbsp; From this we can calculate the
+coordinates of point D:
+</font></p><blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica">x<sub>D</sub> = x<sub>C</sub> + (1/2)(r<sub>A</sub><sup>2</sup>-r<sub>B</sub><sup>2</sup>)/d
+  * (x<sub>B</sub>-x<sub>A</sub>)/d = (1/2)(x<sub>B</sub>+x<sub>A</sub>) +
+  (1/2)(x<sub>B</sub>-x<sub>A</sub>)(r<sub>A</sub><sup>2</sup>-r<sub>B</sub><sup>2</sup>)/d<sup>2</sup>&nbsp;<br>
+  y<sub>D</sub> = y<sub>C</sub> + (1/2)(r<sub>A</sub><sup>2</sup>-r<sub>B</sub><sup>2</sup>)/d
+  * (y<sub>B</sub>-y<sub>A</sub>)/d = (1/2)(y<sub>B</sub>+y<sub>A</sub>) +
+  (1/2)(y<sub>B</sub>-y<sub>A</sub>)(r<sub>A</sub><sup>2</sup>-r<sub>B</sub><sup>2</sup>)/d<sup>2</sup>&nbsp;
+</font></p></blockquote>
+<p><font face="Trebuchet MS, Arial, Helvetica">Did you wonder when we would make use of K, the area of triangle ABE?&nbsp;
+Well, your wait is over!
+</font></p><blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica">K = (1/2)(AB)(DE)<br>
+  DE = 2K/(AB) = 2K/d = (1/2)sqrt(((r<sub>A</sub>+r<sub>B</sub>)<sup>2</sup>-d<sup>2</sup>)(d<sup>2</sup>-(r<sub>A</sub>-r<sub>B</sub>)<sup>2</sup>))/d
+</font></p></blockquote>
+<p><font face="Trebuchet MS, Arial, Helvetica">Line DE is perpendicular to AB, so the ratio of change in the x-coordinate to
+distance along DE equal to plus or minus the ratio for the y-coordinate along
+AB, and the ratio of change in the y-coordinate to distance along DE is <i>minus
+or plus</i> the ratio for the x-coordinate along AB.&nbsp; Note that the choice
+of plus or minus is arbitrary, but if you choose "plus" for the
+x-coordinate, you must choose "minus" for the y-coordinate, and
+vice-versa.&nbsp; One choice gets you to point E, and the other choice gets you
+to point F, which are the two solutions to this problem.</font></p><p><font face="Trebuchet MS, Arial, Helvetica">With this in mind, we
+choose that the ratio of change in the x-coordinate to distance along line DE is
+(y<sub>B</sub>-y<sub>A</sub>)/d, and the ratio of change in the y-coordinate to
+signed distance along this line is -(x<sub>B</sub>-x<sub>A</sub>)/d.&nbsp; From
+this we can calculate the coordinates of point E:
+</font></p><blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica">x<sub>E</sub> = x<sub>D</sub> + 2K/d * (y<sub>B</sub>-y<sub>A</sub>)/d<br>
+  &nbsp;&nbsp;&nbsp; = (1/2)(x<sub>B</sub>+x<sub>A</sub>) + (1/2)(x<sub>B</sub>-x<sub>A</sub>)(r<sub>A</sub><sup>2</sup>-r<sub>B</sub><sup>2</sup>)/d<sup>2</sup>
+  + 2(y<sub>B</sub>-y<sub>A</sub>)K/d<sup>2</sup>&nbsp;<br>
+  y<sub>E</sub> = y<sub>D</sub> + 2K/d * -(x<sub>B</sub>-x<sub>A</sub>)/d<br>
+  &nbsp;&nbsp;&nbsp; = (1/2)(y<sub>B</sub>+y<sub>A</sub>) + (1/2)(y<sub>B</sub>-y<sub>A</sub>)(r<sub>A</sub><sup>2</sup>-r<sub>B</sub><sup>2</sup>)/d<sup>2</sup>
+  - 2(x<sub>B</sub>-x<sub>A</sub>)K/d<sup>2</sup>&nbsp;
+</font></p></blockquote>
+<p><font face="Trebuchet MS, Arial, Helvetica">where K and d<sup>2</sup> are, again for reference,&nbsp;
+</font></p><blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica">K = (1/4)sqrt(((r<sub>A</sub>+r<sub>B</sub>)<sup>2</sup>-d<sup>2</sup>)(d<sup>2</sup>-(r<sub>A</sub>-r<sub>B</sub>)<sup>2</sup>))<br>
+  d<sup>2</sup> = (x<sub>B</sub>-x<sub>A</sub>)<sup>2</sup> + (y<sub>B</sub>-y<sub>A</sub>)<sup>2</sup>&nbsp;
+  </font></p><p><font face="Trebuchet MS, Arial, Helvetica">(K is the area of the triangle formed by the centers of the two circles and
+  one of their points of intersection;<br>
+  d is the distance between the circles centers;<br>
+  r<sub>A</sub>, r<sub>B</sub> are the circles' radii;<br>
+  (x<sub>A</sub>,y<sub>A</sub>) and (x<sub>B</sub>,y<sub>B</sub>) are the
+  circles' centers)
+</font></p></blockquote>
+<p><font face="Trebuchet MS, Arial, Helvetica">The two solutions, then, are
+</font></p><blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica">x = (1/2)(x<sub>B</sub>+x<sub>A</sub>) + (1/2)(x<sub>B</sub>-x<sub>A</sub>)(r<sub>A</sub><sup>2</sup>-r<sub>B</sub><sup>2</sup>)/d<sup>2</sup>
+  ± 2(y<sub>B</sub>-y<sub>A</sub>)K/d<sup>2</sup>&nbsp;<br>
+  y = (1/2)(y<sub>B</sub>+y<sub>A</sub>) + (1/2)(y<sub>B</sub>-y<sub>A</sub>)(r<sub>A</sub><sup>2</sup>-r<sub>B</sub><sup>2</sup>)/d<sup>2</sup>
+  ± -2(x<sub>B</sub>-x<sub>A</sub>)K/d<sup>2</sup>&nbsp;
+</font></p></blockquote>
+<h3><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><font color="#990000">Internet References<!--mstheme--></font></font></h3>
+<blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica"><a href="http://www.mathpages.com/home/kmath396/kmath396.htm">White Ravens
+  and Black Swans</a>, a delightful mixture of mathematics and philosophy, which
+  gives the equations presented here, as a means of illustrating that two
+  circles that appear not to intersect might have "imaginary"
+  intersections because Heron's Formula for the area of a triangle gives an
+  imaginary result if the largest side is more than the sum of the other two.</font></p>
+</blockquote>
+<h3><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><font color="#990000">Related
+pages in this website<!--mstheme--></font></font></h3>
+<blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">  </font><p><font face="Trebuchet MS, Arial, Helvetica"><a href="http://mcraefamily.com/MathHelp/GeometryConicSection.htm">Conic Sections</a> -- the home page for
+  conic sections.</font></p><p><font face="Trebuchet MS, Arial, Helvetica">Find the <a href="http://mcraefamily.com/MathHelp/GeometryConicSectionCircleEquationGivenThreePoints.htm">equation
+  of a circle</a>, given three points</font></p><p><font face="Trebuchet MS, Arial, Helvetica"><a href="http://mcraefamily.com/MathHelp/GeometryTriangleAreaHeronsFormula.htm">Heron's Formula</a>
+  for the area of a triangle, which gives an imaginary "area" for
+  impossible triangles.
+</font></p></blockquote>
+<font face="Trebuchet MS, Arial, Helvetica">&nbsp;<!--mstheme--></font><!--msnavigation--></td></tr><!--msnavigation--></tbody></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+
+&nbsp;<br>
+<!--msthemeseparator--></font><p align="center"><font face="Trebuchet MS, Arial, Helvetica"><img src="GeometryConicSectionCircleIntersection-Dateien/toprulea.gif" height="10" width="600"></font></p>
+<p align="center"><font face="Trebuchet MS, Arial, Helvetica">The webmaster and author of the <a href="http://mcraefamily.com/MathHelp/">Math
+Help</a> site is Graeme McRae.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">[<a href="http://mcraefamily.com/MathHelp/">home</a>]&nbsp; [<a href="http://mcraefamily.com/MathHelp/email.htm">email</a>]&nbsp;
+[<a href="http://mcraefamily.com/MathHelp/search.htm">search</a>]&nbsp;
+[<a href="http://mcraeclan.com/links/infomath.htm">Links to Math Sites</a>]&nbsp;
+[<a href="http://mcraefamily.com/MathHelp/whiteboard1.htm">Whiteboard</a>]<br>
+<br>
+<br>
+</font></font></p>
+
+<font face="Trebuchet MS, Arial, Helvetica">      </font><div align="center">
+<font face="Trebuchet MS, Arial, Helvetica">        </font><center>
+<!--mstheme--><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><font color="white" size="1">
+<a target="_top" href="http://t.extreme-dm.com/?login=mathhelp">
+<img style="display: none;" src="GeometryConicSectionCircleIntersection-Dateien/i.gif" alt="" border="0" height="38" width="41"></a><script language="javascript1.2"><!--
+EXs=screen;EXw=EXs.width;navigator.appName!="Netscape"?
+EXb=EXs.colorDepth:EXb=EXs.pixelDepth;//-->
+</script><script language="javascript"><!--
+EXd=document;EXw?"":EXw="na";EXb?"":EXb="na";
+EXd.write("<img src=\"http://t0.extreme-dm.com",
+"/c.g?tag=mathhelp&j=y&srw="+EXw+"&srb="+EXb+"&",
+"l="+escape(EXd.referrer)+"\" height=1 width=1>");//-->
+</script><img style="display: none;" src="GeometryConicSectionCircleIntersection-Dateien/c.gif" height="1" width="1">
+</font>
+    <!--mstheme--></font></td></tr></tbody></table><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+        </font></center>
+<font face="Trebuchet MS, Arial, Helvetica">      </font></div>
+
+<!--mstheme--></td></tr><!--msnavigation--></tbody></table></body></html>

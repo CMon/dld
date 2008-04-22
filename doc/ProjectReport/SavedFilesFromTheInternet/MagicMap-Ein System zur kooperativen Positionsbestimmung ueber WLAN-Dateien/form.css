@@ -1,0 +1,159 @@
+body {
+margin: 0px;
+padding: 0px;
+background: #d9d9d9;
+font-family: Verdana;
+font-size: 70%;
+}
+
+#head {
+position:absolute;
+background: #fff url(../_images/head.gif) no-repeat;
+left: 50%;
+top: 20px;
+height: 90px;
+width: 759px;  
+margin-left:-370px;
+color: #000;
+border: solid 1px #fff;
+z-index: 2;
+}
+
+#content {
+position: absolute;
+background: #fff;
+left: 50%;
+top: 152px;
+width: 514px;
+margin-left:-370px;
+padding-left: 28px;
+padding-right: 28px;
+padding-top: 28px;
+padding-bottom: 28px;
+color: #000;
+border-right: solid 191px #f6f6f6;
+z-index: 2;
+min-height: 428px;
+height: auto;
+}
+
+* html #content { height:428px; } /* nur für IE 5.5 - 6.x */
+html + body #content { height:428px; } /* nur vom IE 5.0 */
+
+#content_wide {
+position: absolute;
+background: #fff;
+left: 50%;
+top: 152px;
+width: 703px;
+margin-left:-370px;
+padding: 28px;
+color: #000;
+border: solid 1px #fff;
+z-index: 2;
+voice-family: "\"}\"";
+voice-family:inherit;
+min-height: 428px;
+height: auto;
+}
+
+* html #content_wide { height:428px; } /* nur für IE 5.5 - 6.x */
+html + body #content_wide { height:428px; } /* nur vom IE 5.0 */
+
+#rechte_spalte {
+position: absolute;
+background: #f6f6f6;
+left: 50%;
+top: 152px;
+width: 169px;
+margin-left:200px;
+padding-top: 29px;
+padding-left: 11px;
+padding-right: 10px;
+color: #000;
+z-index: 3;
+}
+
+/*---------------------------------------------------------------------------
+ *  Navigation
+ */
+
+ul#nav {
+position: absolute;
+left: 50%;
+top: 112px;
+width: 761px;
+margin-left:-370px;
+background: #fff;
+height: 40px;
+list-style-type: none;
+margin-top:0;
+padding: 0;
+z-index: 2;
+}
+
+li#nav1 a, li#nav2 a, li#nav3 a, li#nav4 a, li#nav5 a, li#nav6 a, li#nav7 a, li#nav8 a, li#nav11 a, li#nav21 a, li#nav31 a, li#nav41 a, li#nav51 a, li#nav61 a, li#nav71 a, li#nav81 a {
+background: #ffcc00;
+position: absolute;
+top:0px;
+width: 94px;
+height: 40px;
+text-decoration: none;
+text-align: center;
+text-valign: middle;
+color: #fff;
+margin: 0;
+padding: 0;
+z-index: 2;
+}
+
+/* adjusted values for IE6 */
+* html*li#nav1 a, * html*li#nav2 a, * html*li#nav3 a, * html*li#nav4 a, * html*li#nav5 a, * html*li#nav6 a, * html*li#nav7 a, * html*li#nav8 a, * html*li#nav11 a, * html*li#nav21 a, * html*li#nav31 a, * html*li#nav41 a, * html*li#nav51 a, * html*li#nav61 a, * html*li#nav71 a, * html*li#nav81 a  { top: 0px; }
+
+li#nav1  a { left: 1px;   }
+li#nav11 a { left: 1px; background: #bf2737;}
+li#nav2  a { left: 96px;  }
+li#nav21 a { left: 96px; background: #bf2737;}
+li#nav3  a { left: 191px;  }
+li#nav31 a { left: 191px; background: #bf2737;}
+li#nav4  a { left: 286px;  }
+li#nav41 a { left: 286px; background: #bf2737;}
+li#nav5  a { left: 381px;  }
+li#nav51 a { left: 381px; background: #bf2737;}
+li#nav6  a { left: 476px;  }
+li#nav61 a { left: 476px; background: #bf2737;}
+li#nav7  a { left: 571px;  }
+li#nav71 a { left: 571px; background: #bf2737;}
+li#nav8  a { left: 666px;  }
+li#nav81 a { left: 666px; background: #bf2737;}
+
+li#nav1 a:hover, li#nav2 a:hover, li#nav3 a:hover, li#nav4 a:hover, li#nav5 a:hover, li#nav6 a:hover, li#nav7 a:hover, li#nav8 a:hover { background: #fff; color: #bf2737; }
+
+
+/*---------------------------------------------------------------------------
+ *  Schriftbeschreibungen
+ */
+
+#headline {
+color: #000;
+font-family: Arial;
+font-size: 130%;
+font-weight: bold;
+}
+
+#small {
+color: #8b8b8b;
+font-family: Arial;
+font-size: 85%;
+}
+
+a {
+text-decoration: none;
+background-color: transparent;
+color: #bf2737;
+}
+
+a:hover {
+background-color: transparent;
+color: #ffcc00;
+}

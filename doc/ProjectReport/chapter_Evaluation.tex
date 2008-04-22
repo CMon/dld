@@ -1,0 +1,12 @@
+\chapter[Critical Evaluation]{Critical Evaluation of the whole Project}
+ \section{Planning}
+  \subsection{Chosen Hardware}
+   During research I should have taken more time on the chosen hardware, and should have figured out that it is working with packet loss and not with signal strength. This was determined after the hardware was bought and the company who builds them said that they want to change it as soon as the components which are needed to determine the signal strength got cheaper. They want to provide a system that is cheap and not a system that is able to do everything in a perfect case but would make it expensive. As soon as the signal strength components are built into the hardware the device strategy regarding the open beacon USB devices needs to be adjusted and then the whole system would work with those. Data instead of the inaccurate packet loss data.
+
+   If this project would have been for a company that would like to use it in a commercial way then all hardware should have been bought in advance and should have been checked if they are capable of solving the task in an accurate way. This includes a prototype for each hardware and a basic position detection for each.
+
+ \section{Design and Implementation}
+  The designing went good. But during the implementation some of the previously designed classes were not feasible. This is because I never used some of the classes in the Qt library before and therefore did not know what was exactly doable and what not. The Qt D-Bus library for example is powerful but has some restrictions during the export of the functions. I thought that it would work in a different way than it actually does, instead of assuming how something will work, I should have tested it during the design stage. In this case it would have prevented flaws in the D-Bus interface of my project. On the other hand if I had tested everything in advance the whole design stage would have been a small implementation stage, where all classes would have been implemented in a raw version. Those misunderstanding lead to a few changes that had been made to the design during the implementation stage.
+
+ \section{Conclusion}
+  Even if the hardware is not suitable for this task, the project itself is a success because all three layers were implemented and the design of the hardware layer permits an easy way to implement driver for hardware other then the USB OpenBeacon devices.

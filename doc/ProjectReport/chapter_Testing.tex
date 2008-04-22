@@ -1,0 +1,1338 @@
+\chapter{Testing}
+ This chapter covers the testing of the various applications. All the tests followed the Black Box testing strategy, where the key functionalities of the applications were testet and verified.
+
+ \section{OpenBeacon Configurator}
+  \subsection{Menus}
+   % File->Quit
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator\\
+    \hline
+     \textbf{Test:}		& File menu \verb=->= Quit\\
+    \hline
+     \textbf{Description}	& Click with the mouse on the Quit entry in the File menu\\
+    \hline
+     \textbf{Expected result:}	& Exit application, store settings\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Device->Refresh
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator\\
+    \hline
+     \textbf{Test:}		& Device menu \verb=->= Refresh\\
+    \hline
+     \textbf{Description}	& Click with the mouse on the Refresh entry in the Device menu\\
+    \hline
+     \textbf{Expected result:}	& refresh the device list and update the pull down menu\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Device->Preferences
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator\\
+    \hline
+     \textbf{Test:}		& Device menu \verb=->= Preferences \\
+    \hline
+     \textbf{Description}	& Click with the mouse on the Preferences entry in the Device menu\\
+    \hline
+     \textbf{Expected result:}	& Display the preference Dialog\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Help->Quick help
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator\\
+    \hline
+     \textbf{Test:}		& Help menu \verb=->= OpenBeacon Configurator Quick Help \\
+    \hline
+     \textbf{Description}	& Click with the mouse on the OpenBeacon Configurator Quick Help entry in the Help menu\\
+    \hline
+     \textbf{Expected result:}	& Display the Quick Help Dialog\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Help->About Qt
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator\\
+    \hline
+     \textbf{Test:}		& Help menu \verb=->= About Qt \\
+    \hline
+     \textbf{Description}	& Click with the mouse on the About Qt entry in the Help menu\\
+    \hline
+     \textbf{Expected result:}	& Display the About Qt Dialog\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Help->About OpenBeacon
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator\\
+    \hline
+     \textbf{Test:}		& Help menu \verb=->= About OpenBeacon \\
+    \hline
+     \textbf{Description}	& Click with the mouse on the About OpenBeacon entry in the Help menu\\
+    \hline
+     \textbf{Expected result:}	& Display the About OpenBeacon Dialog\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Menu key shortcuts
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator\\
+    \hline
+     \textbf{Test:}		& Keyboard Shortcuts for the menu entries, mentioned above\\
+    \hline
+     \textbf{Description}	& Press the keyboard shortcut that is mapped to the menu command\\
+    \hline
+     \textbf{Expected result:}	& React the same like clicking the menu entry\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+  \subsection{Dialogs}
+   % preference - logfile
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Preference Dialog\\
+    \hline
+     \textbf{Test:}		& Change/add logfile parameter\\
+    \hline
+     \textbf{Description}	& Instead of printing the log messages to the shell, they should be logged into a file\\
+    \hline
+     \textbf{Expected result:}	& If empty, print log messages to shell, if not write them to the file\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % preference - basenames
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Preference Dialog\\
+    \hline
+     \textbf{Test:}		& change base names for the devices\\
+    \hline
+     \textbf{Description}	& Using different base names will result into a change in the main window, where different devices will be scanned and opened.\\
+    \hline
+     \textbf{Expected result:}	& Empty entry is not allowed, if entry is changed change of pull down menu entries and listed devices\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % preference - show RX packets
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Preference Dialog\\
+    \hline
+     \textbf{Test:}		& Show the received tag specific data packets\\
+    \hline
+     \textbf{Description}	& Should the data packets be displayed in the main windows console.\\
+    \hline
+     \textbf{Expected result:}	& When selected tag data should be displayed on the main window console\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % preference - Device refresh rate
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Preference Dialog\\
+    \hline
+     \textbf{Test:}		& Change device refresh rate\\
+    \hline
+     \textbf{Description}	& A change of the refresh rate should change the interval in which the pull down list is actualised\\
+    \hline
+     \textbf{Expected result:}	& Refresh the pull down list every time at the given interval\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % preference - sam7 path
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Preference Dialog\\
+    \hline
+     \textbf{Test:}		& Change Sam 7 path\\
+    \hline
+     \textbf{Description}	& Changes to the sam7 path will affect the flashing\\
+    \hline
+     \textbf{Expected result:}	& When changed the flashing will use the new location\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % preference - Valid Commands - Default commands
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Preference Dialog\\
+    \hline
+     \textbf{Test:}		& Default commands button\\
+    \hline
+     \textbf{Description}	& Opens a dialog, where the user can choose from the command sets, which will replace the current entries.\\
+    \hline
+     \textbf{Expected result:}	& Command table will be replaced by the command sets\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % preference - Add
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Preference Dialog\\
+    \hline
+     \textbf{Test:}		& Add button\\
+    \hline
+     \textbf{Description}	& Adds an empty line in the command table, which the user then has to fill.\\
+    \hline
+     \textbf{Expected result:}	& Add empty line to command table\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % preference - Delete
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Preference Dialog\\
+    \hline
+     \textbf{Test:}		& Delete button\\
+    \hline
+     \textbf{Description}	& Removes the current selected line from the command table. Asks for confirmation before it takes effect\\
+    \hline
+     \textbf{Expected result:}	& Remove entry from list\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+
+  \subsection{Main Window}
+   % Select device - flash
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Main Window\\
+    \hline
+     \textbf{Test:}		& Select flash device\\
+    \hline
+     \textbf{Description}	& Select a flash device from the pull down menu\\
+    \hline
+     \textbf{Expected result:}	& Enable the flashing controls\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Select device - configuration
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Main Window\\
+    \hline
+     \textbf{Test:}		& Select configuration device\\
+    \hline
+     \textbf{Description}	& Select a configuration device from the pull down menu\\
+    \hline
+     \textbf{Expected result:}	& Enable the configuration controls\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Refresh Button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Main Window\\
+    \hline
+     \textbf{Test:}		& Refresh Button\\
+    \hline
+     \textbf{Description}	& Press the refresh button\\
+    \hline
+     \textbf{Expected result:}	& Refresh the pull down menu manually\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Flash ... button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Main Window\\
+    \hline
+     \textbf{Test:}		& File selection (\dots button)\\
+    \hline
+     \textbf{Description}	& Press the \dots button to open a file selection box\\
+    \hline
+     \textbf{Expected result:}	& Display a file selection box and insert selected firmware path into line edit\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Flash button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Main Window\\
+    \hline
+     \textbf{Test:}		& Flash button\\
+    \hline
+     \textbf{Description}	& Press the flash button to start the flashing of the device, show short instructions.\\
+    \hline
+     \textbf{Expected result:}	& Flashed device\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Execute button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Main Window\\
+    \hline
+     \textbf{Test:}		& Execute button\\
+    \hline
+     \textbf{Description}	& Execute the selected command with the given argument on the device.\\
+    \hline
+     \textbf{Expected result:}	& Reaction from the device, changed value on the device, response on the main window console.\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % clear button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon Configurator - Main Window\\
+    \hline
+     \textbf{Test:}		& Clear button\\
+    \hline
+     \textbf{Description}	& Clear the main window console\\
+    \hline
+     \textbf{Expected result:}	& Empty main window console\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+ \section{Firmware}
+ % new Command D
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon firmware\\
+    \hline
+     \textbf{Test:}		& new command D\\
+    \hline
+     \textbf{Description}	& To test the new command ``D'', use the console command cu or the OpenBeacon Configurator\\
+    \hline
+     \textbf{Expected result:}	& Get only the id from the node\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % new Command M
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon firmware\\
+    \hline
+     \textbf{Test:}		& new command M\\
+    \hline
+     \textbf{Description}	& To test the new command ``M'', use the console command cu or the OpenBeacon Configurator\\
+    \hline
+     \textbf{Expected result:}	& Get only the mode from the node\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % new Command U
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon firmware\\
+    \hline
+     \textbf{Test:}		& new command U\\
+    \hline
+     \textbf{Description}	& To test the new command ``U'', use the console command cu or the OpenBeacon Configurator\\
+    \hline
+     \textbf{Expected result:}	& Get only the uptime from the node\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % new Command A
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon firmware\\
+    \hline
+     \textbf{Test:}		& new command A\\
+    \hline
+     \textbf{Description}	& To test the new command ``A'', use the console command cu or the OpenBeacon Configurator\\
+    \hline
+     \textbf{Expected result:}	& Get only the Channel from the node\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % new Command L
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& OpenBeacon firmware\\
+    \hline
+     \textbf{Test:}		& new command L\\
+    \hline
+     \textbf{Description}	& To test the new command ``L'', use the console command cu or the OpenBeacon Configurator\\
+    \hline
+     \textbf{Expected result:}	& Get only the FIFO lifetime from the node\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+ \section{Gain Data}
+  To test the data gain deamon there are two possibilities, the OpenBeacon hardware and the hardware simulator. Both provide the same functions but the hardware simulator can perform some actions the hardware is not capable of. So each test has two actual results, one for the OB hardware and one for the hardware simulator. The created data will be provided on the D-Bus. To check if the values are correct the Qt tool qdbusviewer will be used to connect to the interface the daemon is providing.\\
+ % provide periodical strength updates through D-Bus
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}				& Gain data daemon\\
+    \hline
+     \textbf{Test:}					& Periodical update of the strength data\\
+    \hline
+     \textbf{Description}				& Connect the qdbusviewer to the updatedStrength () D-Bus signal\\
+    \hline
+     \textbf{Expected result:}				& Receive a strength string from every node every second\\
+    \hline
+     \textbf{Actual result for OpenBeacon hardware:}	& Worked like expected\\
+    \hline
+     \textbf{Actual result for hardware simulator:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % provide updated data regarding the nodes
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}				& Gain data daemon\\
+    \hline
+     \textbf{Test:}					& send updated node positions\\
+    \hline
+     \textbf{Description}				& Connect the qdbusviewer to the updatedNode () D-Bus signal\\
+    \hline
+     \textbf{Expected result:}				& Receive a node position string from the changed node\\
+    \hline
+     \textbf{Actual result for OpenBeacon hardware:}	& this strategy does not support this feature\\
+    \hline
+     \textbf{Actual result for hardware simulator:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % provide updated data regarding the nodes
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}				& Gain data daemon\\
+    \hline
+     \textbf{Test:}					& send updated maximum axis value\\
+    \hline
+     \textbf{Description}				& Connect the qdbusviewer to the updatedMaximumAxisValue () D-Bus signal\\
+    \hline
+     \textbf{Expected result:}				& Receive the new value when it was changed\\
+    \hline
+     \textbf{Actual result for OpenBeacon hardware:}	& This strategy does not support this feature\\
+    \hline
+     \textbf{Actual result for hardware simulator:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % getTagList()
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}				& Gain data daemon\\
+    \hline
+     \textbf{Test:}					& Get tag list\\
+    \hline
+     \textbf{Description}				& Call the getTagList () D-Bus method through qdbusviewer\\
+    \hline
+     \textbf{Expected result:}				& Receive the tag list\\
+    \hline
+     \textbf{Actual result for OpenBeacon hardware:}	& Worked like expected\\
+    \hline
+     \textbf{Actual result for hardware simulator:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % getNodeList ()
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}				& Gain data daemon\\
+    \hline
+     \textbf{Test:}					& Get node list\\
+    \hline
+     \textbf{Description}				& Call the getNodeList () D-Bus method through qdbusviewer\\
+    \hline
+     \textbf{Expected result:}				& Receive the node list\\
+    \hline
+     \textbf{Actual result for OpenBeacon hardware:}	& Worked like expected\\
+    \hline
+     \textbf{Actual result for hardware simulator:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % getStrengths (int tagId)
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}				& Gain data daemon\\
+    \hline
+     \textbf{Test:}					& Get the strengths from each node for one specific tag list\\
+    \hline
+     \textbf{Description}				& Call the getStrengths () D-Bus method through qdbusviewer and enter the id of the tag\\
+    \hline
+     \textbf{Expected result:}				& Receive the strength list\\
+    \hline
+     \textbf{Actual result for OpenBeacon hardware:}	& Worked like expected\\
+    \hline
+     \textbf{Actual result for hardware simulator:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % getNodeInfo (int nodeId)
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}				& Gain data daemon\\
+    \hline
+     \textbf{Test:}					& Get the position information from requested node\\
+    \hline
+     \textbf{Description}				& Call the getNodeInfo () D-Bus method through qdbusviewer and enter the id of the node\\
+    \hline
+     \textbf{Expected result:}				& Receive the position information of the requested node\\
+    \hline
+     \textbf{Actual result for OpenBeacon hardware:}	& Worked like expected\\
+    \hline
+     \textbf{Actual result for hardware simulator:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % getMaximumAxisValue ()
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}				& Gain data daemon\\
+    \hline
+     \textbf{Test:}					& Get the maximum axis value\\
+    \hline
+     \textbf{Description}				& Call the getMaximumAxisValue () D-Bus method through qdbusviewer\\
+    \hline
+     \textbf{Expected result:}				& Receive the maximum axis value\\
+    \hline
+     \textbf{Actual result for OpenBeacon hardware:}	& Worked like expected\\
+    \hline
+     \textbf{Actual result for hardware simulator:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+ \section{Generate Position}
+  To have a properly working gereate position daemon, a gain data daemon must be up and running correctly. Again the created data will be provided on the D-Bus and to check if the values are correct the Qt tool qdbusviewer will be used to connect to the interface the daemon is providing.\\
+ % provide periodical position updates through D-Bus
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Generate Position daemon\\
+    \hline
+     \textbf{Test:}		& Update the position of tag\\
+    \hline
+     \textbf{Description}	& Connect the qdbusviewer to the updatedStrength () D-Bus signal, the position will be updated every time the nodes send valid data\\
+    \hline
+     \textbf{Expected result:}	& Receive a position string from every node every second\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % provide updated data regarding the nodes
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Generate Position daemon\\
+    \hline
+     \textbf{Test:}		& send updated node positions\\
+    \hline
+     \textbf{Description}	& Connect the qdbusviewer to the updatedNode () D-Bus signal\\
+    \hline
+     \textbf{Expected result:}	& Receive a node position string from the changed node\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % provide updated data regarding the nodes
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Generate Position daemon\\
+    \hline
+     \textbf{Test:}		& Send updated maximum axis value\\
+    \hline
+     \textbf{Description}	& Connect the qdbusviewer to the updatedMaximumAxisValue () D-Bus signal\\
+    \hline
+     \textbf{Expected result:}	& Receive the new value when it was changed\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % getTagList()
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Generate Position daemon\\
+    \hline
+     \textbf{Test:}		& Get tag list\\
+    \hline
+     \textbf{Description}	& Call the getTagList () D-Bus method through qdbusviewer\\
+    \hline
+     \textbf{Expected result:}	& Receive the tag list\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % getNodeList ()
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Generate Position daemon\\
+    \hline
+     \textbf{Test:}		& Get node list\\
+    \hline
+     \textbf{Description}	& Call the getNodeList () D-Bus method through qdbusviewer\\
+    \hline
+     \textbf{Expected result:}	& Receive the node list\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % getPosition (int tagId)
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Generate Position daemon\\
+    \hline
+     \textbf{Test:}		& Get the position from requested tag\\
+    \hline
+     \textbf{Description}	& Call the getPosition () D-Bus method through qdbusviewer and enter the id of the tag\\
+    \hline
+     \textbf{Expected result:}	& Receive the tags position\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % getNodeInfo (int nodeId)
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Generate Position daemon\\
+    \hline
+     \textbf{Test:}		& Get the position information from requested node\\
+    \hline
+     \textbf{Description}	& Call the getNodeInfo () D-Bus method through qdbusviewer and enter the id of the node\\
+    \hline
+     \textbf{Expected result:}	& Receive the position information of the requested node\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+ % getMaximumAxisValue ()
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Generate Position daemon\\
+    \hline
+     \textbf{Test:}		& Get the maximum axis value\\
+    \hline
+     \textbf{Description}	& Call the getMaximumAxisValue () D-Bus method through qdbusviewer\\
+    \hline
+     \textbf{Expected result:}	& Receive the maximum axis value\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+ \section{Administrate Person Data}
+  \subsection{Menus}
+   % File -> connect
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Administrate Person Data\\
+    \hline
+     \textbf{Test:}		& File \verb=->= Connect \dots\\
+    \hline
+     \textbf{Description}	& Click with the mouse on the Connect \dots entry in the File menu\\
+    \hline
+     \textbf{Expected result:}	& Show the connect to database dialog\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % File -> quit
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Administrate Person Data\\
+    \hline
+     \textbf{Test:}		& File \verb=->= Quit\\
+    \hline
+     \textbf{Description}	& Click with the mouse on the Quit entry in the File menu\\
+    \hline
+     \textbf{Expected result:}	& Exit the application and store settings\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Menu key shortcuts
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Administrate Person Data\\
+    \hline
+     \textbf{Test:}		& Keyboard Shortcuts for the menu entries, mentioned above\\
+    \hline
+     \textbf{Description}	& Press the keyboard shortcut that is mapped to the menu command\\
+    \hline
+     \textbf{Expected result:}	& React the same like clicking the menu entry\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+  \subsection{Dialogs}
+   % connect dialog
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Administrate Person Data - Connect to Database Dialog\\
+    \hline
+     \textbf{Test:}		& Connect to database with given values\\
+    \hline
+     \textbf{Description}	& Fill out all needed fields and press OK\\
+    \hline
+     \textbf{Expected result:}	& If all values are correct connect with the database, if not print an error\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+  \subsection{Main Window}
+   To test any action on the main window the Administrate Person Data application needs to be connected to the database.\\
+   % refresh button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Administrate Person Data - Main Window\\
+    \hline
+     \textbf{Test:}		& refresh the values in the entry table\\
+    \hline
+     \textbf{Description}	& Click on the refresh button\\
+    \hline
+     \textbf{Expected result:}	& Refresh the list of entries in the database\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % delete button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Administrate Person Data - Main Window\\
+    \hline
+     \textbf{Test:}		& Delete an entry from list and database\\
+    \hline
+     \textbf{Description}	& Click on the delete button\\
+    \hline
+     \textbf{Expected result:}	& Remove entry from database and refresh list\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % picture ... button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Administrate Person Data - Main Window\\
+    \hline
+     \textbf{Test:}		& Add picture to entry\\
+    \hline
+     \textbf{Description}	& Click on the \dots button below the picture field\\
+    \hline
+     \textbf{Expected result:}	& Select a picture and display it in the picture field\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % colour ... button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Administrate Person Data - Main Window\\
+    \hline
+     \textbf{Test:}		& Chose a colour for the tag\\
+    \hline
+     \textbf{Description}	& Click on the \dots button next to the colour field\\
+    \hline
+     \textbf{Expected result:}	& Fill the colour field with the name of the colour, fill the colour picture with the selected colour\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % clear button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Administrate Person Data - Main Window\\
+    \hline
+     \textbf{Test:}		& Empty all fields\\
+    \hline
+     \textbf{Description}	& Click on the clear button\\
+    \hline
+     \textbf{Expected result:}	& All fields for the entry are cleared but nothing changed in database\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % select an entry from list
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Administrate Person Data - Main Window\\
+    \hline
+     \textbf{Test:}		& Show selected entry\\
+    \hline
+     \textbf{Description}	& Select an entry from entry list\\
+    \hline
+     \textbf{Expected result:}	& All entry fields should be filled with the data from the list\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % commit button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Administrate Person Data - Main Window\\
+    \hline
+     \textbf{Test:}		& Commit changes or new entry\\
+    \hline
+     \textbf{Description}	& Click on the commit button, after the fields were filled with content\\
+    \hline
+     \textbf{Expected result:}	& If the tag id already exists overwrite the data from the old entry, if not then create a new entry. In both cases submit the entry to the database and refresh list.\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+ \section{Show Position}
+  \subsection{Menus}
+   % File -> load map
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& File menu \verb=->= Load map\\
+    \hline
+     \textbf{Description}	& This function is not yet implemented\\
+    \hline
+     \textbf{Expected result:}	& Nothing should happen.\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % File -> Connect to generate position
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& File menu \verb=->= Connect to Generate Position\\
+    \hline
+     \textbf{Description}	& Click with the mouse on the Connect to Generate Position entry in the File menu\\
+    \hline
+     \textbf{Expected result:}	& Open the Connect to generate Position dialog\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % File -> Disconnect from generate position
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& File menu \verb=->= Disconnect from Generate Position\\
+    \hline
+     \textbf{Description}	& Click with the mouse on the Disconnect from Generate Position entry in the File menu\\
+    \hline
+     \textbf{Expected result:}	& Disconnect the connection to the Generate Position daemon\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % File -> Connect to database
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& File menu \verb=->= Connect to database\\
+    \hline
+     \textbf{Description}	& Click with the mouse on the Connect to database entry in the File menu\\
+    \hline
+     \textbf{Expected result:}	& Open the Connect to database dialog\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % File -> Disconnect from database
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& File menu \verb=->= Disconnect from database\\
+    \hline
+     \textbf{Description}	& Click with the mouse on the Disconnect from database entry in the File menu\\
+    \hline
+     \textbf{Expected result:}	& Disconnect the open database connection\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % File -> Quit
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& File menu \verb=->= Quit\\
+    \hline
+     \textbf{Description}	& Click with the mouse on the Quit entry in the File menu\\
+    \hline
+     \textbf{Expected result:}	& Exit application and permanently store the settings\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Show -> Show Person Info
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& Show menu \verb=->= Show Person Info\\
+    \hline
+     \textbf{Description}	& Check or uncheck check box to show or hide the Person Information Dock\\
+    \hline
+     \textbf{Expected result:}	& Show/hide Person Information Dock\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Show -> Show Mouse-over Person Information
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& Show menu \verb=->= Show Mouse-over Person Information\\
+    \hline
+     \textbf{Description}	& Check or uncheck check box to enable/disable the widget that appears if the mouse is moved over a tag\\
+    \hline
+     \textbf{Expected result:}	& Enable/disable Mouse-over Person Information widget\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Show -> Show Database list Dock
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& Show menu \verb=->= Show Database list Dock\\
+    \hline
+     \textbf{Description}	& Check or uncheck check box to show or hide the Database list Dock\\
+    \hline
+     \textbf{Expected result:}	& Show/hide Database list Dock\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Help -> About
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& Help menu \verb=->= About\\
+    \hline
+     \textbf{Description}	& Click with the mouse on the About entry in the Help menu\\
+    \hline
+     \textbf{Expected result:}	& Display About show position dialog\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Help -> About Qt
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& Help menu \verb=->= About Qt\\
+    \hline
+     \textbf{Description}	& Click with the mouse on the About Qt entry in the Help menu\\
+    \hline
+     \textbf{Expected result:}	& Display About Qt dialog\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Keyboard shortcuts,
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& Keyboard shortcuts matching the menu entries\\
+    \hline
+     \textbf{Description}	& Invoke the shortcut\\
+    \hline
+     \textbf{Expected result:}	& For each key combination the same result like the menu entry\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % toolbar buttons
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& Toolbar buttons matching the menu entries\\
+    \hline
+     \textbf{Description}	& Click on the button on the toolbar\\
+    \hline
+     \textbf{Expected result:}	& For each toolbar button the same result like the matching menu entry\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+  \subsection{Dialogs}
+   % Connect to Database Dialog
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Connect to database dialog\\
+    \hline
+     \textbf{Test:}		& all entries are filled from a previous session\\
+    \hline
+     \textbf{Description}	& The system should set the focus to the first field where it does not know the content\\
+    \hline
+     \textbf{Expected result:}	& All entries except the password field are filled and the focus is at the password field\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Connect to database dialog\\
+    \hline
+     \textbf{Test:}		& Connect to database if all entries are correct\\
+    \hline
+     \textbf{Description}	& After clicking OK (or press enter) the dialog should connect to the database, or report an error\\
+    \hline
+     \textbf{Expected result:}	& Establish connection, or report error\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Connect to Generate Position Dialog
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Connect to Generate Position dialog\\
+    \hline
+     \textbf{Test:}		& Make selection of type\\
+    \hline
+     \textbf{Description}	& Click on one of the two choices and only one is allowed to be selected\\
+    \hline
+     \textbf{Expected result:}	& Choose either D-Bus or SSL, not both\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Connect to Generate Position dialog\\
+    \hline
+     \textbf{Test:}		& Connect to the generate position daemon\\
+    \hline
+     \textbf{Description}	& After the choice is made and OK (or enter) is pressed, the dialog should build up a connection to the generate position daemon\\
+    \hline
+     \textbf{Expected result:}	& If D-Bus is selected it should connect to the generate position daemon, if SSL is selected then it should report an error because this is not yet implemented.\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+  \subsection{Dock Widgets}
+   % Person Info Dock - Close through Menu
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Person Information Dock widget\\
+    \hline
+     \textbf{Test:}		& Hide through menu selection\\
+    \hline
+     \textbf{Description}	& Uncheck the check box in the menu: Show \verb=->= Show Person Info\\
+    \hline
+     \textbf{Expected result:}	& Hide the Person Info dock widget, check box in menu should be unchecked\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Person Info Dock - Close through X
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Person Information Dock widget\\
+    \hline
+     \textbf{Test:}		& Hide/Close through the small X on the top right of the widget\\
+    \hline
+     \textbf{Description}	& Click on the small X on the top right of the widget\\
+    \hline
+     \textbf{Expected result:}	& Hide the Person Info dock widget, check box in menu should be unchecked\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Person Info Dock - Show through menu
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Person Information dock widget\\
+    \hline
+     \textbf{Test:}		& Show Person Information dock widget\\
+    \hline
+     \textbf{Description}	& Check the check box in the menu: Show \verb=->= Show Person Info\\
+    \hline
+     \textbf{Expected result:}	& Show the Person Information dock widget\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Database entry list - Close through Menu
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Database entry list dock widget\\
+    \hline
+     \textbf{Test:}		& Hide through menu selection\\
+    \hline
+     \textbf{Description}	& Uncheck the check box in the menu: Show \verb=->= Show Database List Dock\\
+    \hline
+     \textbf{Expected result:}	& Hide the Database entry list dock widget, check box in menu should be unchecked\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Database entry list - Close through X
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Database entry list dock widget\\
+    \hline
+     \textbf{Test:}		& Hide/Close through the small X on the top right of the widget\\
+    \hline
+     \textbf{Description}	& Click on the small X on the top right of the widget\\
+    \hline
+     \textbf{Expected result:}	& Hide the Database entry list dock widget, check box in menu should be unchecked\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Database entry list - Show through menu
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Database entry list dock widget\\
+    \hline
+     \textbf{Test:}		& Show Database entry list dock widget\\
+    \hline
+     \textbf{Description}	& Check the check box in the menu: Show \verb=->= Show Database List Dock\\
+    \hline
+     \textbf{Expected result:}	& Show the Database entry list dock widget\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Database entry list - Refresh button
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Database entry list dock widget\\
+    \hline
+     \textbf{Test:}		& Not connected to database, so refresh button should be disabled\\
+    \hline
+     \textbf{Description}	& Try to click on the button while the application is not connected to a database\\
+    \hline
+     \textbf{Expected result:}	& Should not clickable\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Database entry list dock widget\\
+    \hline
+     \textbf{Test:}		& Connected to database, so refresh button should refresh list\\
+    \hline
+     \textbf{Description}	& Connect to the database, and then change (new/delete/add) the database (with Administrate Person Data Application)\\
+    \hline
+     \textbf{Expected result:}	& When refresh is clicked the new entry should appear in the list\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+  \subsection{Main Window}
+   % Map view
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Map View\\
+    \hline
+     \textbf{Test:}		& Display map\\
+    \hline
+     \textbf{Description}	& If connected to generate position daemon, it should draw a coordinate system and display tags if there are known positions.\\
+    \hline
+     \textbf{Expected result:}	& A drawn coordinate system with displayed tags\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Mouse over tag
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Mouse over tag\\
+    \hline
+     \textbf{Test:}		& Display a custom mouse over widget\\
+    \hline
+     \textbf{Description}	& If a tag is displayed move the mouse over the displayed tag\\
+    \hline
+     \textbf{Expected result:}	& Update the data (default or from database) in the Person Information dock and if Show \verb=->= Show Mouse over Person Info is selected then right next to the mouse cursor a custom widget with the person information data should appear.\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % update the time after the tag was selected first
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Mouse over tag\\
+    \hline
+     \textbf{Test:}		& Show the correct time\\
+    \hline
+     \textbf{Description}	& Update time value every time the tag got a new (or old) position\\
+    \hline
+     \textbf{Expected result:}	& Updating of time (in person information dock) of the last hovered tag every time new data for this tag is coming in\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % Zoom
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Map View\\
+    \hline
+     \textbf{Test:}		& Zoom the map view\\
+    \hline
+     \textbf{Description}	& As soon as the zoom value is changed the map view should zoom in or out\\
+    \hline
+     \textbf{Expected result:}	& Change the size of the map view.\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+  \subsection{Process}
+   % startup
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position - Freshly started\\
+    \hline
+     \textbf{Test:}		& Restore settings, show blank map view\\
+    \hline
+     \textbf{Description}	& At first start all Show possibilities are enabled, on later use the user might have hid a dock view and this should be stored persistently\\
+    \hline
+     \textbf{Expected result:}	& Show only those widgets that where visible on the last use of the show position application\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % first connect to gen pos then to database
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& First Connect to Generate position then to database\\
+    \hline
+     \textbf{Description}	& 1. Connect to generate position and wait until the tag appears on the map.\\
+     				& 2. Before connecting to database verify that the tag is listed in it, then connect to the database.\\
+    \hline
+     \textbf{Expected result:}	& 1. It should display the map and the tag on it, the tag has no colour and if the mouse moves over it the fields are filled with default values.\\
+     				& 2. If database connection is built up and the tag is in the database then its colour should change to the one saved in the database and on mouse over the person information fields should be filled with the right values.\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+   % first database then gen pos
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Show Position\\
+    \hline
+     \textbf{Test:}		& First Connect to Generate position then to database\\
+    \hline
+     \textbf{Description}	& 1. Before connecting to database verify that the tag is listed in it, then connect to the database.\\
+     				& 2. Connect to generate position and wait until the tag appears on the map.\\
+    \hline
+     \textbf{Expected result:}	& 1. It should display the database entries in the database entries dock.\\
+     				& 2. The tag should appear with the colour that is stored in the database and on mouse over the values from the database are visible in the person information dock\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+ \section{The whole system}
+
+  % hardware sim -> gain -> genPos -> showPos. if hardware changes values the tag should move on show pos as well
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Domestic location detection\\
+    \hline
+     \textbf{Test:}		& The whole system with the hardware simulator as hardware backend\\
+    \hline
+     \textbf{Description}	& 1. Start data gain daemon with hardware simulator as backend\\
+				& 2. Start generate position daemon\\
+				& 3. Create an entry in the database for tag 666 (test tag id)\\
+				& 4. Start show position application\\
+				& 5. Connect to the database\\
+				& 6. Connect to generate position daemon \\
+    \hline
+     \textbf{Expected result:}	& 1. Display the position of the tag in the map view.\\
+				& 2. If the strength values are chosen wrong and they do not have a point in common, the tag should stay on last known position \\
+				& 3. On mouse over the information from the database should be displayed in the person information docks\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+  % OpenBeacon HW -> gain -> genPos -> showPos. if hardware changes values the tag should move on show pos as well
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Domestic location detection\\
+    \hline
+     \textbf{Test:}		& The whole system with the OpenBeacon hardware as hardware backend\\
+    \hline
+     \textbf{Description}	& 1. Start data gain daemon with OpenBeacon USB as backend\\
+				& 2. Start generate position daemon\\
+				& 3. Create an entry in the database for a tag that is available\\
+				& 4. Start show position application\\
+				& 5. Connect to the database\\
+				& 6. Connect to generate position daemon \\
+    \hline
+     \textbf{Expected result:}	& 1. Display the position of the tag in the map view and should represent the position of the tag, in relation to the central node..\\
+				& 2. If the strength values are chosen wrong and they do not have a point in common, the tag should stay on last known position \\
+				& 3. On mouse over the information from the database should be displayed in the person information docks\\
+    \hline
+     \textbf{Actual result:}	& Sometimes the shown position is like the expected one but most of the times the position is jumping around.\\
+    \hline
+   \end{tabular}
+
+ \section{Hardware Simulator - gain data daemon backend}
+  % if input is changed then change of simulation view
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Gain data daemon backend - Hardware simulator\\
+    \hline
+     \textbf{Test:}		& Check if the backend is working appropriate\\
+    \hline
+     \textbf{Description}	& 1. Start data gain daemon with hardware simulator backend\\
+				& 2. Start the qdbusviewer to watch what the gain data daemon is reporting\\
+				& 3. Change the node values\\
+    \hline
+     \textbf{Expected result:}	& The simulated display of the three nodes should change when the node preferences are changed (coordinates and radii)\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}\\
+  % if input is changed right reaction through gain data daemon
+   \begin{tabular}{|p{3.5cm}|p{10.5cm}|}
+    \hline
+     \textbf{Application:}	& Gain data daemon backend - Hardware simulator\\
+    \hline
+     \textbf{Test:}		& Check if the data from gain data daemon is correct\\
+    \hline
+     \textbf{Description}	& 1. Start data gain daemon with hardware simulator backend\\
+				& 2. Start the qdbusviewer to watch what the gain data daemon is reporting\\
+				& 3. Change the node values\\
+    \hline
+     \textbf{Expected result:}	& Send exactly the values that the simulator is set to\\
+    \hline
+     \textbf{Actual result:}	& Worked like expected\\
+    \hline
+   \end{tabular}
+
+ \section{Outcome}
+  The only major problem that occurred during the testing was, that the OpenBeacon USB hardware was sending unexpected strength values. Those values do not depend on any systematics therefore it was not possible to clarify where those strange values come from. The strength data that the nodes are receiving varied from test to test, and jumps in irregular values. Anyway the system itself is working and with better (more expensive) hardware it will work better, and can be used within the different areas it was designed for.

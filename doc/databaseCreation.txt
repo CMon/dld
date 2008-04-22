@@ -1,0 +1,20 @@
+CREATE DATABASE `dldPersons` ;
+
+CREATE TABLE `dldPersons`.`persons` (
+`tagId` INT NOT NULL ,
+`name` VARCHAR( 255 ) NOT NULL ,
+`prename` VARCHAR( 255 ) NOT NULL ,
+`color` VARCHAR( 7 ) NOT NULL DEFAULT '#000000',
+`picture` BLOB NULL ,
+`description` VARCHAR( 1024 ) NULL ,
+PRIMARY KEY ( `tagId` ) 
+) ENGINE = MYISAM 
+
+CREATE USER 'dldUser'@'%' IDENTIFIED BY 'dldPass';
+
+GRANT USAGE ON * . * TO 'dldUser'@'%' IDENTIFIED BY 'dldPass' WITH
+MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0
+MAX_USER_CONNECTIONS 0 ;
+
+GRANT SELECT , INSERT , UPDATE , DELETE , CREATE , INDEX , ALTER ON
+`dldPersons` . * TO 'dldUser'@'%';

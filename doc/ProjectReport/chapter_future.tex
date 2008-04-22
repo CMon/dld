@@ -1,0 +1,16 @@
+\chapter{Prospect of the future}
+
+ \section*{Hardware}
+  For the future I think that I will try to implement a few other drivers that are much more common like WLAN access points. And test the whole position location detection with a laptop that is carried around. In the later stage of the project (during easter break) I heard of a technology called zWave which is used as a replacement of X10. The latter is a protocol which lets compatible products communicate with each other over the power lines in a home. zWave on the other hand is able to do the same but wireless. Both technologies are used for home automation products. While components of X10 are mostly very expensive the zWave parts are relatively cheap, and perhaps this hardware is capable of performing a good location detection.
+
+ \section*{Applications}
+  For further applications I have an implementation of the ``Music follows you'' application in my mind, which is basically designed in section \ref{sec:design:MFU}. Also a map generator should be implemented to easily create maps and zones on them.
+
+ \section*{Improving the system}
+  The Capability to add more than 3 devices to cover a larger area should be implemented as well as a 3D location detection. Both improvements would affect the ``data gain daemon'' and the ``generate position daemon'', as well as the communication protocol between them.
+
+ \section*{Improving the communication}
+  The communication between the layers is done by D-Bus right now but should also be able to use SSL or some other network protocols so that all ``data gain daemons'' do not have to be on the same system but can be meshed up through a network together by the generate position daemon.
+
+ \section*{Improving the source code}
+  Instead of using compiled in device strategies those strategies should be loadable through a pluginsystem.

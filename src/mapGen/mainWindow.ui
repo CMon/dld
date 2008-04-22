@@ -1,0 +1,166 @@
+<ui version="4.0" >
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>542</width>
+    <height>547</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Map generator</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset/>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QGridLayout" >
+    <item row="0" column="0" >
+     <widget class="QTabWidget" name="tabWidget" >
+      <property name="currentIndex" >
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab" >
+       <attribute name="title" >
+        <string>New Map</string>
+       </attribute>
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QGraphicsView" name="mapGraphicsView" />
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>542</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <widget class="QMenu" name="menuRecentMaps" >
+     <property name="title" >
+      <string>Recent Maps</string>
+     </property>
+    </widget>
+    <addaction name="actionNewMap" />
+    <addaction name="actionOpenMap" />
+    <addaction name="menuRecentMaps" />
+    <addaction name="separator" />
+    <addaction name="actionSaveMap" />
+    <addaction name="actionSaveMapas" />
+    <addaction name="actionSaveAllMaps" />
+    <addaction name="separator" />
+    <addaction name="actionCloseMap" />
+    <addaction name="separator" />
+    <addaction name="actionQuit" />
+   </widget>
+   <widget class="QMenu" name="menu_Tools" >
+    <property name="title" >
+     <string>&amp;Tools</string>
+    </property>
+    <addaction name="actionShowZoneInformation" />
+    <addaction name="actionShowPaintWidget" />
+   </widget>
+   <addaction name="menu_File" />
+   <addaction name="menu_Tools" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="actionShowZoneInformation" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>false</bool>
+   </property>
+   <property name="text" >
+    <string>Show &amp;zone Information</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionNewMap" >
+   <property name="text" >
+    <string>New Map</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionOpenMap" >
+   <property name="text" >
+    <string>Open Map</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionNon" >
+   <property name="text" >
+    <string>non</string>
+   </property>
+  </action>
+  <action name="actionSaveMap" >
+   <property name="text" >
+    <string>Save Map</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSaveMapas" >
+   <property name="text" >
+    <string>Save Map as...</string>
+   </property>
+  </action>
+  <action name="actionSaveAllMaps" >
+   <property name="text" >
+    <string>Save A&amp;ll Maps</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+L, Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionCloseMap" >
+   <property name="text" >
+    <string>&amp;Close Map</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="actionQuit" >
+   <property name="text" >
+    <string>&amp;Quit</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionShowPaintWidget" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Show &amp;paint widget</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

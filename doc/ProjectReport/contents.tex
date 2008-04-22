@@ -1,0 +1,17 @@
+%%% Contents and Lists %%%
+\newpage
+\pagenumbering{roman}
+
+\renewcommand{\contentsname}{Table of Contents}  % Original name = Contents
+\begin{spacing}{1.2}  % Environment for 1.2 line spacing for contents and lists
+ \tableofcontents
+ \newpage
+ \listoffigures%
+ \addcontentsline{toc}{chapter}{List of Figures}
+%  \newpage
+ \listoftables%
+ \addcontentsline{toc}{chapter}{List of Tables}
+  \newpage
+\end{spacing}
+%%% Arabic numbering after this %%%
+\pagenumbering{arabic}

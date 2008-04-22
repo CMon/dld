@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+
+
+ <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+ <!-- base href="http://news.netcraft.com/" --><title>Netcraft: October 2007 Web Server Survey</title>
+ 
+ <link rel="stylesheet" href="october_2007_web_server_survey-Dateien/stylesheet2006.css" type="text/css">
+ <link rel="alternate" type="application/rss+xml" title="RSS" href="http://news.netcraft.com/index.rdf">
+ <link rel="shortcut icon" href="http://news.netcraft.com/favicon.ico">
+<link rel="start" href="http://news.netcraft.com/" title="Home">
+<link rel="prev" href="http://news.netcraft.com/archives/2007/10/11/bbc_news_knocked_offline_by_performance_changes.html" title="BBC News Knocked Offline by Performance Changes">
+
+<link rel="next" href="http://news.netcraft.com/archives/2007/10/15/tiscali_italia_rackspace_and_seeweb_are_the_most_reliable_hosting_companies_in_september_2007.html" title="Tiscali Italia, Rackspace and Seeweb are the Most Reliable Hosting Companies In September 2007">
+
+<link rel="shortcut icon" href="http://news.netcraft.com/favicon.ico">
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'news.netcraft.com';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + ((expires) ? "; expires=" + expires.toGMTString() : "") + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + ((secure) ? "; secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    setCookie('mtcmtauth', f.author.value, now, '', HOST, '');
+    setCookie('mtcmtmail', f.email.value, now, '', HOST, '');
+    setCookie('mtcmthome', f.url.value, now, '', HOST, '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '', HOST);
+    deleteCookie('mtcmthome', '', HOST);
+    deleteCookie('mtcmtauth', '', HOST);
+//    f.email.value = '';
+//    f.author.value = '';
+//    f.url.value = '';
+}
+
+//-->
+</script>
+
+ 
+
+ <script language="JavaScript">
+
+    function showHide(which) {
+        which = document.getElementById(which);
+        if (which.style.visibility == 'hidden') {
+            which.style.visibility = 'visible';
+            which.style.display = 'block';
+        }
+        else {
+            which.style.visibility = 'hidden';
+            which.style.display = 'none';
+        }
+    }
+
+</script></head><body>
+
+   <div id="header">
+
+      <div class="premiumadvertisinglinks">
+
+    </div>
+
+        <div id="letterbox">
+     <p>
+     <script language="JavaScript" type="text/javascript" src="october_2007_web_server_survey-Dateien/adx.js"></script>
+     <script language="JavaScript" type="text/javascript">
+<!--
+   if (!document.phpAds_used) document.phpAds_used = ',';
+   document.write ("<" + "script language='JavaScript' type='text/javascript' src='");
+   document.write ("http://banners.netcraft.com/banneradmin/adjs.php?n=a98ae9f3");
+   document.write ("&amp;what=zone:1&amp;source=newsletterbox&amp;target=_blank&amp;withText=0");
+   document.write ("&amp;exclude=" + document.phpAds_used);
+   document.write ("'><" + "/script>");
+//-->
+     </script><noscript><a href="http://banners.netcraft.com/banneradmin/adclick.php?n=a98ae9f3" target="_blank"><img style="display: none;" src="october_2007_web_server_survey-Dateien/adview_002.gif" alt="" border="0"></a></noscript>
+     </p>
+    </div>
+
+    <div class="premiumadvertisinglinks">
+    </div>
+
+</div>
+
+<div id="content">
+
+<div class="navmenu">
+« <a href="http://news.netcraft.com/archives/2007/10/11/bbc_news_knocked_offline_by_performance_changes.html" target="_top">Previous</a> |
+
+<a href="http://news.netcraft.com/" target="_top">Up</a>
+| <a href="http://news.netcraft.com/archives/2007/10/15/tiscali_italia_rackspace_and_seeweb_are_the_most_reliable_hosting_companies_in_september_2007.html" target="_top">Next</a> »
+
+</div>
+
+<div class="blogtitle">
+ <h2>October 2007 Web Server Survey</h2>
+</div>
+
+<div class="blogbody">
+ <p>In the <b>October 2007</b> survey we received responses from
+<b>142,805,398</b> sites, an increase of 7.6 million sites since last
+month. This continues the strong gains seen last month, a rate of over
+5% monthly growth, with MySpace, Microsoft Live.com, and Google's
+Blogger each gained over 1 million sites this month. Benefitting from
+the gains at MySpace and Microsoft Live, Microsoft-IIS now hosts over
+50 million sites.</p>
+<center>
+<p>
+</p><div class="blogsubtitle">Total Sites Across All Domains August 1995 - October 2007</div>
+
+<p>
+<img src="october_2007_web_server_survey-Dateien/site_count_history.gif" alt="Total Sites Across All Domains, August 1995 - October 2007" align="middle">
+<br><br>
+</p>
+</center>
+<p>Apache loses 2.8% share this month, partly through the strong growth
+at the major blogging systems, and partly due to 2.5 million domains on
+Apache expiring at trouble-free.net. Apache has around a 10% market
+share advantage over IIS now, which is the smallest gap between the two
+since IIS was launched in 1996.</p>
+<p>On the active sites measure which excludes templated sites, Apache
+gains 1 million sites this month, though this is eclipsed by growth of
+nearer 3 million for Microsoft-IIS.</p>
+<p>
+</p><div class="blogsubtitle">
+<a name="October">Market Share for Top Servers Across All Domains August 1995 - October 2007</a>
+</div>
+
+<p>
+<img src="october_2007_web_server_survey-Dateien/overallc.gif" alt="Graph of market share for top servers across all domains, August 1995 - October 2007" align="middle">
+</p>
+<p>
+</p><center>
+<div class="blogsubtitle">Top Developers</div>
+<table cellspacing="3">
+<tbody><tr><th>Developer</th><th>September 2007</th><th>Percent</th><th>October 2007</th><th>Percent</th><th>Change</th></tr>
+<tr align="right"><td align="left">Apache</td><td>68,228,561</td><td>50.48%</td><td>68,155,320</td><td>47.73%</td><td>-2.75</td></tr><tr align="right"><td align="left">Microsoft</td><td>47,232,300</td><td>34.94%</td><td>53,017,735</td><td>37.13%</td><td>2.18</td></tr><tr align="right"><td align="left">Google</td><td>6,616,713</td><td>4.90%</td><td>7,763,516</td><td>5.44%</td><td>0.54</td></tr><tr align="right"><td align="left">Sun</td><td>2,212,821</td><td>1.64%</td><td>2,262,019</td><td>1.58%</td><td>-0.05</td></tr><tr align="right"><td align="left">lighttpd</td><td>1,515,963</td><td>1.12%</td><td>1,541,779</td><td>1.08%</td><td>-0.04</td></tr>
+</tbody></table>
+</center>
+ <a name="more"></a>
+ <center>
+<div class="blogsubtitle">
+<a href="http://www.netcraft.com/survey/index-200007.html#active">Active Sites</a>
+</div>
+<table cellspacing="3">
+<tbody><tr><th>Developer</th><th>September 2007</th><th>Percent</th><th>October 2007</th><th>Percent</th><th>Change</th></tr>
+<tr align="right"><td align="left">Apache</td><td>29,409,320</td><td>47.78%</td><td>30,550,119</td><td>45.75%</td><td>-2.03</td></tr><tr align="right"><td align="left">Microsoft</td><td>22,547,608</td><td>36.63%</td><td>25,529,297</td><td>38.23%</td><td>1.60</td></tr><tr align="right"><td align="left">Google</td><td>5,609,078</td><td>9.11%</td><td>6,516,133</td><td>9.76%</td><td>0.65</td></tr><tr align="right"><td align="left">lighttpd</td><td>245,503</td><td>0.40%</td><td>265,298</td><td>0.40%</td><td>-0.00</td></tr><tr align="right"><td align="left">Sun</td><td>190,905</td><td>0.31%</td><td>169,352</td><td>0.25%</td><td>-0.06</td></tr>
+</tbody></table>
+<div class="blogsubtitle" align="center">Totals for Active Servers Across All Domains<br>June 2000 - October 2007</div>
+<p>
+<img src="october_2007_web_server_survey-Dateien/overalld.gif" alt="" align="middle">
+</p>
+</center>
+<br clear="all">
+<p>A more detailed list of servers is given <a href="http://survey.netcraft.com/Reports/200710/">here</a>.</p>
+</div>
+
+<div class="posted">Posted by wss at 03:51 PM UTC
+on Oct 11, 2007 in <a href="http://news.netcraft.com/archives/web_server_survey.html" target="_top">Web Server Survey</a>
+|
+<a href="http://news.netcraft.com/archives/2007/10/11/october_2007_web_server_survey.html" target="_top">Link to this article</a>
+|
+<a href="http://www.netcraft.com/cgi-bin/Survey/subscription" target="_top">Subscribe</a>
+|
+<a href="javascript:window.print()">Print this page</a>
+</div>
+
+
+
+<div class="navmenu">
+« <a href="http://news.netcraft.com/archives/2007/10/11/bbc_news_knocked_offline_by_performance_changes.html" target="_top">Previous</a> |
+
+<a href="http://news.netcraft.com/" target="_top">Up</a>
+| <a href="http://news.netcraft.com/archives/2007/10/15/tiscali_italia_rackspace_and_seeweb_are_the_most_reliable_hosting_companies_in_september_2007.html" target="_top">Next</a> »
+
+</div>
+
+   </div>
+
+
+   <div id="links">
+
+     <div id="netcraft-logo">
+     <a href="http://news.netcraft.com/" accesskey="1" target="_top">
+     <img src="october_2007_web_server_survey-Dateien/n2s.gif" alt="Netcraft" border="0" height="57" width="200">
+     </a>
+   </div>
+
+    <div class="sidetitle">Webserver Search</div>
+<div class="sidelinks">
+ <form name="f" method="get" action="http://searchdns.netcraft.com/">
+ <strong>What's that site running?...</strong>
+
+ <input name="host" value="" size="23" maxlength="80" type="text">
+ <input name="position" value="limited" type="hidden">
+
+ <input name="lookup" value="Search" class="button" onclick='f.lookup.value="Wait..";return true' type="submit">
+ </form>
+ Example:&nbsp;<a href="http://searchdns.netcraft.com/?restriction=site+ends+with&amp;host=.google.com">.google.com</a><br>
+ Example:&nbsp;<a href="http://toolbar.netcraft.com/site_report?url=http://www.netcraft.com" target="_top">www.netcraft.com</a>
+</div>
+
+  <div class="sidetitle">Netcraft Services</div>
+
+<div class="sidelinks">
+
+<div class="linktitle">News</div>
+<div class="linkset" id="linkset_news">
+ <ul>
+  <li><a href="http://news.netcraft.com/cgi-bin/subscription" target="_top">Subscribe to Netcraft News</a></li>
+ </ul>
+</div>
+
+<div class="linktitle">Security Services</div>
+<div class="linkset" id="linkset_security">
+ <ul>
+  <li><a href="http://toolbar.netcraft.com/" target="_top">Anti-Phishing Toolbar</a></li>
+  <li><a href="http://news.netcraft.com/phishing-site-feed" target="_top">Phishing Site Feed</a></li>
+  <li><a href="http://audited.netcraft.com/bank-fraud-detection" target="_top">Bank Fraud Detection</a></li>
+  <li><a href="http://news.netcraft.com/phishing-site-takedown" target="_top">Phishing Site Countermeasures</a></li>
+  <li><a href="http://audited.netcraft.com/audited" target="_top">Audited by Netcraft</a></li>
+  <li><a href="http://news.netcraft.com/open-redirect-detection" target="_top">Open Redirect Detection</a></li>
+  <li><a href="http://audited.netcraft.com/web-application" target="_top">Web Application Security Testing</a></li>
+  <li><a href="http://audited.netcraft.com/web-application-course" target="_top">Web Application Security Course</a></li>
+ </ul>
+</div>
+
+<div class="linktitle">Internet Data Mining</div>
+
+<div class="linkset" id="linkset_mining">
+ <ul>
+  <li><a href="http://news.netcraft.com/hosting-provider-switching-dataset" target="_top">Hosting Provider Switching Analysis</a></li>
+  <li><a href="http://news.netcraft.com/hosting-provider-server-count" target="_top">Hosting Provider Server Count</a></li>
+  <li><a href="http://news.netcraft.com/site-operator-survey" target="_top">Hosting Reseller Survey</a></li>
+  <li><a href="http://news.netcraft.com/SSL-survey" target="_top">SSL Survey</a></li>
+  <li><a href="http://www.netcraft.com/survey/archive.html">Web Server Survey Archive</a></li>
+ </ul>
+</div>
+
+<div class="linktitle">Internet Exploration</div>
+
+<div class="linkset" id="linkset_exploration">
+ <ul>
+  <li><a href="http://uptime.netcraft.com/up/graph" target="_top">Whats that site running?</a></li>
+  <li><a href="http://searchdns.netcraft.com/?host" target="_top">SearchDNS</a></li>
+  <li><a href="http://uptime.netcraft.com/netmove/today" target="_top">Sites on the Move</a></li>
+ </ul>
+</div>
+
+<div class="linktitle">Performance</div>
+<div class="linkset" id="linkset_performance">
+ <ul>
+  <li><a href="http://news.netcraft.com/hosting-prospect-monitoring-uptime-alerts" target="_top">Hosting Prospects Performance Alerts</a></li>
+  <li><a href="http://uptime.netcraft.com/perf/reports/Hosters" target="_top">Hosting Providers Network Performance</a></li>
+  <li><a href="http://audited.netcraft.com/dsm" target="_top">Dedicated Server Monitoring</a></li>
+ </ul>
+</div>
+
+<div class="linktitle">Advertising</div>
+<div class="linkset" id="linkset_advertising">
+ <ul>
+  <li><a href="http://news.netcraft.com/banner-advertising" target="_top">Banner Advertising on Netcraft</a></li>
+ </ul>
+</div>
+
+<div class="linktitle">About Netcraft</div>
+<div class="linkset" id="linkset_about">
+ <ul>
+  <li><a href="http://news.netcraft.com/about-netcraft" target="_top">About Netcraft</a></li>
+  <li><a href="http://news.netcraft.com/jobs" target="_top">Jobs at Netcraft</a></li>
+  <li><a href="http://news.netcraft.com/fair-use-copyright" target="_top">Fair Use, Copyright</a></li>
+  <li><a href="http://news.netcraft.com/privacy-statement" target="_top">Site Privacy Statement</a></li>
+  <li><a href="http://news.netcraft.com/visiting-netcraft" target="_top">Visiting Netcraft</a></li>
+ </ul>
+</div>
+
+<div class="linktitle">Contact Us</div>
+<div class="linkset" id="linkset_contact">
+ <ul>
+  <li><a href="mailto:webmaster@netcraft.com">Webmaster</a></li>
+ </ul>
+</div>
+
+</div>
+
+
+  <div class="sidetitle">Article Categories</div>
+<div class="sidelinks">
+ <ul>
+      <li><a href="http://news.netcraft.com/archives/about_netcraft.html" target="_top">About Netcraft</a></li>
+      <li><a href="http://news.netcraft.com/archives/around_the_net.html" target="_top">Around the Net</a></li>
+      <li><a href="http://news.netcraft.com/archives/banner_advertising.html" target="_top">Banner Advertising</a></li>
+      <li><a href="http://news.netcraft.com/archives/dogfood.html" target="_top">Dogfood</a></li>
+      <li><a href="http://news.netcraft.com/archives/domains.html" target="_top">Domains</a></li>
+      <li><a href="http://news.netcraft.com/archives/hosting.html" target="_top">Hosting</a></li>
+      <li><a href="http://news.netcraft.com/archives/interviews.html" target="_top">Interviews</a></li>
+      <li><a href="http://news.netcraft.com/archives/netcraft_services.html" target="_top">Netcraft Services</a></li>
+      <li><a href="http://news.netcraft.com/archives/performance.html" target="_top">Performance</a></li>
+      <li><a href="http://news.netcraft.com/archives/security.html" target="_top">Security</a></li>
+      <li><a href="http://news.netcraft.com/archives/web_server_survey.html" target="_top">Web Server Survey</a></li>
+  
+  <li><a href="http://news.netcraft.com/fullindex.html" target="_top">All Categories</a></li>
+ </ul>
+</div>
+
+<div class="sidetitle">Archives</div>
+<div class="sidelinks">
+ <ul>
+      <li><a href="http://news.netcraft.com/archives/2007/10/index.html" target="_top">October 2007</a></li>
+      <li><a href="http://news.netcraft.com/archives/2007/09/index.html" target="_top">September 2007</a></li>
+      <li><a href="http://news.netcraft.com/archives/2007/08/index.html" target="_top">August 2007</a></li>
+      <li><a href="http://news.netcraft.com/archives/2007/07/index.html" target="_top">July 2007</a></li>
+      <li><a href="http://news.netcraft.com/archives/2007/06/index.html" target="_top">June 2007</a></li>
+      <li><a href="http://news.netcraft.com/archives/2007/05/index.html" target="_top">May 2007</a></li>
+      <li><a href="http://news.netcraft.com/archives/2007/04/index.html" target="_top">April 2007</a></li>
+      <li><a href="http://news.netcraft.com/archives/2007/03/index.html" target="_top">March 2007</a></li>
+      <li><a href="http://news.netcraft.com/archives/2007/02/index.html" target="_top">February 2007</a></li>
+      <li><a href="http://news.netcraft.com/archives/2007/01/index.html" target="_top">January 2007</a></li>
+      <li><a href="http://news.netcraft.com/archives/2006/12/index.html" target="_top">December 2006</a></li>
+      <li><a href="http://news.netcraft.com/archives/2006/11/index.html" target="_top">November 2006</a></li>
+  
+  <li><a href="http://news.netcraft.com/fullindex.html" target="_top">Previous Months</a></li>
+ </ul>
+</div>
+
+
+</div>
+
+   <div id="skyscraper">
+
+    <div id="sitesearch">
+     Site Search<br>
+     <form method="get" action="/cgi-bin/search.cgi" target="_top">
+      <input name="IncludeBlogs" value="1" type="hidden">
+      <input id="search" name="search" size="20"><br>
+     </form>
+     <p id="rssbutton"><a href="http://news.netcraft.com/index.rdf"><img src="october_2007_web_server_survey-Dateien/rss.png" alt="RSS" border="0" height="16" width="35"></a></p>
+    </div>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+   if (!document.phpAds_used) document.phpAds_used = ',';
+   document.write ("<" + "script language='JavaScript' type='text/javascript' src='");
+   document.write ("http://banners.netcraft.com/banneradmin/adjs.php?n=a7a0d565");
+   document.write ("&amp;what=zone:2&amp;source=newsskyscraper&amp;target=_blank&amp;withText=0");
+   document.write ("&amp;exclude=" + document.phpAds_used);
+   document.write ("'><" + "/script>");
+//-->
+</script><noscript><a href="http://banners.netcraft.com/banneradmin/adclick.php?n=a7a0d565" target="_blank"><img style="display: none;" src="october_2007_web_server_survey-Dateien/adview.gif" alt="" border="0"></a></noscript>
+</div>
+
+   <div class="advertisinglinks">
+<table class="advertisinglinkstable" cellspacing="5">
+  <tbody><tr>
+    <td colspan="3" class="premiumadvertisinglinks">
+    </td>
+  </tr>
+  <tr><td colspan="3"><br></td></tr>
+  <tr>
+
+    <td><a href="http://www.rackspace.co.uk/">Rackspace Managed Hosting - Web Hosting - Hosting</a></td>
+    <td>Swishmail.com Business <a href="http://www.swishmail.com/">Email Hosting</a></td>
+    <td><a href="http://www.apollohosting.com/">Apollo Hosting &#8211; VPS, Ecommerce &amp; Website Hosting</a></td>
+
+  </tr>
+  <tr>
+    <td><a href="http://www.inetu.net/">INetU Managed Hosting - Dedicated Servers</a></td>
+
+    <td><a href="http://www.datapipe.com/">DataPipe &#8211; Personal Touch, Global Reach</a></td>
+    <td><a href="http://www.websitesource.com/">Web Hosting</a> - Website Source - Ecommerce, VPS</td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="http://www.hostdepartment.com/">Web Hosting and Reseller Hosting</a><a> By HostDepartment </a></td>
+    <td></td>
+  </tr>
+</tbody></table>
+<br>
+<b><a href="mailto:banners@netcraft.com?subject=Advertising%20on%20Netcraft">Advertising on Netcraft</a></b>
+<br>
+
+</div>
+
+   <div class="copyright">
+Copyright © Netcraft Ltd 2007<br>
+</div>
+
+<script src="october_2007_web_server_survey-Dateien/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2150242-1";
+urchinTracker();
+</script>
+
+</body></html>

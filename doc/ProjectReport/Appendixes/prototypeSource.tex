@@ -1,0 +1,205 @@
+\chapter{Prototype source code}
+\label{app:prototypeCode}
+
+ \section{Main executable}
+  The main executable is communicating with the OpenBeacon node and will retrieve user commands through a message queue.
+  \singlespacing
+  \begin{lstlisting}[
+  	showstringspaces=false,
+  	breaklines,
+  	basicstyle=\footnotesize,
+  	numbers=left,
+  	language=C++,
+  	frame=single,label=lst:prototypeMain,captionpos=b,caption={main.cpp of prototype}]
+#include <fcntl.h>
+#include <termios.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include "msgq.h"
+
+#define BAUDRATE B115200
+#define OPENBEACONMODEMDEVICE "/dev/ttyACM0"
+
+int main(int argc, char ** argv)
+{
+  bool run = true;
+  int fd;
+  int res;
+  struct termios newtio;
+  char buf[255];
+  int readId;
+  struct message  msg;
+  int result;
+  char command[255];
+
+  // open device in rw mode, and as no controlling tty (is better
+  // because if the device sends CTRL+C it will not affect the current
+  // running console)
+  fd = open ( OPENBEACONMODEMDEVICE, O_RDWR | O_NOCTTY | O_NONBLOCK );
+  if (fd < 0)
+  {
+    perror (OPENBEACONMODEMDEVICE);
+    return (-1);
+  }
+
+  // create message queue
+  if ( (readId = msgget (COMMUNICATIONKEY, PERMS | IPC_CREAT)) < 0)
+  {
+    // print error
+    return (-1);
+  }
+
+  // clear struct
+  bzero(&newtio, sizeof(newtio));
+  // setting control modes -> man 3 termios
+  newtio.c_cflag = BAUDRATE | CRTSCTS | CS8 | CLOCAL | CREAD;
+  // setting input modes -> man 3 termios
+  newtio.c_iflag = IGNPAR | ICRNL;
+  // setting output modes -> man 3 termios
+  newtio.c_oflag = 0;
+  // canonical input
+  newtio.c_lflag = ICANON;
+  // initialize all control characters
+  newtio.c_cc[VTIME] = 0;  // inter-character timer unused
+  newtio.c_cc[VMIN] = 2;  // blocking read until 1 character arrives
+  // clean the line and set the new settings
+  tcflush(fd, TCIFLUSH);
+  tcsetattr(fd,TCSANOW,&newtio);
+
+  while (run)
+  {
+    // read from OpenBeacon
+    res = read(fd,buf,255);
+    buf[res]='\0';
+    if (buf[0] != '\n')
+    {
+      printf("%s", buf);
+      buf[0] = '\0';
+    }
+
+    // read from msgq
+    result = msgrcv(readId, (void *) &msg, sizeof(msg.text), 0, MSG_NOERROR | IPC_NOWAIT);
+    if (result > 0)
+    {
+      printf ("Got msgq command: %s\n", msg.text);
+      if (strncmp (msg.text, "quit", 4) == 0)
+      {
+        run = false;
+      }
+      else
+      {
+        strcpy (command, msg.text);
+        strcat (command, "\r");
+        write (fd, command, 2);
+      }
+    }
+  }
+  // delete message queue
+  if (msgctl (readId, IPC_RMID, (struct msqid_ds *) 0) < 0)
+  {
+    // print error
+    return (-1);
+  }
+  close (fd);
+  return (0);
+}
+
+  \end{lstlisting}
+  \onehalfspacing
+
+ \section{Send executable}
+  This executable is used to send commands to the main executable. Those commands are sent through a message queue
+  \singlespacing
+  \begin{lstlisting}[
+  	showstringspaces=false,
+  	breaklines,
+  	basicstyle=\footnotesize,
+  	numbers=left,
+  	language=C,
+  	frame=single,label=lst:prototypeSend,captionpos=b,caption={send-msg.c of prototype}]
+#include <stdio.h>
+#include <string.h>
+#include "msgq.h"
+
+int main (int argc, char ** argv)
+{
+  struct message  msg;
+  int		  writeId;
+
+  if (argc != 2)
+  {
+    printf ("wrong count of arguments\n");
+    return (1);
+  }
+  if ( (writeId = msgget (COMMUNICATIONKEY, 0)) < 0)
+  {
+    return (-1);
+  }
+
+  // send command to msgq
+  msg.type = 1;
+  strcpy(msg.text, argv[1]);
+  if (msgsnd(writeId, (void *) &msg, sizeof(msg.text), IPC_NOWAIT) < 0)
+  {
+    printf ("error while sending\n");
+    return (-1);
+  }
+
+  // delete message queue
+  if (msgctl (writeId, IPC_RMID, (struct msqid_ds *) 0) < 0)
+  {
+    return (-1);
+  }
+  return (0);
+}
+  \end{lstlisting}
+  \onehalfspacing
+ \section{Include for common information}
+  This include file holds the informations both sources have in common.
+  \singlespacing
+  \begin{lstlisting}[
+  	showstringspaces=false,
+  	breaklines,
+  	basicstyle=\footnotesize,
+  	numbers=left,
+  	language=C,
+  	frame=single,label=lst:prototypeInclude,captionpos=b,caption={mesq.h of prototype}]
+#include <sys/msg.h>
+#define COMMUNICATIONKEY 4711L
+#define PERMS 0666
+
+struct message
+{
+  long type;
+  char text[5];
+};
+  \end{lstlisting}
+  \onehalfspacing
+ \section{CMakeLists.txt build file}
+  This section shows how simple CMakeLists.txt file, which is needed to build a project with CMake, will be.
+  \singlespacing
+  \begin{lstlisting}[
+  	showstringspaces=false,
+  	breaklines,
+  	basicstyle=\footnotesize,
+  	numbers=left,
+  	frame=single,label=lst:prototypeCMakeLists,captionpos=b,caption={CMakeLists.txt of prototype}]
+PROJECT ("Openbeacon Prototype")
+ADD_DEFINITIONS (-Wall)
+
+SET (MAINBINARY communicateWithOB)
+SET (SENDBINARY commandToCommunicate)
+
+SET (MAINSRC
+  main.cpp
+)
+
+SET (SENDSRC
+  send-msg.c
+)
+
+ADD_EXECUTABLE (${MAINBINARY} ${MAINSRC})
+ADD_EXECUTABLE (${SENDBINARY} ${SENDSRC})
+  \end{lstlisting}
+  \onehalfspacing

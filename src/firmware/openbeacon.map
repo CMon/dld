@@ -1,0 +1,1024 @@
+Archive member included because of file (symbol)
+
+/usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_udivsi3.o)
+                              os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o (__udivsi3)
+/usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_dvmd_tls.o)
+                              /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_udivsi3.o) (__div0)
+/usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memcpy.o)
+                              application/proto.o (memcpy)
+/usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memset.o)
+                              application/proto.o (memset)
+/usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(strncpy.o)
+                              os/core/tasks.o (strncpy)
+
+Allocating common symbols
+Common symbol       size              file
+
+g_BeaconSortSize    0x4               application/proto.o
+xCmdRecvUsbTask     0x4               application/cmd.o
+tmp                 0x4               application/xxtea.o
+g_BeaconFifoLifeTime
+                    0x4               application/proto.o
+rs232_buffer_pos    0x4               application/cmd.o
+sum                 0x4               application/xxtea.o
+g_Beacon            0x10              application/proto.o
+xUSBInterruptQueue  0x4               os/usb/USB-CDC.o
+g_BeaconSort        0x400             application/proto.o
+g_BeaconSortPrint   0x20              application/proto.o
+z                   0x4               application/xxtea.o
+g_BeaconSortTmp     0x400             application/proto.o
+g_BeaconCacheHead   0x4               application/proto.o
+xCmdQueue           0x4               application/cmd.o
+rs232_buffer        0x400             application/cmd.o
+PtSemaphore         0x4               application/proto.o
+y                   0x4               application/xxtea.o
+nRFCMD_Macro        0x4               application/nRF24L01/nRF_CMD.o
+env                 0x100             application/env.o
+g_BeaconCache       0xa00             application/proto.o
+e                   0x1               application/xxtea.o
+nRFCMD_MacroResult  0x4               application/nRF24L01/nRF_CMD.o
+xCmdTask            0x4               application/cmd.o
+mx                  0x4               application/xxtea.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x00100000         0x0001fc00
+ram              0x00200000         0x00008000
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD application/main.o
+LOAD application/led.o
+LOAD application/proto.o
+LOAD application/cmd.o
+LOAD application/env.o
+LOAD application/sort.o
+LOAD application/xxtea.o
+LOAD application/dbgu.o
+LOAD application/nRF24L01/nRF_API.o
+LOAD application/nRF24L01/nRF_CMD.o
+LOAD os/boot/Cstartup_SAM7.o
+LOAD os/core/list.o
+LOAD os/core/queue.o
+LOAD os/core/tasks.o
+LOAD os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+LOAD os/core/ARM7_AT91SAM7S/port.o
+LOAD os/core/ARM7_AT91SAM7S/portISR.o
+LOAD os/core/MemMang/heap_2.o
+LOAD os/usb/USB-CDC.o
+LOAD os/usb/USBIsr.o
+LOAD /tmp/ccebOgZz.o
+LOAD /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a
+LOAD /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a
+LOAD /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libc.a
+LOAD /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a
+                0x00207ffc                __stack_end__ = 0x207ffc
+                0x00000000                . = 0x0
+
+startup         0x00100000       0x44
+ *(.startup)
+ .startup       0x00100000       0x44 /tmp/ccebOgZz.o
+
+prog            0x00100044     0x5328
+ *(.text)
+ .text          0x00100044       0xd0 /tmp/ccebOgZz.o
+                0x00100044                start
+                0x001000f4                endless_loop
+ .text          0x00100114      0x110 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_udivsi3.o)
+                0x00100114                __udivsi3
+                0x0010020c                __aeabi_uidivmod
+ .text          0x00100224        0x4 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_dvmd_tls.o)
+                0x00100224                __aeabi_ldiv0
+                0x00100224                __div0
+                0x00100224                __aeabi_idiv0
+ .text          0x00100228       0xac /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memcpy.o)
+                0x00100228                memcpy
+ .text          0x001002d4       0xa0 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memset.o)
+                0x001002d4                memset
+ .text          0x00100374      0x154 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(strncpy.o)
+                0x00100374                strncpy
+ *(.text.*)
+ .text.vApplicationIdleHook
+                0x001004c8       0x18 application/main.o
+                0x001004c8                vApplicationIdleHook
+ .text.main     0x001004e0       0xb0 application/main.o
+                0x001004e0                main
+ .text.vLedInit
+                0x00100590       0x1c application/led.o
+                0x00100590                vLedInit
+ .text.vLedSetRed
+                0x001005ac       0x28 application/led.o
+                0x001005ac                vLedSetRed
+ .text.vLedSetGreen
+                0x001005d4       0x28 application/led.o
+                0x001005d4                vLedSetGreen
+ .text.vLedHaltBlinking
+                0x001005fc      0x144 application/led.o
+                0x001005fc                vLedHaltBlinking
+ .text.PtSetFifoLifetimeSeconds
+                0x00100740       0x28 application/proto.o
+                0x00100740                PtSetFifoLifetimeSeconds
+ .text.PtGetFifoLifetimeSeconds
+                0x00100768       0x20 application/proto.o
+                0x00100768                PtGetFifoLifetimeSeconds
+ .text.vnRFCopyRating
+                0x00100788       0x8c application/proto.o
+                0x00100788                vnRFCopyRating
+ .text.vnRFtaskRxTx
+                0x00100814      0x200 application/proto.o
+                0x00100814                vnRFtaskRxTx
+ .text.vnRFtaskRating
+                0x00100a14       0xb4 application/proto.o
+                0x00100a14                vnRFtaskRating
+ .text.vInitProtocolLayer
+                0x00100ac8       0xb4 application/proto.o
+                0x00100ac8                vInitProtocolLayer
+ .text.vSendByte
+                0x00100b7c       0x5c application/cmd.o
+                0x00100b7c                vSendByte
+ .text.DumpUIntToUSB
+                0x00100bd8       0x68 application/cmd.o
+                0x00100bd8                DumpUIntToUSB
+ .text.DumpStringToUSB
+                0x00100c40       0x40 application/cmd.o
+                0x00100c40                DumpStringToUSB
+ .text.atoiEx   0x00100c80       0x94 application/cmd.o
+                0x00100c80                atoiEx
+ .text.prvExecCommand
+                0x00100d14      0x360 application/cmd.o
+                0x00100d14                prvExecCommand
+ .text.vCmdCode
+                0x00101074      0x108 application/cmd.o
+                0x00101074                vCmdCode
+ .text.vCmdRecvUsbCode
+                0x0010117c       0xec application/cmd.o
+                0x0010117c                vCmdRecvUsbCode
+ .text.vCmdInit
+                0x00101268       0xbc application/cmd.o
+                0x00101268                vCmdInit
+ .text.DumpBufferToUSB
+                0x00101324       0x60 application/cmd.o
+                0x00101324                DumpBufferToUSB
+ .text.env_load
+                0x00101384       0x74 application/env.o
+                0x00101384                env_load
+ .text.env_init
+                0x001013f8       0x14 application/env.o
+                0x001013f8                env_init
+ .text.AT91F_DBGU_Init
+                0x0010140c       0x64 application/dbgu.o
+                0x0010140c                AT91F_DBGU_Init
+ .text.AT91F_DBGU_Frame
+                0x00101470       0x30 application/dbgu.o
+                0x00101470                AT91F_DBGU_Frame
+ .text.nRFAPI_SetSizeMac
+                0x001014a0       0x30 application/nRF24L01/nRF_API.o
+                0x001014a0                nRFAPI_SetSizeMac
+ .text.nRFAPI_SetRxMode
+                0x001014d0       0x14 application/nRF24L01/nRF_API.o
+                0x001014d0                nRFAPI_SetRxMode
+ .text.nRFAPI_PipesEnable
+                0x001014e4        0xc application/nRF24L01/nRF_API.o
+                0x001014e4                nRFAPI_PipesEnable
+ .text.nRFAPI_PipesAck
+                0x001014f0        0xc application/nRF24L01/nRF_API.o
+                0x001014f0                nRFAPI_PipesAck
+ .text.nRFAPI_SetPipeSizeRX
+                0x001014fc       0x20 application/nRF24L01/nRF_API.o
+                0x001014fc                nRFAPI_SetPipeSizeRX
+ .text.nRFAPI_TxRetries
+                0x0010151c       0x18 application/nRF24L01/nRF_API.o
+                0x0010151c                nRFAPI_TxRetries
+ .text.nRFAPI_SetChannel
+                0x00101534        0xc application/nRF24L01/nRF_API.o
+                0x00101534                nRFAPI_SetChannel
+ .text.nRFAPI_SetTxPower
+                0x00101540       0x20 application/nRF24L01/nRF_API.o
+                0x00101540                nRFAPI_SetTxPower
+ .text.nRFAPI_GetSizeMac
+                0x00101560       0x20 application/nRF24L01/nRF_API.o
+                0x00101560                nRFAPI_GetSizeMac
+ .text.nRFAPI_GetTxMAC
+                0x00101580       0x20 application/nRF24L01/nRF_API.o
+                0x00101580                nRFAPI_GetTxMAC
+ .text.nRFAPI_SetRxMAC
+                0x001015a0       0x78 application/nRF24L01/nRF_API.o
+                0x001015a0                nRFAPI_SetRxMAC
+ .text.nRFAPI_SetTxMAC
+                0x00101618       0x20 application/nRF24L01/nRF_API.o
+                0x00101618                nRFAPI_SetTxMAC
+ .text.nRFAPI_GetChannel
+                0x00101638       0x14 application/nRF24L01/nRF_API.o
+                0x00101638                nRFAPI_GetChannel
+ .text.nRFAPI_ClearIRQ
+                0x0010164c       0x14 application/nRF24L01/nRF_API.o
+                0x0010164c                nRFAPI_ClearIRQ
+ .text.nRFAPI_TX
+                0x00101660       0x14 application/nRF24L01/nRF_API.o
+                0x00101660                nRFAPI_TX
+ .text.nRFAPI_FlushTX
+                0x00101674        0x8 application/nRF24L01/nRF_API.o
+                0x00101674                nRFAPI_FlushTX
+ .text.nRFAPI_FlushRX
+                0x0010167c        0x8 application/nRF24L01/nRF_API.o
+                0x0010167c                nRFAPI_FlushRX
+ .text.nRFAPI_GetStatus
+                0x00101684       0x10 application/nRF24L01/nRF_API.o
+                0x00101684                nRFAPI_GetStatus
+ .text.nRFAPI_DetectChip
+                0x00101694       0xa4 application/nRF24L01/nRF_API.o
+                0x00101694                nRFAPI_DetectChip
+ .text.nRFAPI_GetPipeSizeRX
+                0x00101738       0x2c application/nRF24L01/nRF_API.o
+                0x00101738                nRFAPI_GetPipeSizeRX
+ .text.nRFAPI_GetPipeCurrent
+                0x00101764       0x14 application/nRF24L01/nRF_API.o
+                0x00101764                nRFAPI_GetPipeCurrent
+ .text.nRFAPI_RX
+                0x00101778       0x60 application/nRF24L01/nRF_API.o
+                0x00101778                nRFAPI_RX
+ .text.nRFAPI_ReuseTX
+                0x001017d8        0x8 application/nRF24L01/nRF_API.o
+                0x001017d8                nRFAPI_ReuseTX
+ .text.nRFAPI_GetFifoStatus
+                0x001017e0       0x10 application/nRF24L01/nRF_API.o
+                0x001017e0                nRFAPI_GetFifoStatus
+ .text.nRFAPI_CarrierDetect
+                0x001017f0       0x10 application/nRF24L01/nRF_API.o
+                0x001017f0                nRFAPI_CarrierDetect
+ .text.nRFAPI_SetFeatures
+                0x00101800       0x54 application/nRF24L01/nRF_API.o
+                0x00101800                nRFAPI_SetFeatures
+ .text.nRFAPI_Init
+                0x00101854       0xd0 application/nRF24L01/nRF_API.o
+                0x00101854                nRFAPI_Init
+ .text.nRFCMD_HaltBlinking
+                0x00101924       0x4c application/nRF24L01/nRF_CMD.o
+                0x00101924                nRFCMD_HaltBlinking
+ .text.nRFCMD_GetRegSize
+                0x00101970       0x48 application/nRF24L01/nRF_CMD.o
+                0x00101970                nRFCMD_GetRegSize
+ .text.nRFCMD_ExecMacro
+                0x001019b8       0x3c application/nRF24L01/nRF_CMD.o
+                0x001019b8                nRFCMD_ExecMacro
+ .text.nRFCMD_WaitRx
+                0x001019f4       0x24 application/nRF24L01/nRF_CMD.o
+                0x001019f4                nRFCMD_WaitRx
+ .text.nRFCMD_Init
+                0x00101a18      0x180 application/nRF24L01/nRF_CMD.o
+                0x00101a18                nRFCMD_Init
+ .text.nRFCMD_CE
+                0x00101b98       0x28 application/nRF24L01/nRF_CMD.o
+                0x00101b98                nRFCMD_CE
+ .text.nRFCMD_ReadWriteBuffer
+                0x00101bc0       0x8c application/nRF24L01/nRF_CMD.o
+                0x00101bc0                nRFCMD_ReadWriteBuffer
+ .text.nRFCMD_RegReadBuf
+                0x00101c4c       0x48 application/nRF24L01/nRF_CMD.o
+                0x00101c4c                nRFCMD_RegReadBuf
+ .text.nRFCMD_RegWriteBuf
+                0x00101c94       0x44 application/nRF24L01/nRF_CMD.o
+                0x00101c94                nRFCMD_RegWriteBuf
+ .text.nRFCMD_RegWriteStatusRead
+                0x00101cd8       0x30 application/nRF24L01/nRF_CMD.o
+                0x00101cd8                nRFCMD_RegWriteStatusRead
+ .text.nRFCMD_RegRead
+                0x00101d08       0x38 application/nRF24L01/nRF_CMD.o
+                0x00101d08                nRFCMD_RegRead
+ .text.nRFCMD_CmdExec
+                0x00101d40       0x2c application/nRF24L01/nRF_CMD.o
+                0x00101d40                nRFCMD_CmdExec
+ .text.AT91F_LowLevelInit
+                0x00101d6c       0xac os/boot/Cstartup_SAM7.o
+                0x00101d6c                AT91F_LowLevelInit
+ .text.vListInitialise
+                0x00101e18       0x24 os/core/list.o
+                0x00101e18                vListInitialise
+ .text.vListInitialiseItem
+                0x00101e3c        0xc os/core/list.o
+                0x00101e3c                vListInitialiseItem
+ .text.vListInsertEnd
+                0x00101e48       0x34 os/core/list.o
+                0x00101e48                vListInsertEnd
+ .text.vListInsert
+                0x00101e7c       0x7c os/core/list.o
+                0x00101e7c                vListInsert
+ .text.vListRemove
+                0x00101ef8       0x3c os/core/list.o
+                0x00101ef8                vListRemove
+ .text.xQueueCreate
+                0x00101f34       0xa0 os/core/queue.o
+                0x00101f34                xQueueCreate
+ .text.xQueueSendFromISR
+                0x00101fd4       0xa4 os/core/queue.o
+                0x00101fd4                xQueueSendFromISR
+ .text.xQueueReceiveFromISR
+                0x00102078       0xa4 os/core/queue.o
+                0x00102078                xQueueReceiveFromISR
+ .text.uxQueueMessagesWaiting
+                0x0010211c       0x1c os/core/queue.o
+                0x0010211c                uxQueueMessagesWaiting
+ .text.vQueueDelete
+                0x00102138       0x1c os/core/queue.o
+                0x00102138                vQueueDelete
+ .text.prvUnlockQueue
+                0x00102154       0x9c os/core/queue.o
+ .text.xQueueReceive
+                0x001021f0      0x194 os/core/queue.o
+                0x001021f0                xQueueReceive
+ .text.xQueueSend
+                0x00102384      0x1b0 os/core/queue.o
+                0x00102384                xQueueSend
+ .text.vTaskDelete
+                0x00102534       0xa0 os/core/tasks.o
+                0x00102534                vTaskDelete
+ .text.vTaskSuspendAll
+                0x001025d4       0x24 os/core/tasks.o
+                0x001025d4                vTaskSuspendAll
+ .text.uxTaskPriorityGet
+                0x001025f8       0x30 os/core/tasks.o
+                0x001025f8                uxTaskPriorityGet
+ .text.vTaskPrioritySet
+                0x00102628       0xdc os/core/tasks.o
+                0x00102628                vTaskPrioritySet
+ .text.vTaskSuspend
+                0x00102704       0x78 os/core/tasks.o
+                0x00102704                vTaskSuspend
+ .text.vTaskResume
+                0x0010277c       0xa0 os/core/tasks.o
+                0x0010277c                vTaskResume
+ .text.xTaskResumeFromISR
+                0x0010281c       0xc4 os/core/tasks.o
+                0x0010281c                xTaskResumeFromISR
+ .text.vTaskEndScheduler
+                0x001028e0       0x28 os/core/tasks.o
+                0x001028e0                vTaskEndScheduler
+ .text.vTaskIncrementTick
+                0x00102908      0x160 os/core/tasks.o
+                0x00102908                vTaskIncrementTick
+ .text.xTaskGetTickCount
+                0x00102a68       0x20 os/core/tasks.o
+                0x00102a68                xTaskGetTickCount
+ .text.uxTaskGetNumberOfTasks
+                0x00102a88       0x20 os/core/tasks.o
+                0x00102a88                uxTaskGetNumberOfTasks
+ .text.vTaskSwitchContext
+                0x00102aa8      0x10c os/core/tasks.o
+                0x00102aa8                vTaskSwitchContext
+ .text.vTaskPlaceOnEventList
+                0x00102bb4       0x8c os/core/tasks.o
+                0x00102bb4                vTaskPlaceOnEventList
+ .text.xTaskRemoveFromEventList
+                0x00102c40       0xa4 os/core/tasks.o
+                0x00102c40                xTaskRemoveFromEventList
+ .text.vTaskSetTimeOutState
+                0x00102ce4       0x20 os/core/tasks.o
+                0x00102ce4                vTaskSetTimeOutState
+ .text.xTaskCheckForTimeOut
+                0x00102d04       0x90 os/core/tasks.o
+                0x00102d04                xTaskCheckForTimeOut
+ .text.vTaskMissedYield
+                0x00102d94       0x14 os/core/tasks.o
+                0x00102d94                vTaskMissedYield
+ .text.xTaskCreate
+                0x00102da8      0x260 os/core/tasks.o
+                0x00102da8                xTaskCreate
+ .text.vTaskStartScheduler
+                0x00103008       0x78 os/core/tasks.o
+                0x00103008                vTaskStartScheduler
+ .text.xTaskGetCurrentTaskHandle
+                0x00103080       0x20 os/core/tasks.o
+                0x00103080                xTaskGetCurrentTaskHandle
+ .text.xTaskResumeAll
+                0x001030a0      0x278 os/core/tasks.o
+                0x001030a0                xTaskResumeAll
+ .text.prvIdleTask
+                0x00103318       0xb8 os/core/tasks.o
+ .text.vTaskDelay
+                0x001033d0       0xa4 os/core/tasks.o
+                0x001033d0                vTaskDelay
+ .text.vTaskDelayUntil
+                0x00103474       0xf4 os/core/tasks.o
+                0x00103474                vTaskDelayUntil
+ .text.AT91F_AIC_ConfigureIt
+                0x00103568       0x3c os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x00103568                AT91F_AIC_ConfigureIt
+ .text.AT91F_AIC_SetExceptionVector
+                0x001035a4       0x38 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x001035a4                AT91F_AIC_SetExceptionVector
+ .text.AT91F_AIC_Open
+                0x001035dc       0x78 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x001035dc                AT91F_AIC_Open
+ .text.AT91F_RTTReadValue
+                0x00103654       0x30 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x00103654                AT91F_RTTReadValue
+ .text.AT91F_ADC_CfgTimings
+                0x00103684       0x70 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x00103684                AT91F_ADC_CfgTimings
+ .text.AT91F_SSC_SetBaudrate
+                0x001036f4       0x50 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x001036f4                AT91F_SSC_SetBaudrate
+ .text.AT91F_PDC_SendFrame
+                0x00103744       0x48 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x00103744                AT91F_PDC_SendFrame
+ .text.AT91F_PDC_ReceiveFrame
+                0x0010378c       0x48 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x0010378c                AT91F_PDC_ReceiveFrame
+ .text.AT91F_PDC_Close
+                0x001037d4       0x38 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x001037d4                AT91F_PDC_Close
+ .text.AT91F_US_Close
+                0x0010380c       0x34 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x0010380c                AT91F_US_Close
+ .text.AT91F_SPI_Close
+                0x00103840       0x3c os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x00103840                AT91F_SPI_Close
+ .text.AT91F_PMC_GetMasterClock
+                0x0010387c       0xa8 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x0010387c                AT91F_PMC_GetMasterClock
+ .text.AT91F_PDC_Open
+                0x00103924       0x48 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x00103924                AT91F_PDC_Open
+ .text.AT91F_US_Configure
+                0x0010396c       0x6c os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x0010396c                AT91F_US_Configure
+ .text.AT91F_SSC_Configure
+                0x001039d8       0x4c os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                0x001039d8                AT91F_SSC_Configure
+ .text.pxPortInitialiseStack
+                0x00103a24       0xfc os/core/ARM7_AT91SAM7S/port.o
+                0x00103a24                pxPortInitialiseStack
+ .text.vPortEndScheduler
+                0x00103b20        0x4 os/core/ARM7_AT91SAM7S/port.o
+                0x00103b20                vPortEndScheduler
+ .text.xPortStartScheduler
+                0x00103b24       0x50 os/core/ARM7_AT91SAM7S/port.o
+                0x00103b24                xPortStartScheduler
+ .text.vPortISRStartFirstTask
+                0x00103b74       0x54 os/core/ARM7_AT91SAM7S/portISR.o
+                0x00103b74                vPortISRStartFirstTask
+ .text.swi_handler
+                0x00103bc8       0xac os/core/ARM7_AT91SAM7S/portISR.o
+                0x00103bc8                swi_handler
+ .text.vPreemptiveTick
+                0x00103c74       0xc4 os/core/ARM7_AT91SAM7S/portISR.o
+                0x00103c74                vPreemptiveTick
+ .text.vPortDisableInterruptsFromThumb
+                0x00103d38       0x18 os/core/ARM7_AT91SAM7S/portISR.o
+                0x00103d38                vPortDisableInterruptsFromThumb
+ .text.vPortEnableInterruptsFromThumb
+                0x00103d50       0x18 os/core/ARM7_AT91SAM7S/portISR.o
+                0x00103d50                vPortEnableInterruptsFromThumb
+ .text.vPortEnterCritical
+                0x00103d68       0x2c os/core/ARM7_AT91SAM7S/portISR.o
+                0x00103d68                vPortEnterCritical
+ .text.vPortExitCritical
+                0x00103d94       0x44 os/core/ARM7_AT91SAM7S/portISR.o
+                0x00103d94                vPortExitCritical
+ .text.pvPortMalloc
+                0x00103dd8      0x128 os/core/MemMang/heap_2.o
+                0x00103dd8                pvPortMalloc
+ .text.vPortFree
+                0x00103f00       0x48 os/core/MemMang/heap_2.o
+                0x00103f00                vPortFree
+ .text.vUSBSendByte
+                0x00103f48       0x2c os/usb/USB-CDC.o
+                0x00103f48                vUSBSendByte
+ .text.vUSBRecvByte
+                0x00103f74       0x80 os/usb/USB-CDC.o
+                0x00103f74                vUSBRecvByte
+ .text.prvSendZLP
+                0x00103ff4       0x68 os/usb/USB-CDC.o
+ .text.prvSendStall
+                0x0010405c       0x28 os/usb/USB-CDC.o
+ .text.prvSendNextSegment
+                0x00104084      0x148 os/usb/USB-CDC.o
+ .text.prvSendControlData
+                0x001041cc       0x78 os/usb/USB-CDC.o
+ .text.vUSBCDCTask
+                0x00104244      0x898 os/usb/USB-CDC.o
+                0x00104244                vUSBCDCTask
+ .text.vUSB_ISR
+                0x00104adc      0x248 os/usb/USBIsr.o
+                0x00104adc                vUSB_ISR
+ *(.rodata)
+ *(.rodata*)
+ .rodata.str1.4
+                0x00104d24        0x4 application/main.o
+ .rodata.broadcast_mac
+                0x00104d28        0x5 application/proto.o
+                0x00104d28                broadcast_mac
+ *fill*         0x00104d2d        0x3 00
+ .rodata.str1.4
+                0x00104d30       0x1f application/proto.o
+                                 0x28 (size before relaxing)
+ *fill*         0x00104d4f        0x1 00
+ .rodata.str1.4
+                0x00104d50      0x52b application/cmd.o
+                                0x530 (size before relaxing)
+ *fill*         0x0010527b        0x1 00
+ .rodata.C.41.3545
+                0x0010527c       0x24 application/cmd.o
+ .rodata.tea_key
+                0x001052a0       0x10 application/xxtea.o
+                0x001052a0                tea_key
+ .rodata.rfbroadcast_mac
+                0x001052b0        0x5 application/nRF24L01/nRF_API.o
+                0x001052b0                rfbroadcast_mac
+ .rodata.ACTIVATE_SEQUENCE.1695
+                0x001052b5        0x2 application/nRF24L01/nRF_API.o
+ .rodata.C.7.1697
+                0x001052b7        0x2 application/nRF24L01/nRF_API.o
+ *fill*         0x001052b9        0x3 00
+ .rodata.str1.4
+                0x001052bc        0x5 os/core/tasks.o
+                                  0x8 (size before relaxing)
+ .rodata.pxConfigDescriptor
+                0x001052c1       0x43 os/usb/USB-CDC.o
+                0x001052c1                pxConfigDescriptor
+ .rodata.pxDeviceDescriptor
+                0x00105304       0x12 os/usb/USB-CDC.o
+                0x00105304                pxDeviceDescriptor
+ .rodata.pxProductStringDescriptor
+                0x00105316       0x2c os/usb/USB-CDC.o
+                0x00105316                pxProductStringDescriptor
+ .rodata.pxManufacturerStringDescriptor
+                0x00105342       0x1c os/usb/USB-CDC.o
+                0x00105342                pxManufacturerStringDescriptor
+ .rodata.pxLanguageStringDescriptor
+                0x0010535e        0x4 os/usb/USB-CDC.o
+                0x0010535e                pxLanguageStringDescriptor
+ .rodata.pxLineCoding
+                0x00105362        0x7 os/usb/USB-CDC.o
+ *(.glue_7)
+ *fill*         0x00105369        0x3 00
+ *(.glue_7t)
+                0x0010536c                __end_of_text__ = .
+
+.data           0x00200000      0xcf0 load address 0x0010536c
+                0x00200000                __data_beg__ = .
+                0x0010536c                __data_beg_src__ = __end_of_text__
+ *(.data)
+ *(.data.*)
+ .data.ulCriticalNesting
+                0x00200000        0x4 os/core/ARM7_AT91SAM7S/portISR.o
+                0x00200000                ulCriticalNesting
+ *(.ramfunc)
+ .ramfunc       0x00200004      0x30c application/proto.o
+                0x002000b4                vnRFUpdateRating
+                0x00200004                shuffle_tx_byteorder
+ .ramfunc       0x00200310      0x140 application/env.o
+                0x00200310                env_crc16
+                0x00200388                env_store
+ .ramfunc       0x00200450       0xcc application/sort.o
+                0x00200450                sort
+ .ramfunc       0x0020051c      0x558 application/xxtea.o
+                0x00200804                xxtea_encode
+                0x00200598                xxtea_decode
+                0x0020051c                mx_update
+ .ramfunc       0x00200a74      0x27c application/nRF24L01/nRF_CMD.o
+                0x00200bf4                nRFCMD_ISR_ACK
+                0x00200a74                nRFCMD_ProcessNextMacro
+                0x00200afc                nRFCMD_ISR_DMA
+                0x00200cf0                __data_end__ = .
+
+.bss            0x00200cf0     0x5a50
+                0x00200cf0                __bss_beg__ = .
+ *(.bss)
+ *(.bss.*)
+ .bss.xnRF_SemaphoreACK
+                0x00200cf0        0x4 application/nRF24L01/nRF_CMD.o
+ .bss.xnRF_SemaphoreDMA
+                0x00200cf4        0x4 application/nRF24L01/nRF_CMD.o
+ .bss.spi_inbuf
+                0x00200cf8       0x21 application/nRF24L01/nRF_CMD.o
+ .bss.spi_outbuf
+                0x00200d19       0x21 application/nRF24L01/nRF_CMD.o
+ *fill*         0x00200d3a        0x2 00
+ .bss.pxCurrentTCB
+                0x00200d3c        0x4 os/core/tasks.o
+                0x00200d3c                pxCurrentTCB
+ .bss.xMissedYield
+                0x00200d40        0x4 os/core/tasks.o
+ .bss.xTickCount
+                0x00200d44        0x4 os/core/tasks.o
+ .bss.xNumOfOverflows
+                0x00200d48        0x4 os/core/tasks.o
+ .bss.uxTopReadyPriority
+                0x00200d4c        0x4 os/core/tasks.o
+ .bss.uxSchedulerSuspended
+                0x00200d50        0x4 os/core/tasks.o
+ .bss.uxMissedTicks
+                0x00200d54        0x4 os/core/tasks.o
+ .bss.uxCurrentNumberOfTasks
+                0x00200d58        0x4 os/core/tasks.o
+ .bss.xSchedulerRunning
+                0x00200d5c        0x4 os/core/tasks.o
+ .bss.uxTasksDeleted
+                0x00200d60        0x4 os/core/tasks.o
+ .bss.uxTopUsedPriority
+                0x00200d64        0x4 os/core/tasks.o
+ .bss.uxTaskNumber.2424
+                0x00200d68        0x4 os/core/tasks.o
+ .bss.xSuspendedTaskList
+                0x00200d6c       0x14 os/core/tasks.o
+ .bss.xTasksWaitingTermination
+                0x00200d80       0x14 os/core/tasks.o
+ .bss.xPendingReadyList
+                0x00200d94       0x14 os/core/tasks.o
+ .bss.pxOverflowDelayedTaskList
+                0x00200da8        0x4 os/core/tasks.o
+ .bss.pxDelayedTaskList
+                0x00200dac        0x4 os/core/tasks.o
+ .bss.xDelayedTaskList2
+                0x00200db0       0x14 os/core/tasks.o
+ .bss.xDelayedTaskList1
+                0x00200dc4       0x14 os/core/tasks.o
+ .bss.pxReadyTasksLists
+                0x00200dd8       0x64 os/core/tasks.o
+ .bss.xHeapHasBeenInitialised.1720
+                0x00200e3c        0x4 os/core/MemMang/heap_2.o
+ .bss.xEnd      0x00200e40        0x8 os/core/MemMang/heap_2.o
+ .bss.xStart    0x00200e48        0x8 os/core/MemMang/heap_2.o
+ .bss.xHeap     0x00200e50     0x4004 os/core/MemMang/heap_2.o
+ .bss.eDriverState
+                0x00204e54        0x4 os/usb/USB-CDC.o
+ .bss.ucUSBConfig
+                0x00204e58        0x1 os/usb/USB-CDC.o
+ *fill*         0x00204e59        0x3 00
+ .bss.ulReceivedAddress
+                0x00204e5c        0x4 os/usb/USB-CDC.o
+ .bss.xRequest.4159
+                0x00204e60        0x8 os/usb/USB-CDC.o
+ .bss.uiCurrentBank
+                0x00204e68        0x4 os/usb/USB-CDC.o
+ .bss.ucControlState
+                0x00204e6c        0x1 os/usb/USB-CDC.o
+ *fill*         0x00204e6d        0x3 00
+ .bss.xTxCDC    0x00204e70        0x4 os/usb/USB-CDC.o
+ .bss.xRxCDC    0x00204e74        0x4 os/usb/USB-CDC.o
+ .bss.pxControlRx
+                0x00204e78       0x88 os/usb/USB-CDC.o
+ .bss.pxControlTx
+                0x00204f00       0x88 os/usb/USB-CDC.o
+ .bss.ulNextMessage.3191
+                0x00204f88        0x4 os/usb/USBIsr.o
+ .bss.xISRMessages
+                0x00204f8c       0x40 os/usb/USBIsr.o
+ COMMON         0x00204fcc     0x1240 application/proto.o
+                0x00204fcc                g_BeaconSortSize
+                0x00204fd0                g_BeaconFifoLifeTime
+                0x00204fd4                g_Beacon
+                0x00204fe4                g_BeaconSort
+                0x002053e4                g_BeaconSortPrint
+                0x00205404                g_BeaconSortTmp
+                0x00205804                g_BeaconCacheHead
+                0x00205808                PtSemaphore
+                0x0020580c                g_BeaconCache
+ COMMON         0x0020620c      0x410 application/cmd.o
+                0x0020620c                xCmdRecvUsbTask
+                0x00206210                rs232_buffer_pos
+                0x00206214                xCmdQueue
+                0x00206218                rs232_buffer
+                0x00206618                xCmdTask
+ COMMON         0x0020661c      0x100 application/env.o
+                0x0020661c                env
+ COMMON         0x0020671c       0x18 application/xxtea.o
+                0x0020671c                tmp
+                0x00206720                sum
+                0x00206724                z
+                0x00206728                y
+                0x0020672c                e
+                0x00206730                mx
+ COMMON         0x00206734        0x8 application/nRF24L01/nRF_CMD.o
+                0x00206734                nRFCMD_Macro
+                0x00206738                nRFCMD_MacroResult
+ COMMON         0x0020673c        0x4 os/usb/USB-CDC.o
+                0x0020673c                xUSBInterruptQueue
+                0x00206740                . = ALIGN (0x4)
+                0x00206740                . = ALIGN (0x4)
+                0x00206740                _end = .
+                0x00206740                _bss_end__ = .
+                0x00206740                __bss_end__ = .
+                0x00206740                __end__ = .
+                0x00206740                PROVIDE (end, .)
+OUTPUT(openbeacon.elf elf32-littlearm)
+
+.debug_abbrev   0x00000000     0x1ec4
+ .debug_abbrev  0x00000000      0x14e application/main.o
+ .debug_abbrev  0x0000014e      0x12a application/led.o
+ .debug_abbrev  0x00000278      0x223 application/proto.o
+ .debug_abbrev  0x0000049b      0x24b application/cmd.o
+ .debug_abbrev  0x000006e6      0x21e application/env.o
+ .debug_abbrev  0x00000904       0x91 application/sort.o
+ .debug_abbrev  0x00000995      0x141 application/xxtea.o
+ .debug_abbrev  0x00000ad6      0x110 application/dbgu.o
+ .debug_abbrev  0x00000be6      0x170 application/nRF24L01/nRF_API.o
+ .debug_abbrev  0x00000d56      0x25c application/nRF24L01/nRF_CMD.o
+ .debug_abbrev  0x00000fb2       0x8a os/boot/Cstartup_SAM7.o
+ .debug_abbrev  0x0000103c       0xb2 os/core/list.o
+ .debug_abbrev  0x000010ee      0x1a9 os/core/queue.o
+ .debug_abbrev  0x00001297      0x219 os/core/tasks.o
+ .debug_abbrev  0x000014b0      0x251 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+ .debug_abbrev  0x00001701      0x112 os/core/ARM7_AT91SAM7S/port.o
+ .debug_abbrev  0x00001813       0x72 os/core/ARM7_AT91SAM7S/portISR.o
+ .debug_abbrev  0x00001885      0x139 os/core/MemMang/heap_2.o
+ .debug_abbrev  0x000019be      0x224 os/usb/USB-CDC.o
+ .debug_abbrev  0x00001be2       0xdb os/usb/USBIsr.o
+ .debug_abbrev  0x00001cbd       0x10 /tmp/ccebOgZz.o
+ .debug_abbrev  0x00001ccd       0x14 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_udivsi3.o)
+ .debug_abbrev  0x00001ce1       0x14 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_dvmd_tls.o)
+ .debug_abbrev  0x00001cf5       0x99 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memcpy.o)
+ .debug_abbrev  0x00001d8e       0xa9 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memset.o)
+ .debug_abbrev  0x00001e37       0x8d /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(strncpy.o)
+
+.debug_info     0x00000000     0x7274
+ .debug_info    0x00000000      0x1ed application/main.o
+ .debug_info    0x000001ed      0x4b3 application/led.o
+ .debug_info    0x000006a0      0x60b application/proto.o
+ .debug_info    0x00000cab      0x4f7 application/cmd.o
+ .debug_info    0x000011a2      0x477 application/env.o
+ .debug_info    0x00001619       0xaf application/sort.o
+ .debug_info    0x000016c8      0x35f application/xxtea.o
+ .debug_info    0x00001a27      0x5e4 application/dbgu.o
+ .debug_info    0x0000200b      0x57e application/nRF24L01/nRF_API.o
+ .debug_info    0x00002589      0xe0c application/nRF24L01/nRF_CMD.o
+ .debug_info    0x00003395      0x1eb os/boot/Cstartup_SAM7.o
+ .debug_info    0x00003580      0x28e os/core/list.o
+ .debug_info    0x0000380e      0x595 os/core/queue.o
+ .debug_info    0x00003da3      0xbee os/core/tasks.o
+ .debug_info    0x00004991     0x1608 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+ .debug_info    0x00005f99      0x1a9 os/core/ARM7_AT91SAM7S/port.o
+ .debug_info    0x00006142       0xfd os/core/ARM7_AT91SAM7S/portISR.o
+ .debug_info    0x0000623f      0x25a os/core/MemMang/heap_2.o
+ .debug_info    0x00006499      0x7bf os/usb/USB-CDC.o
+ .debug_info    0x00006c58      0x180 os/usb/USBIsr.o
+ .debug_info    0x00006dd8       0x5a /tmp/ccebOgZz.o
+ .debug_info    0x00006e32       0x80 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_udivsi3.o)
+ .debug_info    0x00006eb2       0x80 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_dvmd_tls.o)
+ .debug_info    0x00006f32      0x10d /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memcpy.o)
+ .debug_info    0x0000703f      0x10f /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memset.o)
+ .debug_info    0x0000714e      0x126 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(strncpy.o)
+
+.debug_line     0x00000000     0x25b3
+ .debug_line    0x00000000       0xb8 application/main.o
+ .debug_line    0x000000b8      0x11f application/led.o
+ .debug_line    0x000001d7      0x22a application/proto.o
+ .debug_line    0x00000401      0x256 application/cmd.o
+ .debug_line    0x00000657       0xfd application/env.o
+ .debug_line    0x00000754       0x63 application/sort.o
+ .debug_line    0x000007b7      0x1e9 application/xxtea.o
+ .debug_line    0x000009a0       0xee application/dbgu.o
+ .debug_line    0x00000a8e      0x27d application/nRF24L01/nRF_API.o
+ .debug_line    0x00000d0b      0x2f5 application/nRF24L01/nRF_CMD.o
+ .debug_line    0x00001000       0x7e os/boot/Cstartup_SAM7.o
+ .debug_line    0x0000107e      0x101 os/core/list.o
+ .debug_line    0x0000117f      0x285 os/core/queue.o
+ .debug_line    0x00001404      0x47a os/core/tasks.o
+ .debug_line    0x0000187e      0x2fe os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+ .debug_line    0x00001b7c      0x101 os/core/ARM7_AT91SAM7S/port.o
+ .debug_line    0x00001c7d       0xc3 os/core/ARM7_AT91SAM7S/portISR.o
+ .debug_line    0x00001d40       0xd8 os/core/MemMang/heap_2.o
+ .debug_line    0x00001e18      0x2f9 os/usb/USB-CDC.o
+ .debug_line    0x00002111       0xad os/usb/USBIsr.o
+ .debug_line    0x000021be       0x82 /tmp/ccebOgZz.o
+ .debug_line    0x00002240       0x89 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_udivsi3.o)
+ .debug_line    0x000022c9       0x5d /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_dvmd_tls.o)
+ .debug_line    0x00002326       0xd6 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memcpy.o)
+ .debug_line    0x000023fc       0xdc /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memset.o)
+ .debug_line    0x000024d8       0xdb /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(strncpy.o)
+
+.debug_frame    0x00000000     0x1000
+ .debug_frame   0x00000000       0x3c application/main.o
+ .debug_frame   0x0000003c       0x60 application/led.o
+ .debug_frame   0x0000009c      0x104 application/proto.o
+ .debug_frame   0x000001a0      0x114 application/cmd.o
+ .debug_frame   0x000002b4       0x6c application/env.o
+ .debug_frame   0x00000320       0x2c application/sort.o
+ .debug_frame   0x0000034c       0x78 application/xxtea.o
+ .debug_frame   0x000003c4       0x48 application/dbgu.o
+ .debug_frame   0x0000040c      0x24c application/nRF24L01/nRF_API.o
+ .debug_frame   0x00000658      0x184 application/nRF24L01/nRF_CMD.o
+ .debug_frame   0x000007dc       0x28 os/boot/Cstartup_SAM7.o
+ .debug_frame   0x00000804       0x68 os/core/list.o
+ .debug_frame   0x0000086c       0xfc os/core/queue.o
+ .debug_frame   0x00000968      0x29c os/core/tasks.o
+ .debug_frame   0x00000c04      0x16c os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+ .debug_frame   0x00000d70       0x60 os/core/ARM7_AT91SAM7S/port.o
+ .debug_frame   0x00000dd0       0x80 os/core/ARM7_AT91SAM7S/portISR.o
+ .debug_frame   0x00000e50       0x44 os/core/MemMang/heap_2.o
+ .debug_frame   0x00000e94       0xd8 os/usb/USB-CDC.o
+ .debug_frame   0x00000f6c       0x20 os/usb/USBIsr.o
+ .debug_frame   0x00000f8c       0x28 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memcpy.o)
+ .debug_frame   0x00000fb4       0x20 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memset.o)
+ .debug_frame   0x00000fd4       0x2c /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(strncpy.o)
+
+.debug_loc      0x00000000     0x2390
+ .debug_loc     0x00000000       0x20 application/main.o
+ .debug_loc     0x00000020       0x3e application/led.o
+ .debug_loc     0x0000005e      0x2e3 application/proto.o
+ .debug_loc     0x00000341      0x3cf application/cmd.o
+ .debug_loc     0x00000710       0x5a application/env.o
+ .debug_loc     0x0000076a       0x70 application/sort.o
+ .debug_loc     0x000007da       0x13 application/xxtea.o
+ .debug_loc     0x000007ed       0x92 application/dbgu.o
+ .debug_loc     0x0000087f      0x35c application/nRF24L01/nRF_API.o
+ .debug_loc     0x00000bdb      0x291 application/nRF24L01/nRF_CMD.o
+ .debug_loc     0x00000e6c      0x2aa os/core/queue.o
+ .debug_loc     0x00001116      0x540 os/core/tasks.o
+ .debug_loc     0x00001656      0x4a7 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+ .debug_loc     0x00001afd       0x39 os/core/ARM7_AT91SAM7S/port.o
+ .debug_loc     0x00001b36      0x137 os/core/MemMang/heap_2.o
+ .debug_loc     0x00001c6d      0x3c2 os/usb/USB-CDC.o
+ .debug_loc     0x0000202f       0x67 os/usb/USBIsr.o
+ .debug_loc     0x00002096       0xfb /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memcpy.o)
+ .debug_loc     0x00002191       0xbf /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memset.o)
+ .debug_loc     0x00002250      0x140 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(strncpy.o)
+
+.debug_pubnames
+                0x00000000      0xf90
+ .debug_pubnames
+                0x00000000       0x34 application/main.o
+ .debug_pubnames
+                0x00000034       0x54 application/led.o
+ .debug_pubnames
+                0x00000088      0x188 application/proto.o
+ .debug_pubnames
+                0x00000210       0xfb application/cmd.o
+ .debug_pubnames
+                0x0000030b       0x50 application/env.o
+ .debug_pubnames
+                0x0000035b       0x1b application/sort.o
+ .debug_pubnames
+                0x00000376       0x77 application/xxtea.o
+ .debug_pubnames
+                0x000003ed       0x3b application/dbgu.o
+ .debug_pubnames
+                0x00000428      0x25e application/nRF24L01/nRF_API.o
+ .debug_pubnames
+                0x00000686      0x17b application/nRF24L01/nRF_CMD.o
+ .debug_pubnames
+                0x00000801       0x29 os/boot/Cstartup_SAM7.o
+ .debug_pubnames
+                0x0000082a       0x71 os/core/list.o
+ .debug_pubnames
+                0x0000089b       0x9f os/core/queue.o
+ .debug_pubnames
+                0x0000093a      0x219 os/core/tasks.o
+ .debug_pubnames
+                0x00000b53      0x177 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+ .debug_pubnames
+                0x00000cca       0x5a os/core/ARM7_AT91SAM7S/port.o
+ .debug_pubnames
+                0x00000d24       0xdb os/core/ARM7_AT91SAM7S/portISR.o
+ .debug_pubnames
+                0x00000dff       0x31 os/core/MemMang/heap_2.o
+ .debug_pubnames
+                0x00000e30       0xe9 os/usb/USB-CDC.o
+ .debug_pubnames
+                0x00000f19       0x1f os/usb/USBIsr.o
+ .debug_pubnames
+                0x00000f38       0x1d /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memcpy.o)
+ .debug_pubnames
+                0x00000f55       0x1d /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memset.o)
+ .debug_pubnames
+                0x00000f72       0x1e /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(strncpy.o)
+
+.debug_aranges  0x00000000      0x7e8
+ .debug_aranges
+                0x00000000       0x30 application/main.o
+ .debug_aranges
+                0x00000030       0x40 application/led.o
+ .debug_aranges
+                0x00000070       0x60 application/proto.o
+ .debug_aranges
+                0x000000d0       0x68 application/cmd.o
+ .debug_aranges
+                0x00000138       0x40 application/env.o
+ .debug_aranges
+                0x00000178       0x28 application/sort.o
+ .debug_aranges
+                0x000001a0       0x38 application/xxtea.o
+ .debug_aranges
+                0x000001d8       0x30 application/dbgu.o
+ .debug_aranges
+                0x00000208       0xf8 application/nRF24L01/nRF_API.o
+ .debug_aranges
+                0x00000300       0x98 application/nRF24L01/nRF_CMD.o
+ .debug_aranges
+                0x00000398       0x28 os/boot/Cstartup_SAM7.o
+ .debug_aranges
+                0x000003c0       0x48 os/core/list.o
+ .debug_aranges
+                0x00000408       0x60 os/core/queue.o
+ .debug_aranges
+                0x00000468       0xe0 os/core/tasks.o
+ .debug_aranges
+                0x00000548       0x98 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+ .debug_aranges
+                0x000005e0       0x38 os/core/ARM7_AT91SAM7S/port.o
+ .debug_aranges
+                0x00000618       0x58 os/core/ARM7_AT91SAM7S/portISR.o
+ .debug_aranges
+                0x00000670       0x30 os/core/MemMang/heap_2.o
+ .debug_aranges
+                0x000006a0       0x58 os/usb/USB-CDC.o
+ .debug_aranges
+                0x000006f8       0x28 os/usb/USBIsr.o
+ .debug_aranges
+                0x00000720       0x28 /tmp/ccebOgZz.o
+ .debug_aranges
+                0x00000748       0x20 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_udivsi3.o)
+ .debug_aranges
+                0x00000768       0x20 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/libgcc.a(_dvmd_tls.o)
+ .debug_aranges
+                0x00000788       0x20 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memcpy.o)
+ .debug_aranges
+                0x000007a8       0x20 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memset.o)
+ .debug_aranges
+                0x000007c8       0x20 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(strncpy.o)
+
+.debug_str      0x00000000     0x2892
+ .debug_str     0x00000000      0x14c application/main.o
+                                0x195 (size before relaxing)
+ .debug_str     0x0000014c      0x1fc application/led.o
+                                0x2bc (size before relaxing)
+ .debug_str     0x00000348      0x266 application/proto.o
+                                0x380 (size before relaxing)
+ .debug_str     0x000005ae      0x12d application/cmd.o
+                                0x243 (size before relaxing)
+ .debug_str     0x000006db      0x131 application/env.o
+                                0x252 (size before relaxing)
+ .debug_str     0x0000080c       0x23 application/sort.o
+                                 0x7f (size before relaxing)
+ .debug_str     0x0000082f       0x54 application/xxtea.o
+                                0x17a (size before relaxing)
+ .debug_str     0x00000883      0x183 application/dbgu.o
+                                0x346 (size before relaxing)
+ .debug_str     0x00000a06      0x25d application/nRF24L01/nRF_API.o
+                                0x32d (size before relaxing)
+ .debug_str     0x00000c63      0x3fc application/nRF24L01/nRF_CMD.o
+                                0x703 (size before relaxing)
+ .debug_str     0x0000105f       0x2b os/boot/Cstartup_SAM7.o
+                                0x14f (size before relaxing)
+ .debug_str     0x0000108a      0x12d os/core/list.o
+                                0x1f4 (size before relaxing)
+ .debug_str     0x000011b7      0x1fb os/core/queue.o
+                                0x384 (size before relaxing)
+ .debug_str     0x000013b2      0x555 os/core/tasks.o
+                                0x72d (size before relaxing)
+ .debug_str     0x00001907      0x714 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+                                0xa72 (size before relaxing)
+ .debug_str     0x0000201b       0xcc os/core/ARM7_AT91SAM7S/port.o
+                                0x1a6 (size before relaxing)
+ .debug_str     0x000020e7       0xb8 os/core/ARM7_AT91SAM7S/portISR.o
+                                0x136 (size before relaxing)
+ .debug_str     0x0000219f      0x10b os/core/MemMang/heap_2.o
+                                0x1d1 (size before relaxing)
+ .debug_str     0x000022aa      0x455 os/usb/USB-CDC.o
+                                0x55d (size before relaxing)
+ .debug_str     0x000026ff       0x51 os/usb/USBIsr.o
+                                0x159 (size before relaxing)
+ .debug_str     0x00002750       0xad /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memcpy.o)
+                                 0xe0 (size before relaxing)
+ .debug_str     0x000027fd       0x50 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memset.o)
+                                0x12a (size before relaxing)
+ .debug_str     0x0000284d       0x45 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(strncpy.o)
+                                0x140 (size before relaxing)
+
+.comment        0x00000000      0x19e
+ .comment       0x00000000       0x12 application/main.o
+ .comment       0x00000012       0x12 application/led.o
+ .comment       0x00000024       0x12 application/proto.o
+ .comment       0x00000036       0x12 application/cmd.o
+ .comment       0x00000048       0x12 application/env.o
+ .comment       0x0000005a       0x12 application/sort.o
+ .comment       0x0000006c       0x12 application/xxtea.o
+ .comment       0x0000007e       0x12 application/dbgu.o
+ .comment       0x00000090       0x12 application/nRF24L01/nRF_API.o
+ .comment       0x000000a2       0x12 application/nRF24L01/nRF_CMD.o
+ .comment       0x000000b4       0x12 os/boot/Cstartup_SAM7.o
+ .comment       0x000000c6       0x12 os/core/list.o
+ .comment       0x000000d8       0x12 os/core/queue.o
+ .comment       0x000000ea       0x12 os/core/tasks.o
+ .comment       0x000000fc       0x12 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+ .comment       0x0000010e       0x12 os/core/ARM7_AT91SAM7S/port.o
+ .comment       0x00000120       0x12 os/core/ARM7_AT91SAM7S/portISR.o
+ .comment       0x00000132       0x12 os/core/MemMang/heap_2.o
+ .comment       0x00000144       0x12 os/usb/USB-CDC.o
+ .comment       0x00000156       0x12 os/usb/USBIsr.o
+ .comment       0x00000168       0x12 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memcpy.o)
+ .comment       0x0000017a       0x12 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(memset.o)
+ .comment       0x0000018c       0x12 /usr/local/gnuarm-4.0.2/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/lib/libg.a(strncpy.o)
+
+.debug_ranges   0x00000000      0x248
+ .debug_ranges  0x00000000       0x20 application/cmd.o
+ .debug_ranges  0x00000020       0x30 application/nRF24L01/nRF_CMD.o
+ .debug_ranges  0x00000050       0x30 os/core/queue.o
+ .debug_ranges  0x00000080       0xa8 os/core/tasks.o
+ .debug_ranges  0x00000128       0x40 os/core/ARM7_AT91SAM7S/lib_AT91SAM7.o
+ .debug_ranges  0x00000168       0x38 os/core/MemMang/heap_2.o
+ .debug_ranges  0x000001a0       0x90 os/usb/USB-CDC.o
+ .debug_ranges  0x00000230       0x18 os/usb/USBIsr.o
