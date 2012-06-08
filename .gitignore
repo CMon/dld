@@ -1,0 +1,8 @@
+local.pri
+
+build/
+Makefile
+
+bin/debug/
+bin/release/
+

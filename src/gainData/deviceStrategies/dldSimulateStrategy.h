@@ -15,7 +15,7 @@
 #ifndef DLDSIMULATESTRATEGY_H
 #define DLDSIMULATESTRATEGY_H
 
-#include "../ui_hwSimMainWindow.h"
+#include "ui_hwSimMainWindow.h"
 #include "deviceStrategy.h"
 
 class QSettings;
