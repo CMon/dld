@@ -6,3 +6,4 @@ Makefile
 bin/debug/
 bin/release/
 
+*.pro.user
