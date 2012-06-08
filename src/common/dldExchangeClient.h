@@ -12,56 +12,52 @@
   * *                                                                       *
   * *************************************************************************
  */
-#ifndef __DLDEXCHANGECLIENT_H
-#define __DLDEXCHANGECLIENT_H
+#pragma once
 
-#include "3dPoint.h"
-#include "dldExchangeClientStrategy.h"
-#include "tagPositionInformation.h"
+#include <common/3dPoint.h>
+#include <common/dldExchangeClientStrategy.h>
+#include <common/tagPositionInformation.h>
 
 class DLDLog;
 
 class DLDDataExchangeClient : public QObject
 {
-	Q_OBJECT
-	public:
-		DLDDataExchangeClient (DLDLog * pLog);
-		~DLDDataExchangeClient ();
+Q_OBJECT
+public:
+	DLDDataExchangeClient (DLDLog * pLog);
+	~DLDDataExchangeClient ();
 
-		void		addExchangeMethod (int type, QString basePath, QString subPath, QString interface);
-		// class defines:
-		static const int TYPE_SSL	= 0;
-		static const int TYPE_DBUS	= 1;
+	void addExchangeMethod (int type, QString basePath, QString subPath, QString interface);
+	// class defines:
+	static const int TYPE_DBUS  = 1;
 
-		void			refreshTagInfos ();
-		QList<int>		getTagList ();
-		StrengthType		getStrengths (int tagId);
-		TagPositionInformation	getPosition (int tagId);
-		double			getMaximumAxisValue ();
+	void                   refreshTagInfos ();
+	QList<int>             getTagList ();
+	StrengthType           getStrengths (int tagId);
+	TagPositionInformation getPosition (int tagId);
+	double                 getMaximumAxisValue ();
 
-		void			refreshNodeInfos ();
-		QList<int>		getNodeList ();
-		ThreeDPoint		getNodeInformation (int nodeId);
+	void        refreshNodeInfos ();
+	QList<int>  getNodeList ();
+	ThreeDPoint getNodeInformation (int nodeId);
 
-	signals:
-		void newStrength (int tagId);
-		void newNode (int id);
-		void newPosition (int tagId);
-		void newMaximumAxisValue (double value);
+signals:
+	void newStrength (int tagId);
+	void newNode (int id);
+	void newPosition (int tagId);
+	void newMaximumAxisValue (double value);
 
-	private slots:
-		void newNodeInfo (int id, double x, double y, double z);
-		void newStrengthInfo (int deviceId, int tagId, double strength);
-		void newPositionInfo (int tagId, int timestamp, double x, double y, double z);
+private slots:
+	void newNodeInfo (int id, double x, double y, double z);
+	void newStrengthInfo (int deviceId, int tagId, double strength);
+	void newPositionInfo (int tagId, int timestamp, double x, double y, double z);
 
-	private:
-		DLDLog *				log;
-		QList<DLDExchangeClientStrategy *>	exchangeStrategies;
+private:
+	DLDLog *                           log;
+	QList<DLDExchangeClientStrategy *> exchangeStrategies;
 
-		QMap<int, ThreeDPoint>			nodeInfo;
-		QMap<int, StrengthType>			tagInfo;
-		QMap<int, TagPositionInformation>	positionInfo;
-		double					maximumAxisValue;
+	QMap<int, ThreeDPoint>            nodeInfo;
+	QMap<int, StrengthType>           tagInfo;
+	QMap<int, TagPositionInformation> positionInfo;
+	double                            maximumAxisValue;
 };
-
-#endif

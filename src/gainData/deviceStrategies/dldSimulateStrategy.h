@@ -12,11 +12,11 @@
   * *                                                                       *
   * *************************************************************************
  */
-#ifndef DLDSIMULATESTRATEGY_H
-#define DLDSIMULATESTRATEGY_H
+#pragma once
+
+#include <gainData/deviceStrategies/deviceStrategy.h>
 
 #include "ui_hwSimMainWindow.h"
-#include "deviceStrategy.h"
 
 class QSettings;
 class QTimer;
@@ -26,42 +26,41 @@ class QGraphicsEllipseItem;
 
 class DLDSimulateStrategy  : public DeviceStrategy
 {
-	Q_OBJECT
-	public:
-		DLDSimulateStrategy (QString configName, DLDLog * pLog);
-		~DLDSimulateStrategy ();
-		void connectDevices ();
-		void disconnectDevices ();
-		void addDevice (QString path);
-		void removeDevice (QString path);
-		double getMaximumAxisValue ();
+Q_OBJECT
+public:
+	DLDSimulateStrategy (QString configName, DLDLog * pLog);
+	~DLDSimulateStrategy ();
+	void connectDevices ();
+	void disconnectDevices ();
+	void addDevice (QString path);
+	void removeDevice (QString path);
+	double getMaximumAxisValue ();
 
-	private slots:
-		void			updateNodeData ();
-		void			updateStrengthData ();
-		void			updateTimerInterval (int value);
-		void			updateCircle ();
-		void			zoom (double zoomBy);
-		void			updateNodeRange (double value);
+private slots:
+	void updateNodeData ();
+	void updateStrengthData ();
+	void updateTimerInterval (int value);
+	void updateCircle ();
+	void zoom (double zoomBy);
+	void updateNodeRange (double value);
 
-	private:
-		void			drawCoordinationSystem ();
-		void			updateNodeData (int id);
-		void			updateCircleItem (int id);
-		void			saveSettings ();
-		void			loadSettings ();
+private:
+	void drawCoordinationSystem ();
+	void updateNodeData (int id);
+	void updateCircleItem (int id);
+	void saveSettings ();
+	void loadSettings ();
 
-		DLDLog *		log;
-		QSettings *		settings;
+	DLDLog *    log;
+	QSettings * settings;
 
-		QMainWindow *		mainWindow;
-		Ui::mainWindow		mainWindowUi;
+	QMainWindow *  mainWindow;
+	Ui::mainWindow mainWindowUi;
 
-		QTimer *		updateTimer;
-		int			fakeTagId;
+	QTimer * updateTimer;
+	int      fakeTagId;
 
-		QGraphicsEllipseItem *	circles[3];
-		QGraphicsScene *	scene;
+	QGraphicsEllipseItem * circles[3];
+	QGraphicsScene *       scene;
 };
 
-#endif

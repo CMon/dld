@@ -156,5 +156,6 @@ int setupUnixSignalHandlers ()
  */
 void sigChild (int signo)
 {
+	Q_UNUSED(signo)
 	exit (1);
 }

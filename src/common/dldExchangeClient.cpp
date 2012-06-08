@@ -21,14 +21,14 @@
  * @version 1.0
  * <br> Class for the DLD exchange client class
  */
-#include <QMap>
 
-#include "../common/3dPoint.h"
-#include "dldExchangeClient.h"
-#include "dldExchangeClientStrategy.h"
-#include "dldExchangeClientDBus.h"
-#include "dldExchangeClientSSL.h"
-#include "dldLog.h"
+#include <common/3dPoint.h>
+#include <common/dldExchangeClient.h>
+#include <common/dldExchangeClientDBus.h>
+#include <common/dldExchangeClientStrategy.h>
+#include <common/dldLog.h>
+
+#include <QMap>
 
 /**
  * @brief constructor for DLDDataExchangeClient class
@@ -58,8 +58,8 @@ DLDDataExchangeClient::~DLDDataExchangeClient ()
 }
 /**
  * @brief adds another Exchange Method to the List
- * @param type Either TYPE_SSL or TYPE_DBUS, one is adding a new SSL method and the other is adding a D-Bus method
- * @param basePath The base path on SSL its the host + port, on D-Bus its the URI
+ * @param type Either TYPE_DBUS or ...
+ * @param basePath The base path on tcp connections its the host + port, on D-Bus its the URI
  * @param subPath the sub path (used for the dBus strategy
  * @return
  *      void
@@ -69,9 +69,6 @@ void DLDDataExchangeClient::addExchangeMethod (int type, QString basePath, QStri
 	DLDExchangeClientStrategy *	newMethod;
 	switch (type)
 	{
-		case TYPE_SSL:
-			newMethod = new DLDExchangeClientSSL (log, basePath);
-			break;
 		case TYPE_DBUS:
 			newMethod = new DLDExchangeClientDBus (log, basePath, subPath, interface);
 			break;

@@ -1,0 +1,4 @@
+spell checking :
+	Coordination... -> cordinate
+
+complete remove of ssl connection to server instead use qt rpc service from qext

@@ -21,16 +21,16 @@
  * @version 1.0
  * <br> Class for the DLD server exchange strategies (controler)
  */
-#include "dldExchangeServer.h"
-#include "dldExchangeServerSSL.h"
-#include "dldExchangeServerDBusStrength.h"
-#include "dldExchangeServerDBusPosition.h"
-#include "dldExchangeServerStrategy.h"
-#include "dldLog.h"
+#include <common/dldExchangeServer.h>
+#include <common/dldExchangeServerDBusStrength.h>
+#include <common/dldExchangeServerDBusPosition.h>
+#include <common/dldExchangeServerStrategy.h>
+#include <common/dldLog.h>
 
 #include <QString>
 #include <QList>
 #include <QVariant>
+
 /**
  * @brief constructor for DLDDataExchange class
  * @param logAddress is the pointer of the parents log class
@@ -41,6 +41,7 @@ DLDDataExchangeServer::DLDDataExchangeServer (DLDLog * pLog)
 {
 	log = pLog;
 }
+
 /**
  * @brief destructor for DLDDataExchange class
  * @return
@@ -48,16 +49,15 @@ DLDDataExchangeServer::DLDDataExchangeServer (DLDLog * pLog)
  */
 DLDDataExchangeServer::~DLDDataExchangeServer ()
 {
-	for (int i = 0; i < exchangeStrategies.size(); ++i)
-	{
-		if (exchangeStrategies.at(i))
-			delete (exchangeStrategies.at(i));
+	for (int i = 0; i < exchangeStrategies.size(); ++i) {
+		if (exchangeStrategies.at(i)) delete (exchangeStrategies.at(i));
 	}
 }
+
 /**
  * @brief adds another Exchange Method to the List
- * @param type Either TYPE_SSL or TYPE_DBUS, one is adding a new SSL method and the other is adding a D-Bus method
- * @param basePath The base path on SSL its the host + port, on D-Bus its the URI
+ * @param type Adding the given type as exchange method
+ * @param basePath The base path on tcp connection its the host + port, on D-Bus its the URI
  * @param subPath the sub path (used for the dBus strategy
  * @return
  *      void
@@ -67,9 +67,6 @@ void DLDDataExchangeServer::addExchangeMethod (int type, QString basePath, QStri
 	DLDExchangeServerStrategy *	newMethod;
 	switch (type)
 	{
-		case TYPE_SSL:
-			newMethod = new DLDExchangeServerSSL (log, basePath);
-			break;
 		case TYPE_DBUS:
 			switch (dBusType)
 			{
@@ -86,6 +83,7 @@ void DLDDataExchangeServer::addExchangeMethod (int type, QString basePath, QStri
 	}
 	exchangeStrategies.append (newMethod);
 }
+
 /**
  * @brief slot: informs all strategies about the new node data
  * @param id	id of the node
@@ -97,9 +95,11 @@ void DLDDataExchangeServer::addExchangeMethod (int type, QString basePath, QStri
  */
 void DLDDataExchangeServer::updateNodeOnStrategies (int id, double x, double y, double z)
 {
-	for (int i = 0; i < exchangeStrategies.size(); i++)
+	for (int i = 0; i < exchangeStrategies.size(); i++) {
 		exchangeStrategies.at(i)->updateNode (id, x, y, z);
+	}
 }
+
 /**
  * @brief slot: informs all strategies about the new position data
  * @param tagId		id of the tag
@@ -112,9 +112,11 @@ void DLDDataExchangeServer::updateNodeOnStrategies (int id, double x, double y, 
  */
 void DLDDataExchangeServer::updatePositionOnStrategies (int tagId, int timestamp, double x, double y, double z)
 {
-	for (int i = 0; i < exchangeStrategies.size(); i++)
+	for (int i = 0; i < exchangeStrategies.size(); i++) {
 		exchangeStrategies.at(i)->updatePosition (tagId, timestamp, x, y, z);
+	}
 }
+
 /**
  * @brief slot: informs all strategies about the new strength data
  * @param deviceId	id of the node
@@ -125,9 +127,11 @@ void DLDDataExchangeServer::updatePositionOnStrategies (int tagId, int timestamp
  */
 void DLDDataExchangeServer::updateStrengthOnStrategies (int deviceId, int tagId, double strength)
 {
-	for (int i = 0; i < exchangeStrategies.size(); i++)
+	for (int i = 0; i < exchangeStrategies.size(); i++) {
 		exchangeStrategies.at(i)->updateStrength (deviceId, tagId, strength);
+	}
 }
+
 /**
  * @brief informs all strategies about the maximum axis value
  * @param maximumAxisValue	maximum axis value
@@ -136,6 +140,7 @@ void DLDDataExchangeServer::updateStrengthOnStrategies (int deviceId, int tagId,
  */
 void DLDDataExchangeServer::setMaximumAxisValue (double maximumAxisValue)
 {
-	for (int i = 0; i < exchangeStrategies.size(); i++)
+	for (int i = 0; i < exchangeStrategies.size(); i++) {
 		exchangeStrategies.at(i)->setMaximumAxisValue (maximumAxisValue);
+	}
 }

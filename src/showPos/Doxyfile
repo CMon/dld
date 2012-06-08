@@ -91,12 +91,10 @@ INPUT                  = ./ \
 			../common/dldExchangeClient.h \
 			../common/dldExchangeClientStrategy.h \
 			../common/dldExchangeClientDBus.h \
-			../common/dldExchangeClientSSL.h \
 			../common/dldMap.h \
 			../common/tagItem.h \
 			../common/dldExchangeClient.cpp \
 			../common/dldExchangeClientDBus.cpp \
-			../common/dldExchangeClientSSL.cpp \
 			../common/dldLog.cpp \
 			../common/dldMap.cpp \
 			../common/dldMapScene.cpp \

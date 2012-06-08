@@ -21,13 +21,14 @@
  * @version 1.0
  * <br> Class for the DLD show position class
  */
+#include "dldShowPos.h"
+
+#include <common/dldLog.h>
+#include <common/dldMapScene.h>
+
 #include <QtGui>
 
 #include "ui_selectConnectionDialog.h"
-#include "../common/dldLog.h"
-#include "../common/dldMapScene.h"
-
-#include "dldShowPos.h"
 
 /**
  * @brief constructor for DLDShowPos class
@@ -348,10 +349,7 @@ void DLDShowPos::connectToGenPos ()
 	if (selectConnectionDialog->exec () != QDialog::Accepted)
 		return ;
 
-	if (selectConnectionUi.dBusRadio->isChecked ())
-		connectToDbus ();
-	else if (selectConnectionUi.sslRadio->isChecked ())
-		connectToSSL ();
+	if (selectConnectionUi.dBusRadio->isChecked ())     connectToDbus();
 
 	connect (exchangeClient, SIGNAL(newPosition (int)), this, SLOT(updatePosition (int)));
 	connect (exchangeClient, SIGNAL(newNode (int)), this, SLOT(newNode (int)));
@@ -369,8 +367,6 @@ void DLDShowPos::disconnectFromGenPos ()
 {
 	if (currentConnectionType == CONN_DBUS)
 		log->debugLog ("TODO: disconnect From DBUS");
-	else if (currentConnectionType == CONN_SSL)
-		log->debugLog ("TODO: disconnect From SSL");
 	else
 		statusBar ()->showMessage (tr("not connected"));
 	emit connectedToGenPos (false);
@@ -385,18 +381,7 @@ void DLDShowPos::connectToDbus ()
 	currentConnectionType = CONN_DBUS;
 	exchangeClient->addExchangeMethod (DLDDataExchangeClient::TYPE_DBUS, "org.dld.genPos", "", "dld.provide.position");
 }
-/**
- * @brief connect through SSL
- * @return
- *      void
- */
-void DLDShowPos::connectToSSL ()
-{
-	QMessageBox::information(this, tr("Connect through SSL"),
-			   tr("Not yet implemented."));
-	currentConnectionType = CONN_SSL;
-	statusBar ()->showMessage (tr("not yet implemented"));
-}
+
 /**
  * @brief slot: this method is called when the exchange client got a new position.
  * @param tagId	id of the tag

@@ -12,55 +12,51 @@
   * *                                                                       *
   * *************************************************************************
  */
-#ifndef __DLDEXCHANGESERVERDBUSSTRENGTH_H
-#define __DLDEXCHANGESERVERDBUSSTRENGTH_H
+#pragma once
+
+#include <common/3dPoint.h>
+#include <common/dldExchangeServerStrategy.h>
+#include <common/strengthType.h>
 
 #include <QMap>
-
-#include "dldExchangeServerStrategy.h"
-#include "strengthType.h"
-#include "3dPoint.h"
+#include <QObject>
 
 class QVariant;
 class QString;
 class QDBusConnection;
 class DLDLog;
 
-class DLDExchangeServerDBusStrength : public DLDExchangeServerStrategy
+class DLDExchangeServerDBusStrength : public DLDExchangeServerStrategy, public QObject
 {
-	Q_OBJECT
-	Q_CLASSINFO("D-Bus Interface", "dld.provide.strength")
+Q_OBJECT
+Q_CLASSINFO("D-Bus Interface", "dld.provide.strength")
 
-	public:
-		DLDExchangeServerDBusStrength(DLDLog * pLog, QString connectionBasePath, QString subPath);
-		~DLDExchangeServerDBusStrength ();
-		void setMaximumAxisValue (double maximumAxisValue);
+public:
+	DLDExchangeServerDBusStrength(DLDLog * pLog, QString connectionBasePath, QString subPath);
+	~DLDExchangeServerDBusStrength ();
+	void setMaximumAxisValue (double maximumAxisValue);
 
-	public slots:
-		Q_SCRIPTABLE QString getTagList ();
-		Q_SCRIPTABLE QString getNodeList ();
-		Q_SCRIPTABLE QString getStrengths (int tagId);
-		Q_SCRIPTABLE QString getNodeInfo (int deviceId);
-		Q_SCRIPTABLE double getMaximumAxisValue ();
+public slots:
+	Q_SCRIPTABLE QString getTagList ();
+	Q_SCRIPTABLE QString getNodeList ();
+	Q_SCRIPTABLE QString getStrengths (int tagId);
+	Q_SCRIPTABLE QString getNodeInfo (int deviceId);
+	Q_SCRIPTABLE double getMaximumAxisValue ();
 
-	signals:
-		void updatedStrength (int deviceId, int tagId, double strength);
-		void updatedNode (int id, double x, double y, double z);
-		void updatedMaximumAxisValue (double value);
+signals:
+	void updatedStrength (int deviceId, int tagId, double strength);
+	void updatedNode (int id, double x, double y, double z);
+	void updatedMaximumAxisValue (double value);
 
-	private slots:
-		void updateNode (int id, double x, double y, double z);
-		void updateStrength (int deviceId, int tagId, double strength);
-		void updatePosition (int tagId, int timestamp, double x, double y, double z);
+private slots:
+	void updateNode (int id, double x, double y, double z);
+	void updateStrength (int deviceId, int tagId, double strength);
+	void updatePosition (int tagId, int timestamp, double x, double y, double z);
 
-	private:
-		DLDLog *		log;
-
-		QMap<int, ThreeDPoint>			nodeInfo;
-		QMap<int, StrengthType>			tagInfo;
-
-		QDBusConnection *			dBus;
-		double					maximumAxisValue;
+private:
+	DLDLog *                log;
+	QMap<int, ThreeDPoint>  nodeInfo;
+	QMap<int, StrengthType> tagInfo;
+	QDBusConnection *       dBus;
+	double                  maximumAxisValue;
 };
-
-#endif

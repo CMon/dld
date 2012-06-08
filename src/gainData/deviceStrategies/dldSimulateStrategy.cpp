@@ -21,13 +21,15 @@
  * @version 1.0
  * <br>Class for hardware simulation
  */
-#include "../../common/dldLog.h"
 #include "dldSimulateStrategy.h"
 
-#include <QMainWindow>
+#include <common/dldLog.h>
+
 #include <QGraphicsEllipseItem>
+#include <QMainWindow>
 #include <QSettings>
 #include <QTimer>
+
 /**
  * @brief constructor for DLDHwSim class
  * @param pLog pointer to log class
@@ -202,7 +204,8 @@ void DLDSimulateStrategy::disconnectDevices ()
  */
 void DLDSimulateStrategy::addDevice (QString path)
 {
-	; // do nothing
+	Q_UNUSED(path)
+	// do nothing
 }
 /**
  * @brief do nothing we are simulating we do not have devices
@@ -212,7 +215,9 @@ void DLDSimulateStrategy::addDevice (QString path)
  */
 void DLDSimulateStrategy::removeDevice (QString path)
 {
-	; // do nothing
+	Q_UNUSED(path)
+
+	// do nothing
 }
 /**
  * @brief retrieve the maximum axis value
@@ -376,6 +381,8 @@ void DLDSimulateStrategy::zoom (double zoomBy)
  */
 void DLDSimulateStrategy::updateNodeRange (double value)
 {
+	Q_UNUSED(value)
+
 /*	scene->clear ();
 	drawCoordinationSystem ();*/
 	log->infoLog ("This change will take effect after restart");

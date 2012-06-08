@@ -190,6 +190,11 @@ QString DLDExchangeServerDBusStrength::getNodeInfo (int deviceId)
  */
 void DLDExchangeServerDBusStrength::updatePosition (int tagId, int timestamp, double x, double y, double z)
 {
+	Q_UNUSED(tagId)
+	Q_UNUSED(timestamp)
+	Q_UNUSED(x)
+	Q_UNUSED(y)
+	Q_UNUSED(z)
 	// do nothing
 }
 /**
