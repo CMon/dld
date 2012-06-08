@@ -1,7 +1,7 @@
  /*
   * tagInfoDialog.h  - domestic location detection - the tag info dialog
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

@@ -1,7 +1,7 @@
  /*
   * dldGain.h  - domestic location detection - gain data daemon dldGain
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

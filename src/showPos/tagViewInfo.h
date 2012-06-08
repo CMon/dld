@@ -1,7 +1,7 @@
  /*
   * tagViewInfo.h  - domestic location detection - helper class for all the infos of a tag
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

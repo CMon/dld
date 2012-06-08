@@ -1,7 +1,7 @@
  /*
   * pdAdmin.h  - domestic location detection - person data administrator
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

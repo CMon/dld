@@ -1,7 +1,7 @@
  /*
   * dldGeneratePosition.h  - domestic location detection - generate position header
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

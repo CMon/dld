@@ -1,7 +1,7 @@
  /*
   * main.cpp  - domestic location detection - main for generate position daemon
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

@@ -1,7 +1,7 @@
  /*
   * 3dPoint.h  - domestic location detection - simple 3D point class
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

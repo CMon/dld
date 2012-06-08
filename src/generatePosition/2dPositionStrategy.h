@@ -1,7 +1,7 @@
  /*
   * 2dPositionStrategy.h  - domestic location detection - header for 2D position strategy
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

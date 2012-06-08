@@ -1,7 +1,7 @@
  /*
   * tagItem.cpp  - domestic location detection - class for the grahics item regarding a tag
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

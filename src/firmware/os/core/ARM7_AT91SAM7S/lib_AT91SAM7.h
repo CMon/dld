@@ -1359,7 +1359,7 @@ extern unsigned int AT91F_RTTReadValue (AT91PS_RTTC pRTTC);
    ***************************************************************************** */
 //*----------------------------------------------------------------------------
 //* \fn    AT91F_PITInit
-//* \brief System timer init : period in ‘second, system clock freq in MHz
+//* \brief System timer init : period in second, system clock freq in MHz
 //*----------------------------------------------------------------------------
 static inline void
 AT91F_PITInit (AT91PS_PITC pPITC,

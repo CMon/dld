@@ -1,7 +1,7 @@
  /*
   * dldShowPos.cpp  -  domestic location detection - show Position class
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

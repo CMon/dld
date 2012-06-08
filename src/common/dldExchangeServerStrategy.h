@@ -1,7 +1,7 @@
  /*
   * dldExchangeServerStrategy.cpp  - domestic location detection - gain data daemon Exchange Server Strat interface
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

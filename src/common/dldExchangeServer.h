@@ -1,7 +1,7 @@
  /*
   * dldExchangeServer.h  - domestic location detection - Exchange Server
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

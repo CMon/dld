@@ -1,7 +1,7 @@
  /*
   * dldMapScene.h  -  domestic location detection - map class for displaying the scen of a map
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *

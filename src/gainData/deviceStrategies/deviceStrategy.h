@@ -1,7 +1,7 @@
  /*
   * deviceStrategy.h  - domestic location detection - gain data daemon device strategy interf.
   *
-  * Copyright (c) by Simon Sch‰fer <Simon.Schaefer@koeln.de>
+  * Copyright (c) by Simon Sch√§fer <Simon.Schaefer@koeln.de>
   *
   * *************************************************************************
   * *                                                                       *
