@@ -19,14 +19,13 @@
 #include <common/tagPositionInformation.h>
 
 #include <QMap>
-#include <QObject>
 
 class QVariant;
 class QString;
 class QDBusConnection;
 class DLDLog;
 
-class DLDExchangeServerDBusPosition : public DLDExchangeServerStrategy, public QObject
+class DLDExchangeServerDBusPosition : public DLDExchangeServerStrategy
 {
 Q_OBJECT
 Q_CLASSINFO("D-Bus Interface", "dld.provide.position")
