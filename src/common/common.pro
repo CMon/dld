@@ -2,6 +2,9 @@
 
 QT += network dbus xml
 
+CONFIG += qxt
+QXT     += core network
+
 TEMPLATE = lib
 
 SOURCES += \
@@ -14,7 +17,8 @@ SOURCES += \
 	dldMap.cpp \
 	dldMapScene.cpp \
 	obCommunication.cpp \
-	tagItem.cpp
+	tagItem.cpp \
+    dldexchangeserverrpc.cpp
 
 HEADERS  += \
 	3dPoint.h \
@@ -32,4 +36,8 @@ HEADERS  += \
 	obCommunication.h \
 	strengthType.h \
 	tagItem.h \
-	tagPositionInformation.h
+	tagPositionInformation.h \
+    dldexchangeserverrpc.h
+
+LIBS += -LQxtCore
+INCLUDEPATH += /usr/include/qxt/
