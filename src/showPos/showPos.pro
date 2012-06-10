@@ -13,6 +13,7 @@ SOURCES += \
 
 HEADERS  += \
 	tagInfoDialog.h \
+	tagViewInfos.h \
 	dldShowPos.h 
 
 FORMS    += \

@@ -1,17 +1,12 @@
- /*
-  * obCommunication.cpp  - domestic location detection - OpenBeacon Communication
-  *
-  * Copyright (c) by Simon Schäfer <Simon.Schaefer@koeln.de>
-  *
-  * *************************************************************************
-  * *                                                                       *
-  * * This program is free software; you can redistribute it and/or modify  *
-  * * it under the terms of the GNU General Public License as published by  *
-  * * the Free Software Foundation; either version 2 of the License, or     *
-  * * (at your option) any later version.                                   *
-  * *                                                                       *
-  * *************************************************************************
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <simon.schaefer@koeln.de> wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return Simon Schäfer
+ * ----------------------------------------------------------------------------
  */
+
 /** @class OpenBeaconCommunication obCommunication.h
  *
  * @author Simon Schaefer
@@ -21,6 +16,10 @@
  * @version 1.0
  * <br> Class for communication with the OpenBeacon devices
  */
+#include "obCommunication.h"
+
+#include <common/dldLog.h>
+
 #include <QFile>
 #include <QThread>
 #include <QQueue>
@@ -31,9 +30,6 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <unistd.h>
-
-#include "obCommunication.h"
-#include "dldLog.h"
 
 /**
  * @brief constructor for OpenBeacon communication

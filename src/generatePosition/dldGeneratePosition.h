@@ -1,29 +1,21 @@
- /*
-  * dldGeneratePosition.h  - domestic location detection - generate position header
-  *
-  * Copyright (c) by Simon Schäfer <Simon.Schaefer@koeln.de>
-  *
-  * *************************************************************************
-  * *                                                                       *
-  * * This program is free software; you can redistribute it and/or modify  *
-  * * it under the terms of the GNU General Public License as published by  *
-  * * the Free Software Foundation; either version 2 of the License, or     *
-  * * (at your option) any later version.                                   *
-  * *                                                                       *
-  * *************************************************************************
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <simon.schaefer@koeln.de> wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return Simon Schäfer
+ * ----------------------------------------------------------------------------
  */
-#ifndef __DLDGENERATEPOSITION_H
-#define __DLDGENERATEPOSITION_H
+#pragma once
+
+#include <generatePosition/positionStrategy.h>
+#include <common/dldExchangeClient.h>
+#include <common/dldExchangeServer.h>
+#include <common/tagPositionInformation.h>
 
 #include <QObject>
 #include <QSettings>
 #include <QMap>
-
-#include "../common/dldExchangeServer.h"
-#include "../common/dldExchangeClient.h"
-#include "../common/tagPositionInformation.h"
-
-#include "positionStrategy.h"
 
 class DLDLog;
 
@@ -59,5 +51,3 @@ class DLDGeneratePosition : public QObject
 // not yet implemented
 // 		DLDMap *				mapHandler;
 };
-
-#endif

@@ -1,23 +1,15 @@
- /*
-  * dldGain.h  - domestic location detection - gain data daemon dldGain
-  *
-  * Copyright (c) by Simon Schäfer <Simon.Schaefer@koeln.de>
-  *
-  * *************************************************************************
-  * *                                                                       *
-  * * This program is free software; you can redistribute it and/or modify  *
-  * * it under the terms of the GNU General Public License as published by  *
-  * * the Free Software Foundation; either version 2 of the License, or     *
-  * * (at your option) any later version.                                   *
-  * *                                                                       *
-  * *************************************************************************
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <simon.schaefer@koeln.de> wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return Simon Schäfer
+ * ----------------------------------------------------------------------------
  */
-#ifndef __DLDGAIN_H
-#define __DLDGAIN_H
+#pragma once
 
-#include "../common/dldExchangeServer.h"
-
-#include "./deviceStrategies/deviceStrategy.h"
+#include <common/dldExchangeServer.h>
+#include <gainData/deviceStrategies/deviceStrategy.h>
 
 #include <QMap>
 #include <QList>
@@ -48,4 +40,3 @@ class DLDGain : public QObject
 		bool				running;
 		QString				usedStrategy;
 };
-#endif

@@ -12,5 +12,6 @@ SOURCES += \
 	main.cpp 
 
 HEADERS  += \
+	2dPositionStrategy.h \
 	dldGeneratePosition.h \
 	positionStrategy.h 

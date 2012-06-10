@@ -1,24 +1,21 @@
- /*
-  * main.cpp  - domestic location detection - OpenBeacon Configurator main
-  *
-  * Copyright (c) by Simon Schäfer <Simon.Schaefer@koeln.de>
-  *
-  * *************************************************************************
-  * *                                                                       *
-  * * This program is free software; you can redistribute it and/or modify  *
-  * * it under the terms of the GNU General Public License as published by  *
-  * * the Free Software Foundation; either version 2 of the License, or     *
-  * * (at your option) any later version.                                   *
-  * *                                                                       *
-  * *************************************************************************
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <simon.schaefer@koeln.de> wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return Simon Schäfer
+ * ----------------------------------------------------------------------------
  */
+
+#include <common/dldLog.h>
+#include <obConfig/obConfig.h>
+
 #include <QApplication>
 #include <QString>
 #include <QTextStream>
+
 #include <getopt.h>
 
-#include "obConfig.h"
-#include "../common/dldLog.h"
 
 // Predeclaration
 void usage (QString progname);
