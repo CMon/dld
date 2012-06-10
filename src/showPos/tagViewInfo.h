@@ -8,14 +8,16 @@
  */
 #pragma once
 
+#include <QPixmap>
+
 class TagViewInfo
 {
 public:
-	int		lastSeen;
-	QPixmap		image;
-	QString		name;
-	QString 	prename;
-	QColor		color;
-	QPointF		position;
-	QString		description;
+	int     lastSeen;
+	QPixmap image;
+	QString name;
+	QString prename;
+	QColor  color;
+	QPointF position;
+	QString description;
 };

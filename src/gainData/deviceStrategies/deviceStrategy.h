@@ -50,7 +50,7 @@ class DeviceStrategy : public QObject
 		/**
 		 * prints an example for the configuration
 		 */
-		void printSampleConfig () {};
+		void printSampleConfig () {}
 		/**
 		 * returns the maximum value of the device on one axis in one direction
 		 */
