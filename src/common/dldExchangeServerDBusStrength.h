@@ -19,15 +19,17 @@
 #include <common/strengthType.h>
 
 #include <QMap>
+#include <QObject>
 
 class QVariant;
 class QString;
 class QDBusConnection;
 class DLDLog;
 
-class DLDExchangeServerDBusStrength : public DLDExchangeServerStrategy
+class DLDExchangeServerDBusStrength : public QObject, public DLDExchangeServerStrategy
 {
 Q_CLASSINFO("D-Bus Interface", "dld.provide.strength")
+Q_OBJECT
 
 public:
 	DLDExchangeServerDBusStrength(DLDLog * pLog, QString connectionBasePath, QString subPath);

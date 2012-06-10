@@ -6,4 +6,5 @@ Makefile
 bin/debug/
 bin/release/
 
+qrc_*
 *.pro.user

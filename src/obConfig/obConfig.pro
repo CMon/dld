@@ -4,16 +4,14 @@ QT       += gui
 
 TARGET = OBConfig
 TEMPLATE = app
+LIBS += ../../bin/debug/libcommon.so
 
 SOURCES += \
-	../common/dldLog.cpp \
-	../common/obCommunication.cpp \
 	obConfig.cpp \
 	main.cpp 
 
 HEADERS  += \
-	obConfig.h \
-	../common/obCommunication.h 
+	obConfig.h
 
 FORMS    += \
 	mainWindow.ui \

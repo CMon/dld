@@ -14,19 +14,16 @@
  */
 #pragma once
 
-#include <QObject>
-
 /**
  * This is an interface for the exchange strategies
 */
-class DLDExchangeServerStrategy : public QObject
+class DLDExchangeServerStrategy
 {
-Q_OBJECT
 public:
 	/**
 	 * std. destructor
 	 */
-	~DLDExchangeServerStrategy (){};
+	~DLDExchangeServerStrategy (){}
 	/**
 	 * Used to update the node data
 	*/

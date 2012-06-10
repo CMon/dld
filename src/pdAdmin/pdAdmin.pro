@@ -4,9 +4,9 @@ QT       += gui sql
 
 TARGET = PDAdmin
 TEMPLATE = app
+LIBS += ../../bin/debug/libcommon.so
 
 SOURCES += \
-	../common/dldLog.cpp \
 	dldPdAdmin.cpp \
 	main.cpp 
 
@@ -14,5 +14,4 @@ HEADERS  += \
 	dldPdAdmin.h
 
 FORMS    += \
-	../common/connect2DBDialog.ui \
 	mainWindow.ui
