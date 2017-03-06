@@ -15,7 +15,7 @@ SOURCES += \
 HEADERS  += \
 	dldShowPos.h \
 	tagInfoDialog.h \
-	tagViewInfos.h \
+	tagViewInfo.h \
 
 FORMS    += \
 	../common/connect2DBDialog.ui \
