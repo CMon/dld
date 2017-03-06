@@ -20,9 +20,12 @@
 
 #include <common/dldLog.h>
 
+#include <QColorDialog>
+#include <QFileDialog>
+#include <QMessageBox>
 #include <QSettings>
-#include <QtSql>
 #include <QtGui>
+#include <QtSql>
 
 /**
  * @brief constructor for DLDPersonDataAdmin class
@@ -369,7 +372,7 @@ void DLDPersonDataAdmin::clearFields ()
 	mainWindowUi.preNameEdit->setText ("");
 	mainWindowUi.colorEdit->setText ("");
 	mainWindowUi.descriptionEdit->setText ("");
-	mainWindowUi.pictureLabel->setPixmap(NULL);
+	mainWindowUi.pictureLabel->setPixmap(QPixmap());
 	mainWindowUi.pictureLabel->setText ("no pic");
 	log->debugLog ("wipe out done.");
 }

@@ -20,7 +20,13 @@
 #include <common/dldLog.h>
 #include <common/dldMapScene.h>
 
-#include <QtGui>
+#include <QDockWidget>
+#include <QFileDialog>
+#include <QGraphicsView>
+#include <QMenuBar>
+#include <QMessageBox>
+#include <QStatusBar>
+#include <QToolBar>
 
 #include "ui_selectConnectionDialog.h"
 

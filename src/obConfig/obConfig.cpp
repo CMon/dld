@@ -181,7 +181,7 @@ void DLDConfigureOB::showPreferences ()
 	tableHeader << tr ("Command") << tr ("Command description");
 	preferences.commandTable->setColumnCount(2);
 	preferences.commandTable->setHorizontalHeaderLabels (tableHeader);
-	preferences.commandTable->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+	preferences.commandTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 	preferences.commandTable->setShowGrid(true);
 
 	QMap<QString, QString> cmdMap = getCommandMap ();
