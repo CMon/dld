@@ -3,6 +3,8 @@
 QT += network dbus xml
 
 TEMPLATE = lib
+CONFIG += staticlib
+DESTDIR = $${LIB_OUT}
 
 SOURCES += \
 	dldExchangeClient.cpp \

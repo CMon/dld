@@ -4,7 +4,8 @@ QT += gui
 
 TARGET = GeneratePosition
 TEMPLATE = app
-LIBS += ../../bin/debug/libcommon.so
+LIBS += -L$${LIB_OUT} -lcommon
+DESTDIR = $${BIN_OUT}
 
 SOURCES += \
 	2dPositionStrategy.cpp \

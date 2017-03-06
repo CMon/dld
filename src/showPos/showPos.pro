@@ -4,7 +4,8 @@ QT += gui sql
 
 TARGET = ShowPos
 TEMPLATE = app
-LIBS += ../../bin/debug/libcommon.so
+LIBS += -L$${LIB_OUT} -lcommon
+DESTDIR = $${BIN_OUT}
 
 SOURCES += \
 	dldShowPos.cpp \

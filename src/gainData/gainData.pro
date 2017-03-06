@@ -4,7 +4,8 @@ QT += gui network
 
 TARGET = GainData
 TEMPLATE = app
-LIBS += ../../bin/debug/libcommon.so
+LIBS += -L$${LIB_OUT} -lcommon
+DESTDIR = $${BIN_OUT}
 
 SOURCES += \
 	deviceStrategies/ddwrtstrategy.cpp \

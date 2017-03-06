@@ -1,4 +1,4 @@
-DLD_ROOT=$$PWD
+CONFIG += c++11
 
 exists($${DLD_ROOT}/local.pri) {
     include($${DLD_ROOT}/local.pri)
@@ -18,13 +18,10 @@ CONFIG(debug, debug|release)|CONFIG(DebugBuild) {
 CONFIG -= warn_off
 CONFIG += warn_on
 
-OBJECTS_DIR  = build/$${DEBUG_OR_RELEASE}
-MOC_DIR      = build/gen/moc
-UI_DIR       = build/gen/ui
-BIN_DIR      = $${DLD_ROOT}/bin/$${DEBUG_OR_RELEASE}
-DESTDIR      = $${BIN_DIR}
+LIB_OUT      = $${DLD_OUT}/lib
+BIN_OUT      = $${DLD_OUT}/bin
 
-INCLUDEPATH += $${EXT_INCLUDES} $${DLD_ROOT} build/gen . $${DLD_ROOT}/src
+INCLUDEPATH += $${EXT_INCLUDES} $${DLD_ROOT} $${OBJECTS_DIR} $${MOC_DIR} $${UI_DIR} . $${DLD_ROOT}/src
 DEPENDPATH  += $${DLD_ROOT}
 win32 {
     QMAKE_CXXFLAGS += /Gy /GR /nologo
@@ -40,8 +37,7 @@ win32 {
 
 QMAKE_LIBDIR += $${LIB_DIR} $${EXT_LIB_DIR}
 
-QMAKE_DISTCLEAN += $${DLD_ROOT}/libs/debug/*
-QMAKE_DISTCLEAN += $${DLD_ROOT}/libs/release/*
-QMAKE_DISTCLEAN += $${DLD_ROOT}/bin/debug/*
-QMAKE_DISTCLEAN += $${DLD_ROOT}/bin/release/*
-
+QMAKE_DISTCLEAN += $${DLD_OUT}/libs/debug/*
+QMAKE_DISTCLEAN += $${DLD_OUT}/libs/release/*
+QMAKE_DISTCLEAN += $${DLD_OUT}/bin/debug/*
+QMAKE_DISTCLEAN += $${DLD_OUT}/bin/release/*

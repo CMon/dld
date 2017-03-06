@@ -4,7 +4,8 @@ QT += gui
 
 TARGET = OBConfig
 TEMPLATE = app
-LIBS += ../../bin/debug/libcommon.so
+LIBS += -L$${LIB_OUT} -lcommon
+DESTDIR = $${BIN_OUT}
 
 SOURCES += \
 	main.cpp \
