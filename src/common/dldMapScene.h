@@ -19,37 +19,37 @@ class QColor;
 class DLDMapScene : public QGraphicsScene, public DLDMap
 {
 	Q_OBJECT
-	public:
-		DLDMapScene (DLDLog * pLog);
-		~DLDMapScene ();
+public:
+	DLDMapScene (DLDLog * pLog);
+	~DLDMapScene ();
 
-		void	addTagToScene (int tagId);
-		bool	isTagOnScene (int tagId);
+	void addTagToScene (int tagId);
+	bool isTagOnScene (int tagId);
 
-		void	setTagViewWidth (int width);
-		int	getTagViewWidth ();
+	void setTagViewWidth (int width);
+	int	getTagViewWidth ();
 
-		void	updateTagColor (int tagId, QColor color);
+	void updateTagColor (int tagId, QColor color);
 
-	signals:
-		void	mouseEnterTag (int tagId, int x, int y);
-		void	mouseLeaveTag ();
-		void	mouseMoveOverTag (int tagId, int x, int y);
+signals:
+	void mouseEnterTag (int tagId, int x, int y);
+	void mouseLeaveTag ();
+	void mouseMoveOverTag (int tagId, int x, int y);
 
-	public slots:
-		void	addTagItem (int tagId, QColor color);
-		void	setItemPosition (int tagId, QPointF pos);
-		void	setMaximumAxisValue (double value);
+public slots:
+	void addTagItem (int tagId, QColor color);
+	void setItemPosition (int tagId, QPointF pos);
+	void setMaximumAxisValue (double value);
 
-	private:
-		void			createCoordSystem ();
+private:
+	void createCoordSystem ();
 
-		DLDLog *		log;
-		QList <int>		tagsOnScene;
-		QMap <int, TagItem *>	tags;
+	DLDLog * log;
+	QList <int>	tagsOnScene;
+	QMap <int, TagItem *> tags;
 
-		int			tagViewWidth;
-		double			mapXMaximum;
-		double			mapYMaximum;
-		int			helpLineStep;
+	int tagViewWidth;
+	double 	mapXMaximum;
+	double 	mapYMaximum;
+	int helpLineStep;
 };
