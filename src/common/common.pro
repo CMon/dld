@@ -1,6 +1,6 @@
 !include(../../config.pri):error("base config file (config.pri) not available")
 
-QT += network dbus xml
+QT += network dbus xml widgets
 
 TEMPLATE = lib
 CONFIG += staticlib

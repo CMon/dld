@@ -1,6 +1,6 @@
 !include(../../config.pri):error("base config file (config.pri) not available")
 
-QT += gui network
+QT += network widgets
 
 TARGET = GainData
 TEMPLATE = app

@@ -1,6 +1,6 @@
 !include(../../config.pri):error("base config file (config.pri) not available")
 
-QT += gui sql
+QT += widgets sql
 
 TARGET = PDAdmin
 TEMPLATE = app

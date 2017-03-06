@@ -1,6 +1,6 @@
 !include(../../config.pri):error("base config file (config.pri) not available")
 
-QT += gui
+QT += widgets
 
 TARGET = OBConfig
 TEMPLATE = app
