@@ -18,6 +18,7 @@ HEADERS  += \
 	tagViewInfos.h \
 
 FORMS    += \
+	../common/connect2DBDialog.ui \
 	databaseListDock.ui \
 	personInfoWidget.ui \
 	selectConnectionDialog.ui \

@@ -15,4 +15,5 @@ HEADERS  += \
 	dldPdAdmin.h \
 
 FORMS += \
-	mainWindow.ui
+	../common/connect2DBDialog.ui \
+	mainWindow.ui \
