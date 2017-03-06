@@ -1,6 +1,6 @@
 !include(../../config.pri):error("base config file (config.pri) not available")
 
-QT += network widgets
+QT += network widgets dbus
 
 TARGET = GainData
 TEMPLATE = app

@@ -1,6 +1,6 @@
 !include(../../config.pri):error("base config file (config.pri) not available")
 
-QT += widgets sql
+QT += widgets sql dbus
 
 TARGET = ShowPos
 TEMPLATE = app
