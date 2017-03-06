@@ -71,7 +71,7 @@ void TagItem::hoverMoveEvent (QGraphicsSceneHoverEvent * event)
  * @return
  *      void
  */
-void TagItem::hoverLeaveEvent (QGraphicsSceneHoverEvent * event)
+void TagItem::hoverLeaveEvent (QGraphicsSceneHoverEvent * /*event*/)
 {
 	emit mouseLeaveTag ();
 }
