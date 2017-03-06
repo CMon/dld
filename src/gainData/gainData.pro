@@ -1,25 +1,24 @@
 !include(../../config.pri):error("base config file (config.pri) not available")
 
-QT       += gui network
+QT += gui network
 
 TARGET = GainData
 TEMPLATE = app
 LIBS += ../../bin/debug/libcommon.so
 
 SOURCES += \
-	deviceStrategies/obUSBStrategy.cpp \
+	deviceStrategies/ddwrtstrategy.cpp \
 	deviceStrategies/dldSimulateStrategy.cpp \
+	deviceStrategies/obUSBStrategy.cpp \
 	dldGain.cpp \
-        main.cpp \
-        deviceStrategies/ddwrtstrategy.cpp
+	main.cpp \
 
-HEADERS  += \
+HEADERS += \
+	deviceStrategies/ddwrtstrategy.h \
 	deviceStrategies/deviceStrategy.h \
-	deviceStrategies/obUSBStrategy.h \
 	deviceStrategies/dldSimulateStrategy.h \
-        dldGain.h \
-        deviceStrategies/ddwrtstrategy.h
+	deviceStrategies/obUSBStrategy.h \
+	dldGain.h \
 
-FORMS    += \
+FORMS += \
 	deviceStrategies/hwSimMainWindow.ui
-

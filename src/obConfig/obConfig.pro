@@ -1,22 +1,21 @@
 !include(../../config.pri):error("base config file (config.pri) not available")
 
-QT       += gui 
+QT += gui
 
 TARGET = OBConfig
 TEMPLATE = app
 LIBS += ../../bin/debug/libcommon.so
 
 SOURCES += \
+	main.cpp \
 	obConfig.cpp \
-	main.cpp 
 
 HEADERS  += \
 	obConfig.h
 
 FORMS    += \
-	mainWindow.ui \
-	preferences.ui \
-	obConfiguratorHelp.ui \
 	aboutOpenBeacon.ui \
-	replaceCommandsDialog.ui 
-
+	mainWindow.ui \
+	obConfiguratorHelp.ui \
+	preferences.ui \
+	replaceCommandsDialog.ui \

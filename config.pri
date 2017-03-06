@@ -5,14 +5,14 @@ exists($${DLD_ROOT}/local.pri) {
 }
 
 CONFIG(debug, debug|release)|CONFIG(DebugBuild) {
-        CONFIG -= debug release
-        CONFIG += debug
-        DEBUG_OR_RELEASE = debug
+    CONFIG -= debug release
+    CONFIG += debug
+    DEBUG_OR_RELEASE = debug
 } else {
-        CONFIG -= debug release
-        CONFIG += release
-        DEBUG_OR_RELEASE = release
-        DEFINES += NDEBUG
+    CONFIG -= debug release
+    CONFIG += release
+    DEBUG_OR_RELEASE = release
+    DEFINES += NDEBUG
 }
 
 CONFIG -= warn_off

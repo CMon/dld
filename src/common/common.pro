@@ -3,7 +3,6 @@
 QT += network dbus xml
 
 CONFIG += qxt
-QXT     += core network
 
 TEMPLATE = lib
 
@@ -13,21 +12,22 @@ SOURCES += \
 	dldExchangeServer.cpp \
 	dldExchangeServerDBusPosition.cpp \
 	dldExchangeServerDBusStrength.cpp \
+	dldexchangeserverrpc.cpp \
 	dldLog.cpp \
 	dldMap.cpp \
 	dldMapScene.cpp \
 	obCommunication.cpp \
 	tagItem.cpp \
-    dldexchangeserverrpc.cpp
 
 HEADERS  += \
 	3dPoint.h \
-	dldExchangeClientDBus.h \
 	dldExchangeClient.h \
+	dldExchangeClientDBus.h \
 	dldExchangeClientStrategy.h \
+	dldExchangeServer.h \
 	dldExchangeServerDBusPosition.h \
 	dldExchangeServerDBusStrength.h \
-	dldExchangeServer.h \
+	dldexchangeserverrpc.h \
 	dldExchangeServerStrategy.h \
 	dldLog.h \
 	dldMap.h \
@@ -37,7 +37,6 @@ HEADERS  += \
 	strengthType.h \
 	tagItem.h \
 	tagPositionInformation.h \
-    dldexchangeserverrpc.h
 
 LIBS += -LQxtCore
 INCLUDEPATH += /usr/include/qxt/

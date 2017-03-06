@@ -1,9 +1,9 @@
 !include(../../config.pri):error("base config file (config.pri) not available")
 
-QT       += gui
+QT += gui
 
 TARGET = MapGen
 TEMPLATE = app
 
-FORMS    += \
+FORMS += \
 	deviceStrategies/hwSimMainWindow.ui
