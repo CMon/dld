@@ -795,6 +795,8 @@ void DLDShowPos::getNewData (int tagId)
  */
 void DLDShowPos::addNodeInfo (int nodeId, QPointF position)
 {
+	Q_UNUSED(nodeId)
+	Q_UNUSED(position)
 	qCDebug(SHOWPOS) << "TODO: addNodeInfo";
 }
 /**
