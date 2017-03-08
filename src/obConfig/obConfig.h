@@ -48,7 +48,7 @@ private slots:
 	void			updateGroupBoxVisibility (int index);
 	void			showHelp ();
 	void			executeCommand ();
-	void			openNewDevice (int index);
+	void			openNewDevice ();
 	void			receivedNewData (QString answer);
 	void			writeFailed ();
 	void			clearConsole ();

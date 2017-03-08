@@ -116,7 +116,7 @@ void DLDConfigureOB::connectSignals ()
 	connect(mainWindow.commandCombo,	SIGNAL(highlighted (int)), this, SLOT(commandHighlighted (int)));
 	connect(mainWindow.commandCombo,	SIGNAL(currentIndexChanged (int)), this, SLOT(updateCommandBoxStatusTip (int)));
 	connect(mainWindow.deviceCombo,		SIGNAL(currentIndexChanged (int)), this, SLOT(updateGroupBoxVisibility (int)));
-	connect(mainWindow.deviceCombo,		SIGNAL(activated (int)), this, SLOT(openNewDevice (int)));
+	connect(mainWindow.deviceCombo,		SIGNAL(activated (int)), this, SLOT(openNewDevice ()));
 
 	// connect device
 	connect(device,				SIGNAL(newData (QString)), this, SLOT(receivedNewData (QString)));
@@ -434,7 +434,7 @@ void DLDConfigureOB::executeCommand ()
  * @return
  *	void
  */
-void DLDConfigureOB::openNewDevice (int index)
+void DLDConfigureOB::openNewDevice ()
 {
 	// only open if it is a ob device if it is for flashing then opening would block it
 	if (mainWindow.deviceCombo->currentText ().startsWith (settings->value("FlashBasepath", "ttyUSB").toString ()))
