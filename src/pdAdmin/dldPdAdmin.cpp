@@ -27,22 +27,15 @@
 #include <QtGui>
 #include <QtSql>
 
+Q_LOGGING_CATEGORY(PD_ADMIN, "dld.pdAdmin")
+
 /**
  * @brief constructor for DLDPersonDataAdmin class
- * @param logLevel verboxity level for logging
- * @param logFile file for logging
- * @return
- *      void
  */
-DLDPersonDataAdmin::DLDPersonDataAdmin (int logLevel, QString logFile)
+DLDPersonDataAdmin::DLDPersonDataAdmin ()
 {
-	log = new DLDLog ();
-	log->setLogLevel (logLevel);
-	if (!logFile.isEmpty())
-		log->setLogFile (logFile);
-
 	settings = new QSettings ("DLD", "Person data administrator application");
-	log->infoLog (QString ("Settings will be stored in: %1.").arg (settings->fileName ()));
+	qCInfo(PD_ADMIN) << QString ("Settings will be stored in: %1.").arg (settings->fileName ());
 
 	mainWindowUi.setupUi (this);
 
@@ -60,8 +53,6 @@ DLDPersonDataAdmin::DLDPersonDataAdmin (int logLevel, QString logFile)
  */
 DLDPersonDataAdmin::~DLDPersonDataAdmin ()
 {
-	if (log)
-		delete (log);
 	if (settings)
 	{
 		settings->sync ();
@@ -178,15 +169,15 @@ bool DLDPersonDataAdmin::connect2DB (QString type, QString host, int port, QStri
 
 	if (!database.isValid ())
 	{
-		log->errorLog (QString ("Could not create database object with the type %1").arg (type));
+		qCWarning(PD_ADMIN) << QString ("Could not create database object with the type %1").arg (type);
 		return (false);
 	}
 	if (!database.open ())
 	{
-		log->errorLog ("Could not open database");
+		qCWarning(PD_ADMIN) << "Could not open database";
 		return (false);
 	}
-	log->infoLog (QString ("Connected to DB %1").arg (dbName));
+	qCInfo(PD_ADMIN) << QString ("Connected to DB %1").arg (dbName);
 	mainWindowUi.databaseEdit->setText (dbName);
 	refreshEntries ();
 	return (true);
@@ -242,7 +233,7 @@ void DLDPersonDataAdmin::deleteEntry ()
 		pictureMap.remove (tagId);
 		clearFields ();
 		refreshEntries ();
-		log->infoLog (QString ("Entry with key %1 deleted.").arg (tagId));
+		qCInfo(PD_ADMIN) << QString ("Entry with key %1 deleted.").arg (tagId);
 	}
 }
 /**
@@ -291,7 +282,7 @@ void DLDPersonDataAdmin::commitChanges ()
 	if (query.lastError ().type () != QSqlError::NoError)
 	{
 		QMessageBox::critical (this, tr ("Error"), query.lastError ().databaseText ());
-		log->errorLog (query.lastError ().databaseText());
+		qCWarning(PD_ADMIN) << query.lastError ().databaseText();
 	}
 	clearFields ();
 	refreshEntries ();
@@ -321,12 +312,12 @@ void DLDPersonDataAdmin::refreshEntries ()
 	int descriptionFieldNo = query.record().indexOf("description");
 	while (query.next())
 	{
-		log->infoLog (QString ("SQL Incoming: TagId: %1 Name: %2 Prename: %3 Color: %4Picture: BLOB Description: %5")
+		qCInfo(PD_ADMIN) << QString ("SQL Incoming: TagId: %1 Name: %2 Prename: %3 Color: %4Picture: BLOB Description: %5")
 				.arg(query.value(tagIdFieldNo).toInt())
 				.arg(query.value(nameFieldNo).toString())
 				.arg(query.value(prenameFieldNo).toString())
 				.arg(query.value(colorFieldNo).toString())
-				.arg(query.value(descriptionFieldNo).toString()));
+				.arg(query.value(descriptionFieldNo).toString());
 		QTableWidgetItem * tagIdItem = new QTableWidgetItem(query.value(tagIdFieldNo).toString());
 		QTableWidgetItem * nameItem = new QTableWidgetItem(query.value(nameFieldNo).toString());
 		QTableWidgetItem * prenameItem = new QTableWidgetItem(query.value(prenameFieldNo).toString());
@@ -366,7 +357,7 @@ void DLDPersonDataAdmin::refreshEntries ()
  */
 void DLDPersonDataAdmin::clearFields ()
 {
-	log->debugLog ("wiping out the fields...");
+	qCDebug(PD_ADMIN) << "wiping out the fields...";
 	mainWindowUi.tagIdSpin->setValue (0);
 	mainWindowUi.nameEdit->setText ("");
 	mainWindowUi.preNameEdit->setText ("");
@@ -374,7 +365,7 @@ void DLDPersonDataAdmin::clearFields ()
 	mainWindowUi.descriptionEdit->setText ("");
 	mainWindowUi.pictureLabel->setPixmap(QPixmap());
 	mainWindowUi.pictureLabel->setText ("no pic");
-	log->debugLog ("wipe out done.");
+	qCDebug(PD_ADMIN) << "wipe out done.";
 }
 /**
  * @brief slot: fills the entry fields with the data from the

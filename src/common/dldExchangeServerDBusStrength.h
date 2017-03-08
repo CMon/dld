@@ -18,7 +18,6 @@
 class QVariant;
 class QString;
 class QDBusConnection;
-class DLDLog;
 
 class DLDExchangeServerDBusStrength : public QObject, public DLDExchangeServerStrategy
 {
@@ -26,7 +25,7 @@ Q_CLASSINFO("D-Bus Interface", "dld.provide.strength")
 Q_OBJECT
 
 public:
-	DLDExchangeServerDBusStrength(DLDLog * pLog, QString connectionBasePath, QString subPath);
+	DLDExchangeServerDBusStrength(QString connectionBasePath, QString subPath);
 	~DLDExchangeServerDBusStrength ();
 	void setMaximumAxisValue (double maximumAxisValue);
 
@@ -48,7 +47,6 @@ private slots:
 	void updatePosition (int tagId, int timestamp, double x, double y, double z);
 
 private:
-	DLDLog *                log;
 	QMap<int, ThreeDPoint>  nodeInfo;
 	QMap<int, StrengthType> tagInfo;
 	QDBusConnection *       dBus;

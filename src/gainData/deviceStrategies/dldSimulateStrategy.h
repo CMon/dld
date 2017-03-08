@@ -14,7 +14,6 @@
 
 class QSettings;
 class QTimer;
-class DLDLog;
 class QMainWindow;
 class QGraphicsEllipseItem;
 
@@ -22,7 +21,7 @@ class DLDSimulateStrategy  : public DeviceStrategy
 {
 Q_OBJECT
 public:
-	DLDSimulateStrategy (QString configName, DLDLog * pLog);
+	DLDSimulateStrategy (QString configName);
 	~DLDSimulateStrategy ();
 	void connectDevices ();
 	void disconnectDevices ();
@@ -45,7 +44,6 @@ private:
 	void saveSettings ();
 	void loadSettings ();
 
-	DLDLog *    log;
 	QSettings * settings;
 
 	QMainWindow *  mainWindow;

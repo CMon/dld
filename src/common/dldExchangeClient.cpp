@@ -25,16 +25,15 @@
 
 #include <QMap>
 
+Q_LOGGING_CATEGORY(EXCHANGE_CLIENT, "dld.exchangeClient")
+
+
 /**
  * @brief constructor for DLDDataExchangeClient class
- * @param pLog is the pointer of the parents log class
- * @return
- *      void
  */
-DLDDataExchangeClient::DLDDataExchangeClient (DLDLog * pLog)
+DLDDataExchangeClient::DLDDataExchangeClient ()
 	: maximumAxisValue (0)
 {
-	log = pLog;
 }
 /**
  * @brief destructor for DLDDataExchangeClient class
@@ -65,7 +64,7 @@ void DLDDataExchangeClient::addExchangeMethod (int type, QString basePath, QStri
 	switch (type)
 	{
 		case TYPE_DBUS:
-			newMethod = new DLDExchangeClientDBus (log, basePath, subPath, interface);
+			newMethod = new DLDExchangeClientDBus (basePath, subPath, interface);
 			break;
 		default:
 			// do nothing if the programmer chosed the wrong type.
@@ -173,7 +172,7 @@ QList<int> DLDDataExchangeClient::getNodeList ()
 	rtList.clear ();
 	if (nodeInfo.isEmpty())
 	{
-		log->debugLog ("No nodes in list.");
+		qCDebug(EXCHANGE_CLIENT) << "No nodes in list.";
 		return (rtList);
 	}
 	QMapIterator<int, ThreeDPoint>	i(nodeInfo);

@@ -15,14 +15,13 @@
 #include <QList>
 
 class QSettings;
-class DLDLog;
 
 class OpenBeaconUSBStrategy : public DeviceStrategy
 {
 	Q_OBJECT
 
 	public:
-		OpenBeaconUSBStrategy (QString configName, DLDLog * pLog);
+		OpenBeaconUSBStrategy (QString configName);
 		~OpenBeaconUSBStrategy ();
 		void connectDevices ();
 		void disconnectDevices ();
@@ -48,6 +47,5 @@ class OpenBeaconUSBStrategy : public DeviceStrategy
 		QList<DeviceInformation *>			deviceInfos;
 		QMap<QString, OpenBeaconCommunication *>	devices;
 		QSettings *					settings;
-		DLDLog *					log;
 		int						maxPackages;
 };

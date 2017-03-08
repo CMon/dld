@@ -36,14 +36,12 @@
 #include "ui_obConfiguratorHelp.h"
 #include "ui_replaceCommandsDialog.h"
 
+Q_LOGGING_CATEGORY(OBCONFIG, "dld.obConfig")
 
 /**
  * @brief constructor for OpenBeacon Configurator
- * @param logLevel the logLevel which should be used for the application
- * @return
- *      void
  */
-DLDConfigureOB::DLDConfigureOB (int logLevel)
+DLDConfigureOB::DLDConfigureOB ()
 {
 // settings
 	settings = new QSettings ("DLD", "OpenBeacon Configurator");
@@ -53,20 +51,8 @@ DLDConfigureOB::DLDConfigureOB (int logLevel)
 	int windowHeight = settings->value("windowHeight", 531).toInt ();
 	showRX = settings->value("showRX", false).toBool ();
 
-// set logging
-	QString logFile = settings->value("logFile", "").toString ();
-	log = new DLDLog();
-	log->setLogLevel (logLevel);
-	if (!logFile.isEmpty())
-	{
-		log->setLogType (DLDLog::LOG_TO_FILE);
-		log->setLogFile (logFile);
-		log->infoLog ("logging to file.");
-	} else
-		log->infoLog ("logging to console.");
-
 // device
-	device = new OpenBeaconCommunication (log);
+	device = new OpenBeaconCommunication ();
 
 // ui
 	mainWindow.setupUi (this);
@@ -103,7 +89,6 @@ DLDConfigureOB::~DLDConfigureOB ()
 	batchProcess->waitForFinished (300000); // wait up to 5min to finish flashing
 	delete (batchProcess);
 	delete (device);
-	delete (log);
 }
 /**
  * @brief connect all buttons of the ui
@@ -142,7 +127,6 @@ void DLDConfigureOB::connectSignals ()
 	connect(this,		SIGNAL(commandListChanged ()),		this, SLOT(refillCommandList ()));
 	connect(this,		SIGNAL(devicepathsChanged ()),		this, SLOT(refreshDevices ()));
 	connect(refreshTimer,	SIGNAL(timeout()),			this, SLOT(refreshDevices ()));
-	connect(this,		SIGNAL(logFileChanged (QString)),	this, SLOT(changeLogFile (QString)));
 	connect(batchProcess,	SIGNAL(readyReadStandardOutput ()),	this, SLOT(addCharToConsole ()));
 	connect(batchProcess,	SIGNAL(error (QProcess::ProcessError)),	this, SLOT(printProcessError (QProcess::ProcessError)));
 	connect(batchProcess,	SIGNAL(finished (int, QProcess::ExitStatus)),this, SLOT(processFinished (int, QProcess::ExitStatus)));
@@ -168,11 +152,9 @@ void DLDConfigureOB::showPreferences ()
 	preferences.setupUi (preferenceDialog);
 
 	// fill with defaults: (from settings)
-	QString logFile = settings->value("logFile", "").toString ();
 	preferences.flashBasepathEdit->setText (settings->value("FlashBasepath", "ttyUSB").toString ());
 	preferences.openBeaconBasepathEdit->setText (settings->value("OpenBeaconBasepath", "ttyACM").toString ());
 	preferences.refreshSpin->setValue (settings->value("DeviceRefreshRate", 5).toInt ());
-	preferences.logFileEdit->setText (logFile);
 	preferences.sam7PathEdit->setText (settings->value("sam7Path", "/usr/local/bin/sam7").toString ());
 	preferences.showTagPacketsCheck->setChecked (showRX);
 
@@ -199,7 +181,6 @@ void DLDConfigureOB::showPreferences ()
 	// connect buttons:
 	connect(preferences.addButton,		SIGNAL(clicked ()), this, SLOT(insertCommandTableRow ()));
 	connect(preferences.deleteButton,	SIGNAL(clicked ()), this, SLOT(deleteCommandTableRow ()));
-	connect(preferences.logFileButton,	SIGNAL(clicked ()), this, SLOT(selectLogFile ()));
 	connect(preferences.sam7PathButton,	SIGNAL(clicked ()), this, SLOT(selectSam7File ()));
 	connect(preferences.defaultCommandsButton,SIGNAL(clicked ()), this, SLOT(fillDefaultCommands ()));
 
@@ -217,16 +198,8 @@ void DLDConfigureOB::showPreferences ()
 		showRX = preferences.showTagPacketsCheck->isChecked();
 		settings->setValue("sam7Path", preferences.sam7PathEdit->text ());
 
-		QString newLogFile = preferences.logFileEdit->text();
-		if (logFile != newLogFile)
-		{
-			emit logFileChanged (newLogFile);
-			settings->setValue("logFile", newLogFile);
-			log->infoLog (QString("Logpath changed to: %1").arg(newLogFile));
-		}
-
 		QMap<QString, QString> newCmdMap;
-		log->debugLog ("Current command list:");
+		qCDebug(OBCONFIG) << "Current command list:";
 		for (int row = 0; row < preferences.commandTable->rowCount(); row++)
 		{
 			QTableWidgetItem *cmdNameItem = preferences.commandTable->item(row, 0);
@@ -234,7 +207,7 @@ void DLDConfigureOB::showPreferences ()
 			if (cmdNameItem && cmdDescItem)
 			{
 				newCmdMap.insert (cmdNameItem->text(), cmdDescItem->text());
-				log->debugLog (QString ("Name: %1\tDesc: %2").arg(cmdNameItem->text()).arg(cmdDescItem->text()));
+				qCDebug(OBCONFIG) << QString ("Name: %1\tDesc: %2").arg(cmdNameItem->text()).arg(cmdDescItem->text());
 			}
 		}
 		writeCommandMap (newCmdMap);
@@ -263,7 +236,7 @@ void DLDConfigureOB::deleteCommandTableRow ()
 		return;
 	if (QMessageBox::question (this, tr("Delete command"), tr("Are you sure you want to delete the selected command?"), QMessageBox::Yes, QMessageBox::No) == QMessageBox::No)
 		return;
-	log->debugLog (QString ("Row %1 deleted.").arg (currentRow));
+	qCDebug(OBCONFIG) << QString ("Row %1 deleted.").arg (currentRow);
 	preferences.commandTable->removeRow (currentRow);
 }
 /**
@@ -357,12 +330,12 @@ void DLDConfigureOB::selectFlashImage ()
 {
 	QString lastImagePath = settings->value("lastFlashImagePath", QDir::homePath()).toString ();
 	QString filepath = QFileDialog::getOpenFileName(0, tr ("Choose an image to flash"), lastImagePath, "binary (*.bin)");
-	log->debugLog (QString("Filepath selected: %1").arg(filepath));
+	qCDebug(OBCONFIG) << QString("Filepath selected: %1").arg(filepath);
 	mainWindow.imagepathEdit->setText (filepath);
 	if (!filepath.isEmpty())
 	{
 		settings->setValue("lastFlashImagePath", filepath);
-		log->debugLog (QString("lastFlashImagePath changed: %1").arg(filepath));
+		qCDebug(OBCONFIG) << QString("lastFlashImagePath changed: %1").arg(filepath);
 	}
 }
 /**
@@ -440,27 +413,6 @@ void DLDConfigureOB::aboutOpenBeacon ()
 	aboutOBDialog->exec ();
 	delete (aboutOBDialog);
 }
-
-/**
- * @brief slot: shows a file dialog to select a log file
- * @return
- *	void
- */
-void DLDConfigureOB::selectLogFile()
-{
-	QString logFile = settings->value("logFile", "").toString ();
-	QString filepath = QFileDialog::getSaveFileName (this, tr("Save log to"), logFile, "log files (*.log)");
-	preferences.logFileEdit->setText (filepath);
-}
-/**
- * @brief slot: changes the log file
- * @return
- *	void
- */
-void DLDConfigureOB::changeLogFile (QString logFilePath)
-{
-	log->setLogFile (logFilePath);
-}
 /**
  * @brief slot: execute the selected command
  * @return
@@ -495,28 +447,28 @@ void DLDConfigureOB::openNewDevice (int index)
 	QString deviceName = mainWindow.deviceCombo->currentText ().prepend("/dev/");
 	if (deviceName == "/dev/")
 	{
-		log->infoLog (QString("Close device: %1").arg(device->getDevicePath()));
+		qCInfo(OBCONFIG) << QString("Close device: %1").arg(device->getDevicePath());
 		device->stop ();
 		return;
 	}
-	log->infoLog (QString ("Open device: %1").arg(deviceName));
+	qCInfo(OBCONFIG) << QString ("Open device: %1").arg(deviceName);
 	device->setDevicePath (deviceName);
 	int rtc = device->startCommunication ();
 	if (rtc == -1) // device name not set
 	{
-		log->errorLog (QString ("Devicename is empty").arg(deviceName));
+		qCWarning(OBCONFIG) << QString ("Devicename is empty").arg(deviceName);
 		QMessageBox::critical (this, tr("Devicename empty"), tr("Devicename is empty."));
 		mainWindow.deviceCombo->setCurrentIndex (0);
 		return;
 	}else if (rtc == -2) // file does not exist
 	{
-		log->errorLog (QString ("Device: %1 does not exist").arg(deviceName));
+		qCWarning(OBCONFIG) << QString ("Device: %1 does not exist").arg(deviceName);
 		QMessageBox::critical (this, tr("Device does not exist"), tr("The selected device does not exist."));
 		mainWindow.deviceCombo->setCurrentIndex (0);
 		return;
 	} else if (rtc == -3) // can not open file
 	{
-		log->errorLog (QString ("Can not open device: %1").arg(deviceName));
+		qCWarning(OBCONFIG) << QString ("Can not open device: %1").arg(deviceName);
 		QMessageBox::critical (this, tr("Can not open device"), tr("The selected can not be opened."));
 		mainWindow.deviceCombo->setCurrentIndex (0);
 		return;
@@ -571,7 +523,7 @@ void DLDConfigureOB::flashDevice ()
 	if (QMessageBox::question (this, tr("Instructions"), tr ("This may take some time do not interrupt or unplug the device. Continue?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No)
 	{
 		QMessageBox::information (this, tr("Aborted"), tr("Flashing aborted."));
-		log->infoLog ("Flashing aborted.");
+		qCInfo(OBCONFIG) << "Flashing aborted.";
 		return ;
 	}
 
@@ -585,7 +537,7 @@ void DLDConfigureOB::flashDevice ()
 	mainWindow.consoleTextEdit->append (QString (tr("[%1] Flashing started...")).arg (timeStamp));
 
 	setCursor (Qt::WaitCursor);
-	log->debugLog (QString("Executing: %1").arg (command));
+	qCDebug(OBCONFIG) << QString("Executing: %1").arg (command);
 	batchProcess->start(command);
 	batchProcess->waitForFinished (300000); // wait up to 5min
 	setCursor (Qt::ArrowCursor);
@@ -624,22 +576,22 @@ void DLDConfigureOB::printProcessError (QProcess::ProcessError error)
 	switch (error)
 	{
 		case QProcess::FailedToStart:
-			log->errorLog ("The process failed to start. Either the invoked program is missing, or you may have insufficient permissions to invoke the program.");
+			qCCritical(OBCONFIG) << "The process failed to start. Either the invoked program is missing, or you may have insufficient permissions to invoke the program.";
 			break;
 		case QProcess::Crashed:
-			log->errorLog ("The process crashed some time after starting successfully.");
+			qCCritical(OBCONFIG) << "The process crashed some time after starting successfully.";
 			break;
 		case QProcess::Timedout:
-			log->errorLog ("The last waitFor...() function timed out. The state of QProcess is unchanged, and you can try calling waitFor...() again.");
+			qCCritical(OBCONFIG) << "The last waitFor...() function timed out. The state of QProcess is unchanged, and you can try calling waitFor...() again.";
 			break;
 		case QProcess::WriteError:
-			log->errorLog ("An error occurred when attempting to write to the process. For example, the process may not be running, or it may have closed its input channel.");
+			qCCritical(OBCONFIG) << "An error occurred when attempting to write to the process. For example, the process may not be running, or it may have closed its input channel.";
 			break;
 		case QProcess::ReadError:
-			log->errorLog ("An error occurred when attempting to read from the process. For example, the process may not be running.");
+			qCCritical(OBCONFIG) << "An error occurred when attempting to read from the process. For example, the process may not be running.";
 			break;
 		case QProcess::UnknownError:
-			log->errorLog ("An unknown error occurred. This is the default return value of error().");
+			qCCritical(OBCONFIG) << "An unknown error occurred. This is the default return value of error().";
 			break;
 	}
 }
@@ -650,7 +602,7 @@ void DLDConfigureOB::printProcessError (QProcess::ProcessError error)
  */
 void DLDConfigureOB::processFinished (int, QProcess::ExitStatus)
 {
-	log->infoLog ("Flashing finished");
+	qCInfo(OBCONFIG) << "Flashing finished";
 	QString timeStamp = QTime::currentTime ().toString ();
 	mainWindow.consoleTextEdit->append (QString (tr("[%1] Flashing finished")).arg(timeStamp));
 	QMessageBox::information (this, tr("Finished"), tr("Flashing was finished.\nNow unplug the device and plug it back in, so the system recognizes it as OpenBeacon node."));

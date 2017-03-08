@@ -30,22 +30,15 @@
 
 #include "ui_selectConnectionDialog.h"
 
+Q_LOGGING_CATEGORY(SHOWPOS, "dld.showPos")
+
 /**
  * @brief constructor for DLDShowPos class
- * @param logLevel verboxity level for logging
- * @param logFile file for logging
- * @return
- *      void
  */
-DLDShowPos::DLDShowPos (int logLevel, QString logFile)
+DLDShowPos::DLDShowPos ()
 	: currentConnectionType(CONN_NONE)
 {
-	log = new DLDLog ();
-	log->setLogLevel (logLevel);
-	if (!logFile.isEmpty())
-		log->setLogFile (logFile);
-
-	mapScene = new DLDMapScene (log);
+	mapScene = new DLDMapScene ();
 
 	mapView = new QGraphicsView ();
 	mapView->setObjectName ("mapView");
@@ -58,7 +51,7 @@ DLDShowPos::DLDShowPos (int logLevel, QString logFile)
 
 	tagInfoDialog = new TagInfoDialog (this);
 
-	exchangeClient = new DLDDataExchangeClient (log);
+	exchangeClient = new DLDDataExchangeClient ();
 
 	setWindowTitle (tr("DLD - Show Position application"));
 
@@ -273,7 +266,7 @@ void DLDShowPos::createDocks ()
 void DLDShowPos::readSettings ()
 {
 	settings = new QSettings ("DLD", "Show position application");
-	log->infoLog (QString ("Settings will be stored in: %1.").arg (settings->fileName ()));
+	qCInfo(SHOWPOS) << QString ("Settings will be stored in: %1.").arg (settings->fileName ());
 	QPoint pos = settings->value("pos", QPoint(200, 200)).toPoint ();
 	QSize size = settings->value("size", QSize(400, 400)).toSize ();
 	zoomSpin->setValue (settings->value("zoomLevel", 1.0).toDouble ());
@@ -309,7 +302,7 @@ void DLDShowPos::writeSettings ()
 	settings->setValue ("showPersonInfoHint", showPersonInfoHintAct->isChecked ());
 	settings->setValue ("showDatabaseListDock", showDatabaseListDockAct->isChecked ());
 	settings->setValue ("zoomLevel", zoomSpin->value());
-	log->infoLog ("Settings stored.");
+	qCInfo(SHOWPOS) << "Settings stored.";
 }
 /**
  * @brief slot: to show/hide the person info dock
@@ -366,7 +359,7 @@ void DLDShowPos::connectToGenPos ()
 void DLDShowPos::disconnectFromGenPos ()
 {
 	if (currentConnectionType == CONN_DBUS)
-		log->debugLog ("TODO: disconnect From DBUS");
+		qCDebug(SHOWPOS) << "TODO: disconnect From DBUS";
 	else
 		statusBar ()->showMessage (tr("not connected"));
 	emit connectedToGenPos (false);
@@ -453,7 +446,7 @@ void DLDShowPos::addTagItem (int tagId)
 void DLDShowPos::loadMap ()
 {
 #warning loadMap is disabled
-	log->debugLog ("Load map is not yet fully implemented.");
+	qCDebug(SHOWPOS) << "Load map is not yet fully implemented.";
 	return ; // do nothing until tha maps are implemented
 
 	QString lastOpenMapPath = settings->value("lastOpenMapPath", "/home").toString ();
@@ -645,17 +638,17 @@ bool DLDShowPos::connectToDB (QString type, QString host, int port, QString dbNa
 
 	if (!database.isValid ())
 	{
-		log->errorLog (QString ("Could not create database object with the type %1").arg (type));
+		qCWarning(SHOWPOS) << QString ("Could not create database object with the type %1").arg (type);
 		emit connectedToDatabase (false);
 		return (false);
 	}
 	if (!database.open ())
 	{
-		log->errorLog ("Could not open database");
+		qCWarning(SHOWPOS) << "Could not open database";
 		emit connectedToDatabase (false);
 		return (false);
 	}
-	log->infoLog (QString ("Connected to database: %1").arg (dbName));
+	qCInfo(SHOWPOS) << QString ("Connected to database: %1").arg (dbName);
 	refreshEntries ();
 	emit connectedToDatabase (true);
 	return (true);
@@ -704,11 +697,11 @@ void DLDShowPos::refreshEntries ()
 		QString color = query.value (colorFieldNo).toString();
 		QString description = query.value (descriptionFieldNo).toString();
 
-		log->infoLog (QString ("SQL Incoming: TagId: %1 Name: %2 Prename: %3 Picture: BLOB Description: %4")
+		qCInfo(SHOWPOS) << QString ("SQL Incoming: TagId: %1 Name: %2 Prename: %3 Picture: BLOB Description: %4")
 				.arg (id)
 				.arg (name)
 				.arg (prename)
-				.arg (description));
+				.arg (description);
 		QTableWidgetItem * tagIdItem = new QTableWidgetItem (id);
 		QTableWidgetItem * nameItem = new QTableWidgetItem (name);
 		QTableWidgetItem * prenameItem = new QTableWidgetItem (prename);
@@ -778,12 +771,12 @@ void DLDShowPos::getNewData (int tagId)
 	TagViewInfo info = tags[tagId];
 	if (query.first ())
 	{
-		log->infoLog (QString ("SQL Incoming: TagId: %1 Name: %2 Prename: %3 Color: %4Picture: BLOB Description: %5")
+		qCInfo(SHOWPOS) << QString ("SQL Incoming: TagId: %1 Name: %2 Prename: %3 Color: %4Picture: BLOB Description: %5")
 				.arg(query.value(tagIdFieldNo).toInt())
 				.arg(query.value(nameFieldNo).toString())
 				.arg(query.value(prenameFieldNo).toString())
 				.arg(query.value(colorFieldNo).toString())
-				.arg(query.value(descriptionFieldNo).toString()));
+				.arg(query.value(descriptionFieldNo).toString());
 
 		info.image.loadFromData (query.value(pictureFieldNo).toByteArray());
 		info.name = query.value(nameFieldNo).toString();
@@ -802,7 +795,7 @@ void DLDShowPos::getNewData (int tagId)
  */
 void DLDShowPos::addNodeInfo (int nodeId, QPointF position)
 {
-	log->debugLog ("TODO: addNodeInfo");
+	qCDebug(SHOWPOS) << "TODO: addNodeInfo";
 }
 /**
  * @brief event filter to prevent that a dock hides itself after a minimised showPos is coming back to the screen

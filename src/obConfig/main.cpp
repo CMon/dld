@@ -14,9 +14,6 @@
 #include <QString>
 #include <QTextStream>
 
-#include <getopt.h>
-
-
 // Predeclaration
 void usage (QString progname);
 /**
@@ -28,49 +25,10 @@ void usage (QString progname);
  */
 int main(int argc, char *argv[])
 {
-	int verbosity = -1;
-	int optionIndex = 0;
-
-	struct option longOptions[] = {
-		{"verbosity",	1, 0, 'v'}
-	};
-	while (1)
-	{
-		int c = getopt_long (argc, argv, "v:", longOptions, &optionIndex);
-		if (c == -1)
-			break;
-		switch (c)
-		{
-			case 'v':
-				verbosity = atoi (optarg);
-				break;
-			default:
-				usage (QString (argv[0]));
-				return (1);
-		}
-	}
-
-	switch (verbosity)
-	{
-		case 0:
-			verbosity = DLDLog::LOG_LEVEL_QUIET;
-			break;
-		case 1:
-			verbosity = DLDLog::LOG_LEVEL_ERROR;
-			break;
-		case 2:
-			verbosity = DLDLog::LOG_LEVEL_INFO;
-			break;
-		case 3:
-			verbosity = DLDLog::LOG_LEVEL_DEBUG;
-			break;
-		default:
-			verbosity = DLDLog::LOG_LEVEL_ERROR;
-			break;
-	}
-
 	QApplication app(argc, argv);
-	DLDConfigureOB * mainWin = new DLDConfigureOB(verbosity);
+	qInstallMessageHandler(DLDLog::consoleMessageHandler);
+
+	DLDConfigureOB * mainWin = new DLDConfigureOB();
 	mainWin->show();
 	int rtc = app.exec ();
 	delete (mainWin);
@@ -88,11 +46,5 @@ void usage (QString progname)
 	out << "OpenBeacon Configurator programmed and copyright by Simon Schaefer" << endl;
 	out << "OpenBeacon is a project from http://www.openbeacon.org/" << endl << endl;
 	out << "Usage: " << endl;
-	out << "\t" << progname << " [-v <verbosityLevel>]" << endl << endl;
-	out << "Possible verbosity level values:" << endl;
-	out << "\t0\tQuiet mode - do not print anything." << endl;
-	out << "\t1\tError mode - just print errors." << endl;
-	out << "\t2\tInfo mode - print some info messages." << endl;
-	out << "\t3\tDebug mode - print some debug stuff too." << endl;
-	out << endl << endl;
+	out << "\t" << progname << endl << endl;
 }

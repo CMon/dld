@@ -27,13 +27,9 @@
 
 /**
  * @brief constructor for DLDDataExchange class
- * @param logAddress is the pointer of the parents log class
- * @return
- *      void
  */
-DLDDataExchangeServer::DLDDataExchangeServer (DLDLog * pLog)
+DLDDataExchangeServer::DLDDataExchangeServer ()
 {
-	log = pLog;
 }
 
 /**
@@ -65,10 +61,10 @@ void DLDDataExchangeServer::addExchangeMethod (int type, QString basePath, QStri
 			switch (dBusType)
 			{
 				case DBUS_POSITION:
-					newMethod = new DLDExchangeServerDBusPosition (log, basePath, subPath);
+					newMethod = new DLDExchangeServerDBusPosition (basePath, subPath);
 					break;
 				default: // is strength
-					newMethod = new DLDExchangeServerDBusStrength (log, basePath, subPath);
+					newMethod = new DLDExchangeServerDBusStrength (basePath, subPath);
 			}
 			break;
 		default:

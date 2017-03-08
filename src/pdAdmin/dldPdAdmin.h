@@ -18,13 +18,12 @@
 #include "ui_connect2DBDialog.h"
 
 class QSettings;
-class DLDLog;
 
 class DLDPersonDataAdmin : public QMainWindow
 {
 	Q_OBJECT
 	public:
-		DLDPersonDataAdmin (int logLevel, QString logFile);
+		DLDPersonDataAdmin ();
 		~DLDPersonDataAdmin ();
 
 	private slots:
@@ -54,7 +53,6 @@ class DLDPersonDataAdmin : public QMainWindow
 		Ui::connect2DBDialog	connect2DBDialogUi;
 
 		QSettings *		settings;
-		DLDLog *		log;
 		QSqlDatabase		database;
 		QString			databaseName;
 		QString			personsTable;

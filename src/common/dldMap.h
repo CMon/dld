@@ -13,12 +13,10 @@
 
 #include <common/dldZone.h>
 
-class DLDLog;
-
 class DLDMap
 {
 	public:
-		DLDMap (DLDLog * pLog);
+		DLDMap ();
 		~DLDMap ();
 
 		void	setMapName (QString name);
@@ -40,8 +38,6 @@ class DLDMap
 	private:
 		bool	writeZoneSpecFile (QString path);
 		bool	readZoneSpecFile (QString path);
-
-		DLDLog *		log;
 
 		QList <DLDZone>		zoneInformations;
 		QPixmap			background;

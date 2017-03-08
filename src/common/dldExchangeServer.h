@@ -15,13 +15,12 @@
 
 class QString;
 class QVariant;
-class DLDLog;
 
 class DLDDataExchangeServer : public QObject
 {
 Q_OBJECT
 public:
-	DLDDataExchangeServer (DLDLog * pLog);
+	DLDDataExchangeServer ();
 	~DLDDataExchangeServer ();
 
 	void addExchangeMethod (int type, QString basePath, QString subPath, int dBusType = DBUS_STRENGTH);
@@ -39,5 +38,4 @@ public slots:
 
 private:
 	QList<DLDExchangeServerStrategy *> exchangeStrategies;
-	DLDLog *                           log;
 };

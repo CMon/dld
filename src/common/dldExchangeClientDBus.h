@@ -14,14 +14,12 @@
 #include <QMap>
 #include <QtDBus>
 
-class DLDLog;
-
 class DLDExchangeClientDBus : public DLDExchangeClientStrategy
 {
 	Q_OBJECT
 
 	public:
-		DLDExchangeClientDBus (DLDLog * pLog, QString connectionBasePath, QString subPath, QString interface);
+		DLDExchangeClientDBus (QString connectionBasePath, QString subPath, QString interface);
 		~DLDExchangeClientDBus ();
 
 		QString getTagList ();
@@ -43,7 +41,6 @@ class DLDExchangeClientDBus : public DLDExchangeClientStrategy
 		void parseMessage(const QDBusMessage &message);
 
 	private:
-		DLDLog *			log;
 		QString				serviceName;
 		QDBusConnection *		dBus;
 		QDBusInterface *		iFace;

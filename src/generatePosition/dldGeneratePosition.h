@@ -8,22 +8,21 @@
  */
 #pragma once
 
-#include <generatePosition/positionStrategy.h>
 #include <common/dldExchangeClient.h>
 #include <common/dldExchangeServer.h>
+#include <common/dldLog.h>
 #include <common/tagPositionInformation.h>
+#include <generatePosition/positionStrategy.h>
 
 #include <QObject>
 #include <QSettings>
 #include <QMap>
 
-class DLDLog;
-
 class DLDGeneratePosition : public QObject
 {
 	Q_OBJECT
 	public:
-		DLDGeneratePosition (int logLevel, QString logFile);
+		DLDGeneratePosition ();
 		~DLDGeneratePosition ();
 
 	signals:
@@ -43,7 +42,6 @@ class DLDGeneratePosition : public QObject
 		DLDDataExchangeServer *			dataExchangeServer;
 		DLDDataExchangeClient *			dataExchangeClient;
 
-		DLDLog *				log;
 		QMap<int, TagPositionInformation>	tagPositions;
 		PositionStrategy *			nodePosition;
 		QList<int>				nodeIdList;

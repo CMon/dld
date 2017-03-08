@@ -31,22 +31,20 @@
 #include <termios.h>
 #include <unistd.h>
 
+Q_LOGGING_CATEGORY(OPEN_BEACON_COMMUNICATION, "dld.openBeaconCommunication")
+
+
 /**
  * @brief constructor for OpenBeacon communication
- * @return
- *      void
  */
-OpenBeaconCommunication::OpenBeaconCommunication (DLDLog * pLog)
+OpenBeaconCommunication::OpenBeaconCommunication ()
 {
-	log = pLog;
 	device = 0;
 	readRunning = true;
 	sendQueue.clear ();
 }
 /**
  * @brief destructor for OpenBeacon communication
- * @return
- *      void
  */
 OpenBeaconCommunication::~OpenBeaconCommunication ()
 {
@@ -93,14 +91,14 @@ int OpenBeaconCommunication::startCommunication ()
 
 	if (!device->exists ())
 	{
-		log->errorLog (QString ("Device does not exist: %1").arg (devicePath));
+		qCWarning(OPEN_BEACON_COMMUNICATION) << QString ("Device does not exist: %1").arg (devicePath);
 		return (-2);
 	}
 
 // 	if (!device->open (QIODevice::ReadWrite | QIODevice::Text | QIODevice::Truncate)) // | QIODevice::Unbuffered
 	if (!device->open (fileDescriptor, QIODevice::ReadWrite | QIODevice::Text))
 	{
-		log->errorLog (QString ("Could not open device: %1").arg (devicePath));
+		qCWarning(OPEN_BEACON_COMMUNICATION) << QString ("Could not open device: %1").arg (devicePath);
 		return (-3);
 	}
 
@@ -115,7 +113,7 @@ int OpenBeaconCommunication::startCommunication ()
  */
 void OpenBeaconCommunication::run ()
 {
-	log->debugLog (QString ("Thread for device %1 started").arg(devicePath));
+	qCDebug(OPEN_BEACON_COMMUNICATION) << QString ("Thread for device %1 started").arg(devicePath);
 	while (readRunning)
 	{
 		QString line = device->readLine ();
@@ -123,7 +121,7 @@ void OpenBeaconCommunication::run ()
 		{
 			line = line.trimmed ();
 			emit newData (line);
-			log->debugLog (QString ("OB Received: %1").arg(line));
+			qCDebug(OPEN_BEACON_COMMUNICATION) << QString ("OB Received: %1").arg(line);
 		}
 		if (!sendQueue.isEmpty ())
 		{
@@ -132,11 +130,11 @@ void OpenBeaconCommunication::run ()
 			sendQueueMutex.unlock ();
 
 			command.append ("\r");
-			log->debugLog (QString ("OB sending command: %1").arg(command));
+			qCDebug(OPEN_BEACON_COMMUNICATION) << QString ("OB sending command: %1").arg(command);
 			if ( device->write (command.toLatin1()) == -1)
 			{
 				emit writeFailed ();
-				log->debugLog (QString ("OB sending failed."));
+				qCDebug(OPEN_BEACON_COMMUNICATION) << QString ("OB sending failed.");
 			}
 		}
 
@@ -150,7 +148,7 @@ void OpenBeaconCommunication::run ()
  */
 void OpenBeaconCommunication::closeDevice ()
 {
-	log->debugLog (QString("Closing device %1.").arg(devicePath));
+	qCDebug(OPEN_BEACON_COMMUNICATION) << QString("Closing device %1.").arg(devicePath);
 	if (device)
 	{
 		if (device->isOpen())
@@ -186,7 +184,7 @@ void OpenBeaconCommunication::sendToOB (QString command)
 	sendQueueMutex.lock ();
 	sendQueue.enqueue(command);
 	sendQueueMutex.unlock ();
-	log->debugLog (QString ("OB Command received to send: %1").arg(command));
+	qCDebug(OPEN_BEACON_COMMUNICATION) << QString ("OB Command received to send: %1").arg(command);
 }
 /**
  * @brief returns the current device path

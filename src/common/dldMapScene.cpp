@@ -20,12 +20,9 @@
 
 /**
  * @brief constructor for DLDMapScene class
- * @param pLog	pointer of the DLDLog object
- * @return
- *      void
  */
-DLDMapScene::DLDMapScene (DLDLog * pLog)
-	: DLDMap (pLog)
+DLDMapScene::DLDMapScene ()
+	: DLDMap ()
 	, tagViewWidth(5)
 	, mapXMaximum (0)
 	, mapYMaximum (0)

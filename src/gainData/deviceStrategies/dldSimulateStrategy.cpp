@@ -24,18 +24,16 @@
 #include <QSettings>
 #include <QTimer>
 
+Q_LOGGING_CATEGORY(SIMULATOR_STRATEGY, "dld.gainData.deviceStrategy.simulator")
+
 /**
  * @brief constructor for DLDHwSim class
- * @param pLog pointer to log class
- * @return
- *      void
+ * @param configName The name of the configuration
  */
-DLDSimulateStrategy::DLDSimulateStrategy (QString configName, DLDLog * pLog)
+DLDSimulateStrategy::DLDSimulateStrategy(QString configName)
 {
-	log = pLog;
-
 	settings = new QSettings (configName, "hardware simulator");
-	log->infoLog (QString ("Settings will be stored in: %1.").arg (settings->fileName ()));
+	qCInfo(SIMULATOR_STRATEGY) << QString ("Settings will be stored in: %1.").arg (settings->fileName ());
 
 	// setup interface
 	mainWindow = new QMainWindow ();
@@ -236,7 +234,7 @@ void DLDSimulateStrategy::updateStrengthData ()
 	emit newStrength (2, fakeTagId, r2);
 	emit newStrength (3, fakeTagId, r3);
 	mainWindow->statusBar ()->showMessage (tr("Position updated."));
-	log->debugLog (QString("New simulated Strengths: 1: %1, 2: %2, 3: %3").arg(r1).arg(r2).arg(r3));
+	qCDebug(SIMULATOR_STRATEGY) << QString("New simulated Strengths: 1: %1, 2: %2, 3: %3").arg(r1).arg(r2).arg(r3);
 }
 /**
  * @brief slot: update the position data of the nodes, reacts on change of the GUI
@@ -283,7 +281,7 @@ void DLDSimulateStrategy::updateNodeData (int id)
 	}
 	updateCircleItem (id);
 	emit newNode (id, x, y, z);
-	log->debugLog (QString ("Updated Node %1 position: X: %2 Y: %3").arg (id).arg (x).arg (y));
+	qCDebug(SIMULATOR_STRATEGY) << QString ("Updated Node %1 position: X: %2 Y: %3").arg (id).arg (x).arg (y);
 }
 /**
  * @brief slot: update the circle position, reacts on a change of the radius, in case of a change of the position the updateNodeData slot will call this method
@@ -379,5 +377,5 @@ void DLDSimulateStrategy::updateNodeRange (double value)
 
 /*	scene->clear ();
 	drawCoordinationSystem ();*/
-	log->infoLog ("This change will take effect after restart");
+	qCInfo(SIMULATOR_STRATEGY) << "This change will take effect after restart";
 }

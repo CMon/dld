@@ -15,32 +15,25 @@
 #include <QStringList>
 #include <time.h>
 
+Q_LOGGING_CATEGORY(GENERATE_POSITION, "dld.generatePosition")
+
 /**
  * @brief constructor for generate position
- * @param logLevel the logLevel which should be used for the application
- * @param logFile the file where the logging should end
- * @return
- *      void
  */
-DLDGeneratePosition::DLDGeneratePosition (int logLevel, QString logFile)
+DLDGeneratePosition::DLDGeneratePosition ()
 {
-	log = new DLDLog ();
-	log->setLogLevel (logLevel);
-	if (!logFile.isEmpty())
-		log->setLogFile (logFile);
-
 	settings = new QSettings ("DLD", "generate position");
-	log->infoLog (QString ("Settings will be stored in: %1.").arg (settings->fileName ()));
+	qCDebug(GENERATE_POSITION) << QString ("Settings will be stored in: %1.").arg (settings->fileName ());
 
 //TODO for after the FYP: do it with a settings file as soon as there are more strategies:
-	nodePosition = new TwoDPositionStrategy (log);
+	nodePosition = new TwoDPositionStrategy();
 
-	dataExchangeServer = new DLDDataExchangeServer (log);
+	dataExchangeServer = new DLDDataExchangeServer();
 	dataExchangeServer->addExchangeMethod (DLDDataExchangeServer::TYPE_DBUS, "org.dld.genPos", "", DLDDataExchangeServer::DBUS_POSITION);
 	connect (this, SIGNAL(newTagPos (int, int, double, double, double)), dataExchangeServer, SLOT(updatePositionOnStrategies (int, int, double, double, double)));
 	connect (this, SIGNAL(newNodeConnected (int, double, double, double)), dataExchangeServer, SLOT(updateNodeOnStrategies (int, double, double, double)));
 
-	dataExchangeClient = new DLDDataExchangeClient (log);
+	dataExchangeClient = new DLDDataExchangeClient();
 	dataExchangeClient->addExchangeMethod (DLDDataExchangeClient::TYPE_DBUS, "org.dld.gain", "", "dld.provide.strength");
 	connect (dataExchangeClient, SIGNAL(newStrength (int)), this, SLOT(newPosition (int)));
 	connect (dataExchangeClient, SIGNAL(newNode (int)), this, SLOT(newNode (int)));
@@ -54,16 +47,12 @@ DLDGeneratePosition::DLDGeneratePosition (int logLevel, QString logFile)
 }
 /**
  * @brief destructor for generate position
- * @return
- *      void
  */
 DLDGeneratePosition::~DLDGeneratePosition ()
 {
-	log->infoLog ("Shutting down generate position daemon");
+	qCInfo(GENERATE_POSITION) << "Shutting down generate position daemon";
 
 	settings->sync ();
-	if (log)
-		delete (log);
 	if (settings)
 		delete (settings);
 	if (dataExchangeServer)
@@ -109,7 +98,7 @@ void DLDGeneratePosition::newPosition (int tagId)
 	// their submitted stregth value, best values win
 	if (nodeIdList.size() < 3)
 	{
-		log->errorLog ("Missing node information");
+		qCWarning(GENERATE_POSITION) << "Missing node information";
 		return;
 	} else if (nodeIdList.size() == 3)
 	{
@@ -147,8 +136,8 @@ void DLDGeneratePosition::newPosition (int tagId)
 	posInfo.z = position->z;
 	tagPositions.insert (tagId, posInfo);
 	emit newTagPos (tagId, posInfo.timestamp, posInfo.x, posInfo.y, posInfo.z);
-	log->infoLog (QString("Tag: %1 got a new position: X: %2 Y: %3 Z: %4")
-			.arg(tagId).arg(posInfo.x).arg(posInfo.y).arg(posInfo.z));
+	qCInfo(GENERATE_POSITION) << QString("Tag: %1 got a new position: X: %2 Y: %3 Z: %4")
+	                              .arg(tagId).arg(posInfo.x).arg(posInfo.y).arg(posInfo.z);
 	if (position)
 		delete (position);
 }

@@ -27,14 +27,13 @@ class QTabWidget;
 class QSettings;
 class QDockWidget;
 class QDoubleSpinBox;
-class DLDLog;
 class DLDMapScene;
 
 class DLDShowPos : public QMainWindow
 {
 Q_OBJECT
 public:
-	DLDShowPos (int logLevel, QString logFile);
+	DLDShowPos ();
 	~DLDShowPos ();
 	virtual bool eventFilter( QObject * object, QEvent * event);
 
@@ -73,7 +72,6 @@ private:
 	static const int CONN_DBUS  = 2;
 
 	QSettings *	settings;
-	DLDLog	*	log;
 
 	void createActions ();
 	void createMenus ();

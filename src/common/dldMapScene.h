@@ -13,14 +13,13 @@
 #include <common/dldMap.h>
 #include <common/tagItem.h>
 
-class DLDLog;
 class QColor;
 
 class DLDMapScene : public QGraphicsScene, public DLDMap
 {
 	Q_OBJECT
 public:
-	DLDMapScene (DLDLog * pLog);
+	DLDMapScene ();
 	~DLDMapScene ();
 
 	void addTagToScene (int tagId);
@@ -44,7 +43,6 @@ public slots:
 private:
 	void createCoordSystem ();
 
-	DLDLog * log;
 	QList <int>	tagsOnScene;
 	QMap <int, TagItem *> tags;
 

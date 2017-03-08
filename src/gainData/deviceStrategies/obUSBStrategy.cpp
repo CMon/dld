@@ -27,18 +27,19 @@
 #include <QTextStream>
 #include <QStringList>
 #include <QDir>
+
+Q_LOGGING_CATEGORY(OPENBEACON_STRATEGY, "dld.gainData.deviceStrategy.openBeacon")
+
 /**
  * @brief constructor of OpenBeaconUSBStrategy class
  * @param configName	base of configuration file
- * @param pLog		pointer to the parants log instance
  * @return
  * 	void
  */
-OpenBeaconUSBStrategy::OpenBeaconUSBStrategy (QString configName, DLDLog * pLog)
+OpenBeaconUSBStrategy::OpenBeaconUSBStrategy (QString configName)
 {
-	log = pLog;
 	settings = new QSettings (configName, "obUSBStrategy");
-	log->debugLog (QString("OpenBeacon USB Strategy Configuration is located in %1.").arg(settings->fileName ()));
+	qCDebug(OPENBEACON_STRATEGY) << QString("OpenBeacon USB Strategy Configuration is located in %1.").arg(settings->fileName ());
 
 	readConfiguration ();
 }
@@ -116,7 +117,7 @@ void OpenBeaconUSBStrategy::connectDevices ()
 			i.value ()->startCommunication ();
 			i.value ()->sendToOB (QString ("FIFO %1").arg (maxPackages));
 			i.value ()->sendToOB ("D");
-			log->debugLog (QString("Started device %1").arg (i.key()));
+			qCDebug(OPENBEACON_STRATEGY) << QString("Started device %1").arg (i.key());
 		}
 	}
 }
@@ -163,12 +164,12 @@ void OpenBeaconUSBStrategy::disconnectDevices ()
  */
 void OpenBeaconUSBStrategy::addDevice (QString path)
 {
-	OpenBeaconCommunication * device = new OpenBeaconCommunication (log);
+	OpenBeaconCommunication * device = new OpenBeaconCommunication ();
 	connect (device, SIGNAL(newData (QString)), this, SLOT(parseNewData (QString)));
 
 	device->setDevicePath (path);
 
-	log->infoLog (QString ("Device added: %1").arg(path));
+	qCInfo(OPENBEACON_STRATEGY) << QString ("Device added: %1").arg(path);
 
 	devices.insert (path, device);
 }
@@ -186,7 +187,7 @@ void OpenBeaconUSBStrategy::removeDevice (QString path)
 	if (devices.value (path))
 		delete (devices.value (path));
 	devices.remove (path);
-	log->infoLog (QString ("Device removed: %1.").arg(path));
+	qCInfo(OPENBEACON_STRATEGY) << QString ("Device removed: %1.").arg(path);
 }
 /**
  * @brief prints an example of a configuration file
@@ -252,7 +253,7 @@ void OpenBeaconUSBStrategy::setPath (int id, QString path)
 	{
 		if (deviceInfos.at(i)->id == id)
 		{
-			log->debugLog (QString("Set path(%1) for id: %2").arg(path).arg(id));
+			qCDebug(OPENBEACON_STRATEGY) << QString("Set path(%1) for id: %2").arg(path).arg(id);
 			deviceInfos.at(i)->path = path;
 			return ;
 		}
@@ -266,7 +267,7 @@ void OpenBeaconUSBStrategy::setPath (int id, QString path)
 	info->y = 0.0;
 	info->z = 0.0;
 	deviceInfos.append (info);
-	log->infoLog (QString("Added new device with path(%1) for id: %2").arg(path).arg(id));
+	qCInfo(OPENBEACON_STRATEGY) << QString("Added new device with path(%1) for id: %2").arg(path).arg(id);
 }
 /**
  * @brief parse the data that comes from the OB nodes
@@ -284,13 +285,13 @@ void OpenBeaconUSBStrategy::parseNewData (QString data)
 	{
 		setPath (answerParts.at(1).toInt(), receivedPath);
 		DeviceInformation * deviceInfo = getDeviceInformation (receivedPath);
-		log->infoLog (QString ("device with Id: %1 added.").arg (deviceInfo->id));
+		qCInfo(OPENBEACON_STRATEGY) << QString ("device with Id: %1 added.").arg (deviceInfo->id);
 		emit newNode (deviceInfo->id, deviceInfo->x, deviceInfo->y, deviceInfo->z);
 		return;
 	}
 	if (answerParts.at (0) == "FIFO" && answerParts.at (1) == "lifetime")
 	{
-		log->infoLog (QString ("FIFO of >%1< set to %2").arg (receivedPath).arg (answerParts.at (4)));
+		qCInfo(OPENBEACON_STRATEGY) << QString ("FIFO of >%1< set to %2").arg (receivedPath).arg (answerParts.at (4));
 		return;
 	}
 	if (answerParts.at(0) == "RX:")
@@ -302,7 +303,7 @@ void OpenBeaconUSBStrategy::parseNewData (QString data)
 		DeviceInformation * deviceInfo = getDeviceInformation (receivedPath);
 		if (!deviceInfo)
 		{
-			log->infoLog (QString ("Received information(%1) from unconfigured device: %2").arg(data).arg(receivedPath));
+			qCInfo(OPENBEACON_STRATEGY) << QString ("Received information(%1) from unconfigured device: %2").arg(data).arg(receivedPath);
 			return ;
 		}
 

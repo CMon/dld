@@ -13,12 +13,10 @@
 
 #include <QMap>
 
-class DLDLog;
-
 class TwoDPositionStrategy : public PositionStrategy
 {
 	public:
-		TwoDPositionStrategy (DLDLog * pLog);
+		TwoDPositionStrategy ();
 		~TwoDPositionStrategy ();
 
 		ThreeDPoint * getPosition (StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId);
@@ -28,5 +26,4 @@ class TwoDPositionStrategy : public PositionStrategy
 
 	private:
 		QMap<int, ThreeDPoint>		nodeInformations;
-		DLDLog *			log;
 };

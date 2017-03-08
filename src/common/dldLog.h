@@ -8,39 +8,11 @@
  */
 #pragma once
 
-#include <QFile>
-
-class QString;
+#include <QtMsgHandler>
+#include <QLoggingCategory>
 
 class DLDLog
 {
 public:
-	DLDLog ();
-	~DLDLog ();
-	bool setLogFile (QString filepath);
-	void setLogLevel (int level);
-	void setLogType (int type);
-
-	void debugLog (QString message);
-	void errorLog (QString message);
-	void infoLog (QString message);
-
-	// class defines:
-	static const int LOG_TO_CONSOLE		= 0;
-	static const int LOG_TO_FILE		= 1;
-
-	static const int LOG_LEVEL_QUIET	= 0;
-	static const int LOG_LEVEL_ERROR	= 2;
-	static const int LOG_LEVEL_INFO		= 3;
-	static const int LOG_LEVEL_DEBUG	= 4;
-
-private:
-// Methods
-	void log (int mode, QString message);
-
-// Attributes:
-	QString		logFilePath;
-	QFile *		logFile;
-	int		logLevel;
-	int		logType;
+	static void consoleMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 };

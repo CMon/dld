@@ -12,13 +12,11 @@
 #include <common/dldExchangeClientStrategy.h>
 #include <common/tagPositionInformation.h>
 
-class DLDLog;
-
 class DLDDataExchangeClient : public QObject
 {
 Q_OBJECT
 public:
-	DLDDataExchangeClient (DLDLog * pLog);
+	DLDDataExchangeClient ();
 	~DLDDataExchangeClient ();
 
 	void addExchangeMethod (int type, QString basePath, QString subPath, QString interface);
@@ -47,7 +45,6 @@ private slots:
 	void newPositionInfo (int tagId, int timestamp, double x, double y, double z);
 
 private:
-	DLDLog *                           log;
 	QList<DLDExchangeClientStrategy *> exchangeStrategies;
 
 	QMap<int, ThreeDPoint>            nodeInfo;

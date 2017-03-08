@@ -17,14 +17,13 @@
 
 class QSettings;
 class QSocketNotifier;
-class DLDLog;
 
 class DLDGain : public QObject
 {
 	Q_OBJECT
 
 	public:
-		DLDGain (int logLevel, QString logFile, QString strategyToUse);
+		DLDGain (QString strategyToUse);
 		~DLDGain ();
 
 	private:
@@ -35,7 +34,6 @@ class DLDGain : public QObject
 		QMap<int, QMap<int, int> >	tagInformations;
 		DLDDataExchangeServer *		dataExchangeServer;
 		QSettings *			settings;
-		DLDLog *			log;
 
 		bool				running;
 		QString				usedStrategy;

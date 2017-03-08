@@ -21,16 +21,16 @@
 
 #include <QtDBus>
 
+Q_LOGGING_CATEGORY(DBUS_CLIENT, "dld.dbus.client")
+
 /**
  * @brief constructor for DLDExchangeClientDBus class
- * @param logAddress is the pointer of the parents log class
  * @param connectionBasePath service name to which it should connect
  * @return
  *      void
  */
-DLDExchangeClientDBus::DLDExchangeClientDBus (DLDLog * pLog, QString connectionBasePath, QString subPath, QString interface)
+DLDExchangeClientDBus::DLDExchangeClientDBus (QString connectionBasePath, QString subPath, QString interface)
 {
-	log = pLog;
 	serviceName = connectionBasePath;
 	QString path = QString ("/%1").arg(subPath);
 
@@ -39,7 +39,7 @@ DLDExchangeClientDBus::DLDExchangeClientDBus (DLDLog * pLog, QString connectionB
 
 	if (!dBus->sessionBus().isConnected())
 	{
-		log->errorLog ("Cannot connect to the D-BUS session bus.\nTo start it, run:\n\teval `dbus-launch --auto-syntax`");
+		qCCritical(DBUS_CLIENT) << "Cannot connect to the D-BUS session bus.\nTo start it, run:\n\teval `dbus-launch --auto-syntax`";
 		return ;
 	}
 	iFace = new QDBusInterface (connectionBasePath, path, interface, dBus->sessionBus ());
@@ -51,8 +51,8 @@ DLDExchangeClientDBus::DLDExchangeClientDBus (DLDLog * pLog, QString connectionB
 	else if (interface.contains ("position", Qt::CaseInsensitive))
 		dBus->connect (serviceName, path, interface, "updatedPosition", this, SLOT(parseMessage(QDBusMessage)));
 	else
-		log->errorLog ("No known interface detected.");
-	log->infoLog (QString("DBus exchange client with serviceName: \"%1\", path: \"%2\" interface: \"%3\" added.").arg(serviceName).arg(path).arg(interface));
+		qCCritical(DBUS_CLIENT) << "No known interface detected.";
+	qCInfo(DBUS_CLIENT) << QString("DBus exchange client with serviceName: \"%1\", path: \"%2\" interface: \"%3\" added.").arg(serviceName).arg(path).arg(interface);
 }
 /**
  * @brief destructor for DLDExchangeClientDBus class
@@ -84,28 +84,28 @@ void DLDExchangeClientDBus::parseMessage(const QDBusMessage &message)
 		if (args.size () == 3)
 		{
 			emit newStrength (args.at(0).toInt(), args.at(1).toInt(), args.at(2).toDouble ());
-			log->debugLog(QString ("DBus recv(new Strength): %1, %2, %3").arg(args.at(0).toInt()).arg(args.at(1).toInt()).arg(args.at(2).toInt()));
+			qCDebug(DBUS_CLIENT) << QString ("DBus recv(new Strength): %1, %2, %3").arg(args.at(0).toInt()).arg(args.at(1).toInt()).arg(args.at(2).toInt());
 		}// else ignore
 	} else if (message.member() == "updatedNode")
 	{
 		if (args.size () == 4)
 		{
 			emit newNode (args.at(0).toInt(), args.at(1).toDouble (), args.at(2).toDouble (), args.at(3).toDouble ());
-			log->debugLog(QString ("DBus recv(new Node): %1, %2, %3, %4").arg(args.at(0).toInt()).arg(args.at(1).toDouble ()).arg(args.at(2).toDouble ()).arg(args.at(3).toDouble ()));
+			qCDebug(DBUS_CLIENT) << QString ("DBus recv(new Node): %1, %2, %3, %4").arg(args.at(0).toInt()).arg(args.at(1).toDouble ()).arg(args.at(2).toDouble ()).arg(args.at(3).toDouble ());
 		}// else ignore
 	} else if (message.member() == "updatedPosition")
 	{
 		if (args.size () == 5)
 		{
 			emit newPosition (args.at(0).toInt(), args.at(1).toInt(), args.at(2).toDouble (), args.at(3).toDouble (), args.at(4).toDouble ());
-			log->debugLog (QString ("DBus recv(new Position): %1, %2, %3, %4, %5").arg(args.at(0).toInt()).arg(args.at(1).toInt()).arg(args.at(2).toDouble ()).arg(args.at(3).toDouble ()).arg(args.at(4).toDouble ()));
+			qCDebug(DBUS_CLIENT) << QString ("DBus recv(new Position): %1, %2, %3, %4, %5").arg(args.at(0).toInt()).arg(args.at(1).toInt()).arg(args.at(2).toDouble ()).arg(args.at(3).toDouble ()).arg(args.at(4).toDouble ());
 		}// else ignore
 	} else if (message.member () == "updatedMaximumAxisValue")
 	{
 		if (args.size () == 1)
 		{
 			emit newMaximumAxisValue (args.at(0).toDouble ());
-			log->debugLog (QString ("DBus recv(new max. axis value): %1").arg(args.at(0).toDouble ()));
+			qCDebug(DBUS_CLIENT) << QString ("DBus recv(new max. axis value): %1").arg(args.at(0).toDouble ());
 		}
 	}
 }
@@ -122,10 +122,10 @@ QString DLDExchangeClientDBus::getTagList ()
 	QDBusReply<QString> reply = iFace->call("getTagList");
 	if (!reply.isValid())
 	{
-		log->errorLog (QString ("Call failed: %1").arg (qPrintable(reply.error().message())));
+		qCWarning(DBUS_CLIENT) << QString ("Call failed: %1").arg (qPrintable(reply.error().message()));
 		return ("");
 	}
-	log->debugLog (QString ("Received: %1").arg (reply.value()));
+	qCDebug(DBUS_CLIENT) << QString ("Received: %1").arg (reply.value());
 	return (reply.value());
 }
 /**
@@ -141,10 +141,10 @@ QString DLDExchangeClientDBus::getNodeList ()
 	QDBusReply<QString> reply = iFace->call("getNodeList");
 	if (!reply.isValid())
 	{
-		log->errorLog (QString ("Call failed: %1").arg (qPrintable(reply.error().message())));
+		qCWarning(DBUS_CLIENT) << QString ("Call failed: %1").arg (qPrintable(reply.error().message()));
 		return ("");
 	}
-	log->debugLog (QString ("Received: %1").arg (reply.value()));
+	qCDebug(DBUS_CLIENT) << QString ("Received: %1").arg (reply.value());
 	return (reply.value());
 }
 /**
@@ -161,10 +161,10 @@ QString DLDExchangeClientDBus::getStrengths (int tagId)
 	QDBusReply<QString> reply = iFace->call("getStrengths", tagId);
 	if (!reply.isValid())
 	{
-		log->errorLog (QString ("Call failed: %1").arg (qPrintable(reply.error().message())));
+		qCWarning(DBUS_CLIENT) << QString ("Call failed: %1").arg (qPrintable(reply.error().message()));
 		return ("");
 	}
-	log->debugLog (QString ("Received: %1").arg (reply.value()));
+	qCDebug(DBUS_CLIENT) << QString ("Received: %1").arg (reply.value());
 	return (reply.value());
 }
 /**
@@ -181,10 +181,10 @@ QString DLDExchangeClientDBus::getNodeInfo (int deviceId)
 	QDBusReply<QString> reply = iFace->call("getNodeInfo", deviceId);
 	if (!reply.isValid())
 	{
-		log->errorLog (QString ("Call failed: %1").arg (qPrintable(reply.error().message())));
+		qCWarning(DBUS_CLIENT) << QString ("Call failed: %1").arg (qPrintable(reply.error().message()));
 		return ("");
 	}
-	log->debugLog (QString ("Received: %1").arg (reply.value()));
+	qCDebug(DBUS_CLIENT) << QString ("Received: %1").arg (reply.value());
 	return (reply.value());
 }
 /**
@@ -200,9 +200,9 @@ double DLDExchangeClientDBus::getMaximumAxisValue ()
 	QDBusReply<double> reply = iFace->call("getMaximumAxisValue");
 	if (!reply.isValid())
 	{
-		log->errorLog (QString ("Call failed: %1").arg (qPrintable(reply.error().message())));
+		qCWarning(DBUS_CLIENT) << QString ("Call failed: %1").arg (qPrintable(reply.error().message()));
 		return (0);
 	}
-	log->debugLog (QString ("Received: %1").arg (reply.value()));
+	qCDebug(DBUS_CLIENT) << QString ("Received: %1").arg (reply.value());
 	return (reply.value());
 }

@@ -21,21 +21,19 @@
 class QString;
 class QTimer;
 class QTemporaryFile;
-class DLDLog;
 
 class DLDConfigureOB : public QMainWindow
 {
 Q_OBJECT
 
 public:
-	DLDConfigureOB (int logLevel);
+	DLDConfigureOB ();
 	~DLDConfigureOB ();
 
 signals:
 	void			deviceSelected (bool flashGroup, bool configureGroup);
 	void			commandListChanged ();
 	void			devicepathsChanged ();
-	void			logFileChanged (QString);
 
 private slots:
 	void			endisableGroupBox (bool flashGroup, bool configureGroup);
@@ -49,8 +47,6 @@ private slots:
 	void			refreshDevices ();
 	void			updateGroupBoxVisibility (int index);
 	void			showHelp ();
-	void			selectLogFile ();
-	void			changeLogFile (QString logFilePath);
 	void			executeCommand ();
 	void			openNewDevice (int index);
 	void			receivedNewData (QString answer);
@@ -76,7 +72,6 @@ private:
 
 	// Attributes
 	OpenBeaconCommunication *	device;
-	DLDLog *			log;
 	QSettings *			settings;
 	QTimer *			refreshTimer;
 	bool				showRX;

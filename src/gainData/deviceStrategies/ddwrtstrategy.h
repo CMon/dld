@@ -8,7 +8,6 @@
  */
 #pragma once
 
-#include <common/dldLog.h>
 #include <gainData/deviceStrategies/deviceStrategy.h>
 
 #include <QNetworkAccessManager>
@@ -28,7 +27,7 @@ public:
 class DDWRTStrategy : public DeviceStrategy
 {
 public:
-	DDWRTStrategy(const QString & configName, DLDLog *pLog);
+	DDWRTStrategy(const QString & configName);
 
 	void connectDevices ();
 	void disconnectDevices ();
@@ -48,7 +47,6 @@ private:
 private:
 	QHash<int, RouterInfo> routers;
 
-	DLDLog * log;
 	QSettings settings;
 	int       checkFrequenzy;
 	int       maximumDBValue;

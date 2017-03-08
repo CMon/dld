@@ -8,15 +8,18 @@
  */
 #include "ddwrtstrategy.h"
 
+#include <common/dldLog.h>
+
 #include <QTextStream>
 #include <QStringList>
 
+Q_LOGGING_CATEGORY(DDWRT, "dld.gainData.deviceStrategy.ddwrt")
 
-DDWRTStrategy::DDWRTStrategy(const QString & configName, DLDLog * pLog)
+
+DDWRTStrategy::DDWRTStrategy(const QString & configName)
 	: settings(configName, "DDWRTStrategy")
 {
-	log = pLog;
-	log->debugLog (QString("DDWRT Strategy Configuration is located in %1.").arg(settings.fileName ()));
+	qCDebug(DDWRT()) << "DDWRT Strategy Configuration is located in" << settings.fileName();
 
 	readConfiguration ();
 
@@ -45,7 +48,7 @@ void DDWRTStrategy::readConfiguration()
 		info.position.setX(settings.value("z", 0).toDouble());
 
 		if (routers.contains(info.id)) {
-			log->errorLog("Invalid configuration every Router needs its own id, skipping rest");
+			qCCritical(DDWRT()) << "Invalid configuration every Router needs its own id, skipping rest";
 			return;
 		}
 		routers[info.id] = info;

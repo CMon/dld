@@ -22,20 +22,17 @@
 
 #include <math.h>
 
+Q_LOGGING_CATEGORY(GENERATE_POSITION_2DSTRAT, "dld.generatePosition.2dStrategy")
+
+
 /**
  * @brief constructor for TwoDPositionStrategy class
- * @param pLog is the pointer of the parents log class
- * @return
- *      void
  */
-TwoDPositionStrategy::TwoDPositionStrategy (DLDLog * pLog)
+TwoDPositionStrategy::TwoDPositionStrategy ()
 {
-	log = pLog;
 }
 /**
  * @brief destructor for TwoDPositionStrategy class
- * @return
- *      void
  */
 TwoDPositionStrategy::~TwoDPositionStrategy ()
 {
@@ -60,26 +57,26 @@ ThreeDPoint * TwoDPositionStrategy::getPosition (StrengthType strengths, int aNo
 	double xA = nodeInformations[aNodeId].x;
 	double yA = nodeInformations[aNodeId].y;
 	double rA = strengths[aNodeId];
-	log->debugLog (QString ("xA: %1 yA: %2 rA: %3").arg(xA).arg(yA).arg(rA));
+	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("xA: %1 yA: %2 rA: %3").arg(xA).arg(yA).arg(rA);
 
 	double xB = nodeInformations[bNodeId].x;
 	double yB = nodeInformations[bNodeId].y;
 	double rB = strengths[bNodeId];
-	log->debugLog (QString ("xB: %1 yB: %2 rB: %3").arg(xB).arg(yB).arg(rB));
+	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("xB: %1 yB: %2 rB: %3").arg(xB).arg(yB).arg(rB);
 
 	double xC = nodeInformations[cNodeId].x;
 	double yC = nodeInformations[cNodeId].y;
 	double rC = strengths[cNodeId];
-	log->debugLog (QString ("xC: %1 yC: %2 rC: %3").arg(xC).arg(yC).arg(rC));
+	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("xC: %1 yC: %2 rC: %3").arg(xC).arg(yC).arg(rC);
 
 	double dx	= (xB) - (xA);
 	double dy	= (yB) - (yA);
 	double d	= sqrt (pow (dx, 2.0) + pow (dy, 2.0));
-	log->debugLog (QString ("dx: %1 dy: %2 d: %3").arg(dx).arg(dy).arg(d));
+	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("dx: %1 dy: %2 d: %3").arg(dx).arg(dy).arg(d);
 
 	double a	= (pow (rA, 2.0) - pow (rB, 2.0) + pow (d, 2.0)) / (2.0 * (d));
 	double h2	= pow (rA, 2.0) - pow (a, 2.0);
-	log->debugLog (QString ("a: %1 h2: %2").arg(a).arg(h2));
+	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("a: %1 h2: %2").arg(a).arg(h2);
 
 	if (h2 < 0)
 	{
@@ -88,11 +85,11 @@ ThreeDPoint * TwoDPositionStrategy::getPosition (StrengthType strengths, int aNo
 
 	// h2 >= 0 at least one point
 	double h	= sqrt (h2);
-	log->debugLog (QString ("h: %3").arg(h));
+	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("h: %3").arg(h);
 
 	double x1	= (xA) + ((a)/(d)) * (dx) - ((h)/(d)) * (dy);
 	double y1	= (yA) + ((a)/(d)) * (dy) + ((h)/(d)) * (dx);
-	log->debugLog (QString ("Interception Coordination 1: I1(%1, %2)").arg(x1).arg(y1));
+	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("Interception Coordination 1: I1(%1, %2)").arg(x1).arg(y1);
 
 	if (h == 0)
 	{
@@ -104,11 +101,11 @@ ThreeDPoint * TwoDPositionStrategy::getPosition (StrengthType strengths, int aNo
 	// h2 > 0 we need to calculate a second point ant compare to the 3. circle
 	double x2	= (xA) + ((a)/(d)) * (dx) + ((h)/(d)) * (dy);
 	double y2	= (yA) + ((a)/(d)) * (dy) - ((h)/(d)) * (dx);
-	log->debugLog (QString ("Interception Coordination 2: I2(%1, %2)").arg(x2).arg(y2));
+	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("Interception Coordination 2: I2(%1, %2)").arg(x2).arg(y2);
 
 	double distP1	= sqrt (pow ((x1)-(xC),2.0) + pow ((y1)-(yC),2.0));
 	double distP2	= sqrt (pow ((x2)-(xC),2.0) + pow ((y2)-(yC),2.0));
-	log->debugLog (QString ("distP1: %1 distP2: %2").arg(distP1).arg(distP2));
+	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("distP1: %1 distP2: %2").arg(distP1).arg(distP2);
 
 	// the distance (distP1 or distP2) which is closer to the value of rC is the winner
 	double absolutDistP1 = fabs (distP1 - rC);
@@ -116,18 +113,18 @@ ThreeDPoint * TwoDPositionStrategy::getPosition (StrengthType strengths, int aNo
 	double smaller = qMin (absolutDistP1, absolutDistP2);
 	if (smaller == absolutDistP1)
 	{
-		log->debugLog ("I1 is the choosen one");
+		qCDebug(GENERATE_POSITION_2DSTRAT) << "I1 is the choosen one";
 		point->x = x1;
 		point->y = y1;
 	}
 	else if (smaller == absolutDistP2)
 	{
-		log->debugLog ("I2 is the choosen one");
+		qCDebug(GENERATE_POSITION_2DSTRAT) << "I2 is the choosen one";
 		point->x = x2;
 		point->y = y2;
 	}
 	else
-		log->infoLog ("Something went horrible wrong");
+		qCDebug(GENERATE_POSITION_2DSTRAT) << "Something went horrible wrong";
 	return (point);
 }
 /**
@@ -138,6 +135,6 @@ ThreeDPoint * TwoDPositionStrategy::getPosition (StrengthType strengths, int aNo
  */
 void TwoDPositionStrategy::addNode (int id, ThreeDPoint point)
 {
-	log->debugLog (QString("Add new node to strategy, id: %1").arg(id));
+	qCDebug(GENERATE_POSITION_2DSTRAT) << QString("Add new node to strategy, id: %1").arg(id);
 	nodeInformations.insert (id, point);
 }

@@ -25,29 +25,26 @@
 #include <QString>
 #include <QtDBus>
 
+Q_LOGGING_CATEGORY(DBUS_SERVER_POSITION, "dld.dbus.server.position")
+
 /**
  * @brief constructor for DLDExchangeServerDBusPosition class
- * @param logAddress is the pointer of the parents log class
  * @param connectionBasePath in this case its the service name
  * @param subPath the subpath for the service
- * @return
- *      void
  */
-DLDExchangeServerDBusPosition::DLDExchangeServerDBusPosition (DLDLog * pLog, QString connectionBasePath, QString subPath)
+DLDExchangeServerDBusPosition::DLDExchangeServerDBusPosition (QString connectionBasePath, QString subPath)
 {
-	log = pLog;
-
 // build up dbus connection:
 	dBus = new QDBusConnection ("");
 	dBus->connectToBus (QDBusConnection::ActivationBus, "");
 	if (!dBus->sessionBus().isConnected())
 	{
-		log->errorLog ("Cannot connect to the D-BUS session bus.\nTo start it, run:\n\teval `dbus-launch --auto-syntax`");
+		qCCritical(DBUS_SERVER_POSITION) << "Cannot connect to the D-BUS session bus.\nTo start it, run:\n\teval `dbus-launch --auto-syntax`";
 		return ;
 	}
 	if (!dBus->sessionBus().registerService(connectionBasePath))
 	{
-		log->errorLog (QString ("%1").arg(qPrintable(QDBusConnection::sessionBus().lastError().message())));
+		qCCritical(DBUS_SERVER_POSITION) << QString ("%1").arg(qPrintable(QDBusConnection::sessionBus().lastError().message()));
 		return ;
 	}
 	dBus->sessionBus().registerObject(QString ("/%1").arg(subPath), this, QDBusConnection::ExportScriptableSlots | QDBusConnection::ExportAllSignals);

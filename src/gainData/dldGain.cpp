@@ -25,27 +25,23 @@
 
 #include <QSettings>
 #include <QTextStream>
+
+Q_LOGGING_CATEGORY(GAINDATA, "dld.gainData")
+
 /**
  * @brief constructor for gain data daemon
- * @param logLevel the logLevel which should be used for the application
- * @param logFile the file for logging if empty then log will go to console
  * @param strategyToUse the strategy that was chosen through command line
  * @return
  *      void
  */
-DLDGain::DLDGain (int logLevel, QString logFile, QString strategyToUse)
+DLDGain::DLDGain (QString strategyToUse)
 {
 	running = true;
 
-	log = new DLDLog ();
-	log->setLogLevel (logLevel);
-	if (!logFile.isEmpty())
-		log->setLogFile (logFile);
-
 	settings = new QSettings ("DLD", "Gain data daemon");
-	log->infoLog (QString ("Settings will be stored in: %1.").arg (settings->fileName ()));
+	qCInfo(GAINDATA) << QString ("Settings will be stored in: %1.").arg (settings->fileName ());
 
-	dataExchangeServer = new DLDDataExchangeServer (log);
+	dataExchangeServer = new DLDDataExchangeServer ();
 	dataExchangeServer->addExchangeMethod (DLDDataExchangeServer::TYPE_DBUS, "org.dld.gain", "");
 
 	if (strategyToUse.isEmpty ())
@@ -55,10 +51,10 @@ DLDGain::DLDGain (int logLevel, QString logFile, QString strategyToUse)
 
 	DeviceStrategy * device;
 	if (usedStrategy == "OpenBeaconUSBStrategy")
-		device = new OpenBeaconUSBStrategy ("DLD", log);
+		device = new OpenBeaconUSBStrategy ("DLD");
 	else // per default use the simulation strategy
-		device = new DLDSimulateStrategy ("DLD", log);
-	log->infoLog (QString ("%1 is the used strategy.").arg (usedStrategy));
+		device = new DLDSimulateStrategy ("DLD");
+	qCInfo(GAINDATA) << QString ("%1 is the used strategy.").arg (usedStrategy);
 	devices.append (device);
 	dataExchangeServer->setMaximumAxisValue (device->getMaximumAxisValue ());
 
@@ -72,9 +68,6 @@ DLDGain::DLDGain (int logLevel, QString logFile, QString strategyToUse)
 DLDGain::~DLDGain ()
 {
 	settings->setValue("usedDeviceStrategy", usedStrategy);
-
-	if (log)
-		delete (log);
 
 	if (settings)
 	{
@@ -97,7 +90,7 @@ DLDGain::~DLDGain ()
  */
 void DLDGain::connectDevices ()
 {
-	log->debugLog ("Connecting devices to the data exchange server.");
+	qCDebug(GAINDATA) << "Connecting devices to the data exchange server.";
 	for (int i = 0; i < devices.size(); i++)
 	{
 		connect (devices.at(i), SIGNAL(newNode (int, double, double, double)), dataExchangeServer, SLOT(updateNodeOnStrategies (int, double, double, double)), Qt::DirectConnection );

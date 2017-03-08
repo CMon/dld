@@ -14,13 +14,12 @@
 #include <QMutex>
 
 class QString;
-class DLDLog;
 
 class OpenBeaconCommunication : public QThread
 {
 	Q_OBJECT
 	public:
-		OpenBeaconCommunication (DLDLog * pLog);
+		OpenBeaconCommunication ();
 		~OpenBeaconCommunication ();
 
 		int	startCommunication ();
@@ -51,6 +50,4 @@ class OpenBeaconCommunication : public QThread
 		int 		fileDescriptor;
 		QString		devicePath;
 		QFile *		device;
-		DLDLog *	log;
 };
-

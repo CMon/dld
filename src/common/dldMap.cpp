@@ -24,15 +24,13 @@
 #include <QMap>
 #include <QtXml>
 
+Q_LOGGING_CATEGORY(MAP, "dld.map")
+
 /**
  * @brief constructor for DLDMap class
- * @param pLog	pointer of the DLDLog object
- * @return
- *      void
  */
-DLDMap::DLDMap (DLDLog * pLog)
-	: log (pLog)
-	, mapName ("Unnamed Map")
+DLDMap::DLDMap ()
+	: mapName ("Unnamed Map")
 {
 }
 /**
@@ -158,7 +156,7 @@ bool DLDMap::writeZoneSpecFile (QString path)
 	QFile specFile (path + mapName + ".xml");
 	if (!specFile.open (QIODevice::WriteOnly | QIODevice::Text))
 	{
-		log->errorLog (QString ("Could not open file: %1.").arg (path + mapName + ".xml"));
+		qCWarning(MAP) << QString ("Could not open file: %1.").arg (path + mapName + ".xml");
 		return (false);
 	}
 	QTextStream out (&specFile);
@@ -193,7 +191,7 @@ bool DLDMap::readZoneSpecFile (QString path)
 	QFile specFile (path + mapName + ".xml");
 	if (!specFile.open (QIODevice::ReadOnly | QIODevice::Text))
 	{
-		log->errorLog (QString ("Could not open file: %1.").arg (path + mapName + ".xml"));
+		qCWarning(MAP) << QString ("Could not open file: %1.").arg (path + mapName + ".xml");
 		return (false);
 	}
 
