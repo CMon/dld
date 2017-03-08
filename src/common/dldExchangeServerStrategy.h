@@ -17,7 +17,7 @@ public:
 	/**
 	 * std. destructor
 	 */
-	~DLDExchangeServerStrategy (){}
+	virtual ~DLDExchangeServerStrategy (){}
 	/**
 	 * Used to update the node data
 	*/
