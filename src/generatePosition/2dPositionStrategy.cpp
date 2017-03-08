@@ -46,6 +46,7 @@ TwoDPositionStrategy::~TwoDPositionStrategy ()
  */
 ThreeDPoint * TwoDPositionStrategy::getPosition (StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId)
 {
+	Q_UNUSED(dNodeId)
 	ThreeDPoint * point = new ThreeDPoint ();
 	point->x = 0;
 	point->y = 0;
