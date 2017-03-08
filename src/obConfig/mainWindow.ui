@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>mainWindow</class>
- <widget class="QMainWindow" name="mainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="mainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,45 +10,42 @@
     <height>516</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>OpenBeacon Configurator</string>
   </property>
-  <property name="windowIcon" >
-   <iconset/>
-  </property>
-  <widget class="QWidget" name="centralwidget" >
-   <layout class="QVBoxLayout" >
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout">
     <item>
-     <widget class="QGroupBox" name="selectGroup" >
-      <property name="title" >
+     <widget class="QGroupBox" name="selectGroup">
+      <property name="title">
        <string>Select device</string>
       </property>
-      <layout class="QHBoxLayout" >
+      <layout class="QHBoxLayout">
        <item>
-        <widget class="QComboBox" name="deviceCombo" >
-         <property name="toolTip" >
+        <widget class="QComboBox" name="deviceCombo">
+         <property name="toolTip">
           <string>Select a device that should be handled</string>
          </property>
-         <property name="statusTip" >
+         <property name="statusTip">
           <string>Devices</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="refreshButton" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+        <widget class="QPushButton" name="refreshButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="statusTip" >
+         <property name="statusTip">
           <string>Refresh device list</string>
          </property>
-         <property name="whatsThis" >
+         <property name="whatsThis">
           <string>This button refreshes the device list</string>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>&amp;Refresh</string>
          </property>
         </widget>
@@ -56,56 +54,56 @@
      </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="flashGroup" >
-      <property name="title" >
+     <widget class="QGroupBox" name="flashGroup">
+      <property name="title">
        <string>Flash device</string>
       </property>
-      <layout class="QGridLayout" >
-       <item row="0" column="0" >
-        <widget class="QLabel" name="label_3" >
-         <property name="text" >
+      <layout class="QGridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
           <string>Image for flashing:</string>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>imagepathEdit</cstring>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <widget class="QLineEdit" name="imagepathEdit" >
-         <property name="statusTip" >
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="imagepathEdit">
+         <property name="statusTip">
           <string>Image file</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1" >
-        <widget class="QPushButton" name="selectFileButton" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+       <item row="1" column="1">
+        <widget class="QPushButton" name="selectFileButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="statusTip" >
+         <property name="statusTip">
           <string>Select the image file</string>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>...</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="2" >
-        <widget class="QPushButton" name="flashButton" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+       <item row="1" column="2">
+        <widget class="QPushButton" name="flashButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="statusTip" >
+         <property name="statusTip">
           <string>Start the flashing of the OpenBeacon device</string>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>F&amp;lash</string>
          </property>
         </widget>
@@ -114,66 +112,66 @@
      </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="configureGroup" >
-      <property name="title" >
+     <widget class="QGroupBox" name="configureGroup">
+      <property name="title">
        <string>Configure device</string>
       </property>
-      <layout class="QGridLayout" >
-       <item row="0" column="0" >
-        <widget class="QLabel" name="label" >
-         <property name="text" >
+      <layout class="QGridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
           <string>Command:</string>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>commandCombo</cstring>
          </property>
         </widget>
        </item>
-       <item row="0" column="1" >
-        <widget class="QLabel" name="label_2" >
-         <property name="text" >
+       <item row="0" column="1">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
           <string>Arguments:</string>
          </property>
-         <property name="buddy" >
+         <property name="buddy">
           <cstring>valueEdit</cstring>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <widget class="QComboBox" name="commandCombo" >
-         <property name="toolTip" >
+       <item row="1" column="0">
+        <widget class="QComboBox" name="commandCombo">
+         <property name="toolTip">
           <string>Select a command from the list</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1" >
-        <widget class="QLineEdit" name="valueEdit" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="valueEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="toolTip" >
+         <property name="toolTip">
           <string>The execute does not check if the commands are right or valid. You hav to know what you are doing.</string>
          </property>
-         <property name="statusTip" >
+         <property name="statusTip">
           <string>Command arguments</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="2" >
-        <widget class="QPushButton" name="executeButton" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+       <item row="1" column="2">
+        <widget class="QPushButton" name="executeButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="statusTip" >
+         <property name="statusTip">
           <string>Execute the command</string>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>&amp;Execute</string>
          </property>
         </widget>
@@ -182,35 +180,35 @@
      </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="outputGroup" >
-      <property name="title" >
+     <widget class="QGroupBox" name="outputGroup">
+      <property name="title">
        <string>Console output</string>
       </property>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout">
        <item>
-        <widget class="QTextEdit" name="consoleTextEdit" >
-         <property name="statusTip" >
+        <widget class="QTextEdit" name="consoleTextEdit">
+         <property name="statusTip">
           <string>Console output</string>
          </property>
-         <property name="undoRedoEnabled" >
+         <property name="undoRedoEnabled">
           <bool>false</bool>
          </property>
-         <property name="readOnly" >
+         <property name="readOnly">
           <bool>true</bool>
          </property>
-         <property name="acceptRichText" >
+         <property name="acceptRichText">
           <bool>false</bool>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" >
+        <layout class="QHBoxLayout">
          <item>
           <spacer>
-           <property name="orientation" >
+           <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>40</width>
              <height>20</height>
@@ -219,8 +217,8 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="clearButton" >
-           <property name="text" >
+          <widget class="QPushButton" name="clearButton">
+           <property name="text">
             <string>&amp;Clear</string>
            </property>
           </widget>
@@ -232,119 +230,119 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar" >
-   <property name="geometry" >
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>459</width>
-     <height>26</height>
+     <height>29</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile" >
-    <property name="title" >
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionQuit" />
+    <addaction name="actionQuit"/>
    </widget>
-   <widget class="QMenu" name="menuDevice" >
-    <property name="title" >
+   <widget class="QMenu" name="menuDevice">
+    <property name="title">
      <string>&amp;Device</string>
     </property>
-    <addaction name="actionRefresh" />
-    <addaction name="separator" />
-    <addaction name="actionPreferences" />
+    <addaction name="actionRefresh"/>
+    <addaction name="separator"/>
+    <addaction name="actionPreferences"/>
    </widget>
-   <widget class="QMenu" name="menuHelp" >
-    <property name="title" >
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionOpenBeaconConfiguratorHelp" />
-    <addaction name="separator" />
-    <addaction name="actionAboutQt" />
-    <addaction name="actionAboutOpenBeacon" />
+    <addaction name="actionOpenBeaconConfiguratorHelp"/>
+    <addaction name="separator"/>
+    <addaction name="actionAboutQt"/>
+    <addaction name="actionAboutOpenBeacon"/>
    </widget>
-   <addaction name="menuFile" />
-   <addaction name="menuDevice" />
-   <addaction name="menuHelp" />
+   <addaction name="menuFile"/>
+   <addaction name="menuDevice"/>
+   <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
-  <action name="actionQuit" >
-   <property name="text" >
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionQuit">
+   <property name="text">
     <string>&amp;Quit</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Exit application</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionRefresh" >
-   <property name="text" >
+  <action name="actionRefresh">
+   <property name="text">
     <string>&amp;Refresh</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Refresh device list</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+R</string>
    </property>
   </action>
-  <action name="actionFlash" >
-   <property name="text" >
+  <action name="actionFlash">
+   <property name="text">
     <string>F&amp;lash OpenBeacon</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Start the flashing of the OpenBeacon device</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+L</string>
    </property>
   </action>
-  <action name="actionExecuteCommand" >
-   <property name="text" >
+  <action name="actionExecuteCommand">
+   <property name="text">
     <string>&amp;Execute command</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Execute a command</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+E</string>
    </property>
   </action>
-  <action name="actionPreferences" >
-   <property name="text" >
+  <action name="actionPreferences">
+   <property name="text">
     <string>&amp;Preferences</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Open preference dialog</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+P</string>
    </property>
   </action>
-  <action name="actionOpenBeaconConfiguratorHelp" >
-   <property name="text" >
+  <action name="actionOpenBeaconConfiguratorHelp">
+   <property name="text">
     <string>&amp;OpenBeacon Configurator Quick Help</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>OpenBeacon Configurator Help</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+?</string>
    </property>
   </action>
-  <action name="actionAboutQt" >
-   <property name="text" >
+  <action name="actionAboutQt">
+   <property name="text">
     <string>About Qt</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>About Qt</string>
    </property>
   </action>
-  <action name="actionAboutOpenBeacon" >
-   <property name="text" >
+  <action name="actionAboutOpenBeacon">
+   <property name="text">
     <string>About OpenBeacon</string>
    </property>
   </action>
