@@ -71,10 +71,8 @@ void DLDDataExchangeClient::addExchangeMethod (int type, QString basePath, QStri
 	}
 	exchangeStrategies.append (newMethod);
 
-	connect (newMethod, SIGNAL(newStrength (int, int, double)), this, SLOT(newStrengthInfo (int, int, double)), Qt::DirectConnection );
-	connect (newMethod, SIGNAL(newNode (int, double, double, double)), this, SLOT(newNodeInfo (int, double, double, double)), Qt::DirectConnection );
-	connect (newMethod, SIGNAL(newPosition (int, int, double, double, double)), this, SLOT(newPositionInfo (int, int, double, double, double)), Qt::DirectConnection );
-	connect (newMethod, SIGNAL(newMaximumAxisValue (double)), this, SIGNAL(newMaximumAxisValue (double)), Qt::DirectConnection );
+	connect(newMethod, &DLDExchangeClientStrategy::newStrength, this, &DLDDataExchangeClient::newStrengthInfo, Qt::DirectConnection);
+	connect(newMethod, &DLDExchangeClientStrategy::newNode, this,     &DLDDataExchangeClient::newNodeInfo,     Qt::DirectConnection);
 }
 /**
  * @brief slot: adds the new node information to the local storage, if it differs from previous entries

@@ -45,9 +45,9 @@ DLDShowPos::DLDShowPos ()
 	mapView->rotate (-90);
 	mapView->setScene (mapScene);
 
-	connect (mapScene, SIGNAL (mouseEnterTag (int, int, int)), this, SLOT (mouseEnterTag (int, int, int)));
-	connect (mapScene, SIGNAL (mouseLeaveTag ()), this, SLOT (mouseLeaveTag ()));
-	connect (mapScene, SIGNAL (mouseMoveOverTag (int, int, int)), this, SLOT (mouseMoveOverTag (int, int, int)));
+	connect (mapScene, &DLDMapScene::mouseEnterTag,    this, &DLDShowPos::mouseEnterTag);
+	connect (mapScene, &DLDMapScene::mouseLeaveTag,    this, &DLDShowPos::mouseLeaveTag);
+	connect (mapScene, &DLDMapScene::mouseMoveOverTag, this, &DLDShowPos::mouseMoveOverTag);
 
 	tagInfoDialog = new TagInfoDialog (this);
 
@@ -67,7 +67,7 @@ DLDShowPos::DLDShowPos ()
 // 	connect (personInfoDock, SIGNAL (visibilityChanged (bool)), showPersonInfoAct, SLOT (setChecked (bool)));
 // 	connect (databaseListDock, SIGNAL (visibilityChanged (bool)), showDatabaseListDockAct, SLOT (setChecked (bool)));
 
-	connect (this, SIGNAL (newDataNeeded (int)), this, SLOT (getNewData (int)));
+	connect (this, &DLDShowPos::newDataNeeded, this, &DLDShowPos::getNewData);
 }
 /**
  * @brief destructor for DLDShowPos class
@@ -112,44 +112,44 @@ void DLDShowPos::createActions ()
 	loadMapAct = new QAction (QIcon(":/icons/open.png"), tr("&Load map ..."), this);
 	loadMapAct->setShortcut (tr("Ctrl+L"));
 	loadMapAct->setStatusTip (tr("Load a map package"));
-	connect (loadMapAct, SIGNAL (triggered ()), this, SLOT (loadMap ()));
+	connect (loadMapAct, &QAction::triggered, this, &DLDShowPos::loadMap);
 
 	connectToGenPosAct = new QAction (QIcon(":/icons/connect.png"), tr("&Connect to Generate Position ..."), this);
 	connectToGenPosAct->setShortcut (tr("Ctrl+C"));
 	connectToGenPosAct->setStatusTip (tr("Connect to Generate Position..."));
-	connect (connectToGenPosAct, SIGNAL (triggered ()), this, SLOT (connectToGenPos ()));
-	connect (this, SIGNAL (connectedToGenPos (bool)), connectToGenPosAct, SLOT (setDisabled (bool)));
+	connect (connectToGenPosAct, &QAction::triggered,            this,               &DLDShowPos::connectToGenPos);
+	connect (this,               &DLDShowPos::connectedToGenPos, connectToGenPosAct, &QAction::setDisabled);
 
 	disconnectFromGenPosAct = new QAction (QIcon(":/icons/disconnect.png"), tr("Disconnect from Generate Position"), this);
 	disconnectFromGenPosAct->setShortcut (tr("Ctrl+W"));
 	disconnectFromGenPosAct->setStatusTip (tr("Disconnects current view"));
 	disconnectFromGenPosAct->setEnabled (false);
-	connect (disconnectFromGenPosAct, SIGNAL (triggered ()), this, SLOT (disconnectFromGenPos ()));
-	connect (this, SIGNAL (connectedToGenPos (bool)), disconnectFromGenPosAct, SLOT (setEnabled (bool)));
+	connect (disconnectFromGenPosAct, &QAction::triggered,            this,                    &DLDShowPos::disconnectFromGenPos);
+	connect (this,                    &DLDShowPos::connectedToGenPos, disconnectFromGenPosAct, &QAction::setEnabled);
 
 	connectToDBAct = new QAction (QIcon(":/icons/db-connect.png"), tr("Connect to database..."), this);
 	connectToDBAct->setShortcut (tr("Ctrl+S"));
 	connectToDBAct->setStatusTip (tr("Connect to database..."));
-	connect (connectToDBAct, SIGNAL (triggered ()), this, SLOT (connectDialog ()));
-	connect (this, SIGNAL (connectedToDatabase (bool)), connectToDBAct, SLOT (setDisabled (bool)));
+	connect (connectToDBAct, &QAction::triggered,              this,           &DLDShowPos::connectDialog);
+	connect (this,           &DLDShowPos::connectedToDatabase, connectToDBAct, &QAction::setDisabled);
 
 	disconnectFromDBAct = new QAction (QIcon(":/icons/db-disconnect.png"), tr("Disconnect from database"), this);
 	disconnectFromDBAct->setStatusTip (tr("Disconnects from database"));
 	disconnectFromDBAct->setEnabled (false);
-	connect (disconnectFromDBAct, SIGNAL (triggered ()), this, SLOT (disconnectFromDB ()));
-	connect (this, SIGNAL (connectedToDatabase (bool)), disconnectFromDBAct, SLOT (setEnabled (bool)));
+	connect (disconnectFromDBAct, &QAction::triggered,              this,                &DLDShowPos::disconnectFromDB);
+	connect (this,                &DLDShowPos::connectedToDatabase, disconnectFromDBAct, &QAction::setEnabled);
 
 	showPersonInfoAct = new QAction (tr("Show Person Information dock"), this);
 	showPersonInfoAct->setShortcut (tr("Ctrl+P"));
 	showPersonInfoAct->setStatusTip (tr("Show Person Information dock"));
 	showPersonInfoAct->setCheckable (true);
-	connect (showPersonInfoAct, SIGNAL (changed ()), this, SLOT (showPersonInfo ()));
+	connect (showPersonInfoAct, &QAction::changed, this, &DLDShowPos::showPersonInfo);
 
 	showDatabaseListDockAct = new QAction (tr("Show Database List dock"), this);
 	showDatabaseListDockAct->setShortcut (tr("Ctrl+D"));
 	showDatabaseListDockAct->setStatusTip (tr("Show Database List dock"));
 	showDatabaseListDockAct->setCheckable (true);
-	connect (showDatabaseListDockAct, SIGNAL (changed ()), this, SLOT (showDatabaseListDock ()));
+	connect (showDatabaseListDockAct, &QAction::changed, this, &DLDShowPos::showDatabaseListDock);
 
 	showPersonInfoHintAct = new QAction (tr("Show Mouse-over Person Information"), this);
 	showPersonInfoHintAct->setStatusTip (tr("Show Mouse-over Person Information"));
@@ -158,15 +158,15 @@ void DLDShowPos::createActions ()
 	exitAct = new QAction (tr("&Quit"), this);
 	exitAct->setShortcut (tr("Ctrl+Q"));
 	exitAct->setStatusTip (tr("Exit the application"));
-	connect (exitAct, SIGNAL (triggered ()), this, SLOT (close ()));
+	connect (exitAct, &QAction::triggered, this, &DLDShowPos::close);
 
 	aboutAct = new QAction (tr("&About"), this);
 	aboutAct->setStatusTip (tr("Show the application's About box"));
-	connect (aboutAct, SIGNAL (triggered ()), this, SLOT (about ()));
+	connect (aboutAct, &QAction::triggered, this, &DLDShowPos::about);
 
 	aboutQtAct = new QAction (tr("About &Qt"), this);
 	aboutQtAct->setStatusTip (tr("Show the Qt library's About box"));
-	connect (aboutQtAct, SIGNAL (triggered ()), qApp, SLOT (aboutQt ()));
+	connect (aboutQtAct, &QAction::triggered, qApp, &QApplication::aboutQt);
 }
 /**
  * @brief creates the main menu for the application
@@ -218,7 +218,7 @@ void DLDShowPos::createToolBars ()
 	zoomSpin->setMinimum (0.0);
 	zoomSpin->setSingleStep (0.5);
 	zoomSpin->setValue (1.0);
-	connect (zoomSpin, SIGNAL (valueChanged (double)), this, SLOT (zoom (double)));
+	connect (zoomSpin, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this, &DLDShowPos::zoom);
 
 	toolBar->addWidget (zoomLabel);
 	toolBar->addWidget (zoomSpin);
@@ -255,8 +255,8 @@ void DLDShowPos::createDocks ()
 	QStringList tableHeader;
 	tableHeader << tr ("Tag ID") << tr ("Name") << tr ("Prename") << tr ("Color") << tr ("Picture") << tr ("Description");
 	databaseListDockUi.personTableWidget->setHorizontalHeaderLabels (tableHeader);
-	connect (databaseListDockUi.refreshButton, SIGNAL (pressed ()), this, SLOT (refreshEntries ()));
-	connect (this, SIGNAL (connectedToDatabase (bool)), databaseListDockUi.refreshButton, SLOT (setEnabled (bool)));
+	connect (databaseListDockUi.refreshButton, &QPushButton::pressed,            this,                             &DLDShowPos::refreshEntries);
+	connect (this,                             &DLDShowPos::connectedToDatabase, databaseListDockUi.refreshButton, &QPushButton::setEnabled);
 }
 /**
  * @brief reads the settings and configures the application in an appropiate way
@@ -344,9 +344,9 @@ void DLDShowPos::connectToGenPos ()
 
 	if (selectConnectionUi.dBusRadio->isChecked ())     connectToDbus();
 
-	connect (exchangeClient, SIGNAL(newPosition (int)), this, SLOT(updatePosition (int)));
-	connect (exchangeClient, SIGNAL(newNode (int)), this, SLOT(newNode (int)));
-	connect (exchangeClient, SIGNAL(newMaximumAxisValue (double)), mapScene, SLOT(setMaximumAxisValue (double)));
+	connect (exchangeClient, &DLDDataExchangeClient::newPosition,         this,     static_cast<void (DLDShowPos::*)(int)>(&DLDShowPos::updatePosition));
+	connect (exchangeClient, &DLDDataExchangeClient::newNode,             this,     &DLDShowPos::newNode);
+	connect (exchangeClient, &DLDDataExchangeClient::newMaximumAxisValue, mapScene, &DLDMapScene::setMaximumAxisValue);
 	mapScene->setMaximumAxisValue (exchangeClient->getMaximumAxisValue ());
 	statusBar ()->showMessage (tr("Connected"));
 	emit connectedToGenPos (true);

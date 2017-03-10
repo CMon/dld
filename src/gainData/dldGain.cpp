@@ -91,8 +91,8 @@ void DLDGain::connectDevices ()
 	qCDebug(GAINDATA) << "Connecting devices to the data exchange server.";
 	for (int i = 0; i < devices.size(); i++)
 	{
-		connect (devices.at(i), SIGNAL(newNode (int, double, double, double)), dataExchangeServer, SLOT(updateNodeOnStrategies (int, double, double, double)), Qt::DirectConnection );
-		connect (devices.at(i), SIGNAL(newStrength (int, int, double)), dataExchangeServer, SLOT(updateStrengthOnStrategies (int, int, double)), Qt::DirectConnection );
+		connect(devices.at(i), &DeviceStrategy::newNode,     dataExchangeServer, &DLDDataExchangeServer::updateNodeOnStrategies, Qt::DirectConnection);
+		connect(devices.at(i), &DeviceStrategy::newStrength, dataExchangeServer, &DLDDataExchangeServer::updateStrengthOnStrategies, Qt::DirectConnection);
 		devices.at(i)->connectDevices ();
 	}
 }

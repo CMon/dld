@@ -81,9 +81,9 @@ void DLDMapScene::addTagItem (int tagId, QColor color)
 	tags.insert (tagId, item);
 
 	addItem (item);
-	connect (item, SIGNAL (mouseEnterTag (int, int, int)), this, SIGNAL (mouseEnterTag (int, int, int)));
-	connect (item, SIGNAL (mouseLeaveTag ()), this, SIGNAL (mouseLeaveTag ()));
-	connect (item, SIGNAL (mouseMoveOverTag (int, int, int)), this, SIGNAL (mouseMoveOverTag (int, int, int)));
+	connect(item, &TagItem::mouseEnterTag,    this, &DLDMapScene::mouseEnterTag);
+	connect(item, &TagItem::mouseLeaveTag,    this, &DLDMapScene::mouseLeaveTag);
+	connect(item, &TagItem::mouseMoveOverTag, this, &DLDMapScene::mouseMoveOverTag);
 }
 /**
  * @brief slot: add a tag item to internal QMap and scene

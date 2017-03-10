@@ -31,7 +31,7 @@ public:
 	double getMaximumAxisValue ();
 
 private slots:
-	void updateNodeData ();
+	void updateNodeData (double);
 	void updateStrengthData ();
 	void updateTimerInterval (int value);
 	void updateCircle ();

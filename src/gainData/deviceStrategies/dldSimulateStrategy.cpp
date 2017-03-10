@@ -23,6 +23,7 @@
 #include <QMainWindow>
 #include <QSettings>
 #include <QTimer>
+#include <QSpinBox>
 
 Q_LOGGING_CATEGORY(SIMULATOR_STRATEGY, "dld.gainData.deviceStrategy.simulator")
 
@@ -42,21 +43,19 @@ DLDSimulateStrategy::DLDSimulateStrategy(const QString & configName)
 	mainWindowUi.nodeGraphView->rotate (-90);
 	mainWindowUi.nodeGraphView->setScene (scene);
 
-	connect (mainWindowUi.actionQuit,		SIGNAL (triggered ()),		mainWindow, SLOT (close ()));
-	connect (mainWindowUi.updateIntervalSpin,	SIGNAL (valueChanged (int)),	this, SLOT (updateTimerInterval (int)));
-	connect (mainWindowUi.maxNodeRangeSpin,		SIGNAL (valueChanged (double)),	this, SLOT (updateNodeRange (double)));
-	connect (mainWindowUi.zoomSpin,			SIGNAL (valueChanged (double)),	this, SLOT (zoom (double)));
-
-	connect (mainWindowUi.node1XSpin,	SIGNAL (valueChanged (double)),	this, SLOT (updateNodeData ()));
-	connect (mainWindowUi.node1YSpin,	SIGNAL (valueChanged (double)),	this, SLOT (updateNodeData ()));
-	connect (mainWindowUi.node2XSpin,	SIGNAL (valueChanged (double)),	this, SLOT (updateNodeData ()));
-	connect (mainWindowUi.node2YSpin,	SIGNAL (valueChanged (double)),	this, SLOT (updateNodeData ()));
-	connect (mainWindowUi.node3XSpin,	SIGNAL (valueChanged (double)),	this, SLOT (updateNodeData ()));
-	connect (mainWindowUi.node3YSpin,	SIGNAL (valueChanged (double)),	this, SLOT (updateNodeData ()));
-
-	connect (mainWindowUi.node1RadiusSpin,	SIGNAL (valueChanged (double)),	this, SLOT (updateCircle ()));
-	connect (mainWindowUi.node2RadiusSpin,	SIGNAL (valueChanged (double)),	this, SLOT (updateCircle ()));
-	connect (mainWindowUi.node3RadiusSpin,	SIGNAL (valueChanged (double)),	this, SLOT (updateCircle ()));
+	connect(mainWindowUi.actionQuit,         &QAction::triggered,                                                          mainWindow, &QMainWindow::close);
+	connect(mainWindowUi.updateIntervalSpin, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),                this,       &DLDSimulateStrategy::updateTimerInterval);
+	connect(mainWindowUi.maxNodeRangeSpin,   static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,       &DLDSimulateStrategy::updateNodeRange);
+	connect(mainWindowUi.zoomSpin,           static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,       &DLDSimulateStrategy::zoom);
+	connect(mainWindowUi.node1XSpin,         static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,       static_cast<void (DLDSimulateStrategy::*)(double)>(&DLDSimulateStrategy::updateNodeData));
+	connect(mainWindowUi.node1YSpin,         static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,       static_cast<void (DLDSimulateStrategy::*)(double)>(&DLDSimulateStrategy::updateNodeData));
+	connect(mainWindowUi.node2XSpin,         static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,       static_cast<void (DLDSimulateStrategy::*)(double)>(&DLDSimulateStrategy::updateNodeData));
+	connect(mainWindowUi.node2YSpin,         static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,       static_cast<void (DLDSimulateStrategy::*)(double)>(&DLDSimulateStrategy::updateNodeData));
+	connect(mainWindowUi.node3XSpin,         static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,       static_cast<void (DLDSimulateStrategy::*)(double)>(&DLDSimulateStrategy::updateNodeData));
+	connect(mainWindowUi.node3YSpin,         static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,       static_cast<void (DLDSimulateStrategy::*)(double)>(&DLDSimulateStrategy::updateNodeData));
+	connect(mainWindowUi.node1RadiusSpin,    static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,       &DLDSimulateStrategy::updateCircle);
+	connect(mainWindowUi.node2RadiusSpin,    static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,       &DLDSimulateStrategy::updateCircle);
+	connect(mainWindowUi.node3RadiusSpin,    static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), this,       &DLDSimulateStrategy::updateCircle);
 
 	// run the simulation through a timer
 	updateTimer = new QTimer (this);
@@ -241,7 +240,7 @@ void DLDSimulateStrategy::updateStrengthData ()
  * @return
  *      void
  */
-void DLDSimulateStrategy::updateNodeData ()
+void DLDSimulateStrategy::updateNodeData (double)
 {
 	int	id;
 	QString senderObject = sender ()->objectName ();

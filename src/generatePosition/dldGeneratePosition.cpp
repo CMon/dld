@@ -30,17 +30,17 @@ DLDGeneratePosition::DLDGeneratePosition ()
 
 	dataExchangeServer = new DLDDataExchangeServer();
 	dataExchangeServer->addExchangeMethod (DLDDataExchangeServer::TYPE_DBUS, "org.dld.genPos", "", DLDDataExchangeServer::DBUS_POSITION);
-	connect (this, SIGNAL(newTagPos (int, int, double, double, double)), dataExchangeServer, SLOT(updatePositionOnStrategies (int, int, double, double, double)));
-	connect (this, SIGNAL(newNodeConnected (int, double, double, double)), dataExchangeServer, SLOT(updateNodeOnStrategies (int, double, double, double)));
+	connect(this, &DLDGeneratePosition::newTagPos,        dataExchangeServer, &DLDDataExchangeServer::updatePositionOnStrategies);
+	connect(this, &DLDGeneratePosition::newNodeConnected, dataExchangeServer, &DLDDataExchangeServer::updateNodeOnStrategies);
 
 	dataExchangeClient = new DLDDataExchangeClient();
 	dataExchangeClient->addExchangeMethod (DLDDataExchangeClient::TYPE_DBUS, "org.dld.gain", "", "dld.provide.strength");
-	connect (dataExchangeClient, SIGNAL(newStrength (int)), this, SLOT(newPosition (int)));
-	connect (dataExchangeClient, SIGNAL(newNode (int)), this, SLOT(newNode (int)));
-	connect (dataExchangeClient, SIGNAL(newMaximumAxisValue (double)), dataExchangeServer, SLOT(setMaximumAxisValue (double)));
+	connect(dataExchangeClient, &DLDDataExchangeClient::newStrength,         this,               &DLDGeneratePosition::newPosition);
+	connect(dataExchangeClient, &DLDDataExchangeClient::newNode,             this,               &DLDGeneratePosition::newNode);
+	connect(dataExchangeClient, &DLDDataExchangeClient::newMaximumAxisValue, dataExchangeServer, &DLDDataExchangeServer::setMaximumAxisValue);
 
-	connect (this, SIGNAL(newTagPos (int, int, double, double, double)), dataExchangeServer, SLOT(updatePositionOnStrategies (int, int, double, double, double)));
-	connect (this, SIGNAL(newNodeConnected (int, double, double, double)), dataExchangeServer, SLOT(updateNodeOnStrategies (int, double, double, double)));
+	connect(this, &DLDGeneratePosition::newTagPos,        dataExchangeServer, &DLDDataExchangeServer::updatePositionOnStrategies);
+	connect(this, &DLDGeneratePosition::newNodeConnected, dataExchangeServer, &DLDDataExchangeServer::updateNodeOnStrategies);
 
 	dataExchangeServer->setMaximumAxisValue (dataExchangeClient->getMaximumAxisValue());
 	initialPositions ();

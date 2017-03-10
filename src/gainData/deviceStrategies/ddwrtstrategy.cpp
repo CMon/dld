@@ -24,7 +24,7 @@ DDWRTStrategy::DDWRTStrategy(const QString & configName)
 	readConfiguration ();
 
 	checkTimer.setSingleShot(false);
-	connect(&checkTimer, SIGNAL(timeout()), this, SLOT(checkRouters()));
+//	connect(&checkTimer, &QTimer::timeout, this, &DDWRTStrategy::checkRouters);
 }
 
 void DDWRTStrategy::readConfiguration()

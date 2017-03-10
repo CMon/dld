@@ -165,7 +165,7 @@ void OpenBeaconUSBStrategy::disconnectDevices ()
 void OpenBeaconUSBStrategy::addDevice (const QString & path)
 {
 	OpenBeaconCommunication * device = new OpenBeaconCommunication ();
-	connect (device, SIGNAL(newData (QString)), this, SLOT(parseNewData (QString)));
+	connect(device, &OpenBeaconCommunication::newData, this, &OpenBeaconUSBStrategy::parseNewData);
 
 	device->setDevicePath (path);
 

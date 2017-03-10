@@ -19,19 +19,20 @@
 
 #include <common/dldLog.h>
 
-#include <QMainWindow>
-#include <QString>
-#include <QSettings>
-#include <QMap>
-#include <QHeaderView>
-#include <QMessageBox>
-#include <QFileDialog>
+#include <QComboBox>
 #include <QDir>
-#include <QTimer>
-#include <QTime>
+#include <QFileDialog>
+#include <QHeaderView>
+#include <QMainWindow>
+#include <QMap>
+#include <QMessageBox>
 #include <QProcess>
-#include <QTextStream>
+#include <QSettings>
+#include <QString>
 #include <QTemporaryFile>
+#include <QTextStream>
+#include <QTime>
+#include <QTimer>
 
 #include "ui_obConfiguratorHelp.h"
 #include "ui_replaceCommandsDialog.h"
@@ -98,38 +99,38 @@ DLDConfigureOB::~DLDConfigureOB ()
 void DLDConfigureOB::connectSignals ()
 {
 	// connect menu actions
-	connect(mainWindow.actionQuit,		SIGNAL(triggered ()), this, SLOT(close ()));
-	connect(mainWindow.actionRefresh,	SIGNAL(triggered ()), this, SLOT(refreshDevices ()));
-	connect(mainWindow.actionPreferences,	SIGNAL(triggered ()), this, SLOT(showPreferences ()));
-	connect(mainWindow.actionOpenBeaconConfiguratorHelp, SIGNAL(triggered ()), this, SLOT(showHelp()));
-	connect(mainWindow.actionAboutQt,	SIGNAL(triggered ()), qApp, SLOT(aboutQt ()));
-	connect(mainWindow.actionAboutOpenBeacon,SIGNAL(triggered ()), this, SLOT(aboutOpenBeacon ()));
+	connect(mainWindow.actionQuit,                       &QAction::triggered, this, &DLDConfigureOB::close);
+	connect(mainWindow.actionRefresh,                    &QAction::triggered, this, &DLDConfigureOB::refreshDevices);
+	connect(mainWindow.actionPreferences,                &QAction::triggered, this, &DLDConfigureOB::showPreferences);
+	connect(mainWindow.actionOpenBeaconConfiguratorHelp, &QAction::triggered, this, &DLDConfigureOB::showHelp);
+	connect(mainWindow.actionAboutQt,                    &QAction::triggered, qApp, QApplication::aboutQt);
+	connect(mainWindow.actionAboutOpenBeacon,            &QAction::triggered, this, &DLDConfigureOB::aboutOpenBeacon);
 
 	// connect main Window buttons with methods
-	connect(mainWindow.selectFileButton,	SIGNAL(clicked ()), this, SLOT(selectFlashImage ()));
-	connect(mainWindow.flashButton,		SIGNAL(clicked ()), this, SLOT(flashDevice ()));
-	connect(mainWindow.refreshButton,	SIGNAL(clicked ()), this, SLOT(refreshDevices ()));
-	connect(mainWindow.executeButton,	SIGNAL(clicked ()), this, SLOT(executeCommand ()));
-	connect(mainWindow.clearButton,		SIGNAL(clicked ()), this, SLOT(clearConsole ()));
+	connect(mainWindow.selectFileButton, &QPushButton::clicked, this, &DLDConfigureOB::selectFlashImage);
+	connect(mainWindow.flashButton,      &QPushButton::clicked, this, static_cast<void (DLDConfigureOB::*)()>(&DLDConfigureOB::flashDevice));
+	connect(mainWindow.refreshButton,    &QPushButton::clicked, this, &DLDConfigureOB::refreshDevices);
+	connect(mainWindow.executeButton,    &QPushButton::clicked, this, &DLDConfigureOB::executeCommand);
+	connect(mainWindow.clearButton,      &QPushButton::clicked, this, &DLDConfigureOB::clearConsole);
 
 	// connect box signals
-	connect(mainWindow.commandCombo,	SIGNAL(highlighted (int)), this, SLOT(commandHighlighted (int)));
-	connect(mainWindow.commandCombo,	SIGNAL(currentIndexChanged (int)), this, SLOT(updateCommandBoxStatusTip (int)));
-	connect(mainWindow.deviceCombo,		SIGNAL(currentIndexChanged (int)), this, SLOT(updateGroupBoxVisibility (int)));
-	connect(mainWindow.deviceCombo,		SIGNAL(activated (int)), this, SLOT(openNewDevice ()));
+	connect(mainWindow.commandCombo, static_cast<void (QComboBox::*)(int)>(&QComboBox::highlighted),         this, &DLDConfigureOB::commandHighlighted);
+	connect(mainWindow.commandCombo, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &DLDConfigureOB::updateCommandBoxStatusTip);
+	connect(mainWindow.deviceCombo,  static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &DLDConfigureOB::updateGroupBoxVisibility);
+	connect(mainWindow.deviceCombo,  static_cast<void (QComboBox::*)(int)>(&QComboBox::activated),           this, &DLDConfigureOB::openNewDevice);
 
 	// connect device
-	connect(device,				SIGNAL(newData (QString)), this, SLOT(receivedNewData (QString)));
-	connect(device,				SIGNAL(writeFailed ()), this, SLOT(writeFailed ()));
+	connect(device, &OpenBeaconCommunication::newData,     this, &DLDConfigureOB::receivedNewData);
+	connect(device, &OpenBeaconCommunication::writeFailed, this, &DLDConfigureOB::writeFailed);
 
 	// connect internal signals
-	connect(this,		SIGNAL(deviceSelected (bool, bool)),	this, SLOT(endisableGroupBox (bool, bool)));
-	connect(this,		SIGNAL(commandListChanged ()),		this, SLOT(refillCommandList ()));
-	connect(this,		SIGNAL(devicepathsChanged ()),		this, SLOT(refreshDevices ()));
-	connect(refreshTimer,	SIGNAL(timeout()),			this, SLOT(refreshDevices ()));
-	connect(batchProcess,	SIGNAL(readyReadStandardOutput ()),	this, SLOT(addCharToConsole ()));
-	connect(batchProcess,	SIGNAL(error (QProcess::ProcessError)),	this, SLOT(printProcessError (QProcess::ProcessError)));
-	connect(batchProcess,	SIGNAL(finished (int, QProcess::ExitStatus)),this, SLOT(processFinished (int, QProcess::ExitStatus)));
+	connect(this,         &DLDConfigureOB::deviceSelected,     this, &DLDConfigureOB::endisableGroupBox);
+	connect(this,         &DLDConfigureOB::commandListChanged, this, &DLDConfigureOB::refillCommandList);
+	connect(this,         &DLDConfigureOB::devicepathsChanged, this, &DLDConfigureOB::refreshDevices);
+	connect(refreshTimer, &QTimer::timeout,                    this, &DLDConfigureOB::refreshDevices);
+	connect(batchProcess, &QProcess::readyReadStandardOutput,  this, &DLDConfigureOB::addCharToConsole);
+	connect(batchProcess, &QProcess::errorOccurred,            this, &DLDConfigureOB::printProcessError);
+	connect(batchProcess, static_cast<void (QProcess::*)(int exitCode, QProcess::ExitStatus exitStatus)>(&QProcess::finished), this, &DLDConfigureOB::processFinished);
 }
 /**
  * @brief slot: enable or disable the flash/configure Groupboxes

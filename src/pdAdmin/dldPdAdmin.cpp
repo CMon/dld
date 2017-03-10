@@ -67,15 +67,15 @@ DLDPersonDataAdmin::~DLDPersonDataAdmin ()
  */
 void DLDPersonDataAdmin::createConnections ()
 {
-	connect (mainWindowUi.actionQuit,		SIGNAL (triggered ()), this, SLOT (close ()));
-	connect (mainWindowUi.actionConnect,		SIGNAL (triggered ()), this, SLOT (connectDialog ()));
-	connect (mainWindowUi.fileButton,		SIGNAL (pressed ()), this, SLOT (choosePicture ()));
-	connect (mainWindowUi.colorButton,		SIGNAL (pressed ()), this, SLOT (chooseColor ()));
-	connect (mainWindowUi.refreshButton,		SIGNAL (pressed ()), this, SLOT (refreshEntries ()));
-	connect (mainWindowUi.deleteButton,		SIGNAL (pressed ()), this, SLOT (deleteEntry ()));
-	connect (mainWindowUi.commitButton,		SIGNAL (pressed ()), this, SLOT (commitChanges ()));
-	connect (mainWindowUi.clearButton,		SIGNAL (pressed ()), this, SLOT (clearFields ()));
-	connect (mainWindowUi.personTableWidget,	SIGNAL (cellClicked (int, int)), this, SLOT (fillFields (int, int)));
+	connect (mainWindowUi.actionQuit,        &QAction::triggered,        this, &DLDPersonDataAdmin::close);
+	connect (mainWindowUi.actionConnect,     &QAction::triggered,        this, &DLDPersonDataAdmin::connectDialog);
+	connect (mainWindowUi.fileButton,        &QPushButton::pressed,      this, &DLDPersonDataAdmin::choosePicture);
+	connect (mainWindowUi.colorButton,       &QPushButton::pressed,      this, &DLDPersonDataAdmin::chooseColor);
+	connect (mainWindowUi.refreshButton,     &QPushButton::pressed,      this, &DLDPersonDataAdmin::refreshEntries);
+	connect (mainWindowUi.deleteButton,      &QPushButton::pressed,      this, &DLDPersonDataAdmin::deleteEntry);
+	connect (mainWindowUi.commitButton,      &QPushButton::pressed,      this, &DLDPersonDataAdmin::commitChanges);
+	connect (mainWindowUi.clearButton,       &QPushButton::pressed,      this, &DLDPersonDataAdmin::clearFields);
+	connect (mainWindowUi.personTableWidget, &QTableWidget::cellClicked, this, &DLDPersonDataAdmin::fillFields);
 }
 /**
  * @brief Opens the connect to database dialog and fills it with previously used values (except pass)
