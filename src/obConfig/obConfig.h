@@ -11,16 +11,16 @@
 #include <common/obCommunication.h>
 
 #include <QMainWindow>
-#include <QSettings>
 #include <QProcess>
 
 #include "ui_preferences.h"
 #include "ui_mainWindow.h"
 #include "ui_aboutOpenBeacon.h"
 
+class QSettings;
 class QString;
-class QTimer;
 class QTemporaryFile;
+class QTimer;
 
 class DLDConfigureOB : public QMainWindow
 {

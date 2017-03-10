@@ -19,18 +19,10 @@
 
 #include <common/dldLog.h>
 
-#include <QComboBox>
 #include <QDir>
 #include <QFileDialog>
-#include <QHeaderView>
-#include <QMainWindow>
-#include <QMap>
 #include <QMessageBox>
-#include <QProcess>
 #include <QSettings>
-#include <QString>
-#include <QTemporaryFile>
-#include <QTextStream>
 #include <QTime>
 #include <QTimer>
 
