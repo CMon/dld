@@ -8,21 +8,34 @@
  */
 #pragma once
 
-#include <common/3dPoint.h>
-
 #include <QObject>
+#include <QVector3D>
 
 class QString;
 
 /**
  * This class stores the 4 basic information for each device
  */
-class DeviceInformation : public ThreeDPoint
+class DeviceInformation : public QVector3D
 {
-	public:
-		int	id;
-		QString path;
+public:
+	DeviceInformation() : id(-1) {}
+
+	bool isValid() const { return id != -1; }
+
+	void fromQVector3D(const QVector3D & other)
+	{
+		this->setX(other.x());
+		this->setY(other.y());
+		this->setZ(other.z());
+	}
+
+
+public:
+	int	id;
+	QString path;
 };
+
 /**
  * This is an interface for the used strategy pattern for the dvice handling
  */

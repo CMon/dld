@@ -17,7 +17,6 @@
  * <br> Class for the DLD exchange client class
  */
 
-#include <common/3dPoint.h>
 #include <common/dldExchangeClient.h>
 #include <common/dldExchangeClientDBus.h>
 #include <common/dldExchangeClientStrategy.h>
@@ -88,11 +87,7 @@ void DLDDataExchangeClient::addExchangeMethod (int type, QString basePath, QStri
  */
 void DLDDataExchangeClient::newNodeInfo (int id, double x, double y, double z)
 {
-	ThreeDPoint	point;
-	point.x = x;
-	point.y = y;
-	point.z = z;
-	nodeInfo.insert (id, point);
+	nodeInfo.insert (id, QVector3D(x, y, z));
 	emit newNode (id);
 }
 /**
@@ -124,9 +119,7 @@ void DLDDataExchangeClient::newPositionInfo (int tagId, int timestamp, double x,
 {
 	TagPositionInformation	info;
 	info.timestamp = timestamp;
-	info.x = x;
-	info.y = y;
-	info.z = z;
+	info.fromQVector3D(QVector3D(x, y, z));
 	positionInfo.insert (tagId, info);
 	emit newPosition (tagId);
 }
@@ -175,7 +168,7 @@ QList<int> DLDDataExchangeClient::getNodeList ()
 		qCDebug(EXCHANGE_CLIENT) << "No nodes in list.";
 		return (rtList);
 	}
-	QMapIterator<int, ThreeDPoint>	i(nodeInfo);
+	QMapIterator<int, QVector3D> i(nodeInfo);
 	while (i.hasNext())
 	{
 		i.next();
@@ -189,7 +182,7 @@ QList<int> DLDDataExchangeClient::getNodeList ()
  * @return
  *      ThreeDPoint the node list
  */
-ThreeDPoint DLDDataExchangeClient::getNodeInformation (int nodeId)
+QVector3D DLDDataExchangeClient::getNodeInformation(int nodeId)
 {
 	refreshNodeInfos ();
 	return (nodeInfo[nodeId]);
@@ -245,17 +238,17 @@ void DLDDataExchangeClient::refreshNodeInfos ()
 				QStringList nodeList = nodes.split("|", QString::SkipEmptyParts);
 				for (int j = 0; j < nodeList.size (); j++)
 				{
-					ThreeDPoint point;
+					QVector3D point;
 					id = nodeList.at(j).toInt();
 					QStringList coords = exchangeStrategies.at(i)->getNodeInfo (id).split("|", QString::SkipEmptyParts);
 					for (int k = 0; k < coords.size(); k++)
 					{
 						if (coords.at(k).startsWith("x="))
-							point.x = coords.at(k).split("=").at(1).toDouble ();
+							point.setX(coords.at(k).split("=").at(1).toDouble ());
 						else if (coords.at(k).startsWith("y="))
-							point.y = coords.at(k).split("=").at(1).toDouble ();
+							point.setY(coords.at(k).split("=").at(1).toDouble ());
 						else if (coords.at(k).startsWith("z="))
-							point.z = coords.at(k).split("=").at(1).toDouble ();
+							point.setZ(coords.at(k).split("=").at(1).toDouble ());
 					}
 					nodeInfo.insert (id, point);
 				}

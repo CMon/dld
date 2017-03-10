@@ -31,7 +31,7 @@ class OpenBeaconUSBStrategy : public DeviceStrategy
 		void disconnectDevice (QString path);
 		double getMaximumAxisValue ();
 
-		DeviceInformation * getDeviceInformation (QString path);
+		DeviceInformation getDeviceInformation(QString path);
 		void loadDevices ();
 
 		void printSampleConfig ();
@@ -44,7 +44,7 @@ class OpenBeaconUSBStrategy : public DeviceStrategy
 		void writeConfiguration ();
 		void setPath (int id, QString path);
 
-		QList<DeviceInformation *>			deviceInfos;
+		QList<DeviceInformation> deviceInfos;
 		QMap<QString, OpenBeaconCommunication *>	devices;
 		QSettings *					settings;
 		int						maxPackages;

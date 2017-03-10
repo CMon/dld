@@ -20,6 +20,8 @@
 
 #include <common/dldLog.h>
 
+#include <QVector3D>
+
 #include <math.h>
 
 Q_LOGGING_CATEGORY(GENERATE_POSITION_2DSTRAT, "dld.generatePosition.2dStrategy")
@@ -44,29 +46,30 @@ TwoDPositionStrategy::~TwoDPositionStrategy ()
  * @return
  *      ThreeDPoint	a pointer to the position of the tag
  */
-ThreeDPoint * TwoDPositionStrategy::getPosition (StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId)
+QVector3D TwoDPositionStrategy::getPosition(StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors)
 {
 	Q_UNUSED(dNodeId)
-	ThreeDPoint * point = new ThreeDPoint ();
-	point->x = 0;
-	point->y = 0;
-	point->z = 0;
-	// if there are less then 3 nodes forget the position thing
-	if (strengths.size() < 3)
-		return (NULL);
+	QVector3D point;
+	*hadErrors = false;
 
-	double xA = nodeInformations[aNodeId].x;
-	double yA = nodeInformations[aNodeId].y;
+	// if there are less then 3 nodes forget the position thing
+	if (strengths.size() < 3) {
+		*hadErrors = true;
+		return QVector3D();
+	}
+
+	double xA = nodeInformations[aNodeId].x();
+	double yA = nodeInformations[aNodeId].y();
 	double rA = strengths[aNodeId];
 	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("xA: %1 yA: %2 rA: %3").arg(xA).arg(yA).arg(rA);
 
-	double xB = nodeInformations[bNodeId].x;
-	double yB = nodeInformations[bNodeId].y;
+	double xB = nodeInformations[bNodeId].x();
+	double yB = nodeInformations[bNodeId].y();
 	double rB = strengths[bNodeId];
 	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("xB: %1 yB: %2 rB: %3").arg(xB).arg(yB).arg(rB);
 
-	double xC = nodeInformations[cNodeId].x;
-	double yC = nodeInformations[cNodeId].y;
+	double xC = nodeInformations[cNodeId].x();
+	double yC = nodeInformations[cNodeId].y();
 	double rC = strengths[cNodeId];
 	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("xC: %1 yC: %2 rC: %3").arg(xC).arg(yC).arg(rC);
 
@@ -79,9 +82,9 @@ ThreeDPoint * TwoDPositionStrategy::getPosition (StrengthType strengths, int aNo
 	double h2	= pow (rA, 2.0) - pow (a, 2.0);
 	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("a: %1 h2: %2").arg(a).arg(h2);
 
-	if (h2 < 0)
-	{
-		return (NULL);
+	if (h2 < 0) {
+		*hadErrors = true;
+		return QVector3D();
 	}
 
 	// h2 >= 0 at least one point
@@ -92,11 +95,10 @@ ThreeDPoint * TwoDPositionStrategy::getPosition (StrengthType strengths, int aNo
 	double y1	= (yA) + ((a)/(d)) * (dy) + ((h)/(d)) * (dx);
 	qCDebug(GENERATE_POSITION_2DSTRAT) << QString ("Interception Coordination 1: I1(%1, %2)").arg(x1).arg(y1);
 
-	if (h == 0)
-	{
-		point->x = x1;
-		point->y = y1;
-		return (point);
+	if (h == 0) {
+		point.setX(x1);
+		point.setY(y1);
+		return point;
 	}
 
 	// h2 > 0 we need to calculate a second point ant compare to the 3. circle
@@ -112,21 +114,21 @@ ThreeDPoint * TwoDPositionStrategy::getPosition (StrengthType strengths, int aNo
 	double absolutDistP1 = fabs (distP1 - rC);
 	double absolutDistP2 = fabs (distP2 - rC);
 	double smaller = qMin (absolutDistP1, absolutDistP2);
-	if (smaller == absolutDistP1)
-	{
+	if (smaller == absolutDistP1) {
 		qCDebug(GENERATE_POSITION_2DSTRAT) << "I1 is the choosen one";
-		point->x = x1;
-		point->y = y1;
+		point.setX(x1);
+		point.setY(y1);
 	}
-	else if (smaller == absolutDistP2)
-	{
+	else if (smaller == absolutDistP2) {
 		qCDebug(GENERATE_POSITION_2DSTRAT) << "I2 is the choosen one";
-		point->x = x2;
-		point->y = y2;
-	}
-	else
+		point.setX(x2);
+		point.setY(y2);
+	} else {
+		*hadErrors = true;
 		qCDebug(GENERATE_POSITION_2DSTRAT) << "Something went horrible wrong";
-	return (point);
+	}
+
+	return point;
 }
 /**
  * @brief add a node to the information map
@@ -134,7 +136,7 @@ ThreeDPoint * TwoDPositionStrategy::getPosition (StrengthType strengths, int aNo
  * @return
  *      void
  */
-void TwoDPositionStrategy::addNode (int id, ThreeDPoint point)
+void TwoDPositionStrategy::addNode (int id, const QVector3D & point)
 {
 	qCDebug(GENERATE_POSITION_2DSTRAT) << QString("Add new node to strategy, id: %1").arg(id);
 	nodeInformations.insert (id, point);

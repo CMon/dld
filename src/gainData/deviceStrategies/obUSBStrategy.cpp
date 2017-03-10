@@ -70,13 +70,13 @@ void OpenBeaconUSBStrategy::readConfiguration ()
 	maxPackages = settings->value ("maxPackagesOnOB", 10).toInt();
 	for (int i = 0; i < groups.size(); ++i)
 	{
-		DeviceInformation * info = new DeviceInformation ();
+		DeviceInformation info;
 		settings->beginGroup(groups.at(i));
-		info->path = "";
-		info->id = settings->value ("id", 0).toInt ();
-		info->x = settings->value ("x", 0).toDouble ();
-		info->y = settings->value ("y", 0).toDouble ();
-		info->z = settings->value ("z", 0).toDouble ();
+		info.path = "";
+		info.id = settings->value ("id", 0).toInt();
+		info.setX(settings->value ("x", 0).toDouble());
+		info.setY(settings->value ("y", 0).toDouble());
+		info.setZ(settings->value ("z", 0).toDouble());
 		deviceInfos.append (info);
 		settings->endGroup ();
 	}
@@ -92,10 +92,10 @@ void OpenBeaconUSBStrategy::writeConfiguration ()
 	for (int i = 0; i < deviceInfos.size(); ++i)
 	{
 		settings->beginGroup(QString ("OpenBeacon-%1").arg(i));
-		settings->setValue("id", deviceInfos.at(i)->id);
-		settings->setValue("x", deviceInfos.at(i)->x);
-		settings->setValue("y", deviceInfos.at(i)->y);
-		settings->setValue("z", deviceInfos.at(i)->z);
+		settings->setValue("id", deviceInfos.at(i).id);
+		settings->setValue("x", deviceInfos.at(i).x());
+		settings->setValue("y", deviceInfos.at(i).y());
+		settings->setValue("z", deviceInfos.at(i).z());
 		settings->endGroup ();
 	}
 	settings->sync ();
@@ -211,14 +211,15 @@ void OpenBeaconUSBStrategy::printSampleConfig ()
  * @return
  * 	DeviceInformation the information for the requested path beacon
  */
-DeviceInformation * OpenBeaconUSBStrategy::getDeviceInformation (QString path)
+DeviceInformation OpenBeaconUSBStrategy::getDeviceInformation (QString path)
 {
 	for (int i = 0; i < deviceInfos.size(); i++)
 	{
-		if (deviceInfos.at(i)->path == path)
+		if (deviceInfos.at(i).path == path)
 			return (deviceInfos.at(i));
 	}
-	return (0);
+
+	return DeviceInformation();
 }
 /**
  * @brief loads the devices itself, info input comes from the settings, output will be a filled devices QMap
@@ -249,23 +250,22 @@ void OpenBeaconUSBStrategy::loadDevices ()
  */
 void OpenBeaconUSBStrategy::setPath (int id, QString path)
 {
-	for (int i = 0; i < deviceInfos.size(); i++)
-	{
-		if (deviceInfos.at(i)->id == id)
-		{
+	QMutableListIterator<DeviceInformation> it(deviceInfos);
+	while (it.hasNext()) {
+		DeviceInformation & info = it.next();
+		if (info.id == id) {
 			qCDebug(OPENBEACON_STRATEGY) << QString("Set path(%1) for id: %2").arg(path).arg(id);
-			deviceInfos.at(i)->path = path;
+			info.path = path;
 			return ;
 		}
 	}
+
 	// when the method reaches this position than we have an unconfigured device
 	// therefore create a new one
-	DeviceInformation * info = new DeviceInformation ();
-	info->path = path;
-	info->id = id;
-	info->x = 0.0;
-	info->y = 0.0;
-	info->z = 0.0;
+	DeviceInformation info;
+	info.path = path;
+	info.id = id;
+	info.fromQVector3D(QVector3D(0.0, 0.0, 0.0));
 	deviceInfos.append (info);
 	qCInfo(OPENBEACON_STRATEGY) << QString("Added new device with path(%1) for id: %2").arg(path).arg(id);
 }
@@ -284,9 +284,9 @@ void OpenBeaconUSBStrategy::parseNewData (QString data)
 	if (answerParts.at(0) == "Id:")
 	{
 		setPath (answerParts.at(1).toInt(), receivedPath);
-		DeviceInformation * deviceInfo = getDeviceInformation (receivedPath);
-		qCInfo(OPENBEACON_STRATEGY) << QString ("device with Id: %1 added.").arg (deviceInfo->id);
-		emit newNode (deviceInfo->id, deviceInfo->x, deviceInfo->y, deviceInfo->z);
+		DeviceInformation deviceInfo = getDeviceInformation (receivedPath);
+		qCInfo(OPENBEACON_STRATEGY) << QString ("device with Id: %1 added.").arg (deviceInfo.id);
+		emit newNode (deviceInfo.id, deviceInfo.x(), deviceInfo.y(), deviceInfo.z());
 		return;
 	}
 	if (answerParts.at (0) == "FIFO" && answerParts.at (1) == "lifetime")
@@ -300,8 +300,8 @@ void OpenBeaconUSBStrategy::parseNewData (QString data)
 		if (answerParts.size () < 2 || answerParts.at(1).isEmpty())
 			return ;
 
-		DeviceInformation * deviceInfo = getDeviceInformation (receivedPath);
-		if (!deviceInfo)
+		DeviceInformation deviceInfo = getDeviceInformation (receivedPath);
+		if (!deviceInfo.isValid())
 		{
 			qCInfo(OPENBEACON_STRATEGY) << QString ("Received information(%1) from unconfigured device: %2").arg(data).arg(receivedPath);
 			return ;
@@ -315,7 +315,7 @@ void OpenBeaconUSBStrategy::parseNewData (QString data)
 		// gives us a scale from 0->40
 		QStringList tagInfo = answerParts.at(1).split(",", QString::SkipEmptyParts);
 		int strength = ((tagInfo.at(0).toInt() / 85) * 10) + (maxPackages - tagInfo.at(2).toInt());
-		emit newStrength (deviceInfo->id, tagInfo.at(1).toInt(), strength);
+		emit newStrength (deviceInfo.id, tagInfo.at(1).toInt(), strength);
 		return;
 	}
 }

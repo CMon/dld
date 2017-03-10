@@ -19,7 +19,6 @@ SOURCES += \
 	tagItem.cpp \
 
 HEADERS  += \
-	3dPoint.h \
 	dldExchangeClient.h \
 	dldExchangeClientDBus.h \
 	dldExchangeClientStrategy.h \

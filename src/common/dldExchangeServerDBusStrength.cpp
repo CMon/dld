@@ -21,9 +21,10 @@
 #include <common/dldExchangeServerStrategy.h>
 #include <common/dldLog.h>
 
-#include <QVariant>
 #include <QString>
 #include <QtDBus>
+#include <QVariant>
+#include <QVector3D>
 
 Q_LOGGING_CATEGORY(DBUS_SERVER_STRENGTH, "dld.dbus.server.strength")
 
@@ -72,12 +73,7 @@ DLDExchangeServerDBusStrength::~DLDExchangeServerDBusStrength ()
  */
 void DLDExchangeServerDBusStrength::updateNode (int id, double x, double y, double z)
 {
-	ThreeDPoint tmp = nodeInfo[id];
-	tmp.x = x;
-	tmp.y = y;
-	tmp.z = z;
-
-	nodeInfo[id] = tmp;
+	nodeInfo[id] = QVector3D(x, y, z);
 	emit updatedNode (id, x, y, z);
 }
 /**
@@ -108,7 +104,7 @@ QString DLDExchangeServerDBusStrength::getNodeList ()
 	QString rtString;
 	if (nodeInfo.isEmpty())
 		return ("noNodes");
-	QMapIterator<int, ThreeDPoint> i(nodeInfo);
+	QMapIterator<int, QVector3D> i(nodeInfo);
 	while (i.hasNext())
 	{
 		i.next();
@@ -168,7 +164,7 @@ QString DLDExchangeServerDBusStrength::getNodeInfo (int deviceId)
 	if (!nodeInfo.contains(deviceId))
 		return ("no node information");
 
-	QString rtc = QString ("x=%1|y=%2|z=%3").arg(nodeInfo[deviceId].x).arg(nodeInfo[deviceId].y).arg(nodeInfo[deviceId].z);
+	QString rtc = QString ("x=%1|y=%2|z=%3").arg(nodeInfo[deviceId].x()).arg(nodeInfo[deviceId].y()).arg(nodeInfo[deviceId].z());
 	return (rtc);
 }
 /**

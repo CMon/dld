@@ -8,10 +8,23 @@
  */
 #pragma once
 
-#include <common/3dPoint.h>
+#include <QVector3D>
 
-class TagPositionInformation : public ThreeDPoint
+class TagPositionInformation : public QVector3D
 {
-	public:
-		int	timestamp;
+public:
+	void fromQVector3D(const QVector3D & other) {
+		this->setX(other.x());
+		this->setY(other.y());
+		this->setZ(other.z());
+	}
+
+	void fromValues(double xpos, double ypos, double zpos) {
+		this->setX(xpos);
+		this->setY(ypos);
+		this->setZ(zpos);
+	}
+
+public:
+	int	timestamp;
 };

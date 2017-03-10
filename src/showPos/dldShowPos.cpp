@@ -385,7 +385,7 @@ void DLDShowPos::updatePosition (int tagId)
 {
 	QDateTime time;
 	TagPositionInformation info = exchangeClient->getPosition (tagId);
-	updatePosition (tagId, info.x, info.y);
+	updatePosition (tagId, info.x(), info.y());
 	tags[tagId].lastSeen = info.timestamp;
 
 	time.setTime_t (info.timestamp);
@@ -544,8 +544,8 @@ void DLDShowPos::fillPersonInfoDock (int tagId, TagViewInfo info)
  */
 void DLDShowPos::newNode (int nodeId)
 {
-	ThreeDPoint point = exchangeClient->getNodeInformation (nodeId);
-	addNodeInfo (nodeId, QPointF (point.x, point.y));
+	const QVector3D point = exchangeClient->getNodeInformation (nodeId);
+	addNodeInfo (nodeId, QPointF (point.x(), point.y()));
 }
 /**
  * @brief Opens the connect to database dialog and fills it with previously used values (except pass)

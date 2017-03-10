@@ -66,12 +66,7 @@ DLDExchangeServerDBusPosition::~DLDExchangeServerDBusPosition ()
  */
 void DLDExchangeServerDBusPosition::updateNode (int id, double x, double y, double z)
 {
-	ThreeDPoint pos;
-	pos.x = x;
-	pos.y = y;
-	pos.z = z;
-
-	nodeInfo.insert (id, pos);
+	nodeInfo.insert (id, QVector3D(x, y, z));
 	emit updatedNode (id, x, y, z);
 }
 /**
@@ -102,11 +97,9 @@ QString DLDExchangeServerDBusPosition::getNodeList ()
 	QString rtString;
 	if (nodeInfo.isEmpty())
 		return ("noNodes");
-	QMapIterator<int, ThreeDPoint> i(nodeInfo);
-	while (i.hasNext())
-	{
-		i.next();
-		rtString.append (QString ("%1|").arg(i.key()));
+	QMapIterator<int, QVector3D> i(nodeInfo);
+	foreach (int id, nodeInfo.keys()) {
+		rtString.append (QString ("%1|").arg(id));
 	}
 	return (rtString);
 }
@@ -126,7 +119,7 @@ QString DLDExchangeServerDBusPosition::getPosition (int tagId)
 		return ("noPositionInformation");
 	TagPositionInformation posInfo = tagPosition[tagId];
 
-	rtString.append (QString ("timestamp=%1|x=%2|y=%3|z=%4").arg(posInfo.timestamp).arg(posInfo.x).arg(posInfo.y).arg(posInfo.z));
+	rtString.append (QString ("timestamp=%1|x=%2|y=%3|z=%4").arg(posInfo.timestamp).arg(posInfo.x()).arg(posInfo.y()).arg(posInfo.z()));
 	return (rtString);
 }
 /**
@@ -143,9 +136,7 @@ void DLDExchangeServerDBusPosition::updatePosition (int tagId, int timestamp, do
 {
 	TagPositionInformation	posInfo;
 	posInfo.timestamp = timestamp;
-	posInfo.x = x;
-	posInfo.y = y;
-	posInfo.z = z;
+	posInfo.fromValues(x, y, z);
 
 	tagPosition.insert (tagId, posInfo);
 	emit updatedPosition (tagId, timestamp, x, y, z);
@@ -163,7 +154,7 @@ QString DLDExchangeServerDBusPosition::getNodeInfo (int deviceId)
 	if (!nodeInfo.contains(deviceId))
 		return ("no node information");
 
-	return (QString ("x=%1|y=%2|z=%3").arg(nodeInfo[deviceId].x).arg(nodeInfo[deviceId].y).arg(nodeInfo[deviceId].z));
+	return (QString ("x=%1|y=%2|z=%3").arg(nodeInfo[deviceId].x()).arg(nodeInfo[deviceId].y()).arg(nodeInfo[deviceId].z()));
 }
 /**
  * @brief slot: updates the strength data of a tag in the internal struct and emits the signal updatedStrength, this slot is used to work in both directions

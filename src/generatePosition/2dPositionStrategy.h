@@ -8,7 +8,6 @@
  */
 #pragma once
 
-#include <common/3dPoint.h>
 #include <generatePosition/positionStrategy.h>
 
 #include <QMap>
@@ -19,11 +18,11 @@ class TwoDPositionStrategy : public PositionStrategy
 		TwoDPositionStrategy ();
 		~TwoDPositionStrategy ();
 
-		ThreeDPoint * getPosition (StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId);
+		QVector3D getPosition(StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors);
 
 	public slots:
-		void addNode (int id, ThreeDPoint point);
+		void addNode (int id, const QVector3D & point);
 
 	private:
-		QMap<int, ThreeDPoint>		nodeInformations;
+		QMap<int, QVector3D> nodeInformations;
 };

@@ -8,7 +8,6 @@
  */
 #pragma once
 
-#include <common/3dPoint.h>
 #include <common/dldExchangeServerStrategy.h>
 #include <common/strengthType.h>
 
@@ -47,7 +46,7 @@ private slots:
 	void updatePosition (int tagId, int timestamp, double x, double y, double z);
 
 private:
-	QMap<int, ThreeDPoint>  nodeInfo;
+	QMap<int, QVector3D> nodeInfo;
 	QMap<int, StrengthType> tagInfo;
 	QDBusConnection *       dBus;
 	double                  maximumAxisValue;

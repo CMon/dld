@@ -89,8 +89,8 @@ void DLDGeneratePosition::initialPositions ()
  */
 void DLDGeneratePosition::newPosition (int tagId)
 {
-	TagPositionInformation	posInfo;
-	ThreeDPoint * position;
+	TagPositionInformation posInfo;
+	QVector3D position;
 	posInfo.timestamp =  (int) time (NULL);
 	int	nodeIds[4];
 
@@ -115,31 +115,25 @@ void DLDGeneratePosition::newPosition (int tagId)
 	}
 
 	// in 2d this compares the 0 node circle with the 1 node circle
-	position = nodePosition->getPosition (dataExchangeClient->getStrengths (tagId), nodeIds[0], nodeIds[1], nodeIds[2], nodeIds[3]);
-	if (!position)
-	{
+	bool hadErrors = false;
+	position = nodePosition->getPosition (dataExchangeClient->getStrengths (tagId), nodeIds[0], nodeIds[1], nodeIds[2], nodeIds[3], &hadErrors);
+	if (hadErrors) {
 		// try another constelation
 		// in 2d this compares the 0 node circle with the 1 node circle
-		position = nodePosition->getPosition (dataExchangeClient->getStrengths (tagId), nodeIds[1], nodeIds[2], nodeIds[0], nodeIds[3]);
-		if (!position)
-		{
+		position = nodePosition->getPosition (dataExchangeClient->getStrengths (tagId), nodeIds[1], nodeIds[2], nodeIds[0], nodeIds[3], &hadErrors);
+		if (hadErrors) {
 		// try another constelation
-			position = nodePosition->getPosition (dataExchangeClient->getStrengths (tagId), nodeIds[2], nodeIds[0], nodeIds[1], nodeIds[3]);
-			if (!position)
-			{
+			position = nodePosition->getPosition (dataExchangeClient->getStrengths (tagId), nodeIds[2], nodeIds[0], nodeIds[1], nodeIds[3], &hadErrors);
+			if (hadErrors) {
 				return ;
 			}
 		}
 	}
-	posInfo.x = position->x;
-	posInfo.y = position->y;
-	posInfo.z = position->z;
+	posInfo.fromQVector3D(position);
 	tagPositions.insert (tagId, posInfo);
-	emit newTagPos (tagId, posInfo.timestamp, posInfo.x, posInfo.y, posInfo.z);
+	emit newTagPos (tagId, posInfo.timestamp, posInfo.x(), posInfo.y(), posInfo.z());
 	qCInfo(GENERATE_POSITION) << QString("Tag: %1 got a new position: X: %2 Y: %3 Z: %4")
-	                              .arg(tagId).arg(posInfo.x).arg(posInfo.y).arg(posInfo.z);
-	if (position)
-		delete (position);
+	                              .arg(tagId).arg(posInfo.x()).arg(posInfo.y()).arg(posInfo.z());
 }
 /**
  * @brief slot: new node was added
@@ -149,8 +143,8 @@ void DLDGeneratePosition::newPosition (int tagId)
  */
 void DLDGeneratePosition::newNode (int nodeId)
 {
-	ThreeDPoint	point = dataExchangeClient->getNodeInformation (nodeId);
+	QVector3D point = dataExchangeClient->getNodeInformation (nodeId);
 	nodeIdList.append (nodeId);
 	nodePosition->addNode (nodeId, point);
-	emit newNodeConnected (nodeId, point.x, point.y, point.z);
+	emit newNodeConnected (nodeId, point.x(), point.y(), point.z());
 }

@@ -8,7 +8,6 @@
  */
 #pragma once
 
-#include <common/3dPoint.h>
 #include <common/dldExchangeClientStrategy.h>
 #include <common/tagPositionInformation.h>
 
@@ -29,9 +28,9 @@ public:
 	TagPositionInformation getPosition (int tagId);
 	double                 getMaximumAxisValue ();
 
-	void        refreshNodeInfos ();
-	QList<int>  getNodeList ();
-	ThreeDPoint getNodeInformation (int nodeId);
+	void refreshNodeInfos ();
+	QList<int> getNodeList ();
+	QVector3D getNodeInformation (int nodeId);
 
 signals:
 	void newStrength (int tagId);
@@ -47,7 +46,7 @@ private slots:
 private:
 	QList<DLDExchangeClientStrategy *> exchangeStrategies;
 
-	QMap<int, ThreeDPoint>            nodeInfo;
+	QMap<int, QVector3D>              nodeInfo;
 	QMap<int, StrengthType>           tagInfo;
 	QMap<int, TagPositionInformation> positionInfo;
 	double                            maximumAxisValue;

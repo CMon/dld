@@ -8,7 +8,6 @@
  */
 #pragma once
 
-#include <common/3dPoint.h>
 #include <common/strengthType.h>
 
 #include <QList>
@@ -25,11 +24,11 @@ class PositionStrategy : public QObject
 		/**
 		 * calculate the position based on the strengths of the different nodes (nodeId, strength)
 		*/
-		virtual ThreeDPoint * getPosition (StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId) = 0;
+		virtual QVector3D getPosition (StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors) = 0;
 	public slots:
 		/**
 		 * Add a node to the strategy information
 		*/
-		virtual void addNode (int id, ThreeDPoint point) = 0;
+		virtual void addNode (int id, const QVector3D & point) = 0;
 };
 

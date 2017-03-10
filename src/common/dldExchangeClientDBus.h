@@ -8,7 +8,6 @@
  */
 #pragma once
 
-#include <common/3dPoint.h>
 #include <common/dldExchangeClientStrategy.h>
 
 #include <QMap>
