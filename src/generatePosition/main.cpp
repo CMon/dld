@@ -10,15 +10,12 @@
 #include <generatePosition/dldGeneratePosition.h>
 
 #include <QCoreApplication>
-#include <QString>
-#include <QTextStream>
 
 #include <signal.h>
 
 Q_LOGGING_CATEGORY(GENERATE_POSITION_MAIN, "dld.generatePosition.main")
 
 // Predeclaration
-void usage (QString progname);
 int setupUnixSignalHandlers ();
 void sigChild (int signo);
 /**
@@ -33,27 +30,12 @@ int main (int argc, char * argv[])
 	QCoreApplication app(argc, argv);
 	qInstallMessageHandler(DLDLog::consoleMessageHandler);
 
-	DLDGeneratePosition * mainGenPos = new DLDGeneratePosition ();
+	DLDGeneratePosition mainGenPos;
+	Q_UNUSED(mainGenPos)
 	setupUnixSignalHandlers ();
 
 	qCDebug(GENERATE_POSITION_MAIN) << "generate position daemon started";
-	app.exec ();
-	delete (mainGenPos);
-	return 0;
-}
-/**
- * @brief usage for this application
- * @param progname name of the launching program
- * @return
- *	void
- */
-void usage (QString progname)
-{
-	QTextStream out (stdout);
-	out << "OpenBeacon generate position daemon programmed and copyright by Simon Schaefer" << endl;
-	out << "OpenBeacon is a project from http://www.openbeacon.org/" << endl << endl;
-	out << "Usage: " << endl;
-	out << "\t" << progname << endl << endl;
+	return app.exec ();
 }
 /**
  * @brief registers the signal function into the unix signal handler

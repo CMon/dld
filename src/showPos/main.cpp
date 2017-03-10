@@ -10,15 +10,12 @@
 #include <showPos/dldShowPos.h>
 
 #include <QApplication>
-#include <QString>
-#include <QTextStream>
 
 #include <signal.h>
 
 Q_LOGGING_CATEGORY(SHOWPOS_MAIN, "dld.showPos.main")
 
 // Predeclaration
-void usage (QString progname);
 int setupUnixSignalHandlers ();
 void sigChild (int signo);
 
@@ -34,26 +31,10 @@ int main (int argc, char * argv[])
 	QApplication app(argc, argv);
 	qInstallMessageHandler(DLDLog::consoleMessageHandler);
 
-	DLDShowPos * mainShowPos = new DLDShowPos ();
+	DLDShowPos mainShowPos;
 	setupUnixSignalHandlers ();
-	mainShowPos->show ();
-	int rtc = app.exec ();
-	delete (mainShowPos);
-	return rtc;
-}
-/**
- * @brief usage for this application
- * @param progname name of the launching program
- * @return
- *	void
- */
-void usage (QString progname)
-{
-	QTextStream out (stdout);
-	out << "OpenBeacon show position application programmed and copyright by Simon Schaefer" << endl;
-	out << "OpenBeacon is a project from http://www.openbeacon.org/" << endl << endl;
-	out << "Usage: " << endl;
-	out << "\t" << progname << endl << endl;
+	mainShowPos.show ();
+	return app.exec ();
 }
 /**
  * @brief registers the signal function into the unix signal handler

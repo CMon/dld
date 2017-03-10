@@ -11,6 +11,7 @@
 #include <gainData/dldGain.h>
 
 #include <QApplication>
+#include <QCommandLineParser>
 #include <QString>
 #include <QTextStream>
 
@@ -20,7 +21,6 @@
 Q_LOGGING_CATEGORY(GAINDATA_MAIN, "dld.gainData.main")
 
 // Predeclaration
-void usage (QString progname);
 int setupUnixSignalHandlers ();
 void sigChild (int signo);
 
@@ -33,58 +33,26 @@ void sigChild (int signo);
  */
 int main(int argc, char *argv[])
 {
-	QTextStream out (stdout);
-	int optionIndex = 0;
-	QString strategy;
-
-	struct option longOptions[] = {
-		{"strategy",	1, 0, 's'}
-	};
-
-	while (1)
-	{
-		int c = getopt_long (argc, argv, "s:", longOptions, &optionIndex);
-		if (c == -1)
-			break;
-		switch (c)
-		{
-			case 's':
-				strategy = optarg;
-				break;
-			default:
-				usage (QString (argv[0]));
-				return (1);
-		}
-	}
-
 	QApplication app(argc, argv);
 	qInstallMessageHandler(DLDLog::consoleMessageHandler);
 
-	DLDGain * mainGain = new DLDGain (strategy);
+	QCommandLineParser cmdParser;
+	cmdParser.setApplicationDescription("Gain data daemon");
+	cmdParser.addHelpOption();
+	QCommandLineOption strategyOpt(QStringList() << "s" << "strategy", "Select strategy to use, available options: OpenBeaconUSBStrategy, DLDSimulateStrategy(default)", "strategy");
+	cmdParser.addOption(strategyOpt);
+
+	cmdParser.process(app);
+
+	QString strategy = "DLDSimulateStrategy";
+	if (cmdParser.isSet(strategyOpt)) strategy = cmdParser.value(strategyOpt);
+
+	DLDGain mainGain(strategy);
+	Q_UNUSED(mainGain)
 	setupUnixSignalHandlers ();
 
-	out << "Data gain daemon is running..." << endl;
-	app.exec ();
-	delete (mainGain);
-	return 0;
-}
-/**
- * @brief usage for this application
- * @param progname name of the launching program
- * @return
- *	void
- */
-void usage (QString progname)
-{
-	QTextStream out (stdout);
-	out << "OpenBeacon gain data daemon programmed and copyright by Simon Schaefer" << endl;
-	out << "OpenBeacon is a project from http://www.openbeacon.org/" << endl << endl;
-	out << "Usage: " << endl;
-	out << "\t" << progname << " [-s <strategyName>]" << endl << endl;
-	out << "Possible strategies:" << endl;
-	out << "\tOpenBeaconUSBStrategy\tStrategy for the USB OpenBeacon nodes" << endl;
-	out << "\tDLDSimulateStrategy\tStrategy for a hardware simulation interface" << endl;
-	out << endl << endl;
+	qCInfo(GAINDATA_MAIN) << "Data gain daemon started" << endl;
+	return app.exec();
 }
 /**
  * @brief registers the signal function into the unix signal handler

@@ -10,15 +10,12 @@
 #include <common/dldLog.h>
 
 #include <QApplication>
-#include <QString>
-#include <QTextStream>
 
 #include <signal.h>
 
 Q_LOGGING_CATEGORY(PD_ADMIN_MAIN, "dld.pdAdmin.main")
 
 // Predeclaration
-void usage (QString progname);
 int setupUnixSignalHandlers ();
 void sigChild (int signo);
 
@@ -34,26 +31,11 @@ int main (int argc, char * argv[])
 	QApplication app(argc, argv);
 	qInstallMessageHandler(DLDLog::consoleMessageHandler);
 
-	DLDPersonDataAdmin * mainPDAdmin = new DLDPersonDataAdmin ();
+	DLDPersonDataAdmin mainPDAdmin;
 	setupUnixSignalHandlers ();
-	mainPDAdmin->show ();
-	int rtc = app.exec ();
-	delete (mainPDAdmin);
-	return rtc;
-}
-/**
- * @brief usage for this application
- * @param progname name of the launching program
- * @return
- *	void
- */
-void usage (QString progname)
-{
-	QTextStream out (stdout);
-	out << "OpenBeacon person data administrator application programmed and copyright by Simon Schaefer" << endl;
-	out << "OpenBeacon is a project from http://www.openbeacon.org/" << endl << endl;
-	out << "Usage: " << endl;
-	out << "\t" << progname << endl << endl;
+
+	mainPDAdmin.show ();
+	return app.exec ();
 }
 /**
  * @brief registers the signal function into the unix signal handler
