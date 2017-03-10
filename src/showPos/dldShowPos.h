@@ -89,7 +89,7 @@ private:
 	void addNodeInfo (int nodeId, QPointF position);
 	void addTagItem (int tagId);
 	void updatePosition (int tagId, double x, double y);
-	bool connectToDB (QString type, QString host, int port, QString dbName, QString username, QString password);
+	bool connectToDB (const QString & type, const QString & host, int port, const QString & dbName, const QString & username, const QString & password);
 
 	int currentConnectionType;
 

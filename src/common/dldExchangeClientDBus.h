@@ -18,7 +18,7 @@ class DLDExchangeClientDBus : public DLDExchangeClientStrategy
 	Q_OBJECT
 
 public:
-	DLDExchangeClientDBus (QString connectionBasePath, QString subPath, QString interface);
+	DLDExchangeClientDBus (const QString & connectionBasePath, const QString & subPath, const QString & interface);
 	~DLDExchangeClientDBus ();
 
 	QString getTagList ();

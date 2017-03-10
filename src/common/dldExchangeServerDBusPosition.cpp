@@ -32,7 +32,7 @@ Q_LOGGING_CATEGORY(DBUS_SERVER_POSITION, "dld.dbus.server.position")
  * @param connectionBasePath in this case its the service name
  * @param subPath the subpath for the service
  */
-DLDExchangeServerDBusPosition::DLDExchangeServerDBusPosition (QString connectionBasePath, QString subPath)
+DLDExchangeServerDBusPosition::DLDExchangeServerDBusPosition (const QString & connectionBasePath, const QString & subPath)
 {
 // build up dbus connection:
 	dBus = new QDBusConnection ("");

@@ -132,7 +132,7 @@ QPixmap DLDMap::getMapImage ()
  * @return
  *      void
  */
-void DLDMap::setMapName (QString name)
+void DLDMap::setMapName (const QString & name)
 {
 	mapName = name;
 }
@@ -151,7 +151,7 @@ QString DLDMap::getMapName ()
  * @return
  *      bool
  */
-bool DLDMap::writeZoneSpecFile (QString path)
+bool DLDMap::writeZoneSpecFile (const QString & path)
 {
 	QFile specFile (path + mapName + ".xml");
 	if (!specFile.open (QIODevice::WriteOnly | QIODevice::Text))
@@ -186,7 +186,7 @@ bool DLDMap::writeZoneSpecFile (QString path)
  * @return
  *      bool
  */
-bool DLDMap::readZoneSpecFile (QString path)
+bool DLDMap::readZoneSpecFile (const QString & path)
 {
 	QFile specFile (path + mapName + ".xml");
 	if (!specFile.open (QIODevice::ReadOnly | QIODevice::Text))
@@ -204,7 +204,7 @@ bool DLDMap::readZoneSpecFile (QString path)
  * @return
  *      bool
  */
-bool DLDMap::loadMap (QString path)
+bool DLDMap::loadMap (const QString & path)
 {
 	background = QPixmap (path + mapName + ".png");
 	readZoneSpecFile (path);
@@ -216,7 +216,7 @@ bool DLDMap::loadMap (QString path)
  * @return
  *      bool
  */
-bool DLDMap::saveMap (QString path)
+bool DLDMap::saveMap (const QString & path)
 {
 	writeZoneSpecFile (path);
 	background.save (path + mapName + ".png");

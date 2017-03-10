@@ -625,7 +625,7 @@ void DLDShowPos::connectDialog ()
  * @return
  *      bool		true if connected, false if not
  */
-bool DLDShowPos::connectToDB (QString type, QString host, int port, QString dbName, QString username, QString password)
+bool DLDShowPos::connectToDB (const QString & type, const QString & host, int port, const QString & dbName, const QString & username, const QString & password)
 {
 	disconnectFromDB ();
 

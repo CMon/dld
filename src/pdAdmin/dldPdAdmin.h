@@ -42,12 +42,12 @@ private:
 
 	void createConnections ();
 
-	bool connect2DB (QString type, QString host, int port, QString dbName, QString username, QString password);
+	bool connect2DB (const QString & type, const QString & host, int port, const QString & dbName, const QString & username, const QString & password);
 	void closeDatabase ();
 	QByteArray savePixmapToByteArray (const QPixmap * pixmap);
-	QString addPerson (QString sqlString);
-	QString deletePerson (QString keyValue);
-	QString changePerson (QString sqlString);
+	QString addPerson (const QString & sqlString);
+	QString deletePerson (const QString & keyValue);
+	QString changePerson (const QString & sqlString);
 
 	Ui::mainWindow mainWindowUi;
 	Ui::connect2DBDialog connect2DBDialogUi;

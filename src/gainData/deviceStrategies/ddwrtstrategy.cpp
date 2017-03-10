@@ -67,12 +67,12 @@ void DDWRTStrategy::disconnectDevices()
 	checkTimer.stop();
 }
 
-void DDWRTStrategy::addDevice(QString path)
+void DDWRTStrategy::addDevice(const QString & path)
 {
 	Q_UNUSED(path)
 }
 
-void DDWRTStrategy::removeDevice(QString path)
+void DDWRTStrategy::removeDevice(const QString & path)
 {
 	Q_UNUSED(path)
 }

@@ -479,7 +479,7 @@ void DLDConfigureOB::openNewDevice ()
  * @return
  *	void
  */
-void DLDConfigureOB::receivedNewData (QString answer)
+void DLDConfigureOB::receivedNewData (const QString & answer)
 {
 	if (!showRX && answer.startsWith ("RX:"))
 		return;
@@ -652,7 +652,7 @@ void DLDConfigureOB::fillDefaultCommands ()
  * @return
  *	void
  */
-void DLDConfigureOB::addCommandTableRow (int row, QString firstCell, QString secondCell)
+void DLDConfigureOB::addCommandTableRow (int row, const QString & firstCell, const QString & secondCell)
 {
 	QTableWidgetItem * firstCellItem = new QTableWidgetItem(firstCell);
 	QTableWidgetItem * secondCellItem = new QTableWidgetItem(secondCell);

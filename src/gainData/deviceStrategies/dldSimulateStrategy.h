@@ -22,12 +22,12 @@ class DLDSimulateStrategy  : public DeviceStrategy
 {
 	Q_OBJECT
 public:
-	DLDSimulateStrategy (QString configName);
+	DLDSimulateStrategy (const QString & configName);
 	~DLDSimulateStrategy ();
 	void connectDevices ();
 	void disconnectDevices ();
-	void addDevice (QString path);
-	void removeDevice (QString path);
+	void addDevice (const QString & path);
+	void removeDevice (const QString & path);
 	double getMaximumAxisValue ();
 
 private slots:

@@ -35,7 +35,7 @@ Q_LOGGING_CATEGORY(DBUS_SERVER_STRENGTH, "dld.dbus.server.strength")
  * @return
  *      void
  */
-DLDExchangeServerDBusStrength::DLDExchangeServerDBusStrength (QString connectionBasePath, QString subPath)
+DLDExchangeServerDBusStrength::DLDExchangeServerDBusStrength (const QString & connectionBasePath, const QString & subPath)
 {
 // build up dbus connection:
 	dBus = new QDBusConnection ("");

@@ -179,7 +179,7 @@ void OpenBeaconCommunication::stop ()
  * @return
  *      void
  */
-void OpenBeaconCommunication::sendToOB (QString command)
+void OpenBeaconCommunication::sendToOB (const QString & command)
 {
 	sendQueueMutex.lock ();
 	sendQueue.enqueue(command);
@@ -201,7 +201,7 @@ QString OpenBeaconCommunication::getDevicePath ()
  * @return
  *      void
  */
-void OpenBeaconCommunication::setDevicePath (QString path)
+void OpenBeaconCommunication::setDevicePath (const QString & path)
 {
 	devicePath = path;
 }

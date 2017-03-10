@@ -21,23 +21,23 @@ class OpenBeaconUSBStrategy : public DeviceStrategy
 	Q_OBJECT
 
 public:
-	OpenBeaconUSBStrategy (QString configName);
+	OpenBeaconUSBStrategy (const QString & configName);
 	~OpenBeaconUSBStrategy ();
 	void connectDevices ();
 	void disconnectDevices ();
-	void addDevice (QString path);
-	void removeDevice (QString path);
-	void connectDevice (QString path);
-	void disconnectDevice (QString path);
+	void addDevice (const QString & path);
+	void removeDevice (const QString & path);
+	void connectDevice (const QString & path);
+	void disconnectDevice (const QString & path);
 	double getMaximumAxisValue ();
 
-	DeviceInformation getDeviceInformation(QString path);
+	DeviceInformation getDeviceInformation(const QString & path);
 	void loadDevices ();
 
 	void printSampleConfig ();
 
 private slots:
-	void parseNewData (QString data);
+	void parseNewData (const QString & data);
 
 private:
 	void readConfiguration ();

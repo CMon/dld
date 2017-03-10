@@ -156,7 +156,7 @@ void DLDPersonDataAdmin::connectDialog ()
  * @return
  *      bool		true if connected, false if not
  */
-bool DLDPersonDataAdmin::connect2DB (QString type, QString host, int port, QString dbName, QString username, QString password)
+bool DLDPersonDataAdmin::connect2DB (const QString & type, const QString & host, int port, const QString & dbName, const QString & username, const QString & password)
 {
 	closeDatabase ();
 

@@ -54,11 +54,11 @@ public:
 	/**
 	 * Add a device to the list of devices that should watch for updated informations
 	*/
-	virtual void addDevice (QString path) = 0;
+	virtual void addDevice (const QString & path) = 0;
 	/**
 	 * Removes a device from the collection
 	*/
-	virtual void removeDevice (QString path) = 0;
+	virtual void removeDevice (const QString & path) = 0;
 	/**
 	 * prints an example for the configuration
 	 */

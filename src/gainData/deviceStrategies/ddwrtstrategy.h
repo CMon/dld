@@ -32,8 +32,8 @@ public:
 	void connectDevices ();
 	void disconnectDevices ();
 #warning fixme: think about the addDevice, removeDevice if they are needed in the strategy or at all
-	void addDevice (QString path);
-	void removeDevice (QString path);
+	void addDevice (const QString & path);
+	void removeDevice (const QString & path);
 
 	void printSampleConfig ();
 	double getMaximumAxisValue () { return maximumDBValue; }

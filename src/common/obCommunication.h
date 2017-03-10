@@ -29,10 +29,10 @@ public:
 	void changeDevice ();
 
 	QString getDevicePath ();
-	void setDevicePath (QString path);
+	void setDevicePath (const QString & path);
 
 public slots:
-	void sendToOB (QString command);
+	void sendToOB (const QString & command);
 
 signals:
 	void newData (QString line);

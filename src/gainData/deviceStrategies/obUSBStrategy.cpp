@@ -36,7 +36,7 @@ Q_LOGGING_CATEGORY(OPENBEACON_STRATEGY, "dld.gainData.deviceStrategy.openBeacon"
  * @return
  * 	void
  */
-OpenBeaconUSBStrategy::OpenBeaconUSBStrategy (QString configName)
+OpenBeaconUSBStrategy::OpenBeaconUSBStrategy (const QString & configName)
 {
 	settings = new QSettings (configName, "obUSBStrategy");
 	qCDebug(OPENBEACON_STRATEGY) << QString("OpenBeacon USB Strategy Configuration is located in %1.").arg(settings->fileName ());
@@ -127,7 +127,7 @@ void OpenBeaconUSBStrategy::connectDevices ()
  * @return
  * 	void
  */
-void OpenBeaconUSBStrategy::connectDevice (QString path)
+void OpenBeaconUSBStrategy::connectDevice (const QString & path)
 {
 	devices[path]->startCommunication ();
 }
@@ -137,7 +137,7 @@ void OpenBeaconUSBStrategy::connectDevice (QString path)
  * @return
  * 	void
  */
-void OpenBeaconUSBStrategy::disconnectDevice (QString path)
+void OpenBeaconUSBStrategy::disconnectDevice (const QString & path)
 {
 	devices[path]->stop ();
 }
@@ -162,7 +162,7 @@ void OpenBeaconUSBStrategy::disconnectDevices ()
  * @return
  * 	void
  */
-void OpenBeaconUSBStrategy::addDevice (QString path)
+void OpenBeaconUSBStrategy::addDevice (const QString & path)
 {
 	OpenBeaconCommunication * device = new OpenBeaconCommunication ();
 	connect (device, SIGNAL(newData (QString)), this, SLOT(parseNewData (QString)));
@@ -179,7 +179,7 @@ void OpenBeaconUSBStrategy::addDevice (QString path)
  * @return
  * 	void
  */
-void OpenBeaconUSBStrategy::removeDevice (QString path)
+void OpenBeaconUSBStrategy::removeDevice (const QString & path)
 {
 	if (!devices.contains (path))
 		return ;
@@ -211,7 +211,7 @@ void OpenBeaconUSBStrategy::printSampleConfig ()
  * @return
  * 	DeviceInformation the information for the requested path beacon
  */
-DeviceInformation OpenBeaconUSBStrategy::getDeviceInformation (QString path)
+DeviceInformation OpenBeaconUSBStrategy::getDeviceInformation (const QString & path)
 {
 	for (int i = 0; i < deviceInfos.size(); i++)
 	{
@@ -275,7 +275,7 @@ void OpenBeaconUSBStrategy::setPath (int id, QString path)
  * @return
  * 	void
  */
-void OpenBeaconUSBStrategy::parseNewData (QString data)
+void OpenBeaconUSBStrategy::parseNewData (const QString & data)
 {
 	if (data.isEmpty ())
 		return ;

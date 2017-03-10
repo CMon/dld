@@ -19,11 +19,11 @@ public:
 	DLDMap ();
 	~DLDMap ();
 
-	void setMapName (QString name);
+	void setMapName (const QString & name);
 	QString getMapName ();
 
-	bool loadMap (QString path);
-	bool saveMap (QString path);
+	bool loadMap (const QString & path);
+	bool saveMap (const QString & path);
 
 	void addZone (DLDZone zone);
 	void changeZone (DLDZone zone);
@@ -37,8 +37,8 @@ public:
 	void removeNode (int id);
 
 private:
-	bool writeZoneSpecFile (QString path);
-	bool readZoneSpecFile (QString path);
+	bool writeZoneSpecFile (const QString & path);
+	bool readZoneSpecFile (const QString & path);
 
 	QList <DLDZone> zoneInformations;
 	QPixmap background;

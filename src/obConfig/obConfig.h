@@ -49,7 +49,7 @@ private slots:
 	void showHelp ();
 	void executeCommand ();
 	void openNewDevice ();
-	void receivedNewData (QString answer);
+	void receivedNewData (const QString & answer);
 	void writeFailed ();
 	void clearConsole ();
 	void flashDevice ();
@@ -63,9 +63,9 @@ private slots:
 
 private:
 	// Methods
-	void addCommandTableRow (int row, QString firstCell, QString secondCell);
-	bool flashDevice (QString deviceName);
-	bool configureDevice (QString command);
+	void addCommandTableRow (int row, const QString & firstCell, const QString & secondCell);
+	bool flashDevice (const QString & deviceName);
+	bool configureDevice (const QString & command);
 	void connectSignals ();
 	QMap<QString, QString> getCommandMap ();
 	void writeCommandMap (QMap<QString, QString> commandMap);

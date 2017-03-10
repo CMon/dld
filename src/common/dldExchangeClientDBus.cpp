@@ -29,7 +29,7 @@ Q_LOGGING_CATEGORY(DBUS_CLIENT, "dld.dbus.client")
  * @return
  *      void
  */
-DLDExchangeClientDBus::DLDExchangeClientDBus (QString connectionBasePath, QString subPath, QString interface)
+DLDExchangeClientDBus::DLDExchangeClientDBus (const QString & connectionBasePath, const QString & subPath, const QString & interface)
 {
 	serviceName = connectionBasePath;
 	QString path = QString ("/%1").arg(subPath);

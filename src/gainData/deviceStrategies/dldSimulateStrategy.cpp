@@ -30,7 +30,7 @@ Q_LOGGING_CATEGORY(SIMULATOR_STRATEGY, "dld.gainData.deviceStrategy.simulator")
  * @brief constructor for DLDHwSim class
  * @param configName The name of the configuration
  */
-DLDSimulateStrategy::DLDSimulateStrategy(QString configName)
+DLDSimulateStrategy::DLDSimulateStrategy(const QString & configName)
 {
 	settings = new QSettings (configName, "hardware simulator");
 	qCInfo(SIMULATOR_STRATEGY) << QString ("Settings will be stored in: %1.").arg (settings->fileName ());
@@ -194,7 +194,7 @@ void DLDSimulateStrategy::disconnectDevices ()
  * @return
  *      void
  */
-void DLDSimulateStrategy::addDevice (QString path)
+void DLDSimulateStrategy::addDevice (const QString & path)
 {
 	Q_UNUSED(path)
 	// do nothing
@@ -205,7 +205,7 @@ void DLDSimulateStrategy::addDevice (QString path)
  * @return
  *      void
  */
-void DLDSimulateStrategy::removeDevice (QString path)
+void DLDSimulateStrategy::removeDevice (const QString & path)
 {
 	Q_UNUSED(path)
 

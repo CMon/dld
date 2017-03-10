@@ -24,7 +24,7 @@ Q_CLASSINFO("D-Bus Interface", "dld.provide.position")
 Q_OBJECT
 
 public:
-	DLDExchangeServerDBusPosition(QString connectionBasePath, QString subPath);
+	DLDExchangeServerDBusPosition(const QString & connectionBasePath, const QString & subPath);
 	~DLDExchangeServerDBusPosition ();
 	void setMaximumAxisValue (double maximumAxisValue);
 

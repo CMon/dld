@@ -23,7 +23,7 @@ class DLDGain : public QObject
 	Q_OBJECT
 
 public:
-	DLDGain (QString strategyToUse);
+	DLDGain (const QString & strategyToUse);
 	~DLDGain ();
 
 private:

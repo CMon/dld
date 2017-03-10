@@ -24,7 +24,7 @@ Q_CLASSINFO("D-Bus Interface", "dld.provide.strength")
 Q_OBJECT
 
 public:
-	DLDExchangeServerDBusStrength(QString connectionBasePath, QString subPath);
+	DLDExchangeServerDBusStrength(const QString & connectionBasePath, const QString & subPath);
 	~DLDExchangeServerDBusStrength ();
 	void setMaximumAxisValue (double maximumAxisValue);
 
