@@ -35,6 +35,5 @@ private:
 	DLDDataExchangeServer * dataExchangeServer;
 	QSettings * settings;
 
-	bool running;
 	QString usedStrategy;
 };

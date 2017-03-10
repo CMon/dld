@@ -36,8 +36,6 @@ Q_LOGGING_CATEGORY(GAINDATA, "dld.gainData")
  */
 DLDGain::DLDGain (QString strategyToUse)
 {
-	running = true;
-
 	settings = new QSettings ("DLD", "Gain data daemon");
 	qCInfo(GAINDATA) << QString ("Settings will be stored in: %1.").arg (settings->fileName ());
 
