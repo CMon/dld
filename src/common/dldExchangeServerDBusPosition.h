@@ -49,6 +49,6 @@ private:
 	QMap<int, QVector3D> nodeInfo;
 	QMap<int, TagPositionInformation> tagPosition;
 
-	QDBusConnection *                 dBus;
-	double                            maximumAxisValue;
+	QDBusConnection * dBus;
+	double maximumAxisValue;
 };

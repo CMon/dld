@@ -15,32 +15,33 @@
 
 class DLDMap
 {
-	public:
-		DLDMap ();
-		~DLDMap ();
+public:
+	DLDMap ();
+	~DLDMap ();
 
-		void	setMapName (QString name);
-		QString getMapName ();
+	void setMapName (QString name);
+	QString getMapName ();
 
-		bool	loadMap (QString path);
-		bool	saveMap (QString path);
+	bool loadMap (QString path);
+	bool saveMap (QString path);
 
-		void	addZone (DLDZone zone);
-		void	changeZone (DLDZone zone);
-		void	removeZone (int id);
-		DLDZone	getZoneInfo (int id);
+	void addZone (DLDZone zone);
+	void changeZone (DLDZone zone);
+	void removeZone (int id);
+	DLDZone getZoneInfo (int id);
 
-		void	setMapImage (QPixmap image);
-		QPixmap	getMapImage ();
+	void setMapImage (QPixmap image);
+	QPixmap getMapImage ();
 
-		void	addNode (int id, QPoint position);
-		void	removeNode (int id);
-	private:
-		bool	writeZoneSpecFile (QString path);
-		bool	readZoneSpecFile (QString path);
+	void addNode (int id, QPoint position);
+	void removeNode (int id);
 
-		QList <DLDZone>		zoneInformations;
-		QPixmap			background;
+private:
+	bool writeZoneSpecFile (QString path);
+	bool readZoneSpecFile (QString path);
 
-		QString			mapName;
+	QList <DLDZone> zoneInformations;
+	QPixmap background;
+
+	QString mapName;
 };

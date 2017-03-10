@@ -10,25 +10,25 @@
 
 #include <common/strengthType.h>
 
-#include <QList>
 #include <QObject>
 
 class PositionStrategy : public QObject
 {
 	Q_OBJECT
-	public:
-		/**
-		 * virtual destructor
-		*/
-		~PositionStrategy () {}
-		/**
-		 * calculate the position based on the strengths of the different nodes (nodeId, strength)
-		*/
-		virtual QVector3D getPosition (StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors) = 0;
-	public slots:
-		/**
-		 * Add a node to the strategy information
-		*/
-		virtual void addNode (int id, const QVector3D & point) = 0;
+public:
+	/**
+	 * virtual destructor
+	*/
+	~PositionStrategy () {}
+	/**
+	 * calculate the position based on the strengths of the different nodes (nodeId, strength)
+	*/
+	virtual QVector3D getPosition (StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors) = 0;
+
+public slots:
+	/**
+	 * Add a node to the strategy information
+	*/
+	virtual void addNode (int id, const QVector3D & point) = 0;
 };
 

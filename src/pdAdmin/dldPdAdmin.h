@@ -22,40 +22,40 @@ class QSettings;
 class DLDPersonDataAdmin : public QMainWindow
 {
 	Q_OBJECT
-	public:
-		DLDPersonDataAdmin ();
-		~DLDPersonDataAdmin ();
+public:
+	DLDPersonDataAdmin ();
+	~DLDPersonDataAdmin ();
 
-	private slots:
-		void connectDialog ();
-		void choosePicture ();
-		void deleteEntry ();
-		void commitChanges ();
-		void refreshEntries ();
-		void clearFields ();
-		void fillFields (int row, int);
-		void chooseColor ();
+private slots:
+	void connectDialog ();
+	void choosePicture ();
+	void deleteEntry ();
+	void commitChanges ();
+	void refreshEntries ();
+	void clearFields ();
+	void fillFields (int row, int);
+	void chooseColor ();
 
-	private:
-		// the error number that is thrown in those cases:
-		static const int	DB_ENTRY_ALREADY_EXISTS	= 1062;
+private:
+	// the error number that is thrown in those cases:
+	static const int DB_ENTRY_ALREADY_EXISTS	= 1062;
 
-		void		createConnections ();
+	void createConnections ();
 
-		bool		connect2DB (QString type, QString host, int port, QString dbName, QString username, QString password);
-		void		closeDatabase ();
-		QByteArray	savePixmapToByteArray (const QPixmap * pixmap);
-		QString		addPerson (QString sqlString);
-		QString		deletePerson (QString keyValue);
-		QString		changePerson (QString sqlString);
+	bool connect2DB (QString type, QString host, int port, QString dbName, QString username, QString password);
+	void closeDatabase ();
+	QByteArray savePixmapToByteArray (const QPixmap * pixmap);
+	QString addPerson (QString sqlString);
+	QString deletePerson (QString keyValue);
+	QString changePerson (QString sqlString);
 
-		Ui::mainWindow		mainWindowUi;
-		Ui::connect2DBDialog	connect2DBDialogUi;
+	Ui::mainWindow mainWindowUi;
+	Ui::connect2DBDialog connect2DBDialogUi;
 
-		QSettings *		settings;
-		QSqlDatabase		database;
-		QString			databaseName;
-		QString			personsTable;
+	QSettings * settings;
+	QSqlDatabase database;
+	QString databaseName;
+	QString personsTable;
 
-		QMap <int, QPixmap>	pictureMap;
+	QMap <int, QPixmap>	pictureMap;
 };

@@ -14,16 +14,16 @@
 
 #include "ui_personInfoWidget.h"
 
-class TagInfoDialog  : public QDialog
+class TagInfoDialog : public QDialog
 {
 	Q_OBJECT
-	public:
-		TagInfoDialog (QWidget * par);
-		int getXShift ();
-		void setInformation (int tagId, TagViewInfo info);
+public:
+	TagInfoDialog (QWidget * par);
+	int getXShift ();
+	void setInformation (int tagId, TagViewInfo info);
 
-	private:
-		Ui::personInfoWidget	personInfoUi;
-		int			xShift;
+private:
+	Ui::personInfoWidget personInfoUi;
+	int xShift;
 };
 

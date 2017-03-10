@@ -18,39 +18,39 @@ class QString;
 class DLDExchangeClientStrategy : public QObject
 {
 	Q_OBJECT
-	public:
-		/**
+public:
+	/**
 		 * std. destructor
 		*/
-		~DLDExchangeClientStrategy() {};
-		/**
+	~DLDExchangeClientStrategy() {};
+	/**
 		 * retrieve the tag list from the data exchange server
 		*/
-		virtual QString getTagList () = 0;
-		/**
+	virtual QString getTagList () = 0;
+	/**
 		 * retrieve the node list from the data exchange server
 		*/
-		virtual QString getNodeList () = 0;
-		/**
+	virtual QString getNodeList () = 0;
+	/**
 		 * retrieve the tags strength string from the data exchange server
 		*/
-		virtual QString getStrengths (int tagId) = 0;
-		/**
+	virtual QString getStrengths (int tagId) = 0;
+	/**
 		 * retrieve the node information string from the data exchange server
 		*/
-		virtual QString getNodeInfo (int deviceId) = 0;
-		/**
+	virtual QString getNodeInfo (int deviceId) = 0;
+	/**
 		 * Get the maximum axis value of the used device
 		 */
-		virtual double getMaximumAxisValue () = 0;
+	virtual double getMaximumAxisValue () = 0;
 
-	signals:
-		/**
+signals:
+	/**
 		 * send when new strength information arrives at the client side of the dbus
 		*/
-		void newStrength (int deviceId, int tagId, double strength);
-		/**
+	void newStrength (int deviceId, int tagId, double strength);
+	/**
 		 * send when new node information arrives at the client side of the dbus
 		 */
-		void newNode (int id, double x, double y, double z);
+	void newNode (int id, double x, double y, double z);
 };

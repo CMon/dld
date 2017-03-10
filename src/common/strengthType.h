@@ -12,4 +12,3 @@
 
 // tagId, strength
 typedef QMap<int, double> StrengthType;
-

@@ -26,7 +26,7 @@ public:
 	bool isTagOnScene (int tagId);
 
 	void setTagViewWidth (int width);
-	int	getTagViewWidth ();
+	int getTagViewWidth ();
 
 	void updateTagColor (int tagId, QColor color);
 
@@ -43,11 +43,11 @@ public slots:
 private:
 	void createCoordSystem ();
 
-	QList <int>	tagsOnScene;
+	QList <int> tagsOnScene;
 	QMap <int, TagItem *> tags;
 
 	int tagViewWidth;
-	double 	mapXMaximum;
-	double 	mapYMaximum;
+	double mapXMaximum;
+	double mapYMaximum;
 	int helpLineStep;
 };

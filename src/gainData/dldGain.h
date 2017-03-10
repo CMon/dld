@@ -22,19 +22,19 @@ class DLDGain : public QObject
 {
 	Q_OBJECT
 
-	public:
-		DLDGain (QString strategyToUse);
-		~DLDGain ();
+public:
+	DLDGain (QString strategyToUse);
+	~DLDGain ();
 
-	private:
-		void readConfiguration ();
-		void connectDevices ();
+private:
+	void readConfiguration ();
+	void connectDevices ();
 
-		QList<DeviceStrategy *>		devices;
-		QMap<int, QMap<int, int> >	tagInformations;
-		DLDDataExchangeServer *		dataExchangeServer;
-		QSettings *			settings;
+	QList<DeviceStrategy *> devices;
+	QMap<int, QMap<int, int> > tagInformations;
+	DLDDataExchangeServer * dataExchangeServer;
+	QSettings * settings;
 
-		bool				running;
-		QString				usedStrategy;
+	bool running;
+	QString usedStrategy;
 };

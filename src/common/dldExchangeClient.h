@@ -22,11 +22,11 @@ public:
 	// class defines:
 	static const int TYPE_DBUS  = 1;
 
-	void                   refreshTagInfos ();
-	QList<int>             getTagList ();
-	StrengthType           getStrengths (int tagId);
+	void refreshTagInfos ();
+	QList<int> getTagList ();
+	StrengthType getStrengths (int tagId);
 	TagPositionInformation getPosition (int tagId);
-	double                 getMaximumAxisValue ();
+	double getMaximumAxisValue ();
 
 	void refreshNodeInfos ();
 	QList<int> getNodeList ();
@@ -46,8 +46,8 @@ private slots:
 private:
 	QList<DLDExchangeClientStrategy *> exchangeStrategies;
 
-	QMap<int, QVector3D>              nodeInfo;
-	QMap<int, StrengthType>           tagInfo;
+	QMap<int, QVector3D> nodeInfo;
+	QMap<int, StrengthType> tagInfo;
 	QMap<int, TagPositionInformation> positionInfo;
-	double                            maximumAxisValue;
+	double maximumAxisValue;
 };

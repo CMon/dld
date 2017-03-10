@@ -13,11 +13,11 @@
 class TagViewInfo
 {
 public:
-	int     lastSeen;
+	int lastSeen;
 	QPixmap image;
 	QString name;
 	QString prename;
-	QColor  color;
+	QColor color;
 	QPointF position;
 	QString description;
 };

@@ -48,6 +48,6 @@ private slots:
 private:
 	QMap<int, QVector3D> nodeInfo;
 	QMap<int, StrengthType> tagInfo;
-	QDBusConnection *       dBus;
-	double                  maximumAxisValue;
+	QDBusConnection * dBus;
+	double maximumAxisValue;
 };

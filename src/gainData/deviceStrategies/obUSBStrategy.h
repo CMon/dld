@@ -20,32 +20,32 @@ class OpenBeaconUSBStrategy : public DeviceStrategy
 {
 	Q_OBJECT
 
-	public:
-		OpenBeaconUSBStrategy (QString configName);
-		~OpenBeaconUSBStrategy ();
-		void connectDevices ();
-		void disconnectDevices ();
-		void addDevice (QString path);
-		void removeDevice (QString path);
-		void connectDevice (QString path);
-		void disconnectDevice (QString path);
-		double getMaximumAxisValue ();
+public:
+	OpenBeaconUSBStrategy (QString configName);
+	~OpenBeaconUSBStrategy ();
+	void connectDevices ();
+	void disconnectDevices ();
+	void addDevice (QString path);
+	void removeDevice (QString path);
+	void connectDevice (QString path);
+	void disconnectDevice (QString path);
+	double getMaximumAxisValue ();
 
-		DeviceInformation getDeviceInformation(QString path);
-		void loadDevices ();
+	DeviceInformation getDeviceInformation(QString path);
+	void loadDevices ();
 
-		void printSampleConfig ();
+	void printSampleConfig ();
 
-	private slots:
-		void parseNewData (QString data);
+private slots:
+	void parseNewData (QString data);
 
-	private:
-		void readConfiguration ();
-		void writeConfiguration ();
-		void setPath (int id, QString path);
+private:
+	void readConfiguration ();
+	void writeConfiguration ();
+	void setPath (int id, QString path);
 
-		QList<DeviceInformation> deviceInfos;
-		QMap<QString, OpenBeaconCommunication *>	devices;
-		QSettings *					settings;
-		int						maxPackages;
+	QList<DeviceInformation> deviceInfos;
+	QMap<QString, OpenBeaconCommunication *> devices;
+	QSettings * settings;
+	int maxPackages;
 };

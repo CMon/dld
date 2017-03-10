@@ -15,21 +15,22 @@ class QGraphicsSceneHoverEvent;
 class TagItem : public QObject, public QGraphicsEllipseItem
 {
 	Q_OBJECT
-	public:
-		TagItem ();
-		void	setTagId (int id);
-		int	getTagId ();
 
-	signals:
-		void mouseEnterTag (int tagId, int x, int y);
-		void mouseLeaveTag ();
-		void mouseMoveOverTag (int tagId, int x, int y);
+public:
+	TagItem ();
+	void	setTagId (int id);
+	int	getTagId ();
 
-	protected:
-		void hoverEnterEvent (QGraphicsSceneHoverEvent * event);
-		void hoverLeaveEvent (QGraphicsSceneHoverEvent * event);
-		void hoverMoveEvent (QGraphicsSceneHoverEvent * event);
+signals:
+	void mouseEnterTag (int tagId, int x, int y);
+	void mouseLeaveTag ();
+	void mouseMoveOverTag (int tagId, int x, int y);
 
-	private:
-		int tagId;
+protected:
+	void hoverEnterEvent (QGraphicsSceneHoverEvent * event);
+	void hoverLeaveEvent (QGraphicsSceneHoverEvent * event);
+	void hoverMoveEvent (QGraphicsSceneHoverEvent * event);
+
+private:
+	int tagId;
 };

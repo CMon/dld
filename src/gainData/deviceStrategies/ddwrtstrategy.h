@@ -19,8 +19,8 @@
 class RouterInfo
 {
 public:
-	int             id;
-	QVector3D       position;
+	int id;
+	QVector3D position;
 	QNetworkRequest networkRequest;
 };
 
@@ -48,8 +48,8 @@ private:
 	QHash<int, RouterInfo> routers;
 
 	QSettings settings;
-	int       checkFrequenzy;
-	int       maximumDBValue;
+	int checkFrequenzy;
+	int maximumDBValue;
 
 	QNetworkAccessManager nam;
 	QTimer checkTimer;

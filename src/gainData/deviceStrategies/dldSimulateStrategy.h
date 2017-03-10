@@ -12,14 +12,15 @@
 
 #include "ui_hwSimMainWindow.h"
 
+class QGraphicsEllipseItem;
+class QGraphicsScene;
+class QMainWindow;
 class QSettings;
 class QTimer;
-class QMainWindow;
-class QGraphicsEllipseItem;
 
 class DLDSimulateStrategy  : public DeviceStrategy
 {
-Q_OBJECT
+	Q_OBJECT
 public:
 	DLDSimulateStrategy (QString configName);
 	~DLDSimulateStrategy ();
@@ -50,9 +51,9 @@ private:
 	Ui::mainWindow mainWindowUi;
 
 	QTimer * updateTimer;
-	int      fakeTagId;
+	int fakeTagId;
 
 	QGraphicsEllipseItem * circles[3];
-	QGraphicsScene *       scene;
+	QGraphicsScene * scene;
 };
 

@@ -15,10 +15,10 @@ class QString;
 
 class DLDZone
 {
-	public:
-		int		id;
-		QColor		color;
-		QString		name;
-		QPolygon	boundings;
+public:
+	int id;
+	QColor color;
+	QString name;
+	QPolygon boundings;
 };
 

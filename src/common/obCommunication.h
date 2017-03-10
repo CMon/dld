@@ -18,36 +18,36 @@ class QString;
 class OpenBeaconCommunication : public QThread
 {
 	Q_OBJECT
-	public:
-		OpenBeaconCommunication ();
-		~OpenBeaconCommunication ();
+public:
+	OpenBeaconCommunication ();
+	~OpenBeaconCommunication ();
 
-		int	startCommunication ();
-		void	stop ();
+	int startCommunication ();
+	void stop ();
 
-		void	closeDevice ();
-		void	changeDevice ();
+	void closeDevice ();
+	void changeDevice ();
 
-		QString	getDevicePath ();
-		void	setDevicePath (QString path);
+	QString getDevicePath ();
+	void setDevicePath (QString path);
 
-	public slots:
-		void	sendToOB (QString command);
+public slots:
+	void sendToOB (QString command);
 
-	signals:
-		void	newData (QString line);
-		void	writeFailed ();
+signals:
+	void newData (QString line);
+	void writeFailed ();
 
-	protected:
-		void	run ();
+protected:
+	void run ();
 
-	private:
+private:
 
-		bool		readRunning;
-		QQueue<QString>	sendQueue;
-		QMutex		sendQueueMutex;
+	bool readRunning;
+	QQueue<QString> sendQueue;
+	QMutex sendQueueMutex;
 
-		int 		fileDescriptor;
-		QString		devicePath;
-		QFile *		device;
+	int fileDescriptor;
+	QString devicePath;
+	QFile * device;
 };

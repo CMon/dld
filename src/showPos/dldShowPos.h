@@ -31,7 +31,7 @@ class DLDMapScene;
 
 class DLDShowPos : public QMainWindow
 {
-Q_OBJECT
+	Q_OBJECT
 public:
 	DLDShowPos ();
 	~DLDShowPos ();
@@ -91,47 +91,47 @@ private:
 	void updatePosition (int tagId, double x, double y);
 	bool connectToDB (QString type, QString host, int port, QString dbName, QString username, QString password);
 
-	int			currentConnectionType;
+	int currentConnectionType;
 
-	QMenu *			fileMenu;
-	QMenu *			showMenu;
-	QMenu *			helpMenu;
+	QMenu * fileMenu;
+	QMenu * showMenu;
+	QMenu * helpMenu;
 
-	QToolBar *		toolBar;
+	QToolBar * toolBar;
 
-	QLabel *		zoomLabel;
-	QDoubleSpinBox *	zoomSpin;
+	QLabel * zoomLabel;
+	QDoubleSpinBox * zoomSpin;
 
-	QAction *		loadMapAct;
-	QAction *		connectToGenPosAct;
-	QAction *		disconnectFromGenPosAct;
-	QAction *		connectToDBAct;
-	QAction *		disconnectFromDBAct;
+	QAction * loadMapAct;
+	QAction * connectToGenPosAct;
+	QAction * disconnectFromGenPosAct;
+	QAction * connectToDBAct;
+	QAction * disconnectFromDBAct;
 
-	QAction *		showPersonInfoAct;
-	QAction *		showPersonInfoHintAct;
-	QAction *		showDatabaseListDockAct;
+	QAction * showPersonInfoAct;
+	QAction * showPersonInfoHintAct;
+	QAction * showDatabaseListDockAct;
 
-	QAction *		exitAct;
-	QAction *		aboutAct;
-	QAction *		aboutQtAct;
+	QAction * exitAct;
+	QAction * aboutAct;
+	QAction * aboutQtAct;
 
-	QGraphicsView *		mapView;
-	DLDMapScene *		mapScene;
-	QDockWidget *		personInfoDock;
+	QGraphicsView * mapView;
+	DLDMapScene * mapScene;
+	QDockWidget * personInfoDock;
 
-	Ui::personInfoWidget	personInfoUi;
-	TagInfoDialog *		tagInfoDialog;
+	Ui::personInfoWidget personInfoUi;
+	TagInfoDialog * tagInfoDialog;
 
-	DLDDataExchangeClient *	exchangeClient;
+	DLDDataExchangeClient * exchangeClient;
 
-	QMap <int, TagViewInfo>	tags;
+	QMap <int, TagViewInfo> tags;
 
-	Ui::connect2DBDialog	connect2DBDialogUi;
-	Ui::databaseListDock	databaseListDockUi;
-	QSqlDatabase		database;
-	QDockWidget *		databaseListDock;
-	QString			personsTable;
+	Ui::connect2DBDialog connect2DBDialogUi;
+	Ui::databaseListDock databaseListDockUi;
+	QSqlDatabase database;
+	QDockWidget * databaseListDock;
+	QString personsTable;
 
-	QMap <int, QPixmap>	pictureMap;
+	QMap <int, QPixmap> pictureMap;
 };

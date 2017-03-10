@@ -17,30 +17,30 @@ class DLDExchangeClientDBus : public DLDExchangeClientStrategy
 {
 	Q_OBJECT
 
-	public:
-		DLDExchangeClientDBus (QString connectionBasePath, QString subPath, QString interface);
-		~DLDExchangeClientDBus ();
+public:
+	DLDExchangeClientDBus (QString connectionBasePath, QString subPath, QString interface);
+	~DLDExchangeClientDBus ();
 
-		QString getTagList ();
-		QString getNodeList ();
-		QString getStrengths (int tagId);
-		QString getNodeInfo (int deviceId);
-		double	getMaximumAxisValue ();
+	QString getTagList ();
+	QString getNodeList ();
+	QString getStrengths (int tagId);
+	QString getNodeInfo (int deviceId);
+	double getMaximumAxisValue ();
 
-	signals:
-		void newPosition (int tagId, int timestamp, double x, double y, double z);
-		void newStrength (int deviceId, int tagId, double strength);
-		void newNode (int id, double x, double y, double z);
-		void newMaximumAxisValue (double value);
+signals:
+	void newPosition (int tagId, int timestamp, double x, double y, double z);
+	void newStrength (int deviceId, int tagId, double strength);
+	void newNode (int id, double x, double y, double z);
+	void newMaximumAxisValue (double value);
 
-	public slots:
-		/**
-		 * parse message from incoming signals
-		*/
-		void parseMessage(const QDBusMessage &message);
+public slots:
+	/**
+	 * parse message from incoming signals
+	*/
+	void parseMessage(const QDBusMessage &message);
 
-	private:
-		QString				serviceName;
-		QDBusConnection *		dBus;
-		QDBusInterface *		iFace;
+private:
+	QString serviceName;
+	QDBusConnection * dBus;
+	QDBusInterface * iFace;
 };

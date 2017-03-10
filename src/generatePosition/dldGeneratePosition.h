@@ -21,31 +21,31 @@
 class DLDGeneratePosition : public QObject
 {
 	Q_OBJECT
-	public:
-		DLDGeneratePosition ();
-		~DLDGeneratePosition ();
+public:
+	DLDGeneratePosition ();
+	~DLDGeneratePosition ();
 
-	signals:
-		void newTagPos (int tagId, int timestamp, double x, double y, double z);
-		void newNodeConnected (int nodeId, double x, double y, double z);
+signals:
+	void newTagPos (int tagId, int timestamp, double x, double y, double z);
+	void newNodeConnected (int nodeId, double x, double y, double z);
 
-	private slots:
-		void newPosition (int tagId);
-		void newNode (int nodeId);
+private slots:
+	void newPosition (int tagId);
+	void newNode (int nodeId);
 
-	private:
-		void					initialPositions ();
+private:
+	void initialPositions ();
 
-		void					readConfiguration ();
+	void readConfiguration ();
 
-		QSettings *				settings;
-		DLDDataExchangeServer *			dataExchangeServer;
-		DLDDataExchangeClient *			dataExchangeClient;
+	QSettings * settings;
+	DLDDataExchangeServer * dataExchangeServer;
+	DLDDataExchangeClient * dataExchangeClient;
 
-		QMap<int, TagPositionInformation>	tagPositions;
-		PositionStrategy *			nodePosition;
-		QList<int>				nodeIdList;
+	QMap<int, TagPositionInformation> tagPositions;
+	PositionStrategy * nodePosition;
+	QList<int> nodeIdList;
 
 // not yet implemented
-// 		DLDMap *				mapHandler;
+// 	DLDMap * mapHandler;
 };

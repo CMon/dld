@@ -14,15 +14,15 @@
 
 class TwoDPositionStrategy : public PositionStrategy
 {
-	public:
-		TwoDPositionStrategy ();
-		~TwoDPositionStrategy ();
+public:
+	TwoDPositionStrategy ();
+	~TwoDPositionStrategy ();
 
-		QVector3D getPosition(StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors);
+	QVector3D getPosition(StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors);
 
-	public slots:
-		void addNode (int id, const QVector3D & point);
+public slots:
+	void addNode (int id, const QVector3D & point);
 
-	private:
-		QMap<int, QVector3D> nodeInformations;
+private:
+	QMap<int, QVector3D> nodeInformations;
 };
