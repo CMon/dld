@@ -35,7 +35,7 @@ TagItem::TagItem ()
  * @return
  *      void
  */
-void TagItem::setTagId (int id)
+void TagItem::setTagId (const QString & id)
 {
 	tagId = id;
 }
@@ -44,7 +44,7 @@ void TagItem::setTagId (int id)
  * @return
  *      int	tag id
  */
-int TagItem::getTagId () const
+QString TagItem::getTagId () const
 {
 	return (tagId);
 }

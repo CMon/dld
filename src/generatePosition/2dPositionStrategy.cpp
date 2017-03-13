@@ -46,7 +46,8 @@ TwoDPositionStrategy::~TwoDPositionStrategy ()
  * @return
  *      ThreeDPoint	a pointer to the position of the tag
  */
-QVector3D TwoDPositionStrategy::getPosition(const StrengthType & strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors) const
+QVector3D TwoDPositionStrategy::getPosition(const StrengthType & strengths, const QString & aNodeId, const QString & bNodeId,
+                                            const QString & cNodeId, const QString & dNodeId, bool * hadErrors) const
 {
 	Q_UNUSED(dNodeId)
 	QVector3D point;
@@ -136,7 +137,7 @@ QVector3D TwoDPositionStrategy::getPosition(const StrengthType & strengths, int 
  * @return
  *      void
  */
-void TwoDPositionStrategy::addNode (int id, const QVector3D & point)
+void TwoDPositionStrategy::addNode (const QString & id, const QVector3D & point)
 {
 	qCDebug(GENERATE_POSITION_2DSTRAT) << QString("Add new node to strategy, id: %1").arg(id);
 	nodeInformations.insert (id, point);

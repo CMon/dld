@@ -18,11 +18,12 @@ public:
 	TwoDPositionStrategy ();
 	~TwoDPositionStrategy ();
 
-	QVector3D getPosition(const StrengthType & strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors) const;
+	QVector3D getPosition(const StrengthType & strengths, const QString & aNodeId, const QString & bNodeId,
+	                      const QString & cNodeId, const QString & dNodeId, bool * hadErrors) const;
 
 public slots:
-	void addNode (int id, const QVector3D & point);
+	void addNode (const QString & id, const QVector3D & point);
 
 private:
-	QMap<int, QVector3D> nodeInformations;
+	QMap<QString, QVector3D> nodeInformations;
 };

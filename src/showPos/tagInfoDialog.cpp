@@ -52,7 +52,7 @@ int TagInfoDialog::getXShift () const
  * @return
  *      void
  */
-void TagInfoDialog::setInformation (int tagId, TagViewInfo info)
+void TagInfoDialog::setInformation (const QString & tagId, TagViewInfo info)
 {
 	QDateTime time;
 	time.setTime_t (info.lastSeen);

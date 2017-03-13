@@ -18,13 +18,13 @@ class TagItem : public QObject, public QGraphicsEllipseItem
 
 public:
 	TagItem ();
-	void setTagId (int id);
-	int getTagId () const;
+	void setTagId (const QString & id);
+	QString getTagId() const;
 
 signals:
-	void mouseEnterTag (int tagId, int x, int y);
+	void mouseEnterTag (const QString & tagId, int x, int y);
 	void mouseLeaveTag ();
-	void mouseMoveOverTag (int tagId, int x, int y);
+	void mouseMoveOverTag (const QString & tagId, int x, int y);
 
 protected:
 	void hoverEnterEvent (QGraphicsSceneHoverEvent * event);
@@ -32,5 +32,5 @@ protected:
 	void hoverMoveEvent (QGraphicsSceneHoverEvent * event);
 
 private:
-	int tagId;
+	QString tagId;
 };

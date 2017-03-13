@@ -23,12 +23,13 @@ public:
 	/**
 	 * calculate the position based on the strengths of the different nodes (nodeId, strength)
 	*/
-	virtual QVector3D getPosition (const StrengthType & strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors) const = 0;
+	virtual QVector3D getPosition (const StrengthType & strengths, const QString & aNodeId, const QString & bNodeId,
+	                               const QString & cNodeId, const QString & dNodeId, bool * hadErrors) const = 0;
 
 public slots:
 	/**
 	 * Add a node to the strategy information
 	*/
-	virtual void addNode (int id, const QVector3D & point) = 0;
+	virtual void addNode (const QString & id, const QVector3D & point) = 0;
 };
 

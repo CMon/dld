@@ -36,7 +36,7 @@ DLDMapScene::DLDMapScene ()
  */
 DLDMapScene::~DLDMapScene ()
 {
-	QMapIterator<int, TagItem *> i(tags);
+	QMapIterator<QString, TagItem *> i(tags);
 	while (i.hasNext())
 	{
 		i.next();
@@ -71,7 +71,7 @@ void DLDMapScene::createCoordSystem ()
  * @return
  *      void
  */
-void DLDMapScene::addTagItem (int tagId, const QColor & color)
+void DLDMapScene::addTagItem (const QString & tagId, const QColor & color)
 {
 	if (tags.contains(tagId))
 		return ;
@@ -92,7 +92,7 @@ void DLDMapScene::addTagItem (int tagId, const QColor & color)
  * @return
  *      void
  */
-void DLDMapScene::updateTagColor (int tagId, const QColor & color)
+void DLDMapScene::updateTagColor (const QString & tagId, const QColor & color)
 {
 	if (tagsOnScene.contains (tagId))
 		tags[tagId]->setBrush (QBrush(color));
@@ -104,7 +104,7 @@ void DLDMapScene::updateTagColor (int tagId, const QColor & color)
  * @return
  *      void
  */
-void DLDMapScene::setItemPosition (int tagId, const QPointF & pos)
+void DLDMapScene::setItemPosition (const QString & tagId, const QPointF & pos)
 {
 	if (tags.contains(tagId))
 	{
@@ -149,7 +149,7 @@ int DLDMapScene::getTagViewWidth () const
  * @return
  *      void
  */
-void DLDMapScene::addTagToScene (int tagId)
+void DLDMapScene::addTagToScene (const QString & tagId)
 {
 	tagsOnScene.append (tagId);
 }
@@ -159,7 +159,7 @@ void DLDMapScene::addTagToScene (int tagId)
  * @return
  *      bool
  */
-bool DLDMapScene::isTagOnScene (int tagId) const
+bool DLDMapScene::isTagOnScene (const QString & tagId) const
 {
 	return (tagsOnScene.contains (tagId));
 }

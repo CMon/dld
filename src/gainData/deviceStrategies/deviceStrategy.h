@@ -19,9 +19,9 @@ class QString;
 class DeviceInformation : public QVector3D
 {
 public:
-	DeviceInformation() : id(-1) {}
+	DeviceInformation() {}
 
-	bool isValid() const { return id != -1; }
+	bool isValid() const { return !id.isEmpty(); }
 
 	void fromQVector3D(const QVector3D & other)
 	{
@@ -31,7 +31,7 @@ public:
 	}
 
 public:
-	int	id;
+	QString	id;
 	QString path;
 };
 
@@ -72,7 +72,7 @@ signals:
 	/**
 	 * The signal that should be emitted if a receiving device gets a new strength value of a tag
 	*/
-	void newStrength (const QString & deviceId, QString tagId, double strength);
+	void newStrength (const QString & deviceId, const QString & tagId, double strength);
 	/**
 	 * The signal that should be emitted when a new receiving device was identified
 	 */

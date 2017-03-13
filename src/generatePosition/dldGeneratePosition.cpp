@@ -69,16 +69,12 @@ DLDGeneratePosition::~DLDGeneratePosition ()
  */
 void DLDGeneratePosition::initialPositions ()
 {
-	QList<int> nodes = dataExchangeClient->getNodeList ();
-	for (int i = 0; i < nodes.size(); i++)
-	{
-		newNode (nodes.at(i));
+	foreach (const QString & nodeId, dataExchangeClient->getNodeList()) {
+		newNode(nodeId);
 	}
 
-	QList<int> tags = dataExchangeClient->getTagList ();
-	for (int i = 0; i < tags.size(); i++)
-	{
-		newPosition (tags.at(i));
+	foreach(const QString & tagId, dataExchangeClient->getTagList()) {
+		newPosition(tagId);
 	}
 }
 /**
@@ -87,12 +83,12 @@ void DLDGeneratePosition::initialPositions ()
  * @return
  *      void
  */
-void DLDGeneratePosition::newPosition (int tagId)
+void DLDGeneratePosition::newPosition (const QString & tagId)
 {
 	TagPositionInformation posInfo;
 	QVector3D position;
 	posInfo.timestamp =  (int) time (NULL);
-	int	nodeIds[4];
+	QString nodeIds[4];
 
 	// in later development this selection should be made so that the 3(2D) / 4(3D) nodes are chosen by
 	// their submitted stregth value, best values win
@@ -141,7 +137,7 @@ void DLDGeneratePosition::newPosition (int tagId)
  * @return
  *      void
  */
-void DLDGeneratePosition::newNode (int nodeId)
+void DLDGeneratePosition::newNode (const QString & nodeId)
 {
 	QVector3D point = dataExchangeClient->getNodeInformation (nodeId);
 	nodeIdList.append (nodeId);

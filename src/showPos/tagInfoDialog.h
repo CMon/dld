@@ -20,7 +20,7 @@ class TagInfoDialog : public QDialog
 public:
 	TagInfoDialog (QWidget * par);
 	int getXShift () const;
-	void setInformation (int tagId, TagViewInfo info);
+	void setInformation (const QString & tagId, TagViewInfo info);
 
 private:
 	Ui::personInfoWidget personInfoUi;

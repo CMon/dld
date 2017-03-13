@@ -229,9 +229,9 @@ void DLDSimulateStrategy::updateStrengthData ()
 	double r1 = mainWindowUi.node1RadiusSpin->value ();
 	double r2 = mainWindowUi.node2RadiusSpin->value ();
 	double r3 = mainWindowUi.node3RadiusSpin->value ();
-	emit newStrength (1, fakeTagId, r1);
-	emit newStrength (2, fakeTagId, r2);
-	emit newStrength (3, fakeTagId, r3);
+	emit newStrength ("1", fakeTagId, r1);
+	emit newStrength ("2", fakeTagId, r2);
+	emit newStrength ("3", fakeTagId, r3);
 	mainWindow->statusBar ()->showMessage (tr("Position updated."));
 	qCDebug(SIMULATOR_STRATEGY) << QString("New simulated Strengths: 1: %1, 2: %2, 3: %3").arg(r1).arg(r2).arg(r3);
 }
@@ -279,7 +279,7 @@ void DLDSimulateStrategy::updateNodeData (int id)
 			break;
 	}
 	updateCircleItem (id);
-	emit newNode (id, x, y, z);
+	emit newNode (QString::number(id), x, y, z);
 	qCDebug(SIMULATOR_STRATEGY) << QString ("Updated Node %1 position: X: %2 Y: %3").arg (id).arg (x).arg (y);
 }
 /**

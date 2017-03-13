@@ -211,7 +211,7 @@ void OpenBeaconUSBStrategy::printSampleConfig () const
  * @return
  * 	DeviceInformation the information for the requested path beacon
  */
-DeviceInformation OpenBeaconUSBStrategy::getDeviceInformation (const QString & path)
+DeviceInformation OpenBeaconUSBStrategy::getDeviceInformation (const QString & path) const
 {
 	for (int i = 0; i < deviceInfos.size(); i++)
 	{

@@ -344,7 +344,7 @@ void DLDShowPos::connectToGenPos ()
 
 	if (selectConnectionUi.dBusRadio->isChecked ())     connectToDbus();
 
-	connect (exchangeClient, &DLDDataExchangeClient::newPosition,         this,     static_cast<void (DLDShowPos::*)(int)>(&DLDShowPos::updatePosition));
+	connect (exchangeClient, &DLDDataExchangeClient::newPosition,         this,     static_cast<void (DLDShowPos::*)(const QString &)>(&DLDShowPos::updatePosition));
 	connect (exchangeClient, &DLDDataExchangeClient::newNode,             this,     &DLDShowPos::newNode);
 	connect (exchangeClient, &DLDDataExchangeClient::newMaximumAxisValue, mapScene, &DLDMapScene::setMaximumAxisValue);
 	mapScene->setMaximumAxisValue (exchangeClient->getMaximumAxisValue ());
@@ -381,7 +381,7 @@ void DLDShowPos::connectToDbus ()
  * @return
  *      void
  */
-void DLDShowPos::updatePosition (int tagId)
+void DLDShowPos::updatePosition (const QString & tagId)
 {
 	QDateTime time;
 	TagPositionInformation info = exchangeClient->getPosition (tagId);
@@ -399,7 +399,7 @@ void DLDShowPos::updatePosition (int tagId)
  * @return
  *      void
  */
-void DLDShowPos::updatePosition (int tagId, double x, double y)
+void DLDShowPos::updatePosition (const QString & tagId, double x, double y)
 {
 	// add the items to the scenen BUT only if they not already exist
 	if (tags.contains (tagId))
@@ -427,7 +427,7 @@ void DLDShowPos::updatePosition (int tagId, double x, double y)
  * @return
  *      void
  */
-void DLDShowPos::addTagItem (int tagId)
+void DLDShowPos::addTagItem (const QString & tagId)
 {
 	if (mapScene->isTagOnScene (tagId))
 		return ;
@@ -482,7 +482,7 @@ void DLDShowPos::zoom (double zoomBy)
  * @return
  *      void
  */
-void DLDShowPos::mouseEnterTag (int tagId, int x, int y)
+void DLDShowPos::mouseEnterTag (const QString & tagId, int x, int y)
 {
 	if (tags.contains (tagId))
 	{
@@ -512,7 +512,7 @@ void DLDShowPos::mouseLeaveTag ()
  * @return
  *      void
  */
-void DLDShowPos::mouseMoveOverTag (int tagId, int x, int y)
+void DLDShowPos::mouseMoveOverTag (const QString & tagId, int x, int y)
 {
 	tagInfoDialog->move (x+tagInfoDialog->getXShift (), y);
 }
@@ -523,7 +523,7 @@ void DLDShowPos::mouseMoveOverTag (int tagId, int x, int y)
  * @return
  *      void
  */
-void DLDShowPos::fillPersonInfoDock (int tagId, TagViewInfo info)
+void DLDShowPos::fillPersonInfoDock (const QString & tagId, TagViewInfo info)
 {
 	QDateTime time;
 	time.setTime_t (info.lastSeen);
@@ -542,7 +542,7 @@ void DLDShowPos::fillPersonInfoDock (int tagId, TagViewInfo info)
  * @return
  *      void
  */
-void DLDShowPos::newNode (int nodeId)
+void DLDShowPos::newNode (const QString & nodeId)
 {
 	const QVector3D point = exchangeClient->getNodeInformation (nodeId);
 	addNodeInfo (nodeId, QPointF (point.x(), point.y()));
@@ -712,7 +712,7 @@ void DLDShowPos::refreshEntries ()
 		QPixmap pixmap;
 		pixmap.loadFromData (query.value(pictureFieldNo).toByteArray());
 		pictureItem->setIcon (QIcon (pixmap));
-		pictureMap[query.value(tagIdFieldNo).toInt()] = pixmap;
+		pictureMap[query.value(tagIdFieldNo).toString()] = pixmap;
 
 		QTableWidgetItem * descriptionItem = new QTableWidgetItem(query.value(descriptionFieldNo).toString());
 
@@ -734,16 +734,15 @@ void DLDShowPos::refreshEntries ()
 		databaseListDockUi.personTableWidget->setSortingEnabled (true);
 
 		// store the data in the tags map as well:
-		int tagId = id.toInt ();
-		TagViewInfo info = tags[tagId];
+		TagViewInfo info = tags[id];
 		info.name = name;
 		info.image = pixmap;
 		info.prename = prename;
 		info.color = color;
 		info.description = description;
-		tags.insert (tagId, info);
+		tags.insert (id, info);
 
-		mapScene->updateTagColor (tagId, info.color);
+		mapScene->updateTagColor (id, info.color);
 	}
 }
 /**
@@ -751,7 +750,7 @@ void DLDShowPos::refreshEntries ()
  * @return
  *      void
  */
-void DLDShowPos::getNewData (int tagId)
+void DLDShowPos::getNewData (const QString & tagId)
 {
 	if (!database.isValid () || !database.isOpen () || !personsTable.isEmpty())
 		return;
@@ -793,7 +792,7 @@ void DLDShowPos::getNewData (int tagId)
  * @return
  *      void
  */
-void DLDShowPos::addNodeInfo (int nodeId, QPointF position)
+void DLDShowPos::addNodeInfo (const QString & nodeId, QPointF position)
 {
 	Q_UNUSED(nodeId)
 	Q_UNUSED(position)

@@ -26,12 +26,12 @@ public:
 	~DLDGeneratePosition ();
 
 signals:
-	void newTagPos (int tagId, int timestamp, double x, double y, double z);
-	void newNodeConnected (int nodeId, double x, double y, double z);
+	void newTagPos (const QString & tagId, int timestamp, double x, double y, double z);
+	void newNodeConnected (const QString & nodeId, double x, double y, double z);
 
 private slots:
-	void newPosition (int tagId);
-	void newNode (int nodeId);
+	void newPosition (const QString & tagId);
+	void newNode (const QString & nodeId);
 
 private:
 	void initialPositions ();
@@ -42,9 +42,9 @@ private:
 	DLDDataExchangeServer * dataExchangeServer;
 	DLDDataExchangeClient * dataExchangeClient;
 
-	QMap<int, TagPositionInformation> tagPositions;
+	QMap<QString, TagPositionInformation> tagPositions;
 	PositionStrategy * nodePosition;
-	QList<int> nodeIdList;
+	QList<QString> nodeIdList;
 
 // not yet implemented
 // 	DLDMap * mapHandler;

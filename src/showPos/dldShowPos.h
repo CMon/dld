@@ -40,7 +40,7 @@ public:
 signals:
 	void connectedToGenPos (bool state);
 	void connectedToDatabase (bool state);
-	void newDataNeeded (int tagId);
+	void newDataNeeded (const QString & tagId);
 
 protected:
 	void closeEvent(QCloseEvent *event);
@@ -54,18 +54,18 @@ private slots:
 	void connectDialog ();
 	void disconnectFromDB ();
 	void refreshEntries ();
-	void getNewData (int tagId);
+	void getNewData (const QString & tagId);
 
 	void showPersonInfo ();
 	void showDatabaseListDock ();
 	void zoom (double zoomBy);
 
-	void mouseEnterTag (int tagId, int x, int y);
+	void mouseEnterTag (const QString & tagId, int x, int y);
 	void mouseLeaveTag ();
-	void mouseMoveOverTag (int tagId, int x, int y);
+	void mouseMoveOverTag (const QString & tagId, int x, int y);
 
-	void updatePosition (int tagId);
-	void newNode (int nodeId);
+	void updatePosition (const QString & tagId);
+	void newNode (const QString & nodeId);
 
 private:
 	static const int CONN_NONE  = 0;
@@ -84,11 +84,11 @@ private:
 
 	void connectToDbus ();
 
-	void fillPersonInfoDock (int tagId, TagViewInfo info);
+	void fillPersonInfoDock (const QString & tagId, TagViewInfo info);
 
-	void addNodeInfo (int nodeId, QPointF position);
-	void addTagItem (int tagId);
-	void updatePosition (int tagId, double x, double y);
+	void addNodeInfo (const QString & nodeId, QPointF position);
+	void addTagItem (const QString & tagId);
+	void updatePosition (const QString & tagId, double x, double y);
 	bool connectToDB (const QString & type, const QString & host, int port, const QString & dbName, const QString & username, const QString & password);
 
 	int currentConnectionType;
@@ -125,7 +125,7 @@ private:
 
 	DLDDataExchangeClient * exchangeClient;
 
-	QMap <int, TagViewInfo> tags;
+	QMap <QString, TagViewInfo> tags;
 
 	Ui::connect2DBDialog connect2DBDialogUi;
 	Ui::databaseListDock databaseListDockUi;
@@ -133,5 +133,5 @@ private:
 	QDockWidget * databaseListDock;
 	QString personsTable;
 
-	QMap <int, QPixmap> pictureMap;
+	QMap <QString, QPixmap> pictureMap;
 };

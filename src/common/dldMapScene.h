@@ -22,29 +22,29 @@ public:
 	DLDMapScene ();
 	~DLDMapScene ();
 
-	void addTagToScene (int tagId);
-	bool isTagOnScene (int tagId) const;
+	void addTagToScene (const QString & tagId);
+	bool isTagOnScene (const QString & tagId) const;
 
 	void setTagViewWidth (int width);
 	int getTagViewWidth () const;
 
-	void updateTagColor (int tagId, const QColor & color);
+	void updateTagColor (const QString & tagId, const QColor & color);
 
 signals:
-	void mouseEnterTag (int tagId, int x, int y);
+	void mouseEnterTag (const QString & tagId, int x, int y);
 	void mouseLeaveTag ();
-	void mouseMoveOverTag (int tagId, int x, int y);
+	void mouseMoveOverTag (const QString & tagId, int x, int y);
 
 public slots:
-	void addTagItem (int tagId, const QColor & color);
-	void setItemPosition (int tagId, const QPointF & pos);
+	void addTagItem (const QString & tagId, const QColor & color);
+	void setItemPosition (const QString & tagId, const QPointF & pos);
 	void setMaximumAxisValue (double value);
 
 private:
 	void createCoordSystem ();
 
-	QList <int> tagsOnScene;
-	QMap <int, TagItem *> tags;
+	QList <QString> tagsOnScene;
+	QMap <QString, TagItem *> tags;
 
 	int tagViewWidth;
 	double mapXMaximum;
