@@ -31,9 +31,9 @@ public:
 	static const int DBUS_POSITION = 1;
 
 public slots:
-	void updateNodeOnStrategies (int id, double x, double y, double z);
-	void updatePositionOnStrategies (int tagId, int timestamp, double x, double y, double z);
-	void updateStrengthOnStrategies (int deviceId, int tagId, double strength);
+	void updateNodeOnStrategies (const QString & id, double x, double y, double z);
+	void updatePositionOnStrategies (const QString & tagId, int timestamp, double x, double y, double z);
+	void updateStrengthOnStrategies (const QString & deviceId, const QString & tagId, double strength);
 	void setMaximumAxisValue (double maximumAxisValue);
 
 private:

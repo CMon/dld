@@ -315,7 +315,7 @@ void OpenBeaconUSBStrategy::parseNewData (const QString & data)
 		// gives us a scale from 0->40
 		QStringList tagInfo = answerParts.at(1).split(",", QString::SkipEmptyParts);
 		int strength = ((tagInfo.at(0).toInt() / 85) * 10) + (maxPackages - tagInfo.at(2).toInt());
-		emit newStrength (deviceInfo.id, tagInfo.at(1).toInt(), strength);
+		emit newStrength (deviceInfo.id, tagInfo.at(1), strength);
 		return;
 	}
 }

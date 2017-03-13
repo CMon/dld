@@ -83,7 +83,7 @@ void DLDDataExchangeServer::addExchangeMethod (int type, QString basePath, QStri
  * @return
  *      void
  */
-void DLDDataExchangeServer::updateNodeOnStrategies (int id, double x, double y, double z)
+void DLDDataExchangeServer::updateNodeOnStrategies (const QString & id, double x, double y, double z)
 {
 	for (int i = 0; i < exchangeStrategies.size(); i++) {
 		exchangeStrategies.at(i)->updateNode (id, x, y, z);
@@ -100,7 +100,7 @@ void DLDDataExchangeServer::updateNodeOnStrategies (int id, double x, double y, 
  * @return
  *      void
  */
-void DLDDataExchangeServer::updatePositionOnStrategies (int tagId, int timestamp, double x, double y, double z)
+void DLDDataExchangeServer::updatePositionOnStrategies (const QString & tagId, int timestamp, double x, double y, double z)
 {
 	for (int i = 0; i < exchangeStrategies.size(); i++) {
 		exchangeStrategies.at(i)->updatePosition (tagId, timestamp, x, y, z);
@@ -115,7 +115,7 @@ void DLDDataExchangeServer::updatePositionOnStrategies (int tagId, int timestamp
  * @return
  *      void
  */
-void DLDDataExchangeServer::updateStrengthOnStrategies (int deviceId, int tagId, double strength)
+void DLDDataExchangeServer::updateStrengthOnStrategies (const QString & deviceId, const QString & tagId, double strength)
 {
 	for (int i = 0; i < exchangeStrategies.size(); i++) {
 		exchangeStrategies.at(i)->updateStrength (deviceId, tagId, strength);

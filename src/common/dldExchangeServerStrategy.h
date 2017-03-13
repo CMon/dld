@@ -8,6 +8,8 @@
  */
 #pragma once
 
+class QString;
+
 /**
  * This is an interface for the exchange strategies
 */
@@ -21,15 +23,15 @@ public:
 	/**
 	 * Used to update the node data
 	*/
-	virtual void updateNode (int id, double x, double y, double z) = 0;
+	virtual void updateNode (const QString & id, double x, double y, double z) = 0;
 	/**
 	 * Used to update the tag position data
 	 */
-	virtual void updatePosition (int tagId, int timestamp, double x, double y, double z) = 0;
+	virtual void updatePosition (const QString & tagId, int timestamp, double x, double y, double z) = 0;
 	/**
 	 * Used to update the tag strength data
 	 */
-	virtual void updateStrength (int deviceId, int tagId, double strength) = 0;
+	virtual void updateStrength (const QString & deviceId, const QString & tagId, double strength) = 0;
 	/**
 	 * Set the maximum axis value of the device strategy
 	*/

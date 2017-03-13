@@ -83,22 +83,22 @@ void DLDExchangeClientDBus::parseMessage(const QDBusMessage &message)
 	{
 		if (args.size () == 3)
 		{
-			emit newStrength (args.at(0).toInt(), args.at(1).toInt(), args.at(2).toDouble ());
-			qCDebug(DBUS_CLIENT) << QString ("DBus recv(new Strength): %1, %2, %3").arg(args.at(0).toInt()).arg(args.at(1).toInt()).arg(args.at(2).toInt());
+			emit newStrength (args.at(0).toString(), args.at(1).toString(), args.at(2).toDouble ());
+			qCDebug(DBUS_CLIENT) << QString ("DBus recv(new Strength): %1, %2, %3").arg(args.at(0).toString()).arg(args.at(1).toString()).arg(args.at(2).toInt());
 		}// else ignore
 	} else if (message.member() == "updatedNode")
 	{
 		if (args.size () == 4)
 		{
-			emit newNode (args.at(0).toInt(), args.at(1).toDouble (), args.at(2).toDouble (), args.at(3).toDouble ());
-			qCDebug(DBUS_CLIENT) << QString ("DBus recv(new Node): %1, %2, %3, %4").arg(args.at(0).toInt()).arg(args.at(1).toDouble ()).arg(args.at(2).toDouble ()).arg(args.at(3).toDouble ());
+			emit newNode (args.at(0).toString(), args.at(1).toDouble (), args.at(2).toDouble (), args.at(3).toDouble ());
+			qCDebug(DBUS_CLIENT) << QString ("DBus recv(new Node): %1, %2, %3, %4").arg(args.at(0).toString()).arg(args.at(1).toDouble ()).arg(args.at(2).toDouble ()).arg(args.at(3).toDouble ());
 		}// else ignore
 	} else if (message.member() == "updatedPosition")
 	{
 		if (args.size () == 5)
 		{
-			emit newPosition (args.at(0).toInt(), args.at(1).toInt(), args.at(2).toDouble (), args.at(3).toDouble (), args.at(4).toDouble ());
-			qCDebug(DBUS_CLIENT) << QString ("DBus recv(new Position): %1, %2, %3, %4, %5").arg(args.at(0).toInt()).arg(args.at(1).toInt()).arg(args.at(2).toDouble ()).arg(args.at(3).toDouble ()).arg(args.at(4).toDouble ());
+			emit newPosition (args.at(0).toString(), args.at(1).toInt(), args.at(2).toDouble (), args.at(3).toDouble (), args.at(4).toDouble ());
+			qCDebug(DBUS_CLIENT) << QString ("DBus recv(new Position): %1, %2, %3, %4, %5").arg(args.at(0).toString()).arg(args.at(1).toInt()).arg(args.at(2).toDouble ()).arg(args.at(3).toDouble ()).arg(args.at(4).toDouble ());
 		}// else ignore
 	} else if (message.member () == "updatedMaximumAxisValue")
 	{
@@ -153,7 +153,7 @@ QString DLDExchangeClientDBus::getNodeList ()
  * @return
  *      QString the strength string for the tagId
  */
-QString DLDExchangeClientDBus::getStrengths (int tagId)
+QString DLDExchangeClientDBus::getStrengths (const QString & tagId) const
 {
 	if (!iFace->isValid())
 		return ("");
@@ -173,7 +173,7 @@ QString DLDExchangeClientDBus::getStrengths (int tagId)
  * @return
  *      QString the nodeInformation string for the deviceId
  */
-QString DLDExchangeClientDBus::getNodeInfo (int deviceId)
+QString DLDExchangeClientDBus::getNodeInfo (const QString & deviceId) const
 {
 	if (!iFace->isValid())
 		return ("");

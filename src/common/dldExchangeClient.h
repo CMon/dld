@@ -23,31 +23,31 @@ public:
 	static const int TYPE_DBUS  = 1;
 
 	void refreshTagInfos ();
-	QList<int> getTagList ();
-	StrengthType getStrengths (int tagId);
-	TagPositionInformation getPosition (int tagId);
+	QList<QString> getTagList();
+	StrengthType getStrengths (const QString & tagId);
+	TagPositionInformation getPosition (const QString & tagId) const;
 	double getMaximumAxisValue ();
 
 	void refreshNodeInfos ();
-	QList<int> getNodeList ();
-	QVector3D getNodeInformation (int nodeId);
+	QList<QString> getNodeList();
+	QVector3D getNodeInformation (const QString & nodeId);
 
 signals:
-	void newStrength (int tagId);
-	void newNode (int id);
-	void newPosition (int tagId);
+	void newStrength (const QString & tagId);
+	void newNode (const QString & id);
+	void newPosition (const QString & tagId);
 	void newMaximumAxisValue (double value);
 
 private slots:
-	void newNodeInfo (int id, double x, double y, double z);
-	void newStrengthInfo (int deviceId, int tagId, double strength);
-	void newPositionInfo (int tagId, int timestamp, double x, double y, double z);
+	void newNodeInfo (const QString & id, double x, double y, double z);
+	void newStrengthInfo (const QString & deviceId, const QString & tagId, double strength);
+	void newPositionInfo (const QString & tagId, int timestamp, double x, double y, double z);
 
 private:
 	QList<DLDExchangeClientStrategy *> exchangeStrategies;
 
-	QMap<int, QVector3D> nodeInfo;
-	QMap<int, StrengthType> tagInfo;
-	QMap<int, TagPositionInformation> positionInfo;
+	QMap<QString, QVector3D> nodeInfo;
+	QMap<QString, StrengthType> tagInfo;
+	QMap<QString, TagPositionInformation> positionInfo;
 	double maximumAxisValue;
 };

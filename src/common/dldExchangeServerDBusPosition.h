@@ -31,23 +31,23 @@ public:
 public slots:
 	Q_SCRIPTABLE QString getTagList ();
 	Q_SCRIPTABLE QString getNodeList ();
-	Q_SCRIPTABLE QString getPosition (int tagId);
-	Q_SCRIPTABLE QString getNodeInfo (int deviceId);
+	Q_SCRIPTABLE QString getPosition (const QString & tagId);
+	Q_SCRIPTABLE QString getNodeInfo (const QString & deviceId);
 	Q_SCRIPTABLE double getMaximumAxisValue ();
 
 signals:
-	void updatedPosition (int tagId, int timestamp, double x, double y, double z);
-	void updatedNode (int id, double x, double y, double z);
+	void updatedPosition (const QString & tagId, int timestamp, double x, double y, double z);
+	void updatedNode (const QString & id, double x, double y, double z);
 	void updatedMaximumAxisValue (double value);
 
 private slots:
-	void updateNode (int id, double x, double y, double z);
-	void updatePosition (int tagId, int timestamp, double x, double y, double z);
-	void updateStrength (int deviceId, int tagId, double strength);
+	void updateNode (const QString & id, double x, double y, double z);
+	void updatePosition (const QString & tagId, int timestamp, double x, double y, double z);
+	void updateStrength (const QString & deviceId, const QString & tagId, double strength);
 
 private:
-	QMap<int, QVector3D> nodeInfo;
-	QMap<int, TagPositionInformation> tagPosition;
+	QMap<QString, QVector3D> nodeInfo;
+	QMap<QString, TagPositionInformation> tagPosition;
 
 	QDBusConnection * dBus;
 	double maximumAxisValue;

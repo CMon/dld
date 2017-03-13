@@ -83,7 +83,7 @@ void DLDDataExchangeClient::addExchangeMethod (int type, QString basePath, QStri
  * @return
  *      void
  */
-void DLDDataExchangeClient::newNodeInfo (int id, double x, double y, double z)
+void DLDDataExchangeClient::newNodeInfo (const QString & id, double x, double y, double z)
 {
 	nodeInfo.insert (id, QVector3D(x, y, z));
 	emit newNode (id);
@@ -96,9 +96,9 @@ void DLDDataExchangeClient::newNodeInfo (int id, double x, double y, double z)
  * @return
  *      void
  */
-void DLDDataExchangeClient::newStrengthInfo (int deviceId, int tagId, double strength)
+void DLDDataExchangeClient::newStrengthInfo (const QString & deviceId, const QString & tagId, double strength)
 {
-	StrengthType	str;
+	StrengthType str;
 	str.insert (deviceId, strength);
 	tagInfo.insert (tagId, str);
 	emit newStrength (tagId);
@@ -113,7 +113,7 @@ void DLDDataExchangeClient::newStrengthInfo (int deviceId, int tagId, double str
  * @return
  *      void
  */
-void DLDDataExchangeClient::newPositionInfo (int tagId, int timestamp, double x, double y, double z)
+void DLDDataExchangeClient::newPositionInfo (const QString & tagId, int timestamp, double x, double y, double z)
 {
 	TagPositionInformation	info;
 	info.timestamp = timestamp;
@@ -127,7 +127,7 @@ void DLDDataExchangeClient::newPositionInfo (int tagId, int timestamp, double x,
  * @return
  *      StrengthType the strength map of the tag id
  */
-StrengthType DLDDataExchangeClient::getStrengths (int tagId)
+StrengthType DLDDataExchangeClient::getStrengths (const QString & tagId)
 {
 	refreshTagInfos ();
 	return (tagInfo[tagId]);
@@ -135,44 +135,26 @@ StrengthType DLDDataExchangeClient::getStrengths (int tagId)
 /**
  * @brief returns a list of the tags
  * @return
- *      QList<int> the tag list
+ *      QList<QString>  a list with tag ids
  */
-QList<int> DLDDataExchangeClient::getTagList ()
+QList<QString> DLDDataExchangeClient::getTagList ()
 {
 	refreshTagInfos ();
-	QList<int>	rtList;
-	QMapIterator<int, StrengthType>	i(tagInfo);
-	rtList.clear ();
-
-	while (i.hasNext())
-	{
-		i.next();
-		rtList.append(i.key());
-	}
-	return (rtList);
+	return tagInfo.keys();
 }
 /**
  * @brief returns a list of the nodes
  * @return
- *      QList<int> the node list
+ *      QList<QString>  a list with node ids
  */
-QList<int> DLDDataExchangeClient::getNodeList ()
+QList<QString> DLDDataExchangeClient::getNodeList ()
 {
 	refreshNodeInfos ();
-	QList<int>			rtList;
-	rtList.clear ();
-	if (nodeInfo.isEmpty())
-	{
+
+	if (nodeInfo.isEmpty()) {
 		qCDebug(EXCHANGE_CLIENT) << "No nodes in list.";
-		return (rtList);
 	}
-	QMapIterator<int, QVector3D> i(nodeInfo);
-	while (i.hasNext())
-	{
-		i.next();
-		rtList.append(i.key());
-	}
-	return (rtList);
+	return nodeInfo.keys();
 }
 /**
  * @brief returns the position of the node
@@ -180,7 +162,7 @@ QList<int> DLDDataExchangeClient::getNodeList ()
  * @return
  *      ThreeDPoint the node list
  */
-QVector3D DLDDataExchangeClient::getNodeInformation(int nodeId)
+QVector3D DLDDataExchangeClient::getNodeInformation(const QString & nodeId)
 {
 	refreshNodeInfos ();
 	return (nodeInfo[nodeId]);
@@ -192,7 +174,6 @@ QVector3D DLDDataExchangeClient::getNodeInformation(int nodeId)
  */
 void DLDDataExchangeClient::refreshTagInfos ()
 {
-	int id;
 	for (int i = 0; i < exchangeStrategies.size(); i++)
 	{
 		if (exchangeStrategies.at(i))
@@ -205,12 +186,12 @@ void DLDDataExchangeClient::refreshTagInfos ()
 				for (int j = 0; j < tagList.size (); j++)
 				{
 					StrengthType str;
-					id = tagList.at(j).toInt();
+					const QString id = tagList.at(j);
 					// node1=str1|node2=str2|...
 					QStringList infos = exchangeStrategies.at(i)->getStrengths (id).split("|", QString::SkipEmptyParts);
 					for (int k = 0; k < infos.size(); k++)
 					{
-						str.insert (infos.at(k).split("=").at(0).toInt(), infos.at(k).split("=").at(1).toDouble ());
+						str.insert (infos.at(k).split("=").at(0), infos.at(k).split("=").at(1).toDouble ());
 					}
 					tagInfo.insert (id, str);
 				}
@@ -225,7 +206,6 @@ void DLDDataExchangeClient::refreshTagInfos ()
  */
 void DLDDataExchangeClient::refreshNodeInfos ()
 {
-	int id;
 	for (int i = 0; i < exchangeStrategies.size(); i++)
 	{
 		if (exchangeStrategies.at(i))
@@ -237,7 +217,7 @@ void DLDDataExchangeClient::refreshNodeInfos ()
 				for (int j = 0; j < nodeList.size (); j++)
 				{
 					QVector3D point;
-					id = nodeList.at(j).toInt();
+					const QString id = nodeList.at(j);
 					QStringList coords = exchangeStrategies.at(i)->getNodeInfo (id).split("|", QString::SkipEmptyParts);
 					for (int k = 0; k < coords.size(); k++)
 					{
@@ -260,7 +240,7 @@ void DLDDataExchangeClient::refreshNodeInfos ()
  * @return
  *      TagPositionInformation the requested informations
  */
-TagPositionInformation DLDDataExchangeClient::getPosition (int tagId)
+TagPositionInformation DLDDataExchangeClient::getPosition (const QString & tagId) const
 {
 	return (positionInfo[tagId]);
 }

@@ -71,7 +71,7 @@ DLDExchangeServerDBusStrength::~DLDExchangeServerDBusStrength ()
  * @return
  *      void
  */
-void DLDExchangeServerDBusStrength::updateNode (int id, double x, double y, double z)
+void DLDExchangeServerDBusStrength::updateNode (const QString & id, double x, double y, double z)
 {
 	nodeInfo[id] = QVector3D(x, y, z);
 	emit updatedNode (id, x, y, z);
@@ -86,11 +86,8 @@ QString DLDExchangeServerDBusStrength::getTagList ()
 	QString rtString;
 	if (tagInfo.isEmpty())
 		return ("noTags");
-	QMapIterator<int, StrengthType> i(tagInfo);
-	while (i.hasNext())
-	{
-		i.next();
-		rtString.append (QString ("%1|").arg(i.key()));
+	foreach (const QString & tagId, tagInfo.keys()) {
+		rtString.append(QString ("%1|").arg(tagId));
 	}
 	return (rtString);
 }
@@ -104,11 +101,8 @@ QString DLDExchangeServerDBusStrength::getNodeList ()
 	QString rtString;
 	if (nodeInfo.isEmpty())
 		return ("noNodes");
-	QMapIterator<int, QVector3D> i(nodeInfo);
-	while (i.hasNext())
-	{
-		i.next();
-		rtString.append (QString ("%1|").arg(i.key()));
+	foreach (const QString & tagId, nodeInfo.keys()) {
+		rtString.append (QString ("%1|").arg(tagId));
 	}
 	return (rtString);
 }
@@ -118,7 +112,7 @@ QString DLDExchangeServerDBusStrength::getNodeList ()
  * @return
  *      QString return strength string; nodeId1=strength1|nodeId2=strength2|...
  */
-QString DLDExchangeServerDBusStrength::getStrengths (int tagId)
+QString DLDExchangeServerDBusStrength::getStrengths (const QString & tagId)
 {
 	QString rtString;
 	if (tagInfo.isEmpty())
@@ -126,8 +120,7 @@ QString DLDExchangeServerDBusStrength::getStrengths (int tagId)
 	StrengthType	strengths = tagInfo[tagId];
 	if (strengths.isEmpty())
 		return ("noStrengthInformation");
-
-	QMapIterator<int, double> i(strengths);
+	QMapIterator<QString, double> i(strengths);
 	while (i.hasNext())
 	{
 		i.next();
@@ -143,7 +136,7 @@ QString DLDExchangeServerDBusStrength::getStrengths (int tagId)
  * @return
  *      void
  */
-void DLDExchangeServerDBusStrength::updateStrength (int deviceId, int tagId, double strength)
+void DLDExchangeServerDBusStrength::updateStrength (const QString & deviceId, const QString & tagId, double strength)
 {
 	StrengthType tmp = tagInfo[tagId];
 	tmp.insert (deviceId, strength);
@@ -157,7 +150,7 @@ void DLDExchangeServerDBusStrength::updateStrength (int deviceId, int tagId, dou
  * @return
  *      QString return position string; x=<x>|y=<y>|z=<z>
  */
-QString DLDExchangeServerDBusStrength::getNodeInfo (int deviceId)
+QString DLDExchangeServerDBusStrength::getNodeInfo (const QString & deviceId)
 {
 	if (nodeInfo.isEmpty())
 		return ("noNodes");
@@ -177,7 +170,7 @@ QString DLDExchangeServerDBusStrength::getNodeInfo (int deviceId)
  * @return
  *      void
  */
-void DLDExchangeServerDBusStrength::updatePosition (int tagId, int timestamp, double x, double y, double z)
+void DLDExchangeServerDBusStrength::updatePosition (const QString & tagId, int timestamp, double x, double y, double z)
 {
 	Q_UNUSED(tagId)
 	Q_UNUSED(timestamp)

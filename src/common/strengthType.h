@@ -11,4 +11,4 @@
 #include <QMap>
 
 // tagId, strength
-typedef QMap<int, double> StrengthType;
+typedef QMap<QString, double> StrengthType;

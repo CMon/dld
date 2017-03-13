@@ -32,13 +32,13 @@ public:
 		*/
 	virtual QString getNodeList () = 0;
 	/**
-		 * retrieve the tags strength string from the data exchange server
-		*/
-	virtual QString getStrengths (int tagId) = 0;
+	 * retrieve the tags strength string from the data exchange server
+	*/
+	virtual QString getStrengths (const QString & tagId) const = 0;
 	/**
-		 * retrieve the node information string from the data exchange server
-		*/
-	virtual QString getNodeInfo (int deviceId) = 0;
+	 * retrieve the node information string from the data exchange server
+	*/
+	virtual QString getNodeInfo (const QString & deviceId) const = 0;
 	/**
 		 * Get the maximum axis value of the used device
 		 */
@@ -46,11 +46,11 @@ public:
 
 signals:
 	/**
-		 * send when new strength information arrives at the client side of the dbus
-		*/
-	void newStrength (int deviceId, int tagId, double strength);
+	 * send when new strength information arrives at the client side of the dbus
+	*/
+	void newStrength (const QString & deviceId, const QString & tagId, double strength);
 	/**
-		 * send when new node information arrives at the client side of the dbus
-		 */
-	void newNode (int id, double x, double y, double z);
+	 * send when new node information arrives at the client side of the dbus
+	 */
+	void newNode (const QString & nodeId, double x, double y, double z);
 };

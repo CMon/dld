@@ -21,16 +21,16 @@ public:
 	DLDExchangeClientDBus (const QString & connectionBasePath, const QString & subPath, const QString & interface);
 	~DLDExchangeClientDBus ();
 
-	QString getTagList ();
-	QString getNodeList ();
-	QString getStrengths (int tagId);
-	QString getNodeInfo (int deviceId);
-	double getMaximumAxisValue ();
+	virtual QString getTagList ();
+	virtual QString getNodeList ();
+	virtual QString getStrengths (const QString & tagId) const;
+	virtual QString getNodeInfo (const QString & deviceId) const;
+	virtual double getMaximumAxisValue ();
 
 signals:
-	void newPosition (int tagId, int timestamp, double x, double y, double z);
-	void newStrength (int deviceId, int tagId, double strength);
-	void newNode (int id, double x, double y, double z);
+	void newPosition (const QString & tagId, int timestamp, double x, double y, double z);
+	void newStrength (const QString & deviceId, const QString & tagId, double strength);
+	void newNode (const QString & id, double x, double y, double z);
 	void newMaximumAxisValue (double value);
 
 public slots:

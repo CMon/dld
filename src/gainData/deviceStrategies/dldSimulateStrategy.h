@@ -51,7 +51,7 @@ private:
 	Ui::mainWindow mainWindowUi;
 
 	QTimer * updateTimer;
-	int fakeTagId;
+	QString fakeTagId;
 
 	QGraphicsEllipseItem * circles[3];
 	QGraphicsScene * scene;

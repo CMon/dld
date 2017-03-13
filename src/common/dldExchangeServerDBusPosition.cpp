@@ -64,7 +64,7 @@ DLDExchangeServerDBusPosition::~DLDExchangeServerDBusPosition ()
  * @return
  *      void
  */
-void DLDExchangeServerDBusPosition::updateNode (int id, double x, double y, double z)
+void DLDExchangeServerDBusPosition::updateNode (const QString & id, double x, double y, double z)
 {
 	nodeInfo.insert (id, QVector3D(x, y, z));
 	emit updatedNode (id, x, y, z);
@@ -79,11 +79,8 @@ QString DLDExchangeServerDBusPosition::getTagList ()
 	QString rtString;
 	if (tagPosition.isEmpty())
 		return ("noTags");
-	QMapIterator<int, TagPositionInformation> i(tagPosition);
-	while (i.hasNext())
-	{
-		i.next();
-		rtString.append (QString ("%1|").arg(i.key()));
+	foreach (const QString & tagId, tagPosition.keys()) {
+		rtString.append (QString ("%1|").arg(tagId));
 	}
 	return (rtString);
 }
@@ -97,8 +94,7 @@ QString DLDExchangeServerDBusPosition::getNodeList ()
 	QString rtString;
 	if (nodeInfo.isEmpty())
 		return ("noNodes");
-	QMapIterator<int, QVector3D> i(nodeInfo);
-	foreach (int id, nodeInfo.keys()) {
+	foreach (const QString & id, nodeInfo.keys()) {
 		rtString.append (QString ("%1|").arg(id));
 	}
 	return (rtString);
@@ -109,7 +105,7 @@ QString DLDExchangeServerDBusPosition::getNodeList ()
  * @return
  *      QString return strength string; nodeId1=strength1|nodeId2=strength2|...
  */
-QString DLDExchangeServerDBusPosition::getPosition (int tagId)
+QString DLDExchangeServerDBusPosition::getPosition (const QString & tagId)
 {
 	QString rtString;
 	if (tagPosition.isEmpty())
@@ -132,7 +128,7 @@ QString DLDExchangeServerDBusPosition::getPosition (int tagId)
  * @return
  *      void
  */
-void DLDExchangeServerDBusPosition::updatePosition (int tagId, int timestamp, double x, double y, double z)
+void DLDExchangeServerDBusPosition::updatePosition (const QString & tagId, int timestamp, double x, double y, double z)
 {
 	TagPositionInformation	posInfo;
 	posInfo.timestamp = timestamp;
@@ -147,7 +143,7 @@ void DLDExchangeServerDBusPosition::updatePosition (int tagId, int timestamp, do
  * @return
  *      QString return position string; x=<x>|y=<y>|z=<z>
  */
-QString DLDExchangeServerDBusPosition::getNodeInfo (int deviceId)
+QString DLDExchangeServerDBusPosition::getNodeInfo (const QString & deviceId)
 {
 	if (nodeInfo.isEmpty())
 		return ("noNodes");
@@ -164,7 +160,7 @@ QString DLDExchangeServerDBusPosition::getNodeInfo (int deviceId)
  * @return
  *      void
  */
-void DLDExchangeServerDBusPosition::updateStrength (int deviceId, int tagId, double strength)
+void DLDExchangeServerDBusPosition::updateStrength (const QString & deviceId, const QString & tagId, double strength)
 {
 	Q_UNUSED(deviceId)
 	Q_UNUSED(tagId)

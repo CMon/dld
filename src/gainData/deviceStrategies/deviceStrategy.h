@@ -70,11 +70,11 @@ public:
 
 signals:
 	/**
-	 * The signal that should be emitted if a device gets a new strength value of a tag
+	 * The signal that should be emitted if a receiving device gets a new strength value of a tag
 	*/
-	void newStrength (int deviceId, int tagId, double strength);
+	void newStrength (const QString & deviceId, QString tagId, double strength);
 	/**
-	 * The signal that should be emitted when a new device was identified
+	 * The signal that should be emitted when a new receiving device was identified
 	 */
-	void newNode (int id, double x, double y, double z);
+	void newNode (const QString & id, double x, double y, double z);
 };
