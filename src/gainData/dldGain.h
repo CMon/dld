@@ -31,7 +31,6 @@ private:
 	void connectDevices ();
 
 	QList<DeviceStrategy *> devices;
-	QMap<int, QMap<int, int> > tagInformations;
 	DLDDataExchangeServer * dataExchangeServer;
 	QSettings * settings;
 
