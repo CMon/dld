@@ -174,27 +174,22 @@ QVector3D DLDDataExchangeClient::getNodeInformation(const QString & nodeId)
  */
 void DLDDataExchangeClient::refreshTagInfos ()
 {
-	for (int i = 0; i < exchangeStrategies.size(); i++)
-	{
-		if (exchangeStrategies.at(i))
+	foreach (const DLDExchangeClientStrategy * strategy, exchangeStrategies) {
+		if (!strategy) continue;
+
+		const QString tags = strategy->getTagList();
+		if (tags != "noTags")
 		{
-			QString tags = exchangeStrategies.at(i)->getTagList ();
-			if (tags != "noTags")
-			{
-				// tag1|tag2|tag3|...
-				QStringList tagList = tags.split("|", QString::SkipEmptyParts);
-				for (int j = 0; j < tagList.size (); j++)
-				{
-					StrengthType str;
-					const QString id = tagList.at(j);
-					// node1=str1|node2=str2|...
-					QStringList infos = exchangeStrategies.at(i)->getStrengths (id).split("|", QString::SkipEmptyParts);
-					for (int k = 0; k < infos.size(); k++)
-					{
-						str.insert (infos.at(k).split("=").at(0), infos.at(k).split("=").at(1).toDouble ());
-					}
-					tagInfo.insert (id, str);
+			// tag1|tag2|tag3|...
+			const QStringList tagList = tags.split("|", QString::SkipEmptyParts);
+			foreach (const QString & tagId, tagList) {
+				StrengthType str;
+				// node1=str1|node2=str2|...
+				const QStringList infos = strategy->getStrengths (tagId).split("|", QString::SkipEmptyParts);
+				foreach (const QString & info, infos) {
+					str.insert (info.split("=").at(0), info.split("=").at(1).toDouble ());
 				}
+				tagInfo.insert (tagId, str);
 			}
 		}
 	}
