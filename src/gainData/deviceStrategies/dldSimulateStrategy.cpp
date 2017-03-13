@@ -60,7 +60,7 @@ DLDSimulateStrategy::DLDSimulateStrategy(const QString & configName)
 	// run the simulation through a timer
 	updateTimer = new QTimer (this);
 	updateTimer->setSingleShot (false);
-	connnct(updateTimer, &QTimer::timeout, this, &DLDSimulateStrategy::updateStrengthData);
+	connect(updateTimer, &QTimer::timeout, this, &DLDSimulateStrategy::updateStrengthData);
 
 	loadSettings ();
 }
