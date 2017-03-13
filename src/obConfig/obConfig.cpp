@@ -258,7 +258,7 @@ QMap<QString, QString> DLDConfigureOB::getCommandMap () const
  * @return
  *	void
  */
-void DLDConfigureOB::writeCommandMap (QMap<QString, QString> commandMap)
+void DLDConfigureOB::writeCommandMap (const QMap<QString, QString> & commandMap)
 {
 	QMapIterator<QString, QString> iter (commandMap);
 	int i;

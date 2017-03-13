@@ -35,7 +35,7 @@ public slots:
 	void sendToOB (const QString & command);
 
 signals:
-	void newData (QString line);
+	void newData (const QString & line);
 	void writeFailed ();
 
 protected:

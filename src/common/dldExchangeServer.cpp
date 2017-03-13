@@ -52,7 +52,7 @@ DLDDataExchangeServer::~DLDDataExchangeServer ()
  * @return
  *      void
  */
-void DLDDataExchangeServer::addExchangeMethod (int type, QString basePath, QString subPath, int dBusType)
+void DLDDataExchangeServer::addExchangeMethod (int type, const QString & basePath, const QString & subPath, int dBusType)
 {
 	DLDExchangeServerStrategy *	newMethod;
 	switch (type)

@@ -57,7 +57,7 @@ DLDDataExchangeClient::~DLDDataExchangeClient ()
  * @return
  *      void
  */
-void DLDDataExchangeClient::addExchangeMethod (int type, QString basePath, QString subPath, QString interface)
+void DLDDataExchangeClient::addExchangeMethod (int type, const QString & basePath, const QString & subPath, const QString & interface)
 {
 	DLDExchangeClientStrategy *	newMethod;
 	switch (type)

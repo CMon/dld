@@ -28,7 +28,7 @@ public:
 	void setTagViewWidth (int width);
 	int getTagViewWidth () const;
 
-	void updateTagColor (int tagId, QColor color);
+	void updateTagColor (int tagId, const QColor & color);
 
 signals:
 	void mouseEnterTag (int tagId, int x, int y);
@@ -36,8 +36,8 @@ signals:
 	void mouseMoveOverTag (int tagId, int x, int y);
 
 public slots:
-	void addTagItem (int tagId, QColor color);
-	void setItemPosition (int tagId, QPointF pos);
+	void addTagItem (int tagId, const QColor & color);
+	void setItemPosition (int tagId, const QPointF & pos);
 	void setMaximumAxisValue (double value);
 
 private:

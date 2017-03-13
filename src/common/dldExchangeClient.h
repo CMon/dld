@@ -18,7 +18,7 @@ public:
 	DLDDataExchangeClient ();
 	~DLDDataExchangeClient ();
 
-	void addExchangeMethod (int type, QString basePath, QString subPath, QString interface);
+	void addExchangeMethod (int type, const QString & basePath, const QString & subPath, const QString & interface);
 	// class defines:
 	static const int TYPE_DBUS  = 1;
 

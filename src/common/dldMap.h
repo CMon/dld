@@ -25,15 +25,15 @@ public:
 	bool loadMap (const QString & path);
 	bool saveMap (const QString & path);
 
-	void addZone (DLDZone zone);
-	void changeZone (DLDZone zone);
+	void addZone (const DLDZone & zone);
+	void changeZone (const DLDZone & zone);
 	void removeZone (int id);
 	DLDZone getZoneInfo (int id) const;
 
-	void setMapImage (QPixmap image);
+	void setMapImage (const QPixmap & image);
 	QPixmap getMapImage () const;
 
-	void addNode (int id, QPoint position);
+	void addNode (int id, const QPoint & position);
 	void removeNode (int id);
 
 private:

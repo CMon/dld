@@ -71,7 +71,7 @@ void DLDMapScene::createCoordSystem ()
  * @return
  *      void
  */
-void DLDMapScene::addTagItem (int tagId, QColor color)
+void DLDMapScene::addTagItem (int tagId, const QColor & color)
 {
 	if (tags.contains(tagId))
 		return ;
@@ -92,7 +92,7 @@ void DLDMapScene::addTagItem (int tagId, QColor color)
  * @return
  *      void
  */
-void DLDMapScene::updateTagColor (int tagId, QColor color)
+void DLDMapScene::updateTagColor (int tagId, const QColor & color)
 {
 	if (tagsOnScene.contains (tagId))
 		tags[tagId]->setBrush (QBrush(color));
@@ -104,7 +104,7 @@ void DLDMapScene::updateTagColor (int tagId, QColor color)
  * @return
  *      void
  */
-void DLDMapScene::setItemPosition (int tagId, QPointF pos)
+void DLDMapScene::setItemPosition (int tagId, const QPointF & pos)
 {
 	if (tags.contains(tagId))
 	{

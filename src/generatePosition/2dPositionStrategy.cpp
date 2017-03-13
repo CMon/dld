@@ -46,7 +46,7 @@ TwoDPositionStrategy::~TwoDPositionStrategy ()
  * @return
  *      ThreeDPoint	a pointer to the position of the tag
  */
-QVector3D TwoDPositionStrategy::getPosition(StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors) const
+QVector3D TwoDPositionStrategy::getPosition(const StrengthType & strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors) const
 {
 	Q_UNUSED(dNodeId)
 	QVector3D point;

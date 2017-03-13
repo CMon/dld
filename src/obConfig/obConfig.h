@@ -68,7 +68,7 @@ private:
 	bool configureDevice (const QString & command);
 	void connectSignals ();
 	QMap<QString, QString> getCommandMap () const;
-	void writeCommandMap (QMap<QString, QString> commandMap);
+	void writeCommandMap (const QMap<QString, QString> & commandMap);
 
 	// Attributes
 	OpenBeaconCommunication * device;

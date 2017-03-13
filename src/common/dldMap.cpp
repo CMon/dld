@@ -47,7 +47,7 @@ DLDMap::~DLDMap ()
  * @return
  *      bool
  */
-void DLDMap::addZone (DLDZone zone)
+void DLDMap::addZone (const DLDZone & zone)
 {
 	changeZone (zone);
 }
@@ -57,7 +57,7 @@ void DLDMap::addZone (DLDZone zone)
  * @return
  *      bool
  */
-void DLDMap::changeZone (DLDZone zone)
+void DLDMap::changeZone (const DLDZone & zone)
 {
 	// check if zone already exists:
 	for (int i = 0; i < zoneInformations.size(); ++i)
@@ -113,7 +113,7 @@ DLDZone DLDMap::getZoneInfo (int id) const
  * @return
  *      void
  */
-void DLDMap::setMapImage (QPixmap image)
+void DLDMap::setMapImage (const QPixmap & image)
 {
 	background = image;
 }
