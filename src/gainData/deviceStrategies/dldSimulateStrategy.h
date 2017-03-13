@@ -24,11 +24,11 @@ class DLDSimulateStrategy  : public DeviceStrategy
 public:
 	DLDSimulateStrategy (const QString & configName);
 	~DLDSimulateStrategy ();
-	void connectDevices ();
-	void disconnectDevices ();
-	void addDevice (const QString & path);
-	void removeDevice (const QString & path);
-	double getMaximumAxisValue ();
+	virtual void connectDevices ();
+	virtual void disconnectDevices ();
+	virtual void addDevice (const QString & path);
+	virtual void removeDevice (const QString & path);
+	virtual double getMaximumAxisValue () const;
 
 private slots:
 	void updateNodeData (double);

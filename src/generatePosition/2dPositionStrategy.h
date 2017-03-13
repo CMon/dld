@@ -18,7 +18,7 @@ public:
 	TwoDPositionStrategy ();
 	~TwoDPositionStrategy ();
 
-	QVector3D getPosition(StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors);
+	QVector3D getPosition(StrengthType strengths, int aNodeId, int bNodeId, int cNodeId, int dNodeId, bool * hadErrors) const;
 
 public slots:
 	void addNode (int id, const QVector3D & point);

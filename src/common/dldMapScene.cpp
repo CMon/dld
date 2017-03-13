@@ -139,7 +139,7 @@ void DLDMapScene::setTagViewWidth (int width)
  * @return
  *      int	width of circle
  */
-int DLDMapScene::getTagViewWidth ()
+int DLDMapScene::getTagViewWidth () const
 {
 	return (tagViewWidth);
 }
@@ -159,7 +159,7 @@ void DLDMapScene::addTagToScene (int tagId)
  * @return
  *      bool
  */
-bool DLDMapScene::isTagOnScene (int tagId)
+bool DLDMapScene::isTagOnScene (int tagId) const
 {
 	return (tagsOnScene.contains (tagId));
 }

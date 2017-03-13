@@ -20,7 +20,7 @@ public:
 	~DLDMap ();
 
 	void setMapName (const QString & name);
-	QString getMapName ();
+	QString getMapName () const;
 
 	bool loadMap (const QString & path);
 	bool saveMap (const QString & path);
@@ -28,10 +28,10 @@ public:
 	void addZone (DLDZone zone);
 	void changeZone (DLDZone zone);
 	void removeZone (int id);
-	DLDZone getZoneInfo (int id);
+	DLDZone getZoneInfo (int id) const;
 
 	void setMapImage (QPixmap image);
-	QPixmap getMapImage ();
+	QPixmap getMapImage () const;
 
 	void addNode (int id, QPoint position);
 	void removeNode (int id);

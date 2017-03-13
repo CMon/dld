@@ -19,7 +19,7 @@ class TagInfoDialog : public QDialog
 	Q_OBJECT
 public:
 	TagInfoDialog (QWidget * par);
-	int getXShift ();
+	int getXShift () const;
 	void setInformation (int tagId, TagViewInfo info);
 
 private:

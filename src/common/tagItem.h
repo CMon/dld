@@ -18,8 +18,8 @@ class TagItem : public QObject, public QGraphicsEllipseItem
 
 public:
 	TagItem ();
-	void	setTagId (int id);
-	int	getTagId ();
+	void setTagId (int id);
+	int getTagId () const;
 
 signals:
 	void mouseEnterTag (int tagId, int x, int y);

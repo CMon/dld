@@ -20,17 +20,17 @@ class DLDExchangeClientStrategy : public QObject
 	Q_OBJECT
 public:
 	/**
-		 * std. destructor
-		*/
-	~DLDExchangeClientStrategy() {};
+	 * std. destructor
+	*/
+	~DLDExchangeClientStrategy() {}
 	/**
-		 * retrieve the tag list from the data exchange server
-		*/
-	virtual QString getTagList () = 0;
+	 * retrieve the tag list from the data exchange server
+	*/
+	virtual QString getTagList () const = 0;
 	/**
-		 * retrieve the node list from the data exchange server
-		*/
-	virtual QString getNodeList () = 0;
+	 * retrieve the node list from the data exchange server
+	*/
+	virtual QString getNodeList () const = 0;
 	/**
 	 * retrieve the tags strength string from the data exchange server
 	*/
@@ -40,9 +40,9 @@ public:
 	*/
 	virtual QString getNodeInfo (const QString & deviceId) const = 0;
 	/**
-		 * Get the maximum axis value of the used device
-		 */
-	virtual double getMaximumAxisValue () = 0;
+	 * Get the maximum axis value of the used device
+	 */
+	virtual double getMaximumAxisValue () const = 0;
 
 signals:
 	/**

@@ -194,7 +194,7 @@ void OpenBeaconUSBStrategy::removeDevice (const QString & path)
  * @return
  * 	void
  */
-void OpenBeaconUSBStrategy::printSampleConfig ()
+void OpenBeaconUSBStrategy::printSampleConfig () const
 {
 	QTextStream out (stdout);
 	out << "The following gives an example of two configuration entries for the obStrategy configuration ";
@@ -324,7 +324,7 @@ void OpenBeaconUSBStrategy::parseNewData (const QString & data)
  * @return
  * 	int	number of packages
  */
-double OpenBeaconUSBStrategy::getMaximumAxisValue ()
+double OpenBeaconUSBStrategy::getMaximumAxisValue () const
 {
 	// * 4 because of the 4 different powerlevel
 	return (maxPackages * 4);

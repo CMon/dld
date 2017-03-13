@@ -67,7 +67,7 @@ private:
 	bool flashDevice (const QString & deviceName);
 	bool configureDevice (const QString & command);
 	void connectSignals ();
-	QMap<QString, QString> getCommandMap ();
+	QMap<QString, QString> getCommandMap () const;
 	void writeCommandMap (QMap<QString, QString> commandMap);
 
 	// Attributes

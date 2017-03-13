@@ -29,11 +29,11 @@ public:
 	void setMaximumAxisValue (double maximumAxisValue);
 
 public slots:
-	Q_SCRIPTABLE QString getTagList ();
-	Q_SCRIPTABLE QString getNodeList ();
-	Q_SCRIPTABLE QString getStrengths (const QString & tagId);
-	Q_SCRIPTABLE QString getNodeInfo (const QString & deviceId);
-	Q_SCRIPTABLE double getMaximumAxisValue ();
+	Q_SCRIPTABLE QString getTagList () const;
+	Q_SCRIPTABLE QString getNodeList () const;
+	Q_SCRIPTABLE QString getStrengths (const QString & tagId) const;
+	Q_SCRIPTABLE QString getNodeInfo (const QString & deviceId) const;
+	Q_SCRIPTABLE double getMaximumAxisValue () const;
 
 signals:
 	void updatedStrength (const QString & deviceId, const QString & tagId, double strength);

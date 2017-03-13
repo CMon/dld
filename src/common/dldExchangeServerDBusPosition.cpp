@@ -74,7 +74,7 @@ void DLDExchangeServerDBusPosition::updateNode (const QString & id, double x, do
  * @return
  *      QString returns tagId string; tagId1|tagId2|...
  */
-QString DLDExchangeServerDBusPosition::getTagList ()
+QString DLDExchangeServerDBusPosition::getTagList () const
 {
 	QString rtString;
 	if (tagPosition.isEmpty())
@@ -89,7 +89,7 @@ QString DLDExchangeServerDBusPosition::getTagList ()
  * @return
  *      QString returns tagId string; nodeId|nodeId||...
  */
-QString DLDExchangeServerDBusPosition::getNodeList ()
+QString DLDExchangeServerDBusPosition::getNodeList () const
 {
 	QString rtString;
 	if (nodeInfo.isEmpty())
@@ -105,7 +105,7 @@ QString DLDExchangeServerDBusPosition::getNodeList ()
  * @return
  *      QString return strength string; nodeId1=strength1|nodeId2=strength2|...
  */
-QString DLDExchangeServerDBusPosition::getPosition (const QString & tagId)
+QString DLDExchangeServerDBusPosition::getPosition (const QString & tagId) const
 {
 	QString rtString;
 	if (tagPosition.isEmpty())
@@ -143,7 +143,7 @@ void DLDExchangeServerDBusPosition::updatePosition (const QString & tagId, int t
  * @return
  *      QString return position string; x=<x>|y=<y>|z=<z>
  */
-QString DLDExchangeServerDBusPosition::getNodeInfo (const QString & deviceId)
+QString DLDExchangeServerDBusPosition::getNodeInfo (const QString & deviceId) const
 {
 	if (nodeInfo.isEmpty())
 		return ("noNodes");
@@ -183,7 +183,7 @@ void DLDExchangeServerDBusPosition::setMaximumAxisValue (double maximumAxisValue
  * @return
  *      int value
  */
-double DLDExchangeServerDBusPosition::getMaximumAxisValue ()
+double DLDExchangeServerDBusPosition::getMaximumAxisValue () const
 {
 	return (maximumAxisValue);
 }

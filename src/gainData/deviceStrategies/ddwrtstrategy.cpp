@@ -77,7 +77,7 @@ void DDWRTStrategy::removeDevice(const QString & path)
 	Q_UNUSED(path)
 }
 
-void DDWRTStrategy::printSampleConfig()
+void DDWRTStrategy::printSampleConfig() const
 {
 	QTextStream out (stdout);
 	out << "The following gives an example of two configuration entries for the ddwrt configuration ";

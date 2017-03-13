@@ -81,7 +81,7 @@ void DLDExchangeServerDBusStrength::updateNode (const QString & id, double x, do
  * @return
  *      QString returns tagId string; tagId1|tagId2|...
  */
-QString DLDExchangeServerDBusStrength::getTagList ()
+QString DLDExchangeServerDBusStrength::getTagList () const
 {
 	QString rtString;
 	if (tagInfo.isEmpty())
@@ -96,7 +96,7 @@ QString DLDExchangeServerDBusStrength::getTagList ()
  * @return
  *      QString returns tagId string; nodeId|nodeId||...
  */
-QString DLDExchangeServerDBusStrength::getNodeList ()
+QString DLDExchangeServerDBusStrength::getNodeList () const
 {
 	QString rtString;
 	if (nodeInfo.isEmpty())
@@ -112,7 +112,7 @@ QString DLDExchangeServerDBusStrength::getNodeList ()
  * @return
  *      QString return strength string; nodeId1=strength1|nodeId2=strength2|...
  */
-QString DLDExchangeServerDBusStrength::getStrengths (const QString & tagId)
+QString DLDExchangeServerDBusStrength::getStrengths (const QString & tagId) const
 {
 	QString rtString;
 	if (tagInfo.isEmpty())
@@ -150,7 +150,7 @@ void DLDExchangeServerDBusStrength::updateStrength (const QString & deviceId, co
  * @return
  *      QString return position string; x=<x>|y=<y>|z=<z>
  */
-QString DLDExchangeServerDBusStrength::getNodeInfo (const QString & deviceId)
+QString DLDExchangeServerDBusStrength::getNodeInfo (const QString & deviceId) const
 {
 	if (nodeInfo.isEmpty())
 		return ("noNodes");
@@ -195,7 +195,7 @@ void DLDExchangeServerDBusStrength::setMaximumAxisValue (double maximumAxisValue
  * @return
  *      int value
  */
-double DLDExchangeServerDBusStrength::getMaximumAxisValue ()
+double DLDExchangeServerDBusStrength::getMaximumAxisValue () const
 {
 	return (maximumAxisValue);
 }

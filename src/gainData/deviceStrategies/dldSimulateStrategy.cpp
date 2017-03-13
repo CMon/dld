@@ -215,7 +215,7 @@ void DLDSimulateStrategy::removeDevice (const QString & path)
  * @return
  *      int maximum axis value
  */
-double DLDSimulateStrategy::getMaximumAxisValue ()
+double DLDSimulateStrategy::getMaximumAxisValue () const
 {
 	return (mainWindowUi.maxNodeRangeSpin->value ());
 }

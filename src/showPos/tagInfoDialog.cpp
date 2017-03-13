@@ -41,7 +41,7 @@ TagInfoDialog::TagInfoDialog (QWidget * par)
  * @return
  *      void
  */
-int TagInfoDialog::getXShift ()
+int TagInfoDialog::getXShift () const
 {
 	return (xShift);
 }

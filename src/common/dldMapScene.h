@@ -23,10 +23,10 @@ public:
 	~DLDMapScene ();
 
 	void addTagToScene (int tagId);
-	bool isTagOnScene (int tagId);
+	bool isTagOnScene (int tagId) const;
 
 	void setTagViewWidth (int width);
-	int getTagViewWidth ();
+	int getTagViewWidth () const;
 
 	void updateTagColor (int tagId, QColor color);
 

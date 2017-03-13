@@ -62,11 +62,11 @@ public:
 	/**
 	 * prints an example for the configuration
 	 */
-	void printSampleConfig () {}
+	void printSampleConfig () const {}
 	/**
 	 * returns the maximum value of the device on one axis in one direction
 	 */
-	virtual double getMaximumAxisValue () = 0;
+	virtual double getMaximumAxisValue () const = 0;
 
 signals:
 	/**

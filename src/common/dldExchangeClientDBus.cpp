@@ -114,7 +114,7 @@ void DLDExchangeClientDBus::parseMessage(const QDBusMessage &message)
  * @return
  *      QString the tag list
  */
-QString DLDExchangeClientDBus::getTagList ()
+QString DLDExchangeClientDBus::getTagList () const
 {
 	if (!iFace->isValid())
 		return ("");
@@ -133,7 +133,7 @@ QString DLDExchangeClientDBus::getTagList ()
  * @return
  *      QString the node list
  */
-QString DLDExchangeClientDBus::getNodeList ()
+QString DLDExchangeClientDBus::getNodeList () const
 {
 	if (!iFace->isValid())
 		return ("");
@@ -192,7 +192,7 @@ QString DLDExchangeClientDBus::getNodeInfo (const QString & deviceId) const
  * @return
  *      int maximum axis value
  */
-double DLDExchangeClientDBus::getMaximumAxisValue ()
+double DLDExchangeClientDBus::getMaximumAxisValue () const
 {
 	if (!iFace->isValid())
 		return (0);

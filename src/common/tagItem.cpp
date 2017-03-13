@@ -44,7 +44,7 @@ void TagItem::setTagId (int id)
  * @return
  *      int	tag id
  */
-int TagItem::getTagId ()
+int TagItem::getTagId () const
 {
 	return (tagId);
 }

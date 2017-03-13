@@ -237,7 +237,7 @@ void DLDConfigureOB::deleteCommandTableRow ()
  * @return
  *      QMap<QString, QString> the map that is returned
  */
-QMap<QString, QString> DLDConfigureOB::getCommandMap ()
+QMap<QString, QString> DLDConfigureOB::getCommandMap () const
 {
 	int nCmds = settings->value("numberOfCommands", 0).toInt ();
 	QMap<QString, QString> cmdMap;

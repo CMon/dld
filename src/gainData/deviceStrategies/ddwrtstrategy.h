@@ -35,8 +35,8 @@ public:
 	void addDevice (const QString & path);
 	void removeDevice (const QString & path);
 
-	void printSampleConfig ();
-	double getMaximumAxisValue () { return maximumDBValue; }
+	void printSampleConfig () const;
+	double getMaximumAxisValue () const { return maximumDBValue; }
 
 private slots:
 	void checkRouters();

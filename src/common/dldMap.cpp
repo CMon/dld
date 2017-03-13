@@ -94,7 +94,7 @@ void DLDMap::removeZone (int id)
  * @return
  *      DLDZone	the zone information
  */
-DLDZone DLDMap::getZoneInfo (int id)
+DLDZone DLDMap::getZoneInfo (int id) const
 {
 	for (int i = 0; i < zoneInformations.size(); ++i)
 	{
@@ -122,7 +122,7 @@ void DLDMap::setMapImage (QPixmap image)
  * @return
  *      QPixmap	the background image
  */
-QPixmap DLDMap::getMapImage ()
+QPixmap DLDMap::getMapImage () const
 {
 	return (background);
 }
@@ -141,7 +141,7 @@ void DLDMap::setMapName (const QString & name)
  * @return
  *      QString	the map name
  */
-QString DLDMap::getMapName ()
+QString DLDMap::getMapName () const
 {
 	return (mapName);
 }

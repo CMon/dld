@@ -21,11 +21,11 @@ public:
 	DLDExchangeClientDBus (const QString & connectionBasePath, const QString & subPath, const QString & interface);
 	~DLDExchangeClientDBus ();
 
-	virtual QString getTagList ();
-	virtual QString getNodeList ();
+	virtual QString getTagList () const;
+	virtual QString getNodeList () const;
 	virtual QString getStrengths (const QString & tagId) const;
 	virtual QString getNodeInfo (const QString & deviceId) const;
-	virtual double getMaximumAxisValue ();
+	virtual double getMaximumAxisValue () const;
 
 signals:
 	void newPosition (const QString & tagId, int timestamp, double x, double y, double z);

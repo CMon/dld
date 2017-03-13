@@ -28,7 +28,7 @@ public:
 	void closeDevice ();
 	void changeDevice ();
 
-	QString getDevicePath ();
+	QString getDevicePath () const;
 	void setDevicePath (const QString & path);
 
 public slots:

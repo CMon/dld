@@ -191,7 +191,7 @@ void OpenBeaconCommunication::sendToOB (const QString & command)
  * @return
  *      QString	path
  */
-QString OpenBeaconCommunication::getDevicePath ()
+QString OpenBeaconCommunication::getDevicePath () const
 {
 	return (devicePath);
 }
